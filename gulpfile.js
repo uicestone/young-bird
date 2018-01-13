@@ -18,7 +18,6 @@ gulp.task('serve', function() {
 
 gulp.task('sass', function() {
   return gulp.src([
-      'bootstrap/scss/bootstrap.scss',
       'styles/main.scss'
     ])
     .pipe(sass())

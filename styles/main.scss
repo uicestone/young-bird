@@ -1,3 +1,9 @@
-body {
-  background: white;
-}
+// overrides
+$body-color: #000000;
+
+// bootstrap
+@import "../bootstrap/scss/bootstrap";
+
+// main
+@import "header";
+@import "footer";
