@@ -24,6 +24,8 @@ $green:   #6ad500;
 $orange:  #ff7900;
 $grey:    #2e2e2e;
 
+$primary: $grey;
+
 $icons: ();
 $icons: map-merge((
   "yellow": $yellow,
@@ -36,6 +38,10 @@ $icons: map-merge((
   "orange": $orange
 ), $icons);
 
+$border-radius:    0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+
 // bootstrap
 @import "../bootstrap/scss/bootstrap";
 
@@ -43,3 +49,6 @@ $icons: map-merge((
 @import "common";
 @import "header";
 @import "footer";
+
+// page
+@import "signup";
