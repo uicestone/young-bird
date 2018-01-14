@@ -7894,41 +7894,6 @@ a.text-dark:focus, a.text-dark:hover {
   .table-bordered td {
     border: 1px solid #ddd !important; } }
 
-.navbar {
-  padding: 20px 0 10px; }
-  .navbar .navbar-toggler {
-    border-color: transparent; }
-  .navbar .navbar-nav {
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1; }
-    .navbar .navbar-nav .nav-item a {
-      color: #2e2e2e; }
-  .navbar .btn-link {
-    color: #2e2e2e;
-    font-size: 14px; }
-
-@media (max-width: 767.99px) {
-  .navbar .navbar-brand img {
-    width: 180px;
-    height: auto; }
-  .form-inline button:first-child {
-    padding-left: 0; } }
-
-.footer {
-  padding: 50px 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background: #000; }
-  .footer span, .footer a, .footer p {
-    font-size: 12px;
-    color: #fff; }
-  .footer .nowrap {
-    white-space: nowrap; }
-
 .btn-common {
   width: 150px; }
 
@@ -8013,10 +7978,6 @@ a.text-dark:focus, a.text-dark:hover {
     left: 50%;
     margin-left: -30px; }
 
-.list-competiton > div {
-  padding-left: 10px;
-  padding-right: 10px; }
-
 .list-competiton .card {
   border: none; }
   .list-competiton .card .card-img-top {
@@ -8048,3 +8009,38 @@ a.text-dark:focus, a.text-dark:hover {
       margin-top: 10px;
       margin-bottom: 10px;
       color: #2b00ff; }
+
+.navbar {
+  padding: 20px 0 10px; }
+  .navbar .navbar-toggler {
+    border-color: transparent; }
+  .navbar .navbar-nav {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1; }
+    .navbar .navbar-nav .nav-item a {
+      color: #2e2e2e; }
+  .navbar .btn-link {
+    color: #2e2e2e;
+    font-size: 14px; }
+
+@media (max-width: 991.99px) {
+  .navbar .navbar-brand img {
+    width: 180px;
+    height: auto; }
+  .form-inline button:first-child {
+    padding-left: 0; } }
+
+.footer {
+  padding: 50px 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background: #000; }
+  .footer span, .footer a, .footer p {
+    font-size: 12px;
+    color: #fff; }
+  .footer .nowrap {
+    white-space: nowrap; }

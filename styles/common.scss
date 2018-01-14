@@ -1,0 +1,104 @@
+
+.btn-common {
+  width: 150px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 6px;
+}
+
+@each $color-key, $color-value in $icons {
+  .icon-#{$color-key} {
+    background-color: #{$color-value};
+  }
+  .tag-#{$color-key} {
+    background-color: #{$color-value};
+  }
+}
+
+.tag {
+  font-size: 14px;
+  font-style: normal;
+  color: $white;
+  padding: 1px 5px;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.htitle {
+  position: relative;
+  h2 {
+    font-weight: $font-weight-bold;
+    padding: 15px 0;
+  }
+  span {
+    position: absolute;
+    width: 60px;
+    height: 1px;
+    background: $black;
+    left: 50%;
+    margin-left: -30px;
+  }
+}
+
+.list-competiton {
+  .card {
+    border: none;
+    .card-img-top {
+      border-radius: 0;
+    }
+    .card-body {
+      position: relative;
+      border-top: 1px solid $black;
+      border-bottom: 1px solid $black;
+      padding: .75rem 0;
+      h5:first-child {
+        margin-bottom: 0;
+      }
+      .icon {
+        position: absolute;
+        right: 0;
+        top: .85rem;
+      }
+    }
+  }
+}
+
+.list-news {
+  > div {
+    // border: 1px solid red;
+    // height: 100px;
+  }
+  .card {
+    border: none;
+    .card-body {
+      background: $gray-200;
+      .title {
+        font-weight: $font-weight-bold;
+        border-left: 5px solid $cyan;
+        padding-left: 10px;
+      }
+      .label, p, i {
+        font-size: 14px;
+        margin-left: 15px;
+      }
+      .label {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        color: $cyan;
+      }
+    }
+  }
+}
