@@ -1,7 +1,12 @@
 // overrides
-$body-color: #000000;
+$body-color: #686868;
+$link-color: #686868;
 $grid-columns: 24;
 $grid-gutter-width: 20px;
+$yiq-contrasted-threshold: 160;
+$input-btn-padding-y: .7rem;
+$input-btn-padding-x: .75rem;
+
 $spacer: 1rem;
 $spacers: (
   0: 0,
@@ -14,17 +19,19 @@ $spacers: (
   7: ($spacer * 6),
 );
 
-$yellow:  #ffde00;
-$pink:    #dc80a5;
-$rose:    #d1007f;
-$red:     #d30012;
-$blue:    #004fff;
-$cyan:    #2b00ff;
-$green:   #6ad500;
-$orange:  #ff7900;
-$grey:    #2e2e2e;
+$yellow:     #ffde00;
+$pink:       #dc80a5;
+$rose:       #d1007f;
+$red:        #d30012;
+$blue:       #004fff;
+$cyan:       #2b00ff;
+$green:      #6ad500;
+$orange:     #ff7900;
+$grey:       #2e2e2e;
+$dark-grey: #9fa0a0;
 
 $primary: $grey;
+$secondary: $dark-grey;
 
 $icons: ();
 $icons: map-merge((
