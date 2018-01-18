@@ -1,11 +1,16 @@
 // overrides
 $body-color: #686868;
 $link-color: #686868;
+$font-size-base: .8rem;
+
 $grid-columns: 24;
 $grid-gutter-width: 20px;
+
 $yiq-contrasted-threshold: 160;
-$input-btn-padding-y: .7rem;
-$input-btn-padding-x: .75rem;
+
+// $input-btn-padding-y: .2rem;
+// $btn-padding-y: .375rem;
+
 
 $spacer: 1rem;
 $spacers: (
@@ -28,7 +33,7 @@ $cyan:       #2b00ff;
 $green:      #6ad500;
 $orange:     #ff7900;
 $grey:       #2e2e2e;
-$dark-grey: #9fa0a0;
+$dark-grey:  #9fa0a0;
 
 $primary: $grey;
 $secondary: $dark-grey;

@@ -8,11 +8,14 @@
     flex: 1;
     .nav-item a {
       color: $grey;
+      font-size: 1rem;
+      font-weight: bold;
     }
   }
   .btn-link {
     color: $grey;
-    font-size: 14px;
+    font-size: .8rem;
+    line-height: 1rem;
   }
 }
 

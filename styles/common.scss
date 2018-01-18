@@ -1,6 +1,40 @@
 // .btn-secondary {
 //   color: $white;
 // }
+.sub-banner {
+  position: relative;
+  height: 396px;
+  .container {
+    position: relative;
+    height: 396px;
+  }
+  h1 {
+    color: $white;
+    position: absolute;
+    left: 20px;
+    bottom: -17px;
+  }
+}
+@include media-breakpoint-down(sm) {
+  .sub-banner {
+    height: 250px;
+    .container {
+      height: 250px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: $white;
+      position: absolute;
+      left: 20px;
+      bottom: -1rem;
+    }
+  }
+}
+
+
+.btn-lg, .btn-group-lg > .btn {
+  font-size: 1.2rem;
+}
 
 .text-underline {
   text-decoration: underline;
