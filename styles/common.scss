@@ -194,3 +194,22 @@
     background: #9e9897;
   }
 }
+
+.item-judge {
+  border: none;
+  .card-img-top {
+    border-radius: 0;
+  }
+  .card-body {
+    position: relative;
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
+    padding: .75rem 0 0;
+    h5 {
+      font-weight: bold;
+    }
+    h5, p {
+      color: $black;
+    }
+  }
+}

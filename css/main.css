@@ -8108,6 +8108,20 @@ a.text-dark:focus, a.text-dark:hover {
   .item-sub-history .card-body {
     background: #9e9897; }
 
+.item-judge {
+  border: none; }
+  .item-judge .card-img-top {
+    border-radius: 0; }
+  .item-judge .card-body {
+    position: relative;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    padding: .75rem 0 0; }
+    .item-judge .card-body h5 {
+      font-weight: bold; }
+    .item-judge .card-body h5, .item-judge .card-body p {
+      color: #000000; }
+
 .navbar {
   padding: 20px 0 10px; }
   .navbar .navbar-toggler {
