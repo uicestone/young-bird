@@ -33,21 +33,23 @@ $cyan:       #2b00ff;
 $green:      #6ad500;
 $orange:     #ff7900;
 $grey:       #2e2e2e;
-$dark-grey:  #9fa0a0;
+$light-grey: #9fa0a0;
+$black:      #000000;
 
 $primary: $grey;
-$secondary: $dark-grey;
+$secondary: $light-grey;
 
 $icons: ();
 $icons: map-merge((
   "yellow": $yellow,
-  "pink": $pink,
-  "rose": $rose,
-  "red": $red,
-  "blue": $blue,
-  "cyan": $cyan,
-  "green": $green,
-  "orange": $orange
+  "pink":   $pink,
+  "rose":   $rose,
+  "red":    $red,
+  "blue":   $blue,
+  "cyan":   $cyan,
+  "green":  $green,
+  "orange": $orange,
+  "black":  $black
 ), $icons);
 
 $border-radius:    0;

@@ -58,6 +58,9 @@
   .tag-#{$color-key} {
     background-color: #{$color-value};
   }
+  .color-#{$color-key} {
+    color: #{$color-value};
+  }
 }
 
 .tag {
@@ -141,5 +144,53 @@
         color: $cyan;
       }
     }
+  }
+}
+
+.item-history {
+  border: none;
+  .card-img-top {
+    border-radius: 0;
+  }
+  .card-body {
+    position: relative;
+    border-top: 3px solid $black;
+    border-bottom: 3px solid $black;
+    padding: .5rem 0 .75rem;
+    .head {
+      margin: 0 auto;
+      border-bottom: 2px solid $light-grey;
+      padding-bottom: .5rem;
+      .label {
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+    }
+    h3 {
+      font-weight: bold;
+      color: $black;
+    }
+    .action {
+      margin: 0 auto;
+      .far {
+        font-size: 1.2rem;
+      }
+      span {
+        color: $black;
+      }
+    }
+  }
+}
+
+.item-sub-history {
+  border: none;
+  h4 ,p {
+    color: $white;
+  }
+  h4 {
+    margin-bottom: 1rem;
+  }
+  .card-body {
+    background: #9e9897;
   }
 }

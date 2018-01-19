@@ -18,11 +18,12 @@ gulp.task('serve', function() {
 
 gulp.task('sass', function() {
   return gulp.src([
-      'styles/main.scss'
+      'styles/main.scss',
+      'styles/fontawesome.scss',
     ])
     .pipe(sass())
+    // .pipe(sass({ outputStyle: 'compressed' }))
     .pipe(postcss([autoprefixer('last 2 versions', 'ie 9')]))
-    // .pipe(concat('layout.css'))
     .pipe(gulp.dest('css'))
     .pipe(browserSync.stream());
 })
