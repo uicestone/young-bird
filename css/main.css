@@ -7942,6 +7942,15 @@ a.text-dark:focus, a.text-dark:hover {
 .color-yellow {
   color: #ffde00; }
 
+.icon-dark-yellow {
+  background-color: #6e5400; }
+
+.tag-dark-yellow {
+  background-color: #6e5400; }
+
+.color-dark-yellow {
+  color: #6e5400; }
+
 .icon-pink {
   background-color: #dc80a5; }
 
@@ -8004,6 +8013,24 @@ a.text-dark:focus, a.text-dark:hover {
 
 .color-orange {
   color: #ff7900; }
+
+.icon-dark-grey {
+  background-color: #2e2e2e; }
+
+.tag-dark-grey {
+  background-color: #2e2e2e; }
+
+.color-dark-grey {
+  color: #2e2e2e; }
+
+.icon-grey {
+  background-color: #9fa0a0; }
+
+.tag-grey {
+  background-color: #9fa0a0; }
+
+.color-grey {
+  color: #9fa0a0; }
 
 .icon-black {
   background-color: #000000; }
@@ -8094,10 +8121,20 @@ a.text-dark:focus, a.text-dark:hover {
       color: #000000; }
     .item-history .card-body .action {
       margin: 0 auto; }
-      .item-history .card-body .action .far {
+      .item-history .card-body .action .far, .item-history .card-body .action .fas {
         font-size: 1.2rem; }
       .item-history .card-body .action span {
         color: #000000; }
+
+.item-top3 .card-body {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000; }
+  .item-top3 .card-body .head {
+    border-bottom: 1px solid #9fa0a0; }
+  .item-top3 .card-body .action {
+    position: absolute;
+    bottom: 1rem;
+    left: 0; }
 
 .item-sub-history {
   border: none; }
@@ -8161,6 +8198,9 @@ a.text-dark:focus, a.text-dark:hover {
     color: #2e2e2e;
     font-size: .8rem;
     line-height: 1rem; }
+  .navbar .form-inline {
+    position: relative;
+    top: .2rem; }
 
 @media (max-width: 991.99px) {
   .navbar .navbar-brand img {

@@ -7,15 +7,19 @@
     justify-content: flex-end;
     flex: 1;
     .nav-item a {
-      color: $grey;
+      color: $primary;
       font-size: 1rem;
       font-weight: bold;
     }
   }
   .btn-link {
-    color: $grey;
+    color: $primary;
     font-size: .8rem;
     line-height: 1rem;
+  }
+  .form-inline {
+    position: relative;
+    top: .2rem;
   }
 }
 

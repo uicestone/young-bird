@@ -159,7 +159,7 @@
     padding: .5rem 0 .75rem;
     .head {
       margin: 0 auto;
-      border-bottom: 2px solid $light-grey;
+      border-bottom: 2px solid $grey;
       padding-bottom: .5rem;
       .label {
         font-size: 18px;
@@ -172,12 +172,27 @@
     }
     .action {
       margin: 0 auto;
-      .far {
+      .far, .fas {
         font-size: 1.2rem;
       }
       span {
         color: $black;
       }
+    }
+  }
+}
+
+.item-top3 {
+  .card-body {
+    border-top: 1px solid $black;
+    border-bottom: 1px solid $black;
+    .head {
+      border-bottom: 1px solid $grey;
+    }
+    .action {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
     }
   }
 }

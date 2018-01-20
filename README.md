@@ -10,12 +10,15 @@ yarn start
 
 
 ### 图片尺寸
-## 首页
+#### home
 - 热门竞赛 286 × 254
 - 新闻 518 × 408
+#### work-list-winner-3 TOP3/TOP10
+- 作品 587 × 398
 
 
-### 标签/图表
+
+### 标签/图标
 - 工作 tag-blue
 - 新闻 tag-green
 - 竞赛 tag-orange

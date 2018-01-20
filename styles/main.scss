@@ -24,32 +24,36 @@ $spacers: (
   7: ($spacer * 6),
 );
 
-$yellow:     #ffde00;
-$pink:       #dc80a5;
-$rose:       #d1007f;
-$red:        #d30012;
-$blue:       #004fff;
-$cyan:       #2b00ff;
-$green:      #6ad500;
-$orange:     #ff7900;
-$grey:       #2e2e2e;
-$light-grey: #9fa0a0;
-$black:      #000000;
+$yellow:      #ffde00;
+$dark-yellow: #6e5400;
+$pink:        #dc80a5;
+$rose:        #d1007f;
+$red:         #d30012;
+$blue:        #004fff;
+$cyan:        #2b00ff;
+$green:       #6ad500;
+$orange:      #ff7900;
+$dark-grey:   #2e2e2e;
+$grey:        #9fa0a0;
+$black:       #000000;
 
-$primary: $grey;
-$secondary: $light-grey;
+$primary:    $dark-grey;
+$secondary:  $grey;
 
 $icons: ();
 $icons: map-merge((
   "yellow": $yellow,
-  "pink":   $pink,
-  "rose":   $rose,
-  "red":    $red,
-  "blue":   $blue,
-  "cyan":   $cyan,
-  "green":  $green,
+  "dark-yellow": $dark-yellow,
+  "pink": $pink,
+  "rose": $rose,
+  "red": $red,
+  "blue": $blue,
+  "cyan": $cyan,
+  "green": $green,
   "orange": $orange,
-  "black":  $black
+  "dark-grey": $dark-grey,
+  "grey": $grey,
+  "black": $black
 ), $icons);
 
 $border-radius:    0;
