@@ -190,6 +190,24 @@
   h4 {
     margin-bottom: 1rem;
   }
+  .card-label {
+    background: #9e9897;
+    padding: .4rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px sold $white!important;
+    .tag {
+      font-size: .8rem;
+    }
+    span {
+      color: $cyan;
+    }
+  }
+  hr {
+    margin: 0;
+    border-top: 1px solid #c1bdbd;
+  }
   .card-body {
     background: #9e9897;
   }

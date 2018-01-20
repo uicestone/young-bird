@@ -8105,6 +8105,26 @@ a.text-dark:focus, a.text-dark:hover {
     color: #fff; }
   .item-sub-history h4 {
     margin-bottom: 1rem; }
+  .item-sub-history .card-label {
+    background: #9e9897;
+    padding: .4rem 1.25rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    border-bottom: 1px sold #fff !important; }
+    .item-sub-history .card-label .tag {
+      font-size: .8rem; }
+    .item-sub-history .card-label span {
+      color: #2b00ff; }
+  .item-sub-history hr {
+    margin: 0;
+    border-top: 1px solid #c1bdbd; }
   .item-sub-history .card-body {
     background: #9e9897; }
 
@@ -8160,5 +8180,14 @@ a.text-dark:focus, a.text-dark:hover {
   .footer .nowrap {
     white-space: nowrap; }
 
+.editor p {
+  font-size: .9rem; }
+
 .sign-up .logo img {
   max-width: 60%; }
+
+.news-detail .header .row {
+  margin: 0 auto; }
+
+.news-detail .header .far, .news-detail .header .fas {
+  font-size: 1.4rem; }
