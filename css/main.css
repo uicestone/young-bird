@@ -7901,10 +7901,13 @@ a.text-dark:focus, a.text-dark:hover {
     position: relative;
     height: 396px; }
   .sub-banner h1 {
+    font-size: 3rem;
     color: #fff;
     position: absolute;
-    left: 20px;
-    bottom: -17px; }
+    left: 1.2rem;
+    bottom: -.7rem;
+    margin: 0;
+    padding: 0; }
 
 @media (max-width: 767.99px) {
   .sub-banner {
@@ -7913,10 +7916,7 @@ a.text-dark:focus, a.text-dark:hover {
       height: 250px; }
     .sub-banner h1 {
       font-size: 2rem;
-      color: #fff;
-      position: absolute;
-      left: 20px;
-      bottom: -1rem; } }
+      bottom: -.4rem; } }
 
 .btn-lg, .btn-group-lg > .btn, .btn-group-lg > .btn {
   font-size: 1.2rem; }
