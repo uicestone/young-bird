@@ -271,3 +271,36 @@
     }
   }
 }
+
+.judge-detail {
+  .banner {
+    .avatar {
+      flex: initial;
+      width: 16rem;
+      img {
+        border: 2px solid #6d6d6d;
+      }
+    }
+    .desc {
+      flex: 1
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .judge-detail {
+    .banner {
+      .avatar {
+        width: 8rem;
+      }
+      .desc {
+        h1 {
+          font-size: 1.2rem;
+        }
+        h3 {
+          font-size: .9rem
+        }
+      }
+    }
+  }
+}
