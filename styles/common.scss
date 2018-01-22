@@ -246,3 +246,13 @@
     }
   }
 }
+
+.category-container {
+  a {
+    width: 6rem;
+    height: 2rem;
+    &.active {
+      font-weight: bold;
+    }
+  }
+}

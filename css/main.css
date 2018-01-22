@@ -8179,6 +8179,12 @@ a.text-dark:focus, a.text-dark:hover {
     .item-judge .card-body h5, .item-judge .card-body p {
       color: #000000; }
 
+.category-container a {
+  width: 6rem;
+  height: 2rem; }
+  .category-container a.active {
+    font-weight: bold; }
+
 .navbar {
   padding: 20px 0 10px; }
   .navbar .navbar-toggler {
