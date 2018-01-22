@@ -7894,6 +7894,13 @@ a.text-dark:focus, a.text-dark:hover {
   .table-bordered td {
     border: 1px solid #ddd !important; } }
 
+@media (min-width: 992px) {
+  .col-lg-2-4 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+            flex: 0 0 20%;
+    max-width: 20%; } }
+
 .sub-banner {
   position: relative;
   height: 396px; }
@@ -8135,6 +8142,9 @@ a.text-dark:focus, a.text-dark:hover {
     position: absolute;
     bottom: 1rem;
     left: 0; }
+
+.item-top50 .card-body .head .label {
+  font-size: 1rem; }
 
 .item-sub-history {
   border: none; }

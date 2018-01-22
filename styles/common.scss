@@ -1,3 +1,8 @@
+@include media-breakpoint-up(lg) {
+  .col-lg-2-4{
+    @include make-col(1, 5);
+  }
+}
 // .btn-secondary {
 //   color: $white;
 // }
@@ -193,6 +198,16 @@
       position: absolute;
       bottom: 1rem;
       left: 0;
+    }
+  }
+}
+
+.item-top50 {
+  .card-body {
+    .head {
+      .label {
+        font-size: 1rem;
+      }
     }
   }
 }
