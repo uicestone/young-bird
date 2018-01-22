@@ -7946,6 +7946,9 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-yellow {
   background-color: #ffde00; }
 
+.bg-yellow {
+  background-color: #ffde00; }
+
 .color-yellow {
   color: #ffde00; }
 
@@ -7953,6 +7956,9 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #6e5400; }
 
 .tag-dark-yellow {
+  background-color: #6e5400; }
+
+.bg-dark-yellow {
   background-color: #6e5400; }
 
 .color-dark-yellow {
@@ -7964,6 +7970,9 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-pink {
   background-color: #dc80a5; }
 
+.bg-pink {
+  background-color: #dc80a5; }
+
 .color-pink {
   color: #dc80a5; }
 
@@ -7971,6 +7980,9 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #d1007f; }
 
 .tag-rose {
+  background-color: #d1007f; }
+
+.bg-rose {
   background-color: #d1007f; }
 
 .color-rose {
@@ -7982,6 +7994,9 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-red {
   background-color: #d30012; }
 
+.bg-red {
+  background-color: #d30012; }
+
 .color-red {
   color: #d30012; }
 
@@ -7989,6 +8004,9 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #004fff; }
 
 .tag-blue {
+  background-color: #004fff; }
+
+.bg-blue {
   background-color: #004fff; }
 
 .color-blue {
@@ -8000,6 +8018,9 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-cyan {
   background-color: #2b00ff; }
 
+.bg-cyan {
+  background-color: #2b00ff; }
+
 .color-cyan {
   color: #2b00ff; }
 
@@ -8007,6 +8028,9 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #6ad500; }
 
 .tag-green {
+  background-color: #6ad500; }
+
+.bg-green {
   background-color: #6ad500; }
 
 .color-green {
@@ -8018,6 +8042,9 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-orange {
   background-color: #ff7900; }
 
+.bg-orange {
+  background-color: #ff7900; }
+
 .color-orange {
   color: #ff7900; }
 
@@ -8025,6 +8052,9 @@ a.text-dark:focus, a.text-dark:hover {
   background-color: #2e2e2e; }
 
 .tag-dark-grey {
+  background-color: #2e2e2e; }
+
+.bg-dark-grey {
   background-color: #2e2e2e; }
 
 .color-dark-grey {
@@ -8036,13 +8066,31 @@ a.text-dark:focus, a.text-dark:hover {
 .tag-grey {
   background-color: #9fa0a0; }
 
+.bg-grey {
+  background-color: #9fa0a0; }
+
 .color-grey {
   color: #9fa0a0; }
+
+.icon-light-grey {
+  background-color: #dfdfdf; }
+
+.tag-light-grey {
+  background-color: #dfdfdf; }
+
+.bg-light-grey {
+  background-color: #dfdfdf; }
+
+.color-light-grey {
+  color: #dfdfdf; }
 
 .icon-black {
   background-color: #000000; }
 
 .tag-black {
+  background-color: #000000; }
+
+.bg-black {
   background-color: #000000; }
 
 .color-black {
@@ -8215,6 +8263,13 @@ a.text-dark:focus, a.text-dark:hover {
     font-size: 1.2rem; }
   .judge-detail .banner .desc h3 {
     font-size: .9rem; } }
+
+.page-business h2 strong {
+  font-size: 1.8rem;
+  color: #717171;
+  display: inline-block;
+  padding-top: .8rem;
+  border-top: 6px solid #717171; }
 
 .navbar {
   padding: 20px 0 10px; }

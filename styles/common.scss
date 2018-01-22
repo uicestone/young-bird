@@ -63,6 +63,9 @@
   .tag-#{$color-key} {
     background-color: #{$color-value};
   }
+  .bg-#{$color-key} {
+    background-color: #{$color-value};
+  }
   .color-#{$color-key} {
     color: #{$color-value};
   }
@@ -301,6 +304,18 @@
           font-size: .9rem
         }
       }
+    }
+  }
+}
+
+.page-business {
+  h2 {
+    strong {
+      font-size: 1.8rem;
+      color: #717171;
+      display: inline-block;
+      padding-top: .8rem;
+      border-top: 6px solid #717171;;
     }
   }
 }
