@@ -8264,12 +8264,14 @@ a.text-dark:focus, a.text-dark:hover {
   .judge-detail .banner .desc h3 {
     font-size: .9rem; } }
 
-.page-business h2 strong {
-  font-size: 1.8rem;
-  color: #717171;
-  display: inline-block;
-  padding-top: .8rem;
-  border-top: 6px solid #717171; }
+.page-business h2 {
+  margin-bottom: 1rem; }
+  .page-business h2 strong {
+    font-size: 1.8rem;
+    color: #717171;
+    display: inline-block;
+    padding-top: .8rem;
+    border-top: 6px solid #717171; }
 
 .navbar {
   padding: 20px 0 10px; }
