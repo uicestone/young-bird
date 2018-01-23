@@ -8292,7 +8292,12 @@ a.text-dark:focus, a.text-dark:hover {
   height: 20rem;
   position: relative; }
   .judge-sign-in .step-3 .avatar .custom-file-input {
-    position: absolute; }
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; }
 
 .judge-sign-in .step-3 textarea {
   height: 20rem; }
