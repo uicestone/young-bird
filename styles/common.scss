@@ -6,6 +6,17 @@
 // .btn-secondary {
 //   color: $white;
 // }
+
+.input-group-lg {
+  .custom-file-label {
+    line-height: 1.8;
+    font-size: 1rem;
+    &::after {
+      line-height: 1.8;
+    }
+  }
+}
+
 .sub-banner {
   position: relative;
   height: 396px;
@@ -35,7 +46,6 @@
     }
   }
 }
-
 
 .btn-lg, .btn-group-lg > .btn {
   font-size: 1.2rem;
@@ -317,6 +327,31 @@
       display: inline-block;
       padding-top: .8rem;
       border-top: 6px solid #717171;;
+    }
+  }
+}
+
+.judge-sign-in {
+  .fas {
+    font-size: 1.6rem;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+    }
+  }
+  .step-3 {
+    .avatar {
+      height: 20rem;
+      position: relative;
+      .custom-file-input {
+        position: absolute;
+      }
+    }
+    textarea {
+      height: 20rem;
+    }
+    .btn-save {
+
     }
   }
 }
