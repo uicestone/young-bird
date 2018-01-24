@@ -34,3 +34,4 @@ yarn start
 - 搜索页缺少分页
 - 新闻列表筛选项展开功能
 - 10/50强页面更多展示逻辑
+- third_party_sign_up.psd 和注册区别
