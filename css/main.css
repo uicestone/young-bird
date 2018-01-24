@@ -8111,14 +8111,6 @@ a.text-dark:focus, a.text-dark:hover {
   color: #fff;
   padding: 1px 5px; }
 
-.no-gutters {
-  margin-right: 0;
-  margin-left: 0; }
-  .no-gutters > .col,
-  .no-gutters > [class*="col-"] {
-    padding-right: 0;
-    padding-left: 0; }
-
 .htitle {
   position: relative; }
   .htitle h2 {
@@ -8347,7 +8339,7 @@ a.text-dark:focus, a.text-dark:hover {
   font-size: .9rem; }
 
 .sign-up .logo img {
-  max-width: 60%; }
+  max-width: 250px; }
 
 .news-detail .header .row {
   margin: 0 auto; }
