@@ -7904,6 +7904,18 @@ a.text-dark:focus, a.text-dark:hover {
             flex: 0 0 20%;
     max-width: 20%; } }
 
+@media (min-width: 992px) {
+  .col-lg-3-11 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 27.27273%;
+            flex: 0 0 27.27273%;
+    max-width: 27.27273%; }
+  .col-lg-5-11 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 45.45455%;
+            flex: 0 0 45.45455%;
+    max-width: 45.45455%; } }
+
 .input-group-lg .custom-file-label {
   line-height: 1.8;
   font-size: 1rem; }

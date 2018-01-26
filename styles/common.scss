@@ -3,6 +3,15 @@
     @include make-col(1, 5);
   }
 }
+
+@include media-breakpoint-up(lg) {
+  .col-lg-3-11{
+    @include make-col(3, 11);
+  }
+  .col-lg-5-11{
+    @include make-col(5, 11);
+  }
+}
 // .btn-secondary {
 //   color: $white;
 // }
