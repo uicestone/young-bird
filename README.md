@@ -37,3 +37,4 @@ yarn start
 - third_party_sign_up.psd 和注册区别（暂时不做）
 - participate_event_step_4-1/4 待定（）
 - 个人信息 user-center 缺保存按钮
+- 大咖中心 judge-center 缺保存按钮

@@ -8444,6 +8444,9 @@ a.text-dark:focus, a.text-dark:hover {
 .user-center-body .event-list .col-md-12:nth-child(even) {
   padding-left: 25px; }
 
+.user-center-body .desc {
+  height: 20rem; }
+
 .message-list li {
   list-style-type: none;
   border-bottom: 1px solid #9fa0a0; }
