@@ -8388,6 +8388,12 @@ a.text-dark:focus, a.text-dark:hover {
 .user-center-body .info-container .col-18 {
   padding-right: 0; }
 
+.message-list li {
+  list-style-type: none;
+  border-bottom: 1px solid #9fa0a0; }
+  .message-list li:hover {
+    background: #eeeeee; }
+
 .navbar {
   padding: 20px 0 10px; }
   .navbar .navbar-toggler {
