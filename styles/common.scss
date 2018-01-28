@@ -198,6 +198,41 @@
   }
 }
 
+.item-event {
+  border: none;
+  .card-img-top {
+    border-radius: 0;
+  }
+  .card-body {
+    position: relative;
+    border-top: 2px solid $black;
+    border-bottom: 2px solid $black;
+    padding: .5rem 0 .75rem;
+    .head {
+      margin: 0 auto;
+      border-bottom: 2px solid $grey;
+      padding-bottom: .5rem;
+      .label {
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+    }
+    h3 {
+      font-weight: bold;
+      color: $black;
+    }
+    .action {
+      margin: 0 auto;
+      .far, .fas {
+        font-size: 1.2rem;
+      }
+      span {
+        color: $black;
+      }
+    }
+  }
+}
+
 .item-top3 {
   @extend .item-history;
   .card-body {
@@ -471,6 +506,14 @@
     }
     .col-18 {
       padding-right: 0;
+    }
+  }
+  .event-list {
+    .col-md-12:nth-child(odd) {
+      padding-right: 25px;
+    }
+    .col-md-12:nth-child(even) {
+      padding-left: 25px;
     }
   }
 }
