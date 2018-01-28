@@ -31,8 +31,9 @@ yarn start
 
 
 # 待确认
-- 搜索页缺少分页
-- 新闻列表筛选项展开功能
-- 10/50强页面更多展示逻辑
-- third_party_sign_up.psd 和注册区别
-- participate_event_step_4-1/4 待定
+- 搜索页缺少分页（增加更多按钮）
+- 新闻列表筛选项展开功能（暂时不做）
+- 10/50强页面更多展示逻辑（全部显示）
+- third_party_sign_up.psd 和注册区别（暂时不做）
+- participate_event_step_4-1/4 待定（）
+- 个人信息 user-center 缺保存按钮

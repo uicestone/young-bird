@@ -413,3 +413,64 @@
     }
   }
 }
+
+.user-center-menu {
+  border-bottom: 1px solid $grey;
+  ul {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    padding-top: 1rem;
+    li {
+      float: left;
+      list-style-type: none;
+      margin-right: 2rem;
+      &.active {
+        border-bottom: 3px solid $dark-grey;
+      }
+      a {
+        display: block;
+        font-size: .9rem;
+        height: 2rem;
+        line-height: 2rem;
+        width: 7rem;
+        text-align: center;
+        &:hover {
+          text-decoration: none;
+        }
+        i {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          background: $red;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}
+
+.user-center-body {
+  .info-container {
+    .col-6 {
+      padding-left: 0;
+      > div {
+        height: 6.25rem;
+        input {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+        }
+        i {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .col-18 {
+      padding-right: 0;
+    }
+  }
+}
