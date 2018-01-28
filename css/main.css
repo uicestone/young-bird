@@ -8491,19 +8491,27 @@ a.text-dark:focus, a.text-dark:hover {
     position: absolute;
     font-size: 1.3rem;
     right: .8rem;
-    bottom: .8rem; }
+    bottom: .8rem;
+    z-index: 4; }
     .work-upload .upload-container .fa-trash-alt:hover {
       cursor: pointer; }
   .work-upload .upload-container p {
     font-size: 1rem;
     margin-bottom: 0; }
   .work-upload .upload-container .custom-file-input {
-    position: absolute; }
+    position: absolute;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; }
   .work-upload .upload-container img {
     position: absolute;
     left: 0;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    z-index: 3; }
 
 .word-desc textarea {
   height: 15rem; }
