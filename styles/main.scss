@@ -41,6 +41,7 @@ $orange:      #ff7900;
 $dark-grey:   #2e2e2e;
 $grey:        #9fa0a0;
 $light-grey:  #dfdfdf;
+$body-grey:   #686868;
 $black:       #000000;
 $white:       #ffffff;
 $brick:       #742b33;
@@ -64,7 +65,8 @@ $icons: map-merge((
   "light-grey": $light-grey,
   "black": $black,
   "white": $white,
-  "brick": $brick
+  "brick": $brick,
+  "body-grey": $body-grey
 ), $icons);
 
 $border-radius:    0;

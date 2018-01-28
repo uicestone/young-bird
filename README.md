@@ -38,3 +38,6 @@ yarn start
 - participate_event_step_4-1/4 待定（）
 - 个人信息 user-center 缺保存按钮
 - 大咖中心 judge-center 缺保存按钮
+
+
+https://github.com/farhadi/html5sortable

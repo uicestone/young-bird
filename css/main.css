@@ -8141,6 +8141,18 @@ a.text-dark:focus, a.text-dark:hover {
 .color-brick {
   color: #742b33; }
 
+.icon-body-grey {
+  background-color: #686868; }
+
+.tag-body-grey {
+  background-color: #686868; }
+
+.bg-body-grey {
+  background-color: #686868; }
+
+.color-body-grey {
+  color: #686868; }
+
 .tag {
   font-size: 14px;
   font-style: normal;
@@ -8466,6 +8478,49 @@ a.text-dark:focus, a.text-dark:hover {
     .review-list .item-review .card-body h3 {
       font-weight: bold;
       color: #000000; }
+
+.work-upload > div {
+  padding: 0 10px; }
+
+.work-upload .upload-container {
+  height: 10rem;
+  position: relative; }
+  .work-upload .upload-container .fa-plus {
+    font-size: 1.3rem; }
+  .work-upload .upload-container .fa-trash-alt {
+    position: absolute;
+    font-size: 1.3rem;
+    right: .8rem;
+    bottom: .8rem; }
+    .work-upload .upload-container .fa-trash-alt:hover {
+      cursor: pointer; }
+  .work-upload .upload-container p {
+    font-size: 1rem;
+    margin-bottom: 0; }
+  .work-upload .upload-container .custom-file-input {
+    position: absolute; }
+  .work-upload .upload-container img {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+
+.word-desc textarea {
+  height: 15rem; }
+
+.word-desc .poster {
+  height: 18.62rem; }
+  .word-desc .poster i {
+    font-size: 1.4rem; }
+  .word-desc .poster p {
+    font-size: 1rem; }
+  .word-desc .poster .custom-file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; }
 
 .navbar {
   padding: 20px 0 10px; }

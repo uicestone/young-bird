@@ -550,3 +550,61 @@
     }
   }
 }
+
+.work-upload {
+  > div {
+    padding: 0 10px;
+  }
+  .upload-container {
+    height: 10rem;
+    position: relative;
+    .fa-plus {
+      font-size: 1.3rem;
+    }
+    .fa-trash-alt {
+      position: absolute;
+      font-size: 1.3rem;
+      right: .8rem;
+      bottom: .8rem;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 0;
+    }
+    .custom-file-input {
+      position: absolute;
+    }
+    img {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.word-desc {
+  textarea {
+    height: 15rem;
+  }
+  .poster {
+    height: 18.62rem;
+    i {
+      font-size: 1.4rem;
+    }
+    p {
+      font-size: 1rem;
+    }
+    .custom-file-input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+  }
+}
