@@ -6,10 +6,7 @@
   "scripts": {
     "start": "gulp"
   },
-  "repository": {
-    "type": "git",
-    "url": "http://sprite.tech:3000/rainkolwa/young-bird.git"
-  },
+  "repository": "http://sprite.tech:3000/rainkolwa/young-bird.git",
   "devDependencies": {
     "autoprefixer": "^7.0.1",
     "browser-sync": "^2.18.8",
@@ -21,6 +18,9 @@
     "gulp-sass": "^3.1.0"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "rainkolwa <pluvo.lee@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "html5sortable": "^0.6.3"
+  }
 }
