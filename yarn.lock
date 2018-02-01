@@ -1560,6 +1560,10 @@ hosted-git-info@^2.1.4:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.5.0.tgz#6d60e34b3abbc8313062c3b798ef8d901a07af3c"
 
+html5sortable@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/html5sortable/-/html5sortable-0.6.3.tgz#cac176e4eda242c741912b1eb4709841302fcb7b"
+
 http-errors@~1.5.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-1.5.1.tgz#788c0d2c1de2c81b9e6e8c01843b6b97eb920750"
