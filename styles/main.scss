@@ -2,20 +2,18 @@
 $body-color: #686868;
 $link-color: #686868;
 $font-size-base: .8rem;
+$h1-font-size: $font-size-base * 3;
+// $font-size-lg: 2rem;
 
 $grid-columns: 24;
 $grid-gutter-width: 20px;
 
 $yiq-contrasted-threshold: 160;
 
-// $input-btn-padding-y: .2rem;
-// $btn-padding-y: .375rem;
-
 $custom-file-text: (
   en: "Browse",
   zh: "浏览"
 );
-$custom-file-height: 2.6rem;
 
 $spacer: 1rem;
 $spacers: (
@@ -72,6 +70,26 @@ $icons: map-merge((
 $border-radius:    0;
 $border-radius-lg: 0;
 $border-radius-sm: 0;
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px
+);
+
+$input-btn-padding-y-lg: 1rem;
+// $input-bg: #f7f8f8;
+$input-border-color: #aea8a8;
+$form-group-margin-bottom: .8rem;
+$custom-select-color: $body-color;
+
+
+$custom-file-height: 3.66rem;
+
+$custom-file-padding-y: 0;
+$custom-file-line-height: $custom-file-height;
+
 
 // bootstrap
 @import "../bootstrap/scss/bootstrap";
