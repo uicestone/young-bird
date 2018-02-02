@@ -134,7 +134,7 @@ gulp.task('build', ['theme', 'php', 'css', 'fonts', 'js']);
 const syncOpts = {
   proxy       : 'localhost:8003',
   files       : dir.build + '**/*',
-  serveStatic : [dir.build],
+  serveStatic : [dir.build, dir.src],
   open        : false,
   notify      : false,
   ghostMode   : false
