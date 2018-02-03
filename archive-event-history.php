@@ -1,4 +1,3 @@
-<?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(images/banner-history.jpg) center center / cover no-repeat">
       <div class="container">
@@ -111,4 +110,3 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>

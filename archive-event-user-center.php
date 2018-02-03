@@ -1,4 +1,3 @@
-<?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
@@ -117,4 +116,3 @@
       </div>
       <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
     </div>
-<?php get_footer(); ?>
