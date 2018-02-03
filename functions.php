@@ -23,3 +23,20 @@ add_action( 'admin_notices', function () {
   if( ! function_exists('get_fields') )
     echo '<div class="error"><p>' . __( '需要激活 Advanced Custom Fields 插件' ) . '</p></div>';
 } );
+
+register_post_type('event', array(
+  'label' => '竞赛',
+  'labels' => array(
+    'all_items' => '所有竞赛',
+    'add_new' => '添加竞赛',
+    'add_new_item' => '新竞赛',
+    'edit_item' => '编辑竞赛',
+    'not_found' => '未找到竞赛'
+  ),
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+  'taxonomies' => array('post_tag', 'category'),
+  'menu_icon' => 'dashicons-megaphone',
+));
+
