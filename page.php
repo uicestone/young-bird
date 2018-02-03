@@ -1,6 +1,6 @@
 <?php get_header(); ?>
     <!-- Banner -->
-    <div class="container-fluid sub-banner p-0" style="background: url(images/banner-help-center.jpg) center center / cover no-repeat">
+    <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_关于我们 <br>ABOUT US</h1>
       </div>

@@ -1,18 +1,21 @@
 <?php
-// inject sortable & main.js into footer
+add_action('wp_enqueue_scripts', function(){
+  wp_enqueue_script('main');
+  wp_enqueue_script('jquery.sortable');
+});
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
@@ -52,7 +55,7 @@ get_header(); ?>
             <i class="fas fa-plus"></i>
             <p class="mt-2">点击上传图片</p>
             <input type="file" class="custom-file-input">
-            <img src="images/sample/poster-work.jpg" alt="">
+            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" alt="">
             <i class="fas fa-trash-alt"></i>
           </div>
         </div>

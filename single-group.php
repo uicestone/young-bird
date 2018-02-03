@@ -2,15 +2,15 @@
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="mt-7 pb-7 page-group-detail">
@@ -21,7 +21,7 @@
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">
-            <img src="images/sample/judge.jpg" class="rounded-circle" alt="">
+            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" class="rounded-circle" alt="">
             <div class="ml-4">
               <div class="role">/组长</div>
               <div class="name">张小娴</div>
@@ -29,7 +29,7 @@
           </div>
           <div class="d-flex flex-wrap">
             <div class="avatar-container d-flex align-items-center">
-              <img src="images/sample/judge.jpg" class="rounded-circle" alt="">
+              <img src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" class="rounded-circle" alt="">
               <div class="ml-4">
                 <div class="role">/组员</div>
                 <div class="name">张小娴</div>
@@ -39,7 +39,7 @@
               </a>
             </div>
             <div class="avatar-container d-flex align-items-center">
-              <img src="images/sample/judge.jpg" class="rounded-circle" alt="">
+              <img src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" class="rounded-circle" alt="">
               <div class="ml-4">
                 <div class="role">/组员</div>
                 <div class="name">张小娴</div>
@@ -50,7 +50,7 @@
             </div>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
-                <img src="images/sample/judge.jpg" class="rounded-circle" alt="">
+                <img src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" class="rounded-circle" alt="">
                 <strong class="name ml-4">张小娴</strong>
               </div>
               <div class="row">
@@ -86,7 +86,7 @@
           <!-- 已上传 -->
           <div class="row mt-6 work-container">
             <div class="col-sm-12 mb-4 mb-md-0">
-              <img src="images/sample/poster-work.jpg" width="100%" alt="">
+              <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
             </div>
             <div class="col-sm-12 order-sm-first card item-top3">
               <div class="card-body pb-5">

@@ -10,8 +10,8 @@
     <!-- Header -->
     <div class="container">
       <nav class="navbar navbar-light navbar-expand-lg">
-        <a class="navbar-brand" href="#">
-          <img src="images/logo.png" width="267" height="58" alt="">
+        <a class="navbar-brand" href="<?=site_url()?>">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/logo.png" width="267" height="58" alt="">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -23,13 +23,13 @@
               <a class="nav-link" href="/category/news/">新 闻</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="/exercise/">竞 赛</a>
+              <a class="nav-link" href="/event/">竞 赛</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="/judge/">大 咖</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="/events/?history">历 史</a>
+              <a class="nav-link" href="/event/?history">历 史</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="#">院 校</a>
@@ -37,10 +37,10 @@
           </ul>
           <form class="form-inline">
             <a href="#"><i class="fas fa-search"></i></a>
-            <button type="button" class="btn btn-link">注册</button>
+            <a href="/sign-up/" class="btn btn-link">注册</a>
             <span>|</span>
-            <button type="button" class="btn btn-link">登录</button>
-            <button type="button" class="btn btn-link pl-0">EN</button>
+            <a href="/sign-in/" class="btn btn-link">登录</a>
+            <a href="#" class="btn btn-link pl-0">EN</a>
           </form>
         </div>
       </nav>

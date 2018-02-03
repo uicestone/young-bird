@@ -5,7 +5,7 @@
         <div class="col-md-18 news-detail">
           <section class="header">
             <!-- poster -->
-            <img src="images/sample/poster-news-detail.jpg" alt="" class="mb-4" width="100%">
+            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-news-detail.jpg" alt="" class="mb-4" width="100%">
             <!-- title -->
             <h1 class="color-black">深圳蛇口太子湾公共文化建筑设计竞赛</h1>
             <span>发布时间 2017-12-12</span>
@@ -30,7 +30,7 @@
         </div>
         <div class="col-md-6">
           <div class="card mb-3 item-sub-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-label">
               <span>#建筑设计</span>
               <div class="tag tag-blue">工作</div>
@@ -44,7 +44,7 @@
             </div>
           </div>
           <div class="card mb-3 item-sub-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-label">
               <span>#建筑设计</span>
               <div class="tag tag-green">新闻</div>

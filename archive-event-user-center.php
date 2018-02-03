@@ -1,5 +1,5 @@
     <!-- Banner -->
-    <div class="container-fluid sub-banner p-0" style="background: url(images/banner-help-center.jpg) center center / cover no-repeat">
+    <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_用户中心 <br>USER CENTER</h1>
       </div>
@@ -8,9 +8,9 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li><a href="">个人信息</a></li>
-          <li class="active"><a href="">我的比赛</a></li>
-          <li><a href="">消息<i></i></a></li>
+          <li><a href="/user-center/">个人信息</a></li>
+          <li class="active"><a href="/event/?user-center">我的比赛</a></li>
+          <li><a href="/message/">消息<i></i></a></li>
         </ul>
       </div>
     </div>
@@ -24,7 +24,7 @@
               <div class="tag tag-red col-3 text-center">进行中</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
             </div>
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3>2017 良辰美景<br>遮阳伞面设计竞赛</h3>
@@ -48,7 +48,7 @@
               <div class="tag tag-brick col-3 text-center">已完成</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
             </div>
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3>2017 良辰美景<br>遮阳伞面设计竞赛</h3>
@@ -77,7 +77,7 @@
               <div class="tag tag-red col-3 text-center">进行中</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
             </div>
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3>2017 良辰美景<br>遮阳伞面设计竞赛</h3>
@@ -98,7 +98,7 @@
               <div class="tag tag-brick col-3 text-center">已完成</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
             </div>
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3>2017 良辰美景<br>遮阳伞面设计竞赛</h3>

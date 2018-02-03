@@ -1,23 +1,26 @@
-<?php get_header(); ?>
+<?php get_header();
+    if (isset($_GET['more'])):
+      get_template_part('single-rank-more');
+    else: ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
       <h1 class="text-center color-dark-yellow">TOP3</h1>
       <div class="row mt-5">
         <div class="col-sm-12 mb-4 mb-md-0">
-          <img src="images/sample/poster-work.jpg" width="100%" alt="">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
         </div>
         <div class="col-sm-12 order-sm-first card item-top3">
           <div class="card-body pb-5">
@@ -38,7 +41,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-sm-12 mb-4 mb-md-0">
-          <img src="images/sample/poster-work.jpg" width="100%" alt="">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
         </div>
         <div class="col-sm-12 order-sm-first card item-top3">
           <div class="card-body pb-5">
@@ -59,7 +62,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-sm-12 mb-4 mb-md-0">
-          <img src="images/sample/poster-work.jpg" width="100%" alt="">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
         </div>
         <div class="col-sm-12 order-sm-first card item-top3">
           <div class="card-body pb-5">
@@ -79,4 +82,5 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php endif;
+get_footer();

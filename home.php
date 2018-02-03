@@ -1,7 +1,7 @@
 <?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid px-0">
-      <img src="images/home-banner.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
     </div>
 
     <!-- 热门竞赛 -->
@@ -34,7 +34,7 @@
       <div class="row justify-content-between list-competiton mt-4">
         <div class="col-md-12 col-lg-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
               <h5>遮阳伞面设计竞赛</h5>
@@ -45,7 +45,7 @@
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
               <h5>遮阳伞面设计竞赛</h5>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
               <h5>遮阳伞面设计竞赛</h5>
@@ -67,7 +67,7 @@
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
               <h5>遮阳伞面设计竞赛</h5>
@@ -88,7 +88,7 @@
       <div class="row list-news mb-5">
         <div class="col-md-8 col-lg-3-11">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -107,7 +107,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -126,7 +126,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -147,7 +147,7 @@
         </div>
         <div class="col-md-8 col-lg-5-11">
           <div class="card">
-            <div class="card-img-top" style="background: url(images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
+            <div class="card-img-top" style="background: url(<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -168,7 +168,7 @@
             </div>
           </div>
           <div class="card">
-            <div class="card-img-top" style="background: url(images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
+            <div class="card-img-top" style="background: url(<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -191,7 +191,7 @@
         </div>
         <div class="col-md-8 col-lg-3-11">
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -210,7 +210,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区
@@ -229,7 +229,7 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title">
                 坂雪岗科技城核心区

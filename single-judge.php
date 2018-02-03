@@ -3,7 +3,7 @@
     <div class="container-fluid judge-detail" style="padding: 0;background: #c8c8c8">
       <div class="container banner d-flex py-4">
         <div class="avatar">
-          <img src="images/sample/judge.jpg" width="100%" alt="">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" width="100%" alt="">
         </div>
         <div class="desc pl-3 pl-lg-5">
           <h1 class="color-black font-weight-bold">鲁求是</h1>

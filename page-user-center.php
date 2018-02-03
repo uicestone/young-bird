@@ -1,6 +1,6 @@
 <?php get_header(); ?>
     <!-- Banner -->
-    <div class="container-fluid sub-banner p-0" style="background: url(images/banner-help-center.jpg) center center / cover no-repeat">
+    <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_用户中心 <br>USER CENTER</h1>
       </div>
@@ -9,9 +9,9 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="">个人信息</a></li>
-          <li><a href="">我的比赛</a></li>
-          <li><a href="">消息<i></i></a></li>
+          <li class="active"><a href="/user-center/">个人信息</a></li>
+          <li><a href="/event/?user-center">我的比赛</a></li>
+          <li><a href="/message/">消息<i></i></a></li>
         </ul>
       </div>
     </div>

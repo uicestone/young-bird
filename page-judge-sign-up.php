@@ -5,7 +5,7 @@
       get_template_part('page-judge-sign-up-success');
     else: ?>
     <!-- Banner -->
-    <div class="container-fluid sub-banner p-0" style="background: url(images/banner-partners.jpg) center center / cover no-repeat">
+    <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-partners.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_大 咖 <br>PARTNERS</h1>
       </div>
@@ -14,7 +14,7 @@
     <div class="container mt-7 pb-7 sign-up">
       <div class="row align-items-center">
         <div class="col-md-12 d-none d-md-flex justify-content-center align-items-center logo">
-          <img src="images/bird.jpg" alt="">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12">
           <h3 class="text-center">登录成功</h3>

@@ -2,15 +2,15 @@
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
@@ -18,7 +18,7 @@
       <div class="row mt-5">
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -36,7 +36,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -54,7 +54,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -72,7 +72,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -90,7 +90,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -108,7 +108,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>
@@ -126,7 +126,7 @@
         </div>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-history item-top50">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-black font-weight-bold">彻骨分阿斯</div>

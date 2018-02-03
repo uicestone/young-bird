@@ -1,6 +1,6 @@
 <?php get_header(); ?>
     <!-- Banner -->
-    <div class="container-fluid sub-banner p-0" style="background: url(images/banner-search.jpg) center center / cover no-repeat">
+    <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-search.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_搜 索 <br>SEARCH RESULTS</h1>
       </div>
@@ -26,7 +26,7 @@
       <div class="row mt-3 mb-2">
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <span class="color-cyan">#建筑设计</span>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <span class="color-cyan">#建筑设计</span>
@@ -52,7 +52,7 @@
         </div>
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <span class="color-cyan">#建筑设计</span>
@@ -73,7 +73,7 @@
       <div class="row mt-3 mb-2">
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-rose">Pattern design</div>
@@ -92,7 +92,7 @@
         </div>
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-rose">Pattern design</div>
@@ -111,7 +111,7 @@
         </div>
         <div class="col-md-8">
           <div class="card mb-4 item-history">
-            <img class="card-img-top" src="images/sample/poster-history.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-rose">Pattern design</div>
