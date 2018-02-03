@@ -18,3 +18,8 @@ function init_page_placeholder ($name) {
     ));
   }
 }
+
+add_action( 'admin_notices', function () {
+  if( ! function_exists('get_fields') )
+    echo '<div class="error"><p>' . __( '需要激活 Advanced Custom Fields 插件' ) . '</p></div>';
+} );
