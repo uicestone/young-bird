@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php get_header();
+    if (isset($_GET['email'])) :
+      get_template_part('page-forget-password-email');
+    elseif (isset($_GET['email-verify'])) :
+      get_template_part('page-forget-password-email-verify');
+    else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(images/banner-sign-up.jpg) center center / cover no-repeat">
       <div class="container">
@@ -44,4 +49,5 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php endif;
+get_footer();

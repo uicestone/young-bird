@@ -1,4 +1,3 @@
-<?php get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
@@ -28,4 +27,3 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>

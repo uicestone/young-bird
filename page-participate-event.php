@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php get_header();
+    if (isset($_GET['step'])) :
+      get_template_part('page-participate-event-step-' . $_GET['step']);
+    else: ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
@@ -76,4 +79,5 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php endif;
+get_footer();

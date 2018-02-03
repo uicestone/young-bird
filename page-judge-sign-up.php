@@ -1,4 +1,9 @@
-<?php get_header(); ?>
+<?php get_header();
+    if (isset($_GET['step'])) :
+      get_template_part('page-judge-sign-up-step-' . $_GET['step']);
+    elseif (isset($_GET['success'])) :
+      get_template_part('page-judge-sign-up-success');
+    else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(images/banner-partners.jpg) center center / cover no-repeat">
       <div class="container">
@@ -43,4 +48,5 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php endif;
+get_footer();
