@@ -3,8 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="./css/fontawesome.css" type="text/css" />
-    <link rel="stylesheet" href="./css/main.css" type="text/css" />
     <title>home</title>
     <?php wp_head(); ?>
   </head>
@@ -22,16 +20,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item mr-lg-3 mr-xl-5 active">
-              <a class="nav-link" href="#">新 闻</a>
+              <a class="nav-link" href="/category/news/">新 闻</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="#">竞 赛</a>
+              <a class="nav-link" href="/exercise/">竞 赛</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="#">大 咖</a>
+              <a class="nav-link" href="/judge/">大 咖</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="#">历 史</a>
+              <a class="nav-link" href="/events/?history">历 史</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="#">院 校</a>
