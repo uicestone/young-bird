@@ -3,12 +3,6 @@
 
 const
 
-  // source and build folders
-  dir = {
-    src         : './',
-    build       : '../YoungBird/wp-content/themes/young-bird/'
-  },
-
   // Gulp and plugins
   gulp          = require('gulp'),
   gutil         = require('gulp-util'),
@@ -21,8 +15,31 @@ const
   stripdebug    = require('gulp-strip-debug'),
   uglify        = require('gulp-uglify'),
   order         = require('gulp-order'),
+  env           = require('gulp-env'),
   autoprefixer  = require('autoprefixer')
 ;
+
+try {
+  env({
+    file: '.env.json',
+  });
+}
+catch (err) {
+  if (err.code === 'ENOENT') {
+    console.error('Please create .env.json first from .env-example.json.');
+    process.exit();
+  }
+  else {
+    throw err;
+  }
+}
+
+
+  // source and build folders
+const dir = {
+  src           : './',
+  build         : process.env.DIR_BUILD
+};
 
 // Browser-sync
 let browsersync = false;
@@ -132,7 +149,7 @@ gulp.task('build', ['theme', 'php', 'css', 'fonts', 'js']);
 
 // Browsersync options
 const syncOpts = {
-  proxy       : 'localhost:8003',
+  proxy       : process.env.PROXY_URL,
   files       : dir.build + '**/*',
   serveStatic : [dir.build, dir.src],
   open        : false,
