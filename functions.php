@@ -2,7 +2,7 @@
 
 add_action('after_switch_theme', function () {
   foreach (array(
-    'Judge Center', 'Judge Sign Up', 'Forgot Password', 'Participate Event', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
+    'Judge Center', 'Judge Sign Up', 'Forget Password', 'Participate Event', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
   ) as $name) {
     init_page_placeholder($name);
   }
@@ -24,6 +24,10 @@ add_action( 'admin_notices', function () {
     echo '<div class="error"><p>' . __( '需要激活 Advanced Custom Fields 插件' ) . '</p></div>';
 } );
 
+add_action('admin_menu', function () {
+  remove_menu_page( 'edit-comments' );
+});
+
 register_post_type('event', array(
   'label' => '竞赛',
   'labels' => array(
@@ -37,7 +41,25 @@ register_post_type('event', array(
   'show_in_menu' => true,
   'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
   'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-megaphone',
+  'menu_icon' => 'dashicons-admin-customizer',
+  'has_archive' => 'true'
+));
+
+register_post_type('judge', array(
+  'label' => '大咖',
+  'labels' => array(
+    'all_items' => '所有大咖',
+    'add_new' => '添加大咖',
+    'add_new_item' => '新大咖',
+    'edit_item' => '编辑大咖',
+    'not_found' => '未找到大咖'
+  ),
+  'show_ui' => true,
+  'show_in_menu' => true,
+  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+  'taxonomies' => array('post_tag', 'category'),
+  'menu_icon' => 'dashicons-welcome-learn-more',
+  'has_archive' => 'true'
 ));
 
 add_action('wp', function() {
