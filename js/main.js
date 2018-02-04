@@ -84,14 +84,12 @@ YB.Participate = (function($) {
 	}
 })(jQuery);
 
-
-
 // 作品编辑
 YB.Edit = (function($) {
 	var container = $('.work-upload');
 
 	function init() {
-		console.log('123');
+		// 图片排序
 		sortable('.work-upload', {
 			placeholderClass: 'col-lg-2-4 dashed'
 		});
@@ -103,36 +101,63 @@ YB.Edit = (function($) {
 })(jQuery);
 
 // 评委评分
-YB.Work = (function($){
-	var list = $('.review-list');
-	var pop = $('.fancypop');
+YB.Work = (function($) {
+	var workList = $('.toplist-container');
+	// var list = $('.review-list');
+	// var pop = $('.fancypop');
 
 	function init() {
-		// 图片排序
-
     bindEvent();
 	}
 
   function bindEvent() {
-    list.on('click', '.item-review', function() {
-      console.log($(this));
-      // 填充数据
-
-      // 入场
-      $('.fancypop').show();
-
-      // carousel
-      // $('#carousel').carousel({
-      //   interval: false
-      // })
-    })
+		// 查看作品详情
+		workList.on('click', '.item-work', function() {
+			//
+			var box = $(this).next();
+			var items = box.find('a');
+			var avatar = box.data('judge-avatar');
+			var name = box.data('judge-name');
+			var comment = box.data('comment');
+			$.fancybox.open( items, {
+			  idleTime  : false,
+			  baseClass : 'fancybox-custom-layout',
+			  margin    : 0,
+			  gutter    : 0,
+			  infobar   : false,
+			  thumbs    : {
+			    hideOnClose : false,
+			    parentEl    : '.fancybox-outer'
+			  },
+			  touch : {
+			    vertical : false
+			  },
+			  buttons : [
+			    'close',
+			    'thumbs',
+					'fullScreen',
+			  ],
+			  animationEffect   : "fade",
+			  animationDuration : 300,
+			  onInit : function( instance ) {
+			    instance.$refs.inner.wrap( '<div class="fancybox-outer"></div>' );
+			  },
+			  caption : function(instance, item) {
+			    return '<h3>评论</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+			  }
+			});
+		})
   }
 
 	return {
 		init : init
 	}
 })(jQuery);
+
+
+
+
 //
-// YB.Work.init();
-// YB.Edit.init();
+YB.Work.init();
+YB.Edit.init();
 YB.Participate.init();

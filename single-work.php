@@ -1,8 +1,4 @@
-<?php
-add_action('wp_enqueue_scripts', function(){
-  wp_enqueue_script('jquery.sortable');
-});
-get_header(); ?>
+<?php get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">

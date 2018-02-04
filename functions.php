@@ -144,9 +144,12 @@ add_action('wp', function() {
 add_action('wp_enqueue_scripts', function(){
   wp_enqueue_style('main');
   wp_enqueue_style('fontawesome');
+  wp_enqueue_style('fancybox');
 
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('popper');
+  wp_enqueue_script('fancybox');
+  wp_enqueue_script('html.sortable');
   wp_enqueue_script('main');
 });

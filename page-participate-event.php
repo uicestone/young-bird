@@ -1,8 +1,4 @@
 <?php
-    add_action('wp_enqueue_scripts', function(){
-      wp_enqueue_style('fancybox');
-      wp_enqueue_script('fancybox');
-    });
     get_header();
     if (isset($_GET['step'])) :
       get_template_part('page-participate-event-step-' . $_GET['step']);
