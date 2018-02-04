@@ -60,7 +60,7 @@ register_post_type('rank', array(
   'public' => true,
   'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
   'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-thumbs-up',
+  'menu_icon' => 'dashicons-thumbs-up ',
   'has_archive' => true
 ));
 
@@ -147,4 +147,5 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_script('jquery');
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('popper');
+  wp_enqueue_script('main');
 });
