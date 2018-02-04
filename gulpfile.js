@@ -73,7 +73,7 @@ gulp.task('images', () => {
 
 // CSS settings
 var css = {
-  src         : [dir.src + 'styles/main.scss', dir.src + 'styles/fontawesome.scss', dir.src + 'styles/jquery.fancybox.min.css', dir.src + 'style.css'],
+  src         : [dir.src + 'styles/main.scss', dir.src + 'styles/fontawesome.scss', dir.src + 'styles/jquery.fancybox.min.css', dir.src + 'styles/fontawesome-stars.css', dir.src + 'style.css'],
   watch       : dir.src + 'styles/**/*',
   build       : dir.build + 'css/',
   sassOpts: {

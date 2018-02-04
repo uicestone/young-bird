@@ -31,6 +31,7 @@
   "author": "rainkolwa <pluvo.lee@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "html5sortable": "^0.6.3"
+    "html5sortable": "^0.6.3",
+    "jquery-bar-rating": "^1.2.2"
   }
 }

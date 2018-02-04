@@ -700,3 +700,17 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
   }
 }
+
+.custom-rate-container {
+  .col-8 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bg-cyan {
+    border: $cyan;
+    &:hover {
+      background: darken($cyan, 10%)
+    }
+  }
+}
