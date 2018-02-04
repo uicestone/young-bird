@@ -41,60 +41,6 @@
             </a>
           </div>
         </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
-          <div class="card mb-4 item-review">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/review.jpg" alt="">
-            <div class="card-body mt-4">
-              <h5 class="color-black text-center">YB20114</h5>
-              <h3 class="mb-0 text-center">分数：9</h3>
-            </div>
-          </div>
-        </div>
       </div>
       <nav class="mt-5">
         <ul class="pagination justify-content-end">
