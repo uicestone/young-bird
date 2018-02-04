@@ -115,7 +115,7 @@ YB.Work = (function($) {
 		workList.on('click', '.item-work', function() {
 			//
 			var box = $(this).next();
-			var items = box.find('a');
+			var items = box.children();
 			var avatar = box.data('judge-avatar');
 			var name = box.data('judge-name');
 			var comment = box.data('comment');
@@ -147,6 +147,7 @@ YB.Work = (function($) {
 			  }
 			});
 		})
+		// 入围弹层
   }
 
 	return {
@@ -157,7 +158,7 @@ YB.Work = (function($) {
 
 
 
-//
+// init
 YB.Work.init();
 YB.Edit.init();
 YB.Participate.init();

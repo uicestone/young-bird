@@ -1,3 +1,10 @@
+.fancybox-custom-layout .fancybox-toolbar {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transition: opacity .25s,visibility 0s;
+  transition: opacity .25s,visibility 0s;
+}
+
 @media all and (min-width: 800px) {
   /* Give space around main area */
   .fancybox-custom-layout .fancybox-outer {
