@@ -670,3 +670,17 @@ h1, h2, h3, h4, h5, h6 {
     transform: translate3d(-50%, -50%, 0);
   }
 }
+
+.form-participate-position {
+  .options {
+    > .col {
+      cursor: pointer;
+    }
+    i, span {
+      font-size: 1.4rem;
+    }
+  }
+  .bg-light-grey {
+    border-color: $light-grey;
+  }
+}

@@ -1,0 +1,37 @@
+.fc-container .fancybox-bg {
+  background: #eee;
+}
+
+.fancybox-is-open.fc-container .fancybox-bg {
+  opacity: 0.95;
+}
+
+.fancybox-slide .fc-content {
+  margin: 20px;
+  max-width: 550px;
+  padding: 50px 40px;
+  box-shadow: 10px 10px 60px -25px;
+  border-radius: 4px;
+  .btn {
+    margin: 0 8px;
+    color: white;
+    &:hover {
+      color: white;
+    }
+    &.bg-light-grey {
+      border: $light-grey;
+    }
+  }
+}
+
+/* Custom animation */
+.fancybox-fx-material.fancybox-slide--previous,
+.fancybox-fx-material.fancybox-slide--next {
+  transform: translateY(-60px) scale(1.1);
+  opacity: 0;
+}
+
+.fancybox-fx-material.fancybox-slide--current {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}

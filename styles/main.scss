@@ -79,14 +79,11 @@ $container-max-widths: (
 );
 
 $input-btn-padding-y-lg: 1rem;
-// $input-bg: #f7f8f8;
+$input-bg: #f3f4f4;
 $input-border-color: #aea8a8;
 $form-group-margin-bottom: .8rem;
 $custom-select-color: $body-color;
-
-
 $custom-file-height: 3.66rem;
-
 $custom-file-padding-y: 0;
 $custom-file-line-height: $custom-file-height;
 
@@ -103,3 +100,4 @@ $custom-file-line-height: $custom-file-height;
 // page
 @import "signup";
 @import "news";
+@import "customFancybox";
