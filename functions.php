@@ -36,6 +36,8 @@ add_action('admin_menu', function () {
   remove_menu_page( 'edit-comments' );
 });
 
+add_theme_support('post-thumbnails');
+
 register_post_type('event', array(
   'label' => '竞赛',
   'labels' => array(
