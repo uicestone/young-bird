@@ -104,7 +104,7 @@
           </div>
         </div>
         </div>
-        <div class="row mx-auto">
+        <div class="row mx-auto justify-content-end">
           <button type="button" class="btn btn-lg btn-secondary btn-common">保存</button>
         </div>
       </form>
