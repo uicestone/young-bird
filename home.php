@@ -1,7 +1,48 @@
 <?php get_header(); ?>
     <!-- Banner -->
-    <div class="container-fluid px-0">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+    <div class="container-fluid px-0 banner-home owl-carousel owl-theme">
+      <a href="#">
+        <!-- for desktop -->
+        <div class="container-fluid px-0 d-none d-lg-block">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for pad -->
+        <div class="container-fluid px-0 d-none d-md-block d-lg-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for smart phone -->
+        <div class="container-fluid px-0 d-md-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+      </a>
+      <a href="#">
+        <!-- for desktop -->
+        <div class="container-fluid px-0 d-none d-lg-block">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for pad -->
+        <div class="container-fluid px-0 d-none d-md-block d-lg-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for smart phone -->
+        <div class="container-fluid px-0 d-md-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+      </a>
+      <a href="#">
+        <!-- for desktop -->
+        <div class="container-fluid px-0 d-none d-lg-block">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for pad -->
+        <div class="container-fluid px-0 d-none d-md-block d-lg-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+        <!-- for smart phone -->
+        <div class="container-fluid px-0 d-md-none">
+          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+        </div>
+      </a>
     </div>
 
     <!-- 热门竞赛 -->

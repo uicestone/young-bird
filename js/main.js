@@ -253,10 +253,25 @@ YB.Work = (function($) {
 	}
 })(jQuery);
 
+// Carousel
+YB.Carousel = (function($) {
+	function init() {
+		$('.owl-carousel').owlCarousel({
+			items: 1,
+			loop: true,
+			margin: 10,
+			autoplay: true
+		});
+	}
 
+	return {
+		init: init
+	}
+})(jQuery);
 
 
 // init
 YB.Work.init();
 YB.Edit.init();
 YB.Participate.init();
+YB.Carousel.init();
