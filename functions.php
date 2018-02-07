@@ -55,16 +55,16 @@ register_post_type('event', array(
 ));
 
 register_post_type('rank', array(
-  'label' => '排名',
+  'label' => '轮次',
   'labels' => array(
-    'all_items' => '所有排名',
-    'add_new' => '添加排名',
-    'add_new_item' => '新排名',
-    'edit_item' => '编辑排名',
-    'not_found' => '未找到排名'
+    'all_items' => '所有轮次',
+    'add_new' => '添加轮次',
+    'add_new_item' => '新轮次',
+    'edit_item' => '编辑轮次',
+    'not_found' => '未找到轮次'
   ),
   'public' => true,
-  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+  'supports' => array('title'),
   'taxonomies' => array('post_tag', 'category'),
   'menu_icon' => 'dashicons-thumbs-up ',
   'has_archive' => true
