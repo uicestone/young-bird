@@ -10,6 +10,10 @@ add_action('after_switch_theme', function () {
   ) as $name) {
     init_page_placeholder($name);
   }
+
+  add_role('judge', '大咖', array());
+  add_role('attendee', '选手', array());
+  remove_role('subscriber'); remove_role('author'); remove_role('contributor');
 });
 
 function init_page_placeholder ($name) {
