@@ -1,0 +1,76 @@
+.banner-home {
+  > div {
+    width: 100%;
+  }
+  .owl-dots {
+    position: absolute;
+    bottom: 0;
+    height: 15%;
+    background: rgba(0,0,0,.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .owl-dot {
+      margin: 0 10px;
+      span {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background: #595959;
+        border-radius: 8px;
+      }
+      &.active {
+        span {
+          background: #ffffff;
+        }
+      }
+    }
+  }
+  .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+    display: flex;
+    justify-content: space-between;
+    > div {
+      width: 80px;
+      height: 144px;
+      text-indent: -9999px;
+      &.owl-prev {
+        margin-left: 73px;
+        background: url(../images/arrow-left.png) center center / contain no-repeat;
+      }
+      &.owl-next {
+        margin-right: 73px;
+        background: url(../images/arrow-right.png) center center / contain no-repeat;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .banner-home {
+    .owl-dots {
+      .owl-dot {
+        margin: 0 5px;
+        span {
+          width: 8px;
+          height: 8px;
+          border-radius: 4px;
+        }
+      }
+    }
+    .owl-nav {
+      > div {
+        width: 80px * 1/3;
+        height: 144px * 1/3;
+        &.owl-prev {
+          margin-left: 73px * 1/3;
+        }
+        &.owl-next {
+          margin-right: 73px * 1/3;
+        }
+      }
+    }
+  }
+}

@@ -258,6 +258,7 @@ YB.Carousel = (function($) {
 	function init() {
 		$('.owl-carousel').owlCarousel({
 			items: 1,
+			nav: true,
 			loop: true,
 			margin: 10,
 			autoplay: true
