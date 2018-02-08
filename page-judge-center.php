@@ -17,25 +17,25 @@
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body judge-sign-in">
-      <form action="">
+      <form method="post">
         <div class="row">
           <div class="col-12">
             <div class="row mx-auto info-container">
               <div class="col-6">
                 <div class="custom-file-container d-flex justify-content-center align-items-center flex-column">
                   <i class="fas fa-plus"></i>
-                  <input type="file" class="custom-file-input">
+                  <input type="file" name="avatar" class="custom-file-input">
                 </div>
               </div>
               <div class="col-18">
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="姓名">
+                    <input type="text" name="name" class="form-control" placeholder="姓名">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="手机">
+                    <input type="text" name="mobile" class="form-control" placeholder="手机">
                   </div>
                 </div>
               </div>
@@ -44,12 +44,12 @@
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="生日">
+                <input type="text" name="birthday" class="form-control" placeholder="生日">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="邮箱">
+                <input type="text" name="email" class="form-control" placeholder="邮箱">
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
           <div class="col-12">
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="身份">
+                <input type="text" name="role" class="form-control" placeholder="身份">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -67,8 +67,8 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="机构">
-                <input type="text" class="form-control" placeholder="部门/头衔">
+                <input type="text" name="company" class="form-control" placeholder="机构">
+                <input type="text" name="title" class="form-control" placeholder="部门/头衔">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -77,7 +77,7 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="奖项">
+                <input type="text" name="award" class="form-control" placeholder="奖项">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -86,33 +86,30 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="毕业院校（选填）">
+                <input type="text" name="school" class="form-control" placeholder="毕业院校（选填）">
               </div>
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="专业（选填）">
+                <input type="text" name="major" class="form-control" placeholder="专业（选填）">
               </div>
             </div>
           </div>
         </div>
         <div class="row mx-auto">
           <div class="input-group mb-3">
-            <textarea class="form-control form-control-lg desc" placeholder="描述"></textarea>
+            <textarea name="bio" class="form-control form-control-lg desc" placeholder="描述"></textarea>
           </div>
           <div class="input-group input-group-lg mb-3">
             <div class="custom-file">
               <!-- En版请使用lang="en" -->
-              <input type="file" class="custom-file-input" id="resume" lang="zh">
+              <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
               <label class="custom-file-label" for="resume">点击上传详细简历</label>
-            </div>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">上传</button>
             </div>
           </div>
         </div>
         <div class="row mx-auto">
-          <button type="button" class="btn btn-secondary btn-lg btn-common float-right">保存</button>
+          <button type="submit" class="btn btn-secondary btn-lg btn-common float-right">保存</button>
         </div>
       </form>
     </div>

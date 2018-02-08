@@ -15,15 +15,15 @@
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
-          <form>
+          <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="邮箱/手机">
+                <input type="text" name="login" class="form-control" placeholder="邮箱/手机">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="输入验证码">
+                <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
                 <div class="input-group-append">
                   <span class="input-group-text">EE131M</span>
                   <button type="button" class="btn btn-outline-secondary">刷新</button>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="输入短信验证码">
+                <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
                 <div class="input-group-append">
                   <button type="button" class="btn btn-outline-secondary">发送短信验证码</button>
                 </div>
@@ -40,18 +40,18 @@
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" class="form-control" placeholder="密码（12位数字或字母）">
+                <input type="password" name="password" class="form-control" placeholder="密码（12位数字或字母）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" class="form-control" placeholder="确认密码">
+                <input type="password" name="password_confirm" class="form-control" placeholder="确认密码">
               </div>
             </div>
             <p class="text-right">
-              <small>注册即视为同意 <a href="" class="text-underline">隐私条款</a> 和 <a href="" class="text-underline">服务条款</a></small>
+              <small>注册即视为同意 <a href="/privacy-policy/" class="text-underline">隐私条款</a> 和 <a href="/service-term/" class="text-underline">服务条款</a></small>
             </p>
-            <button type="button" class="btn btn-lg btn-secondary btn-block">注册</button>
+            <button type="submit" class="btn btn-lg btn-secondary btn-block">注册</button>
           </form>
         </div>
       </div>

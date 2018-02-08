@@ -12,21 +12,21 @@
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
-          <form>
+          <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="邮箱/手机">
+                <input type="text" name="login" class="form-control" placeholder="邮箱/手机">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" class="form-control" placeholder="密码（12位数字或字母）">
+                <input type="password" name="password" class="form-control" placeholder="密码（12位数字或字母）">
               </div>
             </div>
-            <button type="button" class="btn btn-secondary btn-block btn-lg">登录</button>
+            <button type="submit" class="btn btn-secondary btn-block btn-lg">登录</button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div>没有账号？<a href="#" class="text-underline">现在注册</a></div>
-              <div><a href="#" class="text-underline">忘记密码</a></div>
+              <div>没有账号？<a href="/sign-up/" class="text-underline">现在注册</a></div>
+              <div><a href="/forget-password/" class="text-underline">忘记密码</a></div>
             </div>
           </form>
         </div>

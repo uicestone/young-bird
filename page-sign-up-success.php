@@ -14,7 +14,7 @@
           <div class="msg text-center mb-4">
             <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="">
             <h3 class="mt-3">恭喜注册成功!</h3>
-            <a href="#">请至用户中心完善您的资料</a>
+            <a href="/user-center/">请至用户中心完善您的资料</a>
           </div>
           <div class="qr text-center">
             <img src="<?=get_stylesheet_directory_uri()?>/images/qrcode.jpg" alt="">

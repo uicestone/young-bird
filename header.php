@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
-    <title>home</title>
+    <title><?php wp_title('-', true, 'right'); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
   <body>
@@ -32,11 +32,11 @@
               <a class="nav-link" href="/event/?history">历 史</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="#">院 校</a>
+              <a class="nav-link" href="javascript:alert('院校暂未开放，敬请期待')">院 校</a>
             </li>
           </ul>
           <form class="form-inline">
-            <a href="#"><i class="fas fa-search"></i></a>
+            <a href="/?s="><i class="fas fa-search"></i></a>
             <a href="/sign-up/" class="btn btn-link">注册</a>
             <span>|</span>
             <a href="/sign-in/" class="btn btn-link">登录</a>

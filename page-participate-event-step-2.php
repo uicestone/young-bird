@@ -19,23 +19,23 @@
         </div>
         <div class="col-md-12 offset-md-2">
           <h1 class="text-center mb-4">报名信息填写</h1>
-          <form>
+          <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="公司">
+                <input type="text" name="company" class="form-control" placeholder="公司">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="部门">
+                <input type="text" name="department" class="form-control" placeholder="部门">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="职位">
+                <input type="text" name="title" class="form-control" placeholder="职位">
               </div>
             </div>
-            <button type="button" class="btn btn-lg btn-secondary btn-block">下一步</button>
+            <button type="submit" class="btn btn-lg btn-secondary btn-block">下一步</button>
           </form>
         </div>
       </div>
