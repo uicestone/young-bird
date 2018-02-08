@@ -4,7 +4,7 @@ remove_filter('template_redirect','redirect_canonical');
 
 show_admin_bar(false);
 
-add_action('after_switch_theme', function () {
+add_action('after_setup_theme', function () {
   foreach (array(
     'Judge Center', 'Judge Sign Up', 'Forget Password', 'Participate Event', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
   ) as $name) {
@@ -14,6 +14,15 @@ add_action('after_switch_theme', function () {
   add_role('judge', '大咖', array());
   add_role('attendee', '选手', array());
   remove_role('subscriber'); remove_role('author'); remove_role('contributor');
+
+  add_image_size('1-2', 350, 700, true);
+  add_image_size('8-7', 320, 280, true);
+  add_image_size('5-3', 1000, 600, true);
+  add_image_size('vga', 640, 480, true);
+  add_image_size('3-2', 600, 400, true);
+  add_image_size('hd', 1280, 720, true);
+  add_image_size('movie', 1920, 800, true);
+  add_image_size('5-1', 1920, 384, true);
 });
 
 function init_page_placeholder ($name) {
