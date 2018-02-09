@@ -19,7 +19,7 @@
       <h3>参与的项目</h3>
       <div class="row my-3 event-list">
         <div class="col-md-12">
-          <div class="card mb-4 item-event">
+          <a href="#" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
               <div class="tag tag-red col-3 text-center">进行中</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
@@ -40,10 +40,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-12">
-          <div class="card mb-4 item-event">
+          <a href="#" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
               <div class="tag tag-brick col-3 text-center">已完成</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
@@ -66,13 +66,13 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <h3>关注的项目</h3>
       <div class="row my-3 event-list">
         <div class="col-md-12">
-          <div class="card mb-4 item-event">
+          <a href="#" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
               <div class="tag tag-red col-3 text-center">进行中</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
@@ -90,10 +90,10 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-12">
-          <div class="card mb-4 item-event">
+          <a href="#" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
               <div class="tag tag-brick col-3 text-center">已完成</div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">PATTERN DESIGN</div>
@@ -111,7 +111,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
