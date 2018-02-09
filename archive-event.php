@@ -75,7 +75,7 @@
           <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
         </div>
         <div class="col-md-6">
-          <div class="card mb-3 item-sub-history">
+          <a href="#" class="card mb-3 item-sub-history">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body">
               <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
@@ -83,8 +83,8 @@
                 截止日期：2017年11月17日15：00
               </p>
             </div>
-          </div>
-          <div class="card mb-3 item-sub-history">
+          </a>
+          <a href="#" class="card mb-3 item-sub-history">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body">
               <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
@@ -92,7 +92,7 @@
                 截止日期：2017年11月17日15：00
               </p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>

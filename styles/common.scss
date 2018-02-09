@@ -200,6 +200,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .item-history {
   border: none;
+  > a {
+    transition: $transition-base;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
   .card-img-top {
     border-radius: 0;
   }
@@ -296,6 +302,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .item-sub-history {
   border: none;
+  &:hover {
+    .card-body, .card-label {
+      background: darken(#9e9897, 5%);
+    }
+  }
   h4 ,p {
     color: $white;
   }
@@ -303,6 +314,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
   }
   .card-label {
+    transition: $transition-base;
     background: #9e9897;
     padding: .4rem 1.25rem;
     display: flex;
@@ -321,6 +333,7 @@ h1, h2, h3, h4, h5, h6 {
     border-top: 1px solid #c1bdbd;
   }
   .card-body {
+    transition: $transition-base;
     background: #9e9897;
   }
 }
