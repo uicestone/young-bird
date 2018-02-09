@@ -126,18 +126,18 @@
         <span></span>
         <h1>最新资讯</h1>
       </div>
-      <div class="row list-news mb-5">
-        <div class="col-md-8 col-lg-3-11">
+      <div class="list-news mb-5">
+        <div class="order-sm-2 order-md-1 col-md-3-11 column-left">
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
@@ -148,15 +148,15 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
@@ -167,15 +167,15 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
@@ -186,17 +186,17 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8 col-lg-5-11">
+        <div class="order-sm-1 order-md-2 col-md-5-11 column-middle">
           <div class="card">
-            <div class="card-img-top" style="background: url(<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 主办方：深圳，中国
                 <br>
                 深圳，中国
@@ -209,15 +209,15 @@
             </div>
           </div>
           <div class="card">
-            <div class="card-img-top" style="background: url(<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg) center center / cover no-repeat"></div>
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 主办方：深圳，中国
                 <br>
                 深圳，中国
@@ -230,17 +230,17 @@
             </div>
           </div>
         </div>
-        <div class="col-md-8 col-lg-3-11">
+        <div class="order-sm-3 order-md-3 col-md-3-11 column-right">
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
@@ -251,15 +251,15 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
@@ -270,15 +270,15 @@
             </div>
           </div>
           <div class="card">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
-              <div class="title">
+              <div class="title text-truncate">
                 坂雪岗科技城核心区
                 <br>
                 城市品质提升国际设计大赛
               </div>
-              <div class="label">#城市规划设计、建筑、景观设计</div>
-              <p>
+              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <p class="text-truncate">
                 深圳，中国
                 <br>
                 报名截止日期：
