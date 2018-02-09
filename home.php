@@ -74,7 +74,7 @@
       <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
       <div class="row justify-content-between list-competiton mt-4">
         <div class="col-md-12 col-lg-6 mb-4">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
@@ -82,10 +82,10 @@
               <span>截止日期/2017.5月-2017.10月</span>
               <i class="icon icon-yellow"></i>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
@@ -93,10 +93,10 @@
               <span>截止日期/2017.5月-2017.10月</span>
               <i class="icon icon-yellow"></i>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
@@ -104,10 +104,10 @@
               <span>截止日期/2017.5月-2017.10月</span>
               <i class="icon icon-yellow"></i>
             </div>
-          </div>
+          </a>
         </div>
         <div class="col-md-12 col-lg-6 mb-4">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <h5>2017 良辰美景</h5>
@@ -115,7 +115,7 @@
               <span>截止日期/2017.5月-2017.10月</span>
               <i class="icon icon-yellow"></i>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
       </div>
       <div class="list-news mb-5">
         <div class="order-sm-2 order-md-1 col-md-3-11 column-left">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -146,8 +146,8 @@
               </p>
               <i class="tag tag-green">新闻</i>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -165,8 +165,8 @@
               </p>
               <i class="tag tag-green">新闻</i>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -184,10 +184,10 @@
               </p>
               <i class="tag tag-green">新闻</i>
             </div>
-          </div>
+          </a>
         </div>
         <div class="order-sm-1 order-md-2 col-md-5-11 column-middle">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -207,8 +207,8 @@
               </p>
               <i class="tag tag-orange">竞赛</i>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -228,10 +228,10 @@
               </p>
               <i class="tag tag-pink">奖项</i>
             </div>
-          </div>
+          </a>
         </div>
         <div class="order-sm-3 order-md-3 col-md-3-11 column-right">
-          <div class="card">
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -249,8 +249,8 @@
               </p>
               <i class="tag tag-green">新闻</i>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -268,8 +268,8 @@
               </p>
               <i class="tag tag-blue">工作</i>
             </div>
-          </div>
-          <div class="card">
+          </a>
+          <a href="#" class="card link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
             <div class="card-body">
               <div class="title text-truncate">
@@ -287,7 +287,7 @@
               </p>
               <i class="tag tag-green">新闻</i>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
