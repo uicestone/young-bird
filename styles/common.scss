@@ -46,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
 .custom-file-label {
   font-size: 1rem;
   color: $body-color;
@@ -84,6 +83,13 @@ h1, h2, h3, h4, h5, h6 {
       font-size: 2rem;
       bottom: -.4rem;
     }
+  }
+}
+
+a.link {
+  transition: $transition-base;
+  &:hover {
+    opacity: .8;
   }
 }
 
