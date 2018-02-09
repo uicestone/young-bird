@@ -19,7 +19,7 @@
               <div class="form-group row">
                 <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛状态</strong></label>
                 <div class="col-sm-19">
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option>进行中</option>
                     <option>2</option>
                     <option>3</option>
@@ -33,7 +33,7 @@
               <div class="form-group row">
                 <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛类别</strong></label>
                 <div class="col-sm-19">
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option>建筑设计</option>
                     <option>2</option>
                     <option>3</option>
