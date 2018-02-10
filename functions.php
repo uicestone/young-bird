@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/includes/cmb2.functions.php';
+
 remove_filter('template_redirect','redirect_canonical');
 
 show_admin_bar(false);
