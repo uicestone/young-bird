@@ -1,4 +1,6 @@
-<?php get_header(); ?>
+<?php
+if (!isset($_GET['partial'])):
+get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-news.jpg) center center / cover no-repeat">
       <div class="container">
@@ -79,4 +81,23 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php get_footer(); elseif (in_array($_GET['partial'], array ('primary', 'secondary'))): foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => $_GET['partial'] === 'primary' ? 2 : 6, 'paged' => $_GET['paged'] ?: 1)) as $post): ?>
+<a href="<?=get_the_permalink($post->ID)?>" class="card link">
+  <?=get_the_post_thumbnail($post->ID, $_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
+  <div class="card-body">
+    <div class="title text-truncate">
+      <?=get_the_title($post->ID)?>
+      <br>
+      <?=get_the_subtitle($post->ID)?>
+    </div>
+    <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+    <p class="text-truncate">
+      <?=get_the_excerpt($post->ID)?>
+    </p>
+    <?php if ($tags = get_the_tags($post->ID)): foreach ($tags as $tag): ?>
+    <i class="tag tag-orange"><?=$tag->name?></i>
+    <?php endforeach; endif; ?>
+  </div>
+</a>
+<?php endforeach; else: ?>
+<?php endif; ?>

@@ -19,6 +19,7 @@ add_action('after_setup_theme', function () {
 
   add_image_size('1-2', 350, 700, true);
   add_image_size('8-7', 320, 280, true);
+  add_image_size('5-4', 500, 400, true);
   add_image_size('5-3', 1000, 600, true);
   add_image_size('vga', 640, 480, true);
   add_image_size('3-2', 600, 400, true);
@@ -63,7 +64,7 @@ add_action('init', function () {
       'not_found' => '未找到竞赛'
     ),
     'public' => true,
-    'supports' => array('title', 'wps_subtitle', 'excerpt', 'editor', 'thumbnail'),
+    'supports' => array('title', 'subtitles', 'excerpt', 'editor', 'thumbnail'),
     'taxonomies' => array('post_tag', 'category'),
     'menu_icon' => 'dashicons-admin-customizer',
     'has_archive' => true
