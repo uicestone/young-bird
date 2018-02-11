@@ -24,7 +24,7 @@ if (isset($_GET['create-work'])) {
     'post_type' => 'work',
     'post_status' => 'publish',
     'post_title' => '新作品',
-    'post_name' => $event_id . '-' . get_the_ID()
+    'post_name' => $event_id . '-g' . get_the_ID()
   ));
   add_post_meta($work_id, 'event', $event_id);
   add_post_meta($work_id, 'group', get_the_ID());
