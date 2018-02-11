@@ -19,12 +19,13 @@
               <div class="form-group row">
                 <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛状态</strong></label>
                 <div class="col-sm-19">
-                  <select class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
-                    <option>进行中</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  <select name="status" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
+                    <option value=""<?=!$_GET['status'] ? ' selected' : ''?>>全部状态</option>
+                    <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>>进行中</option>
+                    <option value="starting"<?=$_GET['status']=='starting' ? ' selected' : ''?>>即将开始</option>
+                    <option value="ending"<?=$_GET['status']=='ending' ? ' selected' : ''?>>即将结束</option>
+                    <option value="ended"<?=$_GET['status']=='ended' ? ' selected' : ''?>>已经结束</option>
+                    <option value="judged"<?=$_GET['status']=='judged' ? ' selected' : ''?>>评审完成</option>
                   </select>
                 </div>
               </div>
@@ -33,12 +34,11 @@
               <div class="form-group row">
                 <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛类别</strong></label>
                 <div class="col-sm-19">
-                  <select class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
-                    <option>建筑设计</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                  <select name="tag" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
+                    <option value=""<?=!$_GET['tag'] ? ' selected' : ''?>>全部类别</option>
+                    <?php foreach (get_tags() as $tag): ?>
+                    <option value="<?=$tag->slug?>"<?=$_GET['tag']==$tag->slug ? ' selected' : ''?>><?=$tag->name?></option>
+                    <?php endforeach; ?>
                   </select>
                 </div>
               </div>
@@ -74,7 +74,7 @@
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
+          <!--<button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>-->
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'ad')) as $ad): ?>
