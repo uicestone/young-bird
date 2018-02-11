@@ -1,4 +1,10 @@
-<?php get_header(); ?>
+<?php
+get_header(); the_post();
+if (isset($_GET['participate'])):
+  $step = $_GET['participate'] ?: 'step-1';
+  include(locate_template('single-event-participate-' . $step . '.php'));
+else:
+?>
     <!-- Body -->
     <div class="container pb-4">
       <div class="sidebar">
@@ -22,7 +28,7 @@
             <a href="#">下载文件</a>
           </li>
           <li>
-            <a href="#">参赛</a>
+            <a href="<?php the_permalink(); ?>?participate">参赛</a>
           </li>
         </ul>
       </div>
@@ -32,4 +38,4 @@
         </div>
       </div>
     </div>
-<?php get_footer(); ?>
+<?php endif; get_footer(); ?>
