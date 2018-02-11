@@ -8,7 +8,7 @@ show_admin_bar(false);
 
 add_action('after_setup_theme', function () {
   foreach (array(
-    'Judge Center', 'Judge Sign Up', 'Forget Password', 'Participate Event', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
+    'Judge Center', 'Judge Sign Up', 'Forget Password', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
   ) as $name) {
     init_page_placeholder($name);
   }
