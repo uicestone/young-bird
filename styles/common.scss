@@ -784,3 +784,21 @@ a.link {
     }
   }
 }
+
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 100px;
+  li {
+    list-style-type: none;
+    width: 110px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-bottom: 1px solid $border-color;
+    background: #8d8c8c;
+    a {
+      color: $black;
+    }
+  }
+}
