@@ -40,7 +40,7 @@
             <a href="/sign-up/" class="btn btn-link">注册</a>
             <span>|</span>
             <a href="/sign-in/" class="btn btn-link">登录</a>
-            <a href="#" class="btn btn-link pl-0">EN</a>
+            <!--<a href="#" class="btn btn-link pl-0">EN</a>-->
           </form>
         </div>
       </nav>
