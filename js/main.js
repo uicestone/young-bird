@@ -256,12 +256,17 @@ YB.Work = (function($) {
 // Carousel
 YB.Carousel = (function($) {
 	function init() {
-		$('.owl-carousel').owlCarousel({
+		$('.banner-home').owlCarousel({
 			items: 1,
 			nav: true,
 			loop: true,
 			margin: 10,
 			autoplay: true
+		});
+		$('.related-news').owlCarousel({
+			items: 4,
+			nav: true,
+			margin: 35,
 		});
 	}
 
@@ -270,9 +275,42 @@ YB.Carousel = (function($) {
 	}
 })(jQuery);
 
+YB.Common = (function($){
+	function init() {
+		bindEvent();
+	}
+
+
+	function bindEvent() {
+		// new carousel
+
+		// smooth hash
+		$('a[href*=#]:not([href=#])').click(function() {
+	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+	        || location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+         if (target.length) {
+           $('html,body').animate({
+             scrollTop: target.offset().top
+          }, 500);
+          return false;
+        }
+	    }
+		});
+	}
+
+	return {
+		init: init
+	}
+})(jQuery)
+
 
 // init
 YB.Work.init();
 YB.Edit.init();
 YB.Participate.init();
 YB.Carousel.init();
+
+//
+YB.Common.init();

@@ -1,3 +1,49 @@
+.related-news {
+  position: relative;
+  padding: 50px 50px;
+  box-sizing: border-box;
+  .owl-item {
+    .card-label {
+      min-height: 30px;
+    }
+    h4 {
+      font-size: 14px;
+    }
+    .card-body {
+      padding: 10px;
+      p {
+        margin-top: 10px;
+        margin-bottom: 0;
+      }
+      h4 {
+        margin-bottom: 5px;
+      }
+    }
+  }
+  .owl-nav {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 50%;
+    height: 42px;
+    transform: translate3d(0, -50%, 0);
+    > div {
+      width: 25px;
+      height: 42px;
+      text-indent: -9999px;
+      &.owl-prev {
+        position: absolute;
+        left: 0;
+        background: url(../images/arrow-left-mini.png) center center / contain no-repeat;
+      }
+      &.owl-next {
+        position: absolute;
+        right: 0;
+        background: url(../images/arrow-right-mini.png) center center / contain no-repeat;
+      }
+    }
+  }
+}
 .banner-home {
   > div {
     width: 100%;
