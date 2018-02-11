@@ -9,9 +9,9 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="/judge-center/">个人信息</a></li>
-          <li><a href="/event/?user-center">我的比赛</a></li>
-          <li><a href="/message/">消息<i></i></a></li>
+          <li class="active"><a href="<?=site_url()?>/judge-center/">个人信息</a></li>
+          <li><a href="<?=site_url()?>/event/?user-center">我的比赛</a></li>
+          <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
         </ul>
       </div>
     </div>

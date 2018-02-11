@@ -47,8 +47,8 @@ get_header(); ?>
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg">登录</button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div>没有账号？<a href="/sign-up/" class="text-underline">现在注册</a></div>
-              <div><a href="/forget-password/" class="text-underline">忘记密码</a></div>
+              <div>没有账号？<a href="<?=site_url()?>/sign-up/" class="text-underline">现在注册</a></div>
+              <div><a href="<?=site_url()?>/forget-password/" class="text-underline">忘记密码</a></div>
             </div>
           </form>
         </div>

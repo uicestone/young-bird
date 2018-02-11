@@ -5,13 +5,13 @@
           <div class="col-lg-8">
             <ul class="list-inline">
               <li class="list-inline-item mr-4">
-                <a href="/about-us/">关于我们</a>
+                <a href="<?=site_url()?>/about-us/">关于我们</a>
               </li>
               <li class="list-inline-item mr-4">
-                <a href="/business-cooperation/">商务合作</a>
+                <a href="<?=site_url()?>/business-cooperation/">商务合作</a>
               </li>
               <li class="list-inline-item mr-4">
-                <a href="/help-center/">帮助中心</a>
+                <a href="<?=site_url()?>/help-center/">帮助中心</a>
               </li>
             </ul>
           </div>

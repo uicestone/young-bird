@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <a href="/event/" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
+      <a href="<?=site_url()?>/event/" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
       <div class="row justify-content-between list-competiton mt-4">
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">

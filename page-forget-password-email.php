@@ -19,8 +19,8 @@
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg">找回密码</button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div><a href="/login/" class="text-underline">返回登录页面</a></div>
-              <div><a href="/forget-password/" class="text-underline">手机找回</a></div>
+              <div><a href="<?=site_url()?>/login/" class="text-underline">返回登录页面</a></div>
+              <div><a href="<?=site_url()?>/forget-password/" class="text-underline">手机找回</a></div>
             </div>
           </form>
         </div>

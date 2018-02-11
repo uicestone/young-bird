@@ -83,7 +83,7 @@ get_header();
               </div>
             </div>
             <p class="text-right">
-              <small>注册即视为同意 <a href="/privacy-policy/" class="text-underline">隐私条款</a> 和 <a href="/service-term/" class="text-underline">服务条款</a></small>
+              <small>注册即视为同意 <a href="<?=site_url()?>/privacy-policy/" class="text-underline">隐私条款</a> 和 <a href="<?=site_url()?>/service-term/" class="text-underline">服务条款</a></small>
             </p>
             <button type="submit" class="btn btn-lg btn-secondary btn-block">注册</button>
           </form>

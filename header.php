@@ -20,30 +20,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item mr-lg-3 mr-xl-5 active">
-              <a class="nav-link" href="/category/news/">新 闻</a>
+              <a class="nav-link" href="<?=site_url()?>/category/news/">新 闻</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="/event/">竞 赛</a>
+              <a class="nav-link" href="<?=site_url()?>/event/">竞 赛</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="/judge/">大 咖</a>
+              <a class="nav-link" href="<?=site_url()?>/judge/">大 咖</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="/event/?history">历 史</a>
+              <a class="nav-link" href="<?=site_url()?>/event/?history">历 史</a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="javascript:alert('院校暂未开放，敬请期待')">院 校</a>
             </li>
           </ul>
           <form class="form-inline">
-            <a href="/?s="><i class="fas fa-search"></i></a>
+            <a href="<?=site_url()?>/?s="><i class="fas fa-search"></i></a>
             <?php if (is_user_logged_in()): ?>
-            <a href="/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
-            <a href="/sign-in/?logout=true" class="btn btn-link">退出登录</a>
+            <a href="<?=site_url()?>/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
+            <a href="<?=site_url()?>/sign-in/?logout=true" class="btn btn-link">退出登录</a>
             <?php else: ?>
-            <a href="/sign-up/" class="btn btn-link">注册</a>
+            <a href="<?=site_url()?>/sign-up/" class="btn btn-link">注册</a>
             <span>|</span>
-            <a href="/sign-in/" class="btn btn-link">登录</a>
+            <a href="<?=site_url()?>/sign-in/" class="btn btn-link">登录</a>
             <?php endif; ?>
             <!--<a href="#" class="btn btn-link pl-0">EN</a>-->
           </form>
