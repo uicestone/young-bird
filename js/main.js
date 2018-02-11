@@ -376,12 +376,57 @@ YB.Home = (function($) {
 	}
 })(jQuery)
 
+YB.Pubu = (function($) {
+	var container = $('.pubu');
+	var list = container.find('.pubu-list');
+	var btn = container.find('.btn-loadmore');
+	var page = 1;
+	var total = 2;
+
+	function init() {
+		bindEvent();
+	}
+
+	function updateBtn() {
+		if(page >= total) {
+			btn.removeClass('d-block').addClass('d-none');
+		}
+	}
+
+	function loadMore(fn) {
+		if(page > total) return
+		$.ajax({
+		  method: "GET",
+		  url: "/category/"+btn.data('name')+"/page/"+page+"/?partial=true",
+		})
+		  .done(function( data, textStatus, jqXHR ) {
+				totalPrimary = jqXHR.getResponseHeader('total-pages');
+				var html = $.parseHTML(data);
+				list.append(html);
+		  });
+		fn && fn();
+	}
+
+	function bindEvent() {
+		container.on('click', '.btn-loadmore', function(e) {
+			e.preventDefault();
+			console.log('click');
+			page++;
+			loadMore(updateBtn);
+		})
+	}
+
+	return {
+		init: init
+	}
+})(jQuery)
 
 // init
 YB.Work.init();
 YB.Edit.init();
 YB.Participate.init();
 YB.Carousel.init();
+YB.Pubu.init();
 
 //
 YB.Common.init();

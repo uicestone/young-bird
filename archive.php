@@ -9,7 +9,7 @@ get_header(); ?>
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-4">
+    <div class="container mt-7 pb-4 pubu">
       <!-- Filter -->
       <div class="category-container d-flex flex-wrap mb-4">
         <a href="?tag=" class="<?=!$_GET['tag'] ? 'active' : ''?>">全部</a>
@@ -19,7 +19,7 @@ get_header(); ?>
       </div>
       <div class="row">
         <div class="col-md-18">
-          <div class="row">
+          <div class="row pubu-list">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history item-history-no-action">
@@ -37,7 +37,7 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
+          <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news">发现更多</button>
         </div>
         <div class="col-md-6">
           <a href="#" class="card mb-3 item-sub-history">
