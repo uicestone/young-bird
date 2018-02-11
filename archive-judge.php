@@ -8,24 +8,17 @@
     <!-- Body -->
     <div class="container mt-7 pb-4">
       <div class="row">
-        <a href="#" class="col-sm-12 col-md-8 col-lg-6 mb-5 link">
+        <?php while (have_posts()): the_post(); ?>
+        <a href="<?php the_permalink(); ?>" class="col-sm-12 col-md-8 col-lg-6 mb-5 link">
           <div class="card item-judge">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" alt="Card image cap">
+            <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">
-              <h5>是大雨</h5>
-              <p>著名美籍华人产品设计师<br>著名美籍美籍美籍华人产品设计师</p>
+              <h5><?php the_title(); ?></h5>
+              <p><?php the_excerpt(); ?></p>
             </div>
           </div>
         </a>
-        <a href="#" class="col-sm-12 col-md-8 col-lg-6 mb-5 link">
-          <div class="card item-judge">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" alt="Card image cap">
-            <div class="card-body mt-4">
-              <h5>是大雨</h5>
-              <p>著名美籍华人产品设计师<br>著名美籍美籍美籍华人产品设计师</p>
-            </div>
-          </div>
-        </a>
+        <?php endwhile; ?>
       </div>
     </div>
 <?php get_footer(); ?>
