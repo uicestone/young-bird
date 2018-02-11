@@ -17,7 +17,7 @@
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
         <h1>请上传作品简介</h1>
-        <h2 class="color-black">参赛编号：YBP20114</h2>
+        <h2 class="color-black">参赛编号：YB<?=get_post_meta(get_the_ID(), 'group', true)?></h2>
       </div>
       <div class="row mt-3 word-desc">
         <div class="col-md-12">

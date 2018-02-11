@@ -97,7 +97,7 @@ add_action('init', function () {
       'not_found' => '未找到团队'
     ),
     'public' => true,
-    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+    'supports' => array('title', 'excerpt', 'thumbnail', 'author'),
     'taxonomies' => array('post_tag', 'category'),
     'menu_icon' => 'dashicons-groups',
     'has_archive' => true
@@ -218,3 +218,12 @@ add_filter('pre_get_posts', function ($query) {
 
   set_query_var('posts_per_archive_page', $limit);
 });
+
+function redirect_login ($force = false) {
+
+  if (!$force && is_user_logged_in()) {
+    return;
+  }
+
+  header('Location: ' . site_url() . '/sign-up/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
+}

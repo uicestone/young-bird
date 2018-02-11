@@ -14,12 +14,78 @@ if (isset($_POST['participate'])) {
       update_user_meta($user->ID, $field, $_POST[$field]);
     }
   }
+  if ($_POST['name']) {
+    $user->display_name = $_POST['name'];
+    wp_update_user($user);
+  }
   header('Location: ' . get_the_permalink() . '?participate=' . $_POST['participate']); exit;
+}
+
+if (isset($_POST['create_group'])) {
+  $groups = get_posts(array (
+    'post_type' => 'group',
+    'title' => $_POST['group_name_join'],
+    'meta_key' => 'event',
+    'meta_value' => get_the_ID()
+  ));
+
+  if ($groups) {
+    exit('Group name exists.');
+  }
+
+  $group_id = wp_insert_post(array (
+    'post_type' => 'group',
+    'post_title' => $_POST['group_name_create'],
+    'post_status' => 'publish'
+  ));
+  add_post_meta($group_id, 'event', get_the_ID());
+  add_post_meta($group_id, 'members', $user->ID);
+  header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
+}
+
+if (isset($_POST['join_group'])) {
+  $group = get_posts(array (
+    'post_type' => 'group',
+    'title' => $_POST['group_name_join'],
+    'meta_key' => 'event',
+    'meta_value' => get_the_ID()
+  ))[0];
+  if (!$group) {
+    exit('Group not found.');
+  }
+  update_post_meta($group->ID, 'members_pending', $user->ID);
+  header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
+}
+
+if ($_GET['participate'] === 'step-4') {
+  $group = get_posts(array (
+    'post_type' => 'group',
+    'meta_query' => array (
+      array ('key' => 'members', 'value' => $user->ID),
+      array ('key' => 'event', 'value' => get_the_ID())
+    )
+  ))[0];
+  $group_pending = get_posts(array (
+    'post_type' => 'group',
+    'meta_query' => array (
+      array ('key' => 'members_pending', 'value' => $user->ID),
+      array ('key' => 'event', 'value' => get_the_ID())
+    )
+  ))[0];
+
+  $group = $group ?: $group_pending;
+
+  $im_leader = $group->post_author == $user->ID;
+}
+
+if (isset($_GET['participate'])) {
+  redirect_login();
 }
 
 get_header();
 
 if (isset($_GET['participate'])):
+  redirect_login();
   $step = $_GET['participate'] ?: 'step-1';
   include(locate_template('single-event-participate-' . $step . '.php'));
 else:
