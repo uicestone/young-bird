@@ -113,12 +113,16 @@ YB.Participate = (function($) {
 	function bindEvent() {
 		form.on('click', '.options .col', function() {
 			var _this = $(this);
+			var index = $(this).index();
 			YB.Util.confirm({
 				title     : "是否确认您的参赛身份，确认后将不能变更",
 				callback  : function (value) {
 					if (value) {
 						_this.children('i').removeClass('fa-square').addClass('fa-check-square').parent()
 							.siblings().children('i').removeClass('fa-check-square').addClass('fa-square');
+						//
+						$('.check-'+index).removeClass('d-none').addClass('d-block');;
+						$('.check-'+(1-index)).addClass('d-none').removeClass('d-block');
 					}
 				}
 			});
@@ -128,7 +132,6 @@ YB.Participate = (function($) {
 				var _index = $(this).parent().index();
 				$(this).removeClass('bg-light-grey')
 					.parent().siblings().children('.btn').addClass('bg-light-grey');
-				console.log()
 				form.find('.team').eq(_index).removeClass('d-none').siblings('.team').addClass('d-none');
 			}
 		})
