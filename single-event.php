@@ -151,7 +151,7 @@ else:
         <section class="header">
           <!-- poster -->
           <div class="poster">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/event-detail-poster.jpg" alt="">
+            <?php the_post_thumbnail('hd'); ?>
           </div>
           <!-- title -->
           <div class="title row justify-content-between align-items-center mx-auto">
