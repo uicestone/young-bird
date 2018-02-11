@@ -198,3 +198,7 @@ add_filter ('sanitize_user', function ($username, $raw_username, $strict) {
 
   return $username;
 }, 10, 3);
+
+if (WP_DEVELOP) {
+  add_filter( 'pre_option_upload_url_path', function() { return 'http://www.youngbirdplan.com.cn/wp-content/uploads'; } );
+}
