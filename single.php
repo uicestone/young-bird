@@ -41,7 +41,7 @@ get_header(); the_post(); ?>
               <?php foreach (get_the_tags($ad->ID) as $tag): ?>
               <span>#<?=$tag->name?></span>
               <?php endforeach; ?>
-              <div class="tag tag-blue">工作</div>
+              <div class="tag tag-blue">-标签位置-</div>
             </div>
             <hr />
             <div class="card-body">
