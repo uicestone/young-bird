@@ -52,8 +52,8 @@
           <a href="<?=get_the_permalink($event->ID)?>" class="card link">
             <?=get_the_post_thumbnail($event->ID, 'medium-sq', array ('class' => 'card-img-top'))?>
             <div class="card-body mt-4">
-              <h5 title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
-              <h5><?=get_the_subtitle($event->ID)?></h5>
+              <h5 class="text-truncate" title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
+              <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
               <span>截止日期/<?=get_post_meta($event->ID, 'end_date', true)?></span>
               <i class="icon icon-yellow"></i>
             </div>
