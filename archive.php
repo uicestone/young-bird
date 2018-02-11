@@ -1,4 +1,5 @@
 <?php
+header('Total-Pages: ' . $wp_query->max_num_pages);
 if (!isset($_GET['partial'])):
 get_header(); ?>
     <!-- Banner -->
@@ -81,23 +82,23 @@ get_header(); ?>
         </div>
       </div>
     </div>
-<?php get_footer(); elseif (in_array($_GET['partial'], array ('primary', 'secondary'))): foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => $_GET['partial'] === 'primary' ? 2 : 6, 'paged' => $_GET['paged'] ?: 1)) as $post): ?>
-<a href="<?=get_the_permalink($post->ID)?>" class="card link">
-  <?=get_the_post_thumbnail($post->ID, $_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
+<?php get_footer(); elseif (in_array($wp_query->query['category_name'], array ('home-primary', 'home-secondary'))): while (have_posts()): the_post(); ?>
+<a href="<?php the_permalink()?>" class="card link">
+  <?php the_post_thumbnail($_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
   <div class="card-body">
     <div class="title text-truncate">
-      <?=get_the_title($post->ID)?>
+      <?php the_title()?>
       <br>
-      <?=get_the_subtitle($post->ID)?>
+      <?php the_subtitle()?>
     </div>
-    <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+    <div class="label text-truncate">#城市规划设计、建筑、观设计</div>
     <p class="text-truncate">
-      <?=get_the_excerpt($post->ID)?>
+      <?php the_excerpt()?>
     </p>
-    <?php if ($tags = get_the_tags($post->ID)): foreach ($tags as $tag): ?>
+    <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
     <i class="tag tag-orange"><?=$tag->name?></i>
     <?php endforeach; endif; ?>
   </div>
 </a>
-<?php endforeach; else: ?>
+<?php endwhile; else: ?>
 <?php endif; ?>

@@ -203,3 +203,17 @@ add_filter ('sanitize_user', function ($username, $raw_username, $strict) {
 if (WP_DEVELOP) {
   add_filter( 'pre_option_upload_url_path', function() { return 'http://www.youngbirdplan.com.cn/wp-content/uploads'; } );
 }
+
+add_filter('pre_get_posts', function ($query) {
+  if ($query->query['category_name'] === 'home-primary') {
+    $limit = 2;
+  }
+  elseif ($query->query['category_name'] === 'home-secondary') {
+    $limit = 6;
+  }
+  else {
+    $limit = get_option('posts_per_page');
+  }
+
+  set_query_var('posts_per_archive_page', $limit);
+});
