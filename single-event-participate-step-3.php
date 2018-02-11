@@ -34,7 +34,7 @@
               </div>
               <div class="check-0 d-none">
                 <div class="row mx-auto">
-                  <button type="submit" name="create_group" class="btn btn-lg btn-secondary btn-block px-5">上传</button>
+                  <a href="<?php get_the_permalink() ?>?create-work" class="btn btn-lg btn-secondary btn-block px-5">上传</a>
                 </div>
               </div>
               <div class="check-1 d-none">

@@ -1,4 +1,8 @@
 <?php
+if (isset($_GET['participate'])) {
+  redirect_login();
+}
+
 the_post();
 
 $user = wp_get_current_user();
@@ -40,6 +44,8 @@ if (isset($_POST['create_group'])) {
   ));
   add_post_meta($group_id, 'event', get_the_ID());
   add_post_meta($group_id, 'members', $user->ID);
+  add_user_meta($user->ID, 'attend_events', get_the_ID());
+  add_user_meta($user->ID, 'attend_events_captain', get_the_ID());
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
@@ -54,32 +60,48 @@ if (isset($_POST['join_group'])) {
     exit('Group not found.');
   }
   update_post_meta($group->ID, 'members_pending', $user->ID);
+  add_user_meta($user->ID, 'attend_events', get_the_ID());
+  add_user_meta($user->ID, 'attend_events_member', get_the_ID());
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
-if ($_GET['participate'] === 'step-4') {
-  $group = get_posts(array (
-    'post_type' => 'group',
-    'meta_query' => array (
-      array ('key' => 'members', 'value' => $user->ID),
-      array ('key' => 'event', 'value' => get_the_ID())
-    )
-  ))[0];
-  $group_pending = get_posts(array (
-    'post_type' => 'group',
-    'meta_query' => array (
-      array ('key' => 'members_pending', 'value' => $user->ID),
-      array ('key' => 'event', 'value' => get_the_ID())
-    )
-  ))[0];
-
-  $group = $group ?: $group_pending;
-
-  $im_leader = $group->post_author == $user->ID;
+if (isset($_GET['create-work'])) {
+  $event_id = get_the_ID();
+  $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
+  $work_id = wp_insert_post(array (
+    'post_type' => 'work',
+    'post_status' => 'publish',
+    'post_title' => '新作品',
+    'post_name' => $event_id . '-s' . $user->ID
+  ));
+  add_post_meta($work_id, 'event', $event_id);
+  update_post_meta(get_the_ID(), 'attendees', ++$attendees);
+  add_user_meta($user->ID, 'attend_events', get_the_ID());
+  add_user_meta($user->ID, 'attend_events_solo', get_the_ID());
+  header('Location: ' . get_the_permalink($work_id)); exit;
 }
 
-if (isset($_GET['participate'])) {
-  redirect_login();
+$group = get_posts(array (
+  'post_type' => 'group',
+  'meta_query' => array (
+    array ('key' => 'members', 'value' => $user->ID),
+    array ('key' => 'event', 'value' => get_the_ID())
+  )
+))[0];
+$group_pending = get_posts(array (
+  'post_type' => 'group',
+  'meta_query' => array (
+    array ('key' => 'members_pending', 'value' => $user->ID),
+    array ('key' => 'event', 'value' => get_the_ID())
+  )
+))[0];
+
+$group = $group ?: $group_pending;
+
+if ($group) {
+  $im_leader = $group->post_author == $user->ID;
+} else {
+  $work = get_posts(array ('post_type' =>'work', 'event' => get_the_ID(), 'author' => $user->ID))[0];
 }
 
 get_header();
@@ -109,11 +131,19 @@ else:
           <li>
             <a href="#section5">相关新闻</a>
           </li>
+          <?php if ($document = get_field('document')): ?>
           <li>
-            <a href="#">下载文件</a>
+            <a href="<?=$document['url']?>" download>下载文件</a>
           </li>
+          <?php endif; ?>
           <li class="active">
+            <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events'))): ?>
             <a href="<?php the_permalink(); ?>?participate">参赛</a>
+            <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
+            <a href="<?=get_the_permalink($group->ID)?>">查看团队</a>
+            <?php else: ?>
+            <a href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>">编辑作品</a>
+            <?php endif; ?>
           </li>
         </ul>
       </div>
