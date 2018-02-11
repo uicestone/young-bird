@@ -49,7 +49,7 @@
       <div class="row justify-content-between list-competiton mt-4">
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">
-          <a href="#" class="card link">
+          <a href="<?=get_the_permalink($event->ID)?>" class="card link">
             <?=get_the_post_thumbnail($event->ID, 'medium-sq', array ('class' => 'card-img-top'))?>
             <div class="card-body mt-4">
               <h5 title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
