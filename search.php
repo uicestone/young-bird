@@ -23,9 +23,9 @@
         <h2>新闻：</h2>
         <h2>总共：03</h2>
       </div>
-      <div class="row mt-3 mb-2">
+      <div class="row mt-3 mb-2 item-history-container">
         <div class="col-md-8">
-          <a href="#" class="card mb-4 item-history link">
+          <a href="#" class="card mb-4 item-history item-history-no-action link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
@@ -34,11 +34,12 @@
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+              <div class="action"></div>
             </div>
           </a>
         </div>
         <div class="col-md-8">
-          <a href="#" class="card mb-4 item-history link">
+          <a href="#" class="card mb-4 item-history item-history-no-action link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
@@ -47,11 +48,12 @@
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+              <div class="action"></div>
             </div>
           </a>
         </div>
         <div class="col-md-8">
-          <a href="#" class="card mb-4 item-history link">
+          <a href="#" class="card mb-4 item-history item-history-no-action link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
@@ -59,7 +61,8 @@
                 <div class="tag tag-blue">工作</div>
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
-              <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+              <p>户外遮阳伞在城市公共场所中的使用随处可见。</p>
+              <div class="action"></div>
             </div>
           </a>
         </div>
@@ -70,7 +73,7 @@
         <h2>竞赛：</h2>
         <h2>总共：03</h2>
       </div>
-      <div class="row mt-3 mb-2">
+      <div class="row mt-3 mb-2 item-history-container">
         <div class="col-md-8">
           <a href="#" class="card mb-4 item-history link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">

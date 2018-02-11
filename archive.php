@@ -26,11 +26,11 @@
         <a href="#">平面设计</a>
       </div>
       <div class="row">
-        <div class="col-md-18">
+        <div class="col-md-18 item-history-container">
           <div class="row">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
-              <div class="card mb-4 item-history">
+              <div class="card mb-4 item-history item-history-no-action">
                   <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
                 <div class="card-body mt-4">
                   <div class="row head justify-content-between align-items-center">
@@ -39,6 +39,7 @@
                   </div>
                   <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
                   <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+                  <div class="action"></div>
                 </div>
               </div>
             </div>

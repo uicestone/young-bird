@@ -7,7 +7,7 @@
     <!-- Body -->
     <div class="container mt-7 pb-4">
       <div class="row">
-        <div class="col-md-18">
+        <div class="col-md-18 item-history-container">
           <div class="row">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
@@ -32,8 +32,8 @@
               </div>
             </div>
             <?php endwhile; ?>
-            <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
           </div>
+          <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
         </div>
         <div class="col-md-6">
           <a href="#" class="card mb-3 item-sub-history">

@@ -48,7 +48,7 @@
         <!-- <div class="col-md-6"></div> -->
       </div>
       <div class="row">
-        <div class="col-md-18">
+        <div class="col-md-18 item-history-container">
           <div class="row">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
