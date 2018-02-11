@@ -1,48 +1,22 @@
 <?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid px-0 banner-home owl-carousel owl-theme">
-      <a href="#">
+      <?php foreach (get_posts(array('category' => 'home-banner')) as $banner): ?>
+      <a href="<?=get_the_permalink($banner->ID)?>">
         <!-- for desktop -->
         <div class="container-fluid px-0 d-none d-lg-block">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
         </div>
         <!-- for pad -->
         <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
         </div>
         <!-- for smart phone -->
         <div class="container-fluid px-0 d-md-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
+          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
         </div>
       </a>
-      <a href="#">
-        <!-- for desktop -->
-        <div class="container-fluid px-0 d-none d-lg-block">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-        <!-- for pad -->
-        <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-        <!-- for smart phone -->
-        <div class="container-fluid px-0 d-md-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-      </a>
-      <a href="#">
-        <!-- for desktop -->
-        <div class="container-fluid px-0 d-none d-lg-block">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-        <!-- for pad -->
-        <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-        <!-- for smart phone -->
-        <div class="container-fluid px-0 d-md-none">
-          <img src="<?=get_stylesheet_directory_uri()?>/images/home-banner.jpg" width="100%" alt="">
-        </div>
-      </a>
+      <?php endforeach; ?>
     </div>
 
     <!-- 热门竞赛 -->
