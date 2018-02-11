@@ -90,4 +90,20 @@ get_header(); ?>
   </div>
 </a>
 <?php endwhile; else: ?>
+  <?php while (have_posts()): the_post(); ?>
+  <div class="col-md-12">
+    <div class="card mb-4 item-history item-history-no-action">
+      <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
+      <div class="card-body mt-4">
+        <div class="row head justify-content-between align-items-center">
+          <span class="color-cyan">#<?php the_tags(); ?></span>
+          <div class="tag tag-blue">-标签位置-</div>
+        </div>
+        <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?><br><?php the_subtitle(); ?></a></h3>
+        <p><?php the_excerpt(); ?></p>
+        <div class="action"></div>
+      </div>
+    </div>
+  </div>
+  <?php endwhile; ?>
 <?php endif; ?>
