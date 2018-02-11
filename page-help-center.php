@@ -6,15 +6,14 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-7 sign-up">
+    <div class="container mt-7 pb-7 sign-up page-help-center">
       <div class="row align-items-center">
-        <div class="col-md-10 d-none d-md-flex justify-content-center align-items-center logo">
+        <div class="col-md-7 d-none d-md-flex justify-content-center align-items-center logo">
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
-        <div class="col-md-12">
+        <div class="col-md-15 offset-md-2">
           <?php the_content(); ?>
         </div>
       </div>
     </div>
 <?php get_footer(); ?>
-
