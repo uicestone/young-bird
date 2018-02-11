@@ -1,5 +1,24 @@
 <?php
-get_header(); the_post();
+the_post();
+
+$user = wp_get_current_user();
+
+$participate_fields = ['name', 'identity', 'id_card', 'birthday', 'school', 'major', 'country', 'city', 'company', 'department', 'title'];
+foreach ($participate_fields as $field) {
+  $$field =  get_user_meta($user->ID, $field, true);
+}
+
+if (isset($_POST['participate'])) {
+  foreach ($participate_fields as $field) {
+    if (isset($_POST[$field])) {
+      update_user_meta($user->ID, $field, $_POST[$field]);
+    }
+  }
+  header('Location: ' . get_the_permalink() . '?participate=' . $_POST['participate']); exit;
+}
+
+get_header();
+
 if (isset($_GET['participate'])):
   $step = $_GET['participate'] ?: 'step-1';
   include(locate_template('single-event-participate-' . $step . '.php'));

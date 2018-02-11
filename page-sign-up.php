@@ -63,15 +63,15 @@ get_header();
               </div>
             </div>-->
             <!--show if [login] is mobile-->
-            <div class="form-group">
+            <!--GET ?send_code_to_mobile=[mobile]-->
+            <!--<div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
                 <div class="input-group-append">
-                  <!--GET ?send_code_to_mobile=[mobile]-->
                   <button type="button" class="btn btn-outline-secondary">发送短信验证码</button>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="password" name="password" class="form-control" placeholder="密码（12位数字或字母）">
