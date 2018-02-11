@@ -86,7 +86,7 @@
           <?php endforeach; ?>
         </div>
         <div class="order-sm-1 order-md-2 col-md-5-11 column-middle">
-          <?php foreach (get_posts(array ('category_name' => 'home-primary')) as $post): ?>
+          <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
           <a href="<?=get_the_permalink($post->ID)?>" class="card link">
             <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
             <div class="card-body">
