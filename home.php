@@ -50,11 +50,11 @@
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">
           <a href="#" class="card link">
-            <?=get_the_post_thumbnail($event->ID, '8-7', array ('class' => 'card-img-top'))?>
+            <?=get_the_post_thumbnail($event->ID, 'medium-sq', array ('class' => 'card-img-top'))?>
             <div class="card-body mt-4">
-              <h5><?=get_the_title($event->id)?></h5>
-              <h5></h5>
-              <span>截止日期/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></span>
+              <h5 title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
+              <h5><?=get_the_subtitle($event->ID)?></h5>
+              <span>截止日期/<?=get_post_meta($event->ID, 'end_date', true)?></span>
               <i class="icon icon-yellow"></i>
             </div>
           </a>
@@ -71,69 +71,49 @@
       </div>
       <div class="list-news mb-5">
         <div class="order-sm-2 order-md-1 col-md-3-11 column-left">
-          <a href="#" class="card link">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
+          <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 1) continue; ?>
+          <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+            <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
             <div class="card-body">
-              <div class="title text-truncate">
-                坂雪岗科技城核心区
-                <br>
-                城市品质提升国际设计大赛
-              </div>
+              <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
               <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
-              <p class="text-truncate">
-                深圳，中国
-                <br>
-                报名截止日期：
-                <br>
-                2017年11月17日15：00
-              </p>
-              <i class="tag tag-green">新闻</i>
+              <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
+              <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
+              <i class="tag tag-green"><?=$tag->name?></i>
+              <?php endforeach; ?>
             </div>
           </a>
+          <?php endforeach; ?>
         </div>
         <div class="order-sm-1 order-md-2 col-md-5-11 column-middle">
-          <a href="#" class="card link">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-xl.jpg" alt="Card image cap">
+          <?php foreach (get_posts(array ('category_name' => 'home-primary')) as $post): ?>
+          <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+            <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
             <div class="card-body">
-              <div class="title text-truncate">
-                坂雪岗科技城核心区
-                <br>
-                城市品质提升国际设计大赛
-              </div>
+              <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
               <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
-              <p class="text-truncate">
-                主办方：深圳，中国
-                <br>
-                深圳，中国
-                <br>
-                报名截止日期：
-                <br>
-                2017年11月17日15：00
-              </p>
-              <i class="tag tag-orange">竞赛</i>
+              <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
+              <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
+                <i class="tag tag-green"><?=$tag->name?></i>
+              <?php endforeach; ?>
             </div>
           </a>
+          <?php endforeach; ?>
         </div>
         <div class="order-sm-3 order-md-3 col-md-3-11 column-right">
-          <a href="#" class="card link">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/home-news.jpg" alt="Card image cap">
-            <div class="card-body">
-              <div class="title text-truncate">
-                坂雪岗科技城核心区
-                <br>
-                城市品质提升国际设计大赛
+          <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
+            <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+              <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
+              <div class="card-body">
+                <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
+                <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+                <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
+                <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
+                  <i class="tag tag-green"><?=$tag->name?></i>
+                <?php endforeach; ?>
               </div>
-              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
-              <p class="text-truncate">
-                深圳，中国
-                <br>
-                报名截止日期：
-                <br>
-                2017年11月17日15：00
-              </p>
-              <i class="tag tag-green">新闻</i>
-            </div>
-          </a>
+            </a>
+          <?php endforeach; ?>
         </div>
       </div>
       <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>

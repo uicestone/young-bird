@@ -18,6 +18,7 @@ add_action('after_setup_theme', function () {
   remove_role('subscriber'); remove_role('author'); remove_role('contributor');
 
   add_image_size('1-2', 350, 700, true);
+  add_image_size('medium-sq', 300, 300, true);
   add_image_size('8-7', 320, 280, true);
   add_image_size('5-4', 500, 400, true);
   add_image_size('5-3', 1000, 600, true);
