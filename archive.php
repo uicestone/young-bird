@@ -29,7 +29,7 @@ get_header(); ?>
                     <span class="color-cyan">#<?php the_tags(); ?></span>
                     <div class="tag tag-blue">-标签位置-</div>
                   </div>
-                  <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?><br><?php the_subtitle(); ?></a></h3>
+                  <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
                   <p><?php the_excerpt(); ?></p>
                   <div class="action"></div>
                 </div>
@@ -77,8 +77,6 @@ get_header(); ?>
   <div class="card-body">
     <div class="title text-truncate">
       <?php the_title()?>
-      <br>
-      <?php the_subtitle()?>
     </div>
     <div class="label text-truncate">#城市规划设计、建筑、观设计</div>
     <p class="text-truncate">
@@ -99,7 +97,7 @@ get_header(); ?>
           <span class="color-cyan">#<?php the_tags(); ?></span>
           <div class="tag tag-blue">-标签位置-</div>
         </div>
-        <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?><br><?php the_subtitle(); ?></a></h3>
+        <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
         <p><?php the_excerpt(); ?></p>
         <div class="action"></div>
       </div>

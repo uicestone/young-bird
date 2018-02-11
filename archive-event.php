@@ -60,7 +60,7 @@
                       <div class="label color-rose">Pattern design</div>
                       <div><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></div>
                     </div>
-                    <h3 class="mt-3"><?php the_title(); ?><br><?php the_subtitle(); ?></h3>
+                    <h3 class="mt-3"><?php the_title(); ?></h3>
                     <p class="color-black mb-4">竞赛品牌协作方／<?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
                     <p><?php the_excerpt(); ?></p>
                     <div class="action row align-items-center">
