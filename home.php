@@ -64,7 +64,7 @@
     </div>
 
     <!-- 最新资讯 -->
-    <div class="container mt-7 pb-4">
+    <div class="container mt-7 pb-4 home-news">
       <div class="htitle text-center">
         <span></span>
         <h1>最新资讯</h1>
@@ -116,7 +116,7 @@
           <?php endforeach; ?>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
+      <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common btn-loadmore">发现更多</a>
     </div>
 
 <?php get_footer(); ?>
