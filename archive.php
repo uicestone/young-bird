@@ -26,7 +26,7 @@
         <a href="#">平面设计</a>
       </div>
       <div class="row">
-        <div class="col-md-18 item-history-container">
+        <div class="col-md-18">
           <div class="row">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">

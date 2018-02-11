@@ -7,7 +7,7 @@
     <!-- Body -->
     <div class="container mt-7 pb-4">
       <div class="row">
-        <div class="col-md-18 item-history-container">
+        <div class="col-md-18">
           <div class="row">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">

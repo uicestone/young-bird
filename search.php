@@ -23,7 +23,7 @@
         <h2>新闻：</h2>
         <h2>总共：03</h2>
       </div>
-      <div class="row mt-3 mb-2 item-history-container">
+      <div class="row mt-3 mb-2">
         <div class="col-md-8">
           <a href="#" class="card mb-4 item-history item-history-no-action link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
@@ -73,7 +73,7 @@
         <h2>竞赛：</h2>
         <h2>总共：03</h2>
       </div>
-      <div class="row mt-3 mb-2 item-history-container">
+      <div class="row mt-3 mb-2">
         <div class="col-md-8">
           <a href="#" class="card mb-4 item-history link">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
