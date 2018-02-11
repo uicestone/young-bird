@@ -113,7 +113,7 @@ YB.Participate = (function($) {
 	function bindEvent() {
 		form.on('click', '.options .col', function() {
 			var _this = $(this);
-			YB.Util.fancyConfirm({
+			YB.Util.confirm({
 				title     : "是否确认您的参赛身份，确认后将不能变更",
 				callback  : function (value) {
 					if (value) {
