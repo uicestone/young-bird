@@ -83,7 +83,7 @@
             <div class="card-body">
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
               <?php if ($ad_event = get_field('event', $ad)): ?>
-                <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
             </div>
           </a>

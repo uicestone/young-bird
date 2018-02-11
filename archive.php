@@ -49,9 +49,9 @@ get_header(); ?>
             <hr />
             <div class="card-body">
               <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
-              <p>
-                截止日期：2017年11月17日15：00
-              </p>
+              <?php if ($ad_event = get_field('event', $ad)): ?>
+              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <?php endif; ?>
             </div>
           </a>
           <a href="#" class="card mb-3 item-sub-history">
@@ -63,9 +63,9 @@ get_header(); ?>
             <hr />
             <div class="card-body">
               <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
-              <p>
-                截止日期：2017年11月17日15：00
-              </p>
+              <?php if ($ad_event = get_field('event', $ad)): ?>
+              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <?php endif; ?>
             </div>
           </a>
         </div>
