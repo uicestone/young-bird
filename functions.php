@@ -52,100 +52,102 @@ add_action('admin_menu', function () {
 
 add_theme_support('post-thumbnails');
 
-register_post_type('event', array(
-  'label' => '竞赛',
-  'labels' => array(
-    'all_items' => '所有竞赛',
-    'add_new' => '添加竞赛',
-    'add_new_item' => '新竞赛',
-    'edit_item' => '编辑竞赛',
-    'not_found' => '未找到竞赛'
-  ),
-  'public' => true,
-  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-  'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-admin-customizer',
-  'has_archive' => true
-));
+add_action('init', function () {
+  register_post_type('event', array(
+    'label' => '竞赛',
+    'labels' => array(
+      'all_items' => '所有竞赛',
+      'add_new' => '添加竞赛',
+      'add_new_item' => '新竞赛',
+      'edit_item' => '编辑竞赛',
+      'not_found' => '未找到竞赛'
+    ),
+    'public' => true,
+    'supports' => array('title', 'wps_subtitle', 'excerpt', 'editor', 'thumbnail'),
+    'taxonomies' => array('post_tag', 'category'),
+    'menu_icon' => 'dashicons-admin-customizer',
+    'has_archive' => true
+  ));
 
-register_post_type('rank', array(
-  'label' => '轮次',
-  'labels' => array(
-    'all_items' => '所有轮次',
-    'add_new' => '添加轮次',
-    'add_new_item' => '新轮次',
-    'edit_item' => '编辑轮次',
-    'not_found' => '未找到轮次'
-  ),
-  'public' => true,
-  'supports' => array('title'),
-  'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-thumbs-up ',
-  'has_archive' => true
-));
+  register_post_type('rank', array(
+    'label' => '轮次',
+    'labels' => array(
+      'all_items' => '所有轮次',
+      'add_new' => '添加轮次',
+      'add_new_item' => '新轮次',
+      'edit_item' => '编辑轮次',
+      'not_found' => '未找到轮次'
+    ),
+    'public' => true,
+    'supports' => array('title'),
+    'taxonomies' => array('post_tag', 'category'),
+    'menu_icon' => 'dashicons-thumbs-up ',
+    'has_archive' => true
+  ));
 
-register_post_type('group', array(
-  'label' => '团队',
-  'labels' => array(
-    'all_items' => '所有团队',
-    'add_new' => '添加团队',
-    'add_new_item' => '新团队',
-    'edit_item' => '编辑团队',
-    'not_found' => '未找到团队'
-  ),
-  'public' => true,
-  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-  'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-groups',
-  'has_archive' => true
-));
+  register_post_type('group', array(
+    'label' => '团队',
+    'labels' => array(
+      'all_items' => '所有团队',
+      'add_new' => '添加团队',
+      'add_new_item' => '新团队',
+      'edit_item' => '编辑团队',
+      'not_found' => '未找到团队'
+    ),
+    'public' => true,
+    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+    'taxonomies' => array('post_tag', 'category'),
+    'menu_icon' => 'dashicons-groups',
+    'has_archive' => true
+  ));
 
-register_post_type('work', array(
-  'label' => '作品',
-  'labels' => array(
-    'all_items' => '所有作品',
-    'add_new' => '添加作品',
-    'add_new_item' => '新作品',
-    'edit_item' => '编辑作品',
-    'not_found' => '未找到作品'
-  ),
-  'public' => true,
-  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-  'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-admin-customizer',
-  'has_archive' => true
-));
+  register_post_type('work', array(
+    'label' => '作品',
+    'labels' => array(
+      'all_items' => '所有作品',
+      'add_new' => '添加作品',
+      'add_new_item' => '新作品',
+      'edit_item' => '编辑作品',
+      'not_found' => '未找到作品'
+    ),
+    'public' => true,
+    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+    'taxonomies' => array('post_tag', 'category'),
+    'menu_icon' => 'dashicons-admin-customizer',
+    'has_archive' => true
+  ));
 
-register_post_type('judge', array(
-  'label' => '大咖',
-  'labels' => array(
-    'all_items' => '所有大咖',
-    'add_new' => '添加大咖',
-    'add_new_item' => '新大咖',
-    'edit_item' => '编辑大咖',
-    'not_found' => '未找到大咖'
-  ),
-  'public' => true,
-  'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-  'taxonomies' => array('post_tag', 'category'),
-  'menu_icon' => 'dashicons-welcome-learn-more',
-  'has_archive' => true
-));
+  register_post_type('judge', array(
+    'label' => '大咖',
+    'labels' => array(
+      'all_items' => '所有大咖',
+      'add_new' => '添加大咖',
+      'add_new_item' => '新大咖',
+      'edit_item' => '编辑大咖',
+      'not_found' => '未找到大咖'
+    ),
+    'public' => true,
+    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+    'taxonomies' => array('post_tag', 'category'),
+    'menu_icon' => 'dashicons-welcome-learn-more',
+    'has_archive' => true
+  ));
 
-register_post_type('message', array(
-  'label' => '消息',
-  'labels' => array(
-    'all_items' => '所有消息',
-    'add_new' => '添加消息',
-    'add_new_item' => '新消息',
-    'edit_item' => '编辑消息',
-    'not_found' => '未找到消息'
-  ),
-  'public' => true,
-  'supports' => array('title', 'editor', 'author'),
-  'menu_icon' => 'dashicons-email',
-  'has_archive' => true
-));
+  register_post_type('message', array(
+    'label' => '消息',
+    'labels' => array(
+      'all_items' => '所有消息',
+      'add_new' => '添加消息',
+      'add_new_item' => '新消息',
+      'edit_item' => '编辑消息',
+      'not_found' => '未找到消息'
+    ),
+    'public' => true,
+    'supports' => array('title', 'editor', 'author'),
+    'menu_icon' => 'dashicons-email',
+    'has_archive' => true
+  ));
+});
 
 add_action('wp', function() {
 
