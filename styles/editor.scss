@@ -7,3 +7,16 @@
     max-width: 100%;
   }
 }
+
+.page-editor {
+  h2 {
+    margin-bottom: 1rem;
+    strong {
+      font-size: 1.8rem;
+      color: #717171;
+      display: inline-block;
+      padding-top: .8rem;
+      border-top: 6px solid #717171;;
+    }
+  }
+}

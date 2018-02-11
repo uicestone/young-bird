@@ -87,6 +87,9 @@ h1, h2, h3, h4, h5, h6 {
     bottom: -.7rem;
     margin: 0;
     padding: 0;
+    span.entry-subtitle {
+      font-size: 1em;
+    }
   }
 }
 @include media-breakpoint-down(sm) {
@@ -441,19 +444,6 @@ a.link {
           font-size: .9rem
         }
       }
-    }
-  }
-}
-
-.page-business {
-  h2 {
-    margin-bottom: 1rem;
-    strong {
-      font-size: 1.8rem;
-      color: #717171;
-      display: inline-block;
-      padding-top: .8rem;
-      border-top: 6px solid #717171;;
     }
   }
 }
