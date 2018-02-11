@@ -10,7 +10,9 @@ get_header(); the_post(); ?>
         <div class="col-md-18 news-detail">
           <section class="header">
             <!-- poster -->
+            <div class="row justify-content-center">
             <?php the_post_thumbnail('5-3', array('class'=>'mb-4')) ?>
+            </div>
             <!-- title -->
             <h1 class="color-black"><?php the_title(); ?></h1>
             <span>发布时间 <?php the_date(); ?></span>
