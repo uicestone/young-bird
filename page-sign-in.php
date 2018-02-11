@@ -1,4 +1,26 @@
-<?php get_header(); ?>
+<?php
+
+if(isset($_POST['login'])){
+  $user = wp_authenticate($_POST['login'], $_POST['password']);
+
+  if(is_a($user, 'WP_Error')){
+    echo '<meta charset="utf-8">';
+    echo array_values($user->errors)[0][0];
+    exit;
+  }
+
+  wp_set_auth_cookie($user->ID, isset($_POST['remember']));
+  wp_set_current_user($user->ID);
+
+  header('Location: ' . ($_GET['intend'] ?: '/')); exit;
+}
+
+if(isset($_GET['logout'])){
+  wp_logout();
+  header('Location: ' . site_url());
+}
+
+get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-sign-up.jpg) center center / cover no-repeat">
       <div class="container">

@@ -1,4 +1,8 @@
-<?php get_header();
+<?php
+if ($_GET['send_code_to_mobile']):
+  // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+else:
+  get_header();
     if (isset($_GET['email'])) :
       get_template_part('page-forget-password-email');
     elseif (isset($_GET['email-verify'])) :
@@ -23,7 +27,7 @@
                 <input type="text" name="mobile" class="form-control" placeholder="手机">
               </div>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
                 <div class="input-group-append">
@@ -31,11 +35,12 @@
                   <button type="button" class="btn btn-outline-secondary">刷新</button>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
                 <div class="input-group-append">
+                  <!--GET ?send_code_to_mobile=[mobile]-->
                   <button type="button" class="btn btn-outline-secondary">发送短信验证码</button>
                 </div>
               </div>
@@ -51,3 +56,4 @@
     </div>
 <?php endif;
 get_footer();
+endif;

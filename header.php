@@ -37,9 +37,14 @@
           </ul>
           <form class="form-inline">
             <a href="/?s="><i class="fas fa-search"></i></a>
+            <?php if (is_user_logged_in()): ?>
+            <a href="/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
+            <a href="/sign-in/?logout=true" class="btn btn-link">退出登录</a>
+            <?php else: ?>
             <a href="/sign-up/" class="btn btn-link">注册</a>
             <span>|</span>
             <a href="/sign-in/" class="btn btn-link">登录</a>
+            <?php endif; ?>
             <!--<a href="#" class="btn btn-link pl-0">EN</a>-->
           </form>
         </div>

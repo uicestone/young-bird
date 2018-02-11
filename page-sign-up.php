@@ -1,4 +1,36 @@
-<?php get_header();
+<?php
+if ($_GET['send_code_to_mobile']) :
+  // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+else:
+
+  if(isset($_POST['login'])){
+
+    if ($_POST['password'] !== $_POST['password_confirm']) {
+      exit('两次输入密码不一致，请返回修改');
+    }
+
+    $user_id = wp_insert_user(array(
+      'user_pass' => $_POST['password'],
+      'user_login' => $_POST['login'],
+      'user_registered' => date('Y-m-d H:i:s'),
+      'show_admin_bar_front' => false
+    ));
+
+    if(is_a($user_id, 'WP_Error')){
+      exit(array_values($user_id->errors)[0][0]);
+    }
+
+    if (is_numeric($_POST['login'])) {
+      add_user_meta($user_id, 'mobile', $_POST['login']);
+    }
+
+    wp_set_auth_cookie($user_id, true);
+    wp_set_current_user($user_id);
+
+    header('Location: ' . ($_GET['intend'] ?: '/')); exit;
+  }
+
+get_header();
     if (isset($_GET['success'])) :
       get_template_part('page-sign-up-success');
     else: ?>
@@ -21,7 +53,7 @@
                 <input type="text" name="login" class="form-control" placeholder="邮箱/手机">
               </div>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
                 <div class="input-group-append">
@@ -29,11 +61,13 @@
                   <button type="button" class="btn btn-outline-secondary">刷新</button>
                 </div>
               </div>
-            </div>
+            </div>-->
+            <!--show if [login] is mobile-->
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
                 <div class="input-group-append">
+                  <!--GET ?send_code_to_mobile=[mobile]-->
                   <button type="button" class="btn btn-outline-secondary">发送短信验证码</button>
                 </div>
               </div>
@@ -58,3 +92,4 @@
     </div>
 <?php endif;
 get_footer();
+endif;
