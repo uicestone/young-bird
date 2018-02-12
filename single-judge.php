@@ -14,9 +14,11 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-6 pb-7">
-      <div class="editor">
-        <?php the_content(); ?>
+    <div class="judge-detail">
+      <div class="container mt-6 pb-7">
+        <div class="editor">
+          <?php the_content(); ?>
+        </div>
       </div>
     </div>
 <?php get_footer(); ?>

@@ -416,6 +416,9 @@ a.link {
 }
 
 .judge-detail {
+  .container {
+    max-width: 960px;
+  }
   .banner {
     .avatar {
       flex: initial;
