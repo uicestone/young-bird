@@ -46,7 +46,7 @@ get_header(); ?>
       <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
-    <div class="container mt-5 pb-6">
+    <div class="container mt-5 pb-6 work-detail">
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
         <h1>请上传作品简介</h1>
@@ -100,6 +100,8 @@ get_header(); ?>
               <i class="fas fa-plus"></i>
               <p class="mt-2">点击上传图片</p>
               <input type="file" name="images[]" class="custom-file-input">
+              <img src="" class="d-none" alt="">
+              <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>
           <?php endfor; ?>

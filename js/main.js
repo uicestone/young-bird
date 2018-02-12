@@ -161,6 +161,7 @@ YB.Edit = (function($) {
 // 作品详情
 YB.Work = (function($) {
 	var workList = $('.toplist-container');
+	var workDetail = $('.work-upload');
 	var reviewList = $('.review-list');
 	// var pop = $('.fancypop');
 
@@ -191,6 +192,23 @@ YB.Work = (function($) {
 	}
 
   function bindEvent() {
+		// 图片预览
+		$('.work-upload .custom-file-input').change(function() {
+			var input = this;
+			var _this = $(this);
+			if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function(e) {
+		      _this.next('img').attr('src', e.target.result).removeClass('d-none').next('.delete').removeClass('d-none');
+		    }
+		    reader.readAsDataURL(input.files[0]);
+		  }
+		})
+		// 删除图片
+		$('.work-upload').on('click', '.delete', function(e) {
+			e.preventDefault();
+			$(this).addClass('d-none').prev('img').attr('src', '').addClass('d-none').prev('.custom-file-input').val('')
+		})
 		// 查看作品详情
 		workList.on('click', '.item-work', function() {
 			var box = $(this).next();
@@ -283,10 +301,7 @@ YB.Common = (function($){
 		bindEvent();
 	}
 
-
 	function bindEvent() {
-		// new carousel
-
 		// smooth hash
 		$('a[href*=#]:not([href=#])').click(function() {
 	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
