@@ -83,7 +83,7 @@
                 <div>2017/01/01-2017/6/20</div>
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
-              <p class="color-black mb-4">竞赛品牌协作方／sunbrella赛百伦</p>
+              <p class="color-black mb-4">主办单位／sunbrella赛百伦</p>
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
@@ -102,7 +102,7 @@
                 <div>2017/01/01-2017/6/20</div>
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
-              <p class="color-black mb-4">竞赛品牌协作方／sunbrella赛百伦</p>
+              <p class="color-black mb-4">主办单位／sunbrella赛百伦</p>
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
@@ -121,7 +121,7 @@
                 <div>2017/01/01-2017/6/20</div>
               </div>
               <h3 class="mt-3">2017 良辰美景<br>遮阳伞面设计竞赛</h3>
-              <p class="color-black mb-4">竞赛品牌协作方／sunbrella赛百伦</p>
+              <p class="color-black mb-4">主办单位／sunbrella赛百伦</p>
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
