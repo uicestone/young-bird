@@ -102,7 +102,7 @@ add_action('init', function () {
       'not_found' => '未找到竞赛'
     ),
     'public' => true,
-    'supports' => array('title', 'subtitles', 'excerpt', 'editor', 'thumbnail'),
+    'supports' => array('title', 'subtitles', 'excerpt', 'editor', 'thumbnail', 'revisions'),
     'taxonomies' => array('post_tag', 'category'),
     'menu_icon' => 'dashicons-admin-customizer',
     'has_archive' => true
@@ -119,7 +119,7 @@ add_action('init', function () {
     ),
     'public' => true,
     'supports' => array('title'),
-    'taxonomies' => array('post_tag', 'category'),
+    'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-thumbs-up ',
     'has_archive' => true
   ));
@@ -135,7 +135,7 @@ add_action('init', function () {
     ),
     'public' => true,
     'supports' => array('title', 'excerpt', 'thumbnail', 'author'),
-    'taxonomies' => array('post_tag', 'category'),
+    'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-groups',
     'has_archive' => true
   ));
@@ -151,7 +151,7 @@ add_action('init', function () {
     ),
     'public' => true,
     'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-    'taxonomies' => array('post_tag', 'category'),
+    'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-admin-customizer',
     'has_archive' => true
   ));
@@ -166,8 +166,8 @@ add_action('init', function () {
       'not_found' => '未找到大咖'
     ),
     'public' => true,
-    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
-    'taxonomies' => array('post_tag', 'category'),
+    'supports' => array('title', 'excerpt', 'editor', 'thumbnail', 'revisions'),
+    'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-welcome-learn-more',
     'has_archive' => true
   ));
