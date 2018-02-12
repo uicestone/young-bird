@@ -76,10 +76,10 @@
             <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
             <div class="card-body">
               <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <div class="label text-truncate">#</div>
               <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
               <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-              <i class="tag tag-green"><?=$tag->name?></i>
+              <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
               <?php endforeach; ?>
             </div>
           </a>
@@ -91,10 +91,10 @@
             <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
             <div class="card-body">
               <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
+              <div class="label text-truncate">#</div>
               <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
               <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-                <i class="tag tag-green"><?=$tag->name?></i>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
               <?php endforeach; ?>
             </div>
           </a>
@@ -109,7 +109,7 @@
                 <div class="label text-truncate">#城市规划设计、建筑、景观设计</div>
                 <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
                 <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-                  <i class="tag tag-green"><?=$tag->name?></i>
+                  <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
                 <?php endforeach; ?>
               </div>
             </a>
