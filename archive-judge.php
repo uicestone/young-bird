@@ -14,7 +14,7 @@
             <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">
               <h5><?php the_title(); ?></h5>
-              <p><?php the_excerpt(); ?></p>
+              <div style="height: 3.5rem"><?php the_excerpt(); ?></div>
             </div>
           </div>
         </a>
