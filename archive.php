@@ -67,12 +67,12 @@ get_header(); ?>
     <div class="title text-truncate">
       <?php the_title()?>
     </div>
-    <div class="label text-truncate">#城市规划设计、建筑、观设计</div>
+    <div class="label text-truncate"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></div>
     <p class="text-truncate">
       <?php the_excerpt()?>
     </p>
     <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
-    <i class="tag tag-orange"><?=$tag->name?></i>
+    <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
     <?php endforeach; endif; ?>
   </div>
 </a>
