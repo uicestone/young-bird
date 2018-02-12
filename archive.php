@@ -23,11 +23,17 @@ get_header(); ?>
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history item-history-no-action">
-                  <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
+                <a href="<?php the_permalink(); ?>">
+                  <?php the_post_thumbnail('vga', array('class' => 'card-img-top'))?>
+                </a>
                 <div class="card-body mt-4">
                   <div class="row head justify-content-between align-items-center">
-                    <span class="color-cyan hashtag">#<?php the_tags(); ?></span>
-                    <div class="tag tag-blue">-标签位置-</div>
+                    <span class="color-cyan hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+                    <div>
+                      <?php foreach (get_the_tags() ?: array() as $tag): ?>
+                      <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+                      <?php endforeach; ?>
+                    </div>
                   </div>
                   <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
                   <p><?php the_excerpt(); ?></p>
@@ -42,10 +48,14 @@ get_header(); ?>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'news-list-ad', 'posts_per_page' => 2)) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
+            <?=get_the_post_thumbnail($ad->ID, '8-7', array ('class' => 'card-img-top'))?>
             <div class="card-label">
-              <span class="hashtag">#建筑设计</span>
-              <div class="tag tag-blue">-标签位置-</div>
+              <span class="hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+              <div>
+                <?php foreach (get_the_tags($ad->ID) ?: array() as $tag): ?>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+                <?php endforeach; ?>
+              </div>
             </div>
             <hr />
             <div class="card-body">
@@ -80,11 +90,17 @@ get_header(); ?>
   <?php while (have_posts()): the_post(); ?>
   <div class="col-md-12">
     <div class="card mb-4 item-history item-history-no-action">
-      <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
+      <a href="<?php the_permalink(); ?>">
+        <?php the_post_thumbnail('vga', array('class' => 'card-img-top'))?>
+      </a>
       <div class="card-body mt-4">
         <div class="row head justify-content-between align-items-center">
-          <span class="color-cyan hashtag">#<?php the_tags(); ?></span>
-          <div class="tag tag-blue">-标签位置-</div>
+          <span class="color-cyan hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+          <div>
+            <?php foreach (get_the_tags() ?: array() as $tag): ?>
+              <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+            <?php endforeach; ?>
+          </div>
         </div>
         <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
         <p><?php the_excerpt(); ?></p>
