@@ -35,7 +35,7 @@
               <a class="nav-link" href="javascript:alert('院校暂未开放，敬请期待')">院 校</a>
             </li>
           </ul>
-          <form class="form-inline">
+          <form class="form-inline mt-md-4 mt-lg-0">
             <a href="<?=site_url()?>/?s="><i class="fas fa-search"></i></a>
             <?php if (is_user_logged_in()): ?>
             <a href="<?=site_url()?>/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>

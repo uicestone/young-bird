@@ -26,7 +26,21 @@
 
 @include media-breakpoint-down(md) {
   .navbar {
+    .navbar-nav  {
+      border-top: 1px solid $border-color;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      li {
+        padding: 0 1rem;
+        width: 7rem;
+        height: 3rem;
+        line-height: 3rem;
+      }
+    }
     .navbar-brand {
+      margin-left: .8rem;
       img {
         width: 180px;
         height: auto;
@@ -34,6 +48,8 @@
     }
   }
   .form-inline {
+    margin-top: 1rem;
+    padding-left: 1rem;
     button:first-child {
       padding-left: 0;
     }
