@@ -6,7 +6,7 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="container">
+    <div class="container page-editor mt-5">
       <?php the_content(); ?>
     </div>
 <?php get_footer(); ?>
