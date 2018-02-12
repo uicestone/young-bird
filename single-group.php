@@ -85,12 +85,12 @@ get_header(); ?>
                 <div class="row">
                   <div class="col-12">
                     <form method="post">
-                      <button type="submit" name="accept_member_request" value="<?=$member_id?>" class="btn btn-outline-secondary btn-block">同意</button>
+                      <button type="submit" name="accept_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block">同意</button>
                     </form>
                   </div>
                   <div class="col-12">
                     <form method="post">
-                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-secondary btn-block">忽略</button>
+                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block">忽略</button>
                     </form>
                   </div>
                 </div>
@@ -114,7 +114,7 @@ get_header(); ?>
             </div>
             <div class="row justify-content-end">
               <div class="col d-flex justify-content-end">
-                <a href="<?php the_permalink(); ?>?create-work" class="btn btn-outline-secondary btn-common">上传</a>
+                <a href="<?php the_permalink(); ?>?create-work" class="btn btn-outline-primary btn-common">上传</a>
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ get_header(); ?>
           </div>
           <div class="row mt-4">
             <div class="col d-flex justify-content-end">
-              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-secondary btn-common">修改</a>
+              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common">修改</a>
             </div>
           </div>
           <?php endif; ?>

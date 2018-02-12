@@ -67,7 +67,7 @@
           </a>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
       <!-- 竞赛搜索结果 -->
       <div class="row mx-auto mt-5 mb-2 justify-content-between">
         <h2>竞赛：</h2>
@@ -132,6 +132,6 @@
           </a>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
     </div>
 <?php get_footer(); ?>

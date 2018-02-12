@@ -32,7 +32,7 @@ get_header(); the_post(); ?>
             <?php the_content(); ?>
           </div>
           <?php if ($event = get_field('event')): ?>
-          <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">立即报名</a>
+          <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">立即报名</a>
           <?php endif; ?>
         </div>
         <div class="col-md-6">

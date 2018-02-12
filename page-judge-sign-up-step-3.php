@@ -26,7 +26,7 @@
               <label class="custom-file-label" for="resume">点击上传详细简历</label>
             </div>
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button">上传</button>
+              <button class="btn btn-outline-primary" type="button">上传</button>
             </div>
           </div>
           <button type="button" class="btn btn-secondary btn-lg btn-common float-right">保存</button>

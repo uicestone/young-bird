@@ -36,7 +36,7 @@
                   <span class="mr-4">参赛人数 / 921</span>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-outline-secondary ml-2">我的作品</button>
+                  <button type="button" class="btn btn-outline-primary ml-2">我的作品</button>
                 </div>
               </div>
             </div>
@@ -60,9 +60,9 @@
                   <span class="mr-4">参赛人数 / 921</span>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-outline-secondary ml-2">我的作品</button>
-                  <button type="button" class="btn btn-outline-secondary ml-2">我的奖项</button>
-                  <button type="button" class="btn btn-outline-secondary ml-2">我的经历</button>
+                  <button type="button" class="btn btn-outline-primary ml-2">我的作品</button>
+                  <button type="button" class="btn btn-outline-primary ml-2">我的奖项</button>
+                  <button type="button" class="btn btn-outline-primary ml-2">我的经历</button>
                 </div>
               </div>
             </div>
@@ -114,5 +114,5 @@
           </a>
         </div>
       </div>
-      <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4">发现更多</button>
+      <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</button>
     </div>

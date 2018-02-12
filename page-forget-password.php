@@ -32,7 +32,7 @@ else:
                 <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
                 <div class="input-group-append">
                   <span class="input-group-text">ee131m</span>
-                  <button type="button" class="btn btn-outline-secondary">刷新</button>
+                  <button type="button" class="btn btn-outline-primary">刷新</button>
                 </div>
               </div>
             </div>-->
@@ -41,7 +41,7 @@ else:
                 <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
                 <div class="input-group-append">
                   <!--GET ?send_code_to_mobile=[mobile]-->
-                  <button type="button" class="btn btn-outline-secondary">发送短信验证码</button>
+                  <button type="button" class="btn btn-outline-primary">发送短信验证码</button>
                 </div>
               </div>
             </div>
