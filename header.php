@@ -31,9 +31,6 @@
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="<?=site_url()?>/event/?history">历 史</a>
             </li>
-            <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="javascript:alert('院校暂未开放，敬请期待')">院 校</a>
-            </li>
           </ul>
           <form class="form-inline mt-md-4 mt-lg-0">
             <a href="<?=site_url()?>/?s="><i class="fas fa-search"></i></a>
