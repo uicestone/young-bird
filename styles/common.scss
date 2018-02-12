@@ -93,6 +93,11 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 }
+
+span.entry-subtitle {
+  font-size: 1em !important;
+}
+
 @include media-breakpoint-down(sm) {
   .sub-banner {
     height: 250px;
@@ -119,6 +124,7 @@ a.link {
 
 .btn-common {
   width: 150px;
+  letter-spacing: 0.3rem;
 }
 
 .icon {
@@ -144,7 +150,7 @@ a.link {
 }
 
 .tag {
-  font-size: 14px;
+  font-size: $font-size-xs;
   font-style: normal;
   color: $white;
   padding: 1px 5px;
@@ -198,6 +204,10 @@ a.link {
       .card-body {
         padding-top: 1.9rem;
         padding-bottom: 2.5rem;
+        font-size: $font-size-xs;
+        .title {
+          font-size: $font-size-lg;
+        }
         .label {
           margin-top: 2rem;
           margin-bottom: 2rem;
@@ -225,10 +235,11 @@ a.link {
         white-space: pre-line;
       }
       .label, p, i {
-        font-size: 14px;
+        font-size: $font-size-xs;
         margin-left: 15px;
       }
       .label {
+        font-weight: $font-weight-bold;
         margin-top: 1.5rem;
         margin-bottom: 1.5rem;
         color: $cyan;
@@ -254,20 +265,29 @@ a.link {
     border-radius: 0;
   }
   .card-body {
+    font-size: $font-size-xs;
     border-top: 3px solid $black;
     padding: .5rem 0 .75rem;
     .head {
       margin: 0 auto;
       border-bottom: 2px solid $grey;
       padding-bottom: .5rem;
+      .hashtag {
+        font-weight: $font-weight-bold;
+      }
       .label {
-        font-size: 18px;
+        font-size: $font-size-base;
+        font-weight: $font-weight-bold;
         text-transform: uppercase;
       }
     }
     h3 {
       font-weight: bold;
       color: $black;
+      min-height: 3rem;
+    }
+    .organizer {
+      font-weight: $font-weight-bold;
     }
     .action {
       width: calc(100% - 20px);
@@ -371,10 +391,12 @@ a.link {
     align-items: center;
     border-bottom: 1px sold $white!important;
     .tag {
-      font-size: .8rem;
+      font-size: $font-size-xs;
     }
     span {
       color: $cyan;
+      font-weight: $font-weight-bold;
+      font-size: $font-size-xs;
     }
   }
   hr {
@@ -382,6 +404,7 @@ a.link {
     border-top: 1px solid #c1bdbd;
   }
   .card-body {
+    font-size: $font-size-xs;
     transition: $transition-base;
     background: #9e9897;
   }
@@ -408,10 +431,14 @@ a.link {
 
 .category-container {
   a {
-    width: 6rem;
+    // width: 6rem;
     height: 2rem;
+    text-decoration: underline;
+    color: $dark-grey;
+    font-weight: $font-weight-light;
     &.active {
-      font-weight: bold;
+      color: $black;
+      font-weight: $font-weight-bold;
     }
   }
 }

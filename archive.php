@@ -11,10 +11,10 @@ get_header(); ?>
     <!-- Body -->
     <div class="container mt-7 pb-4 pubu">
       <!-- Filter -->
-      <div class="category-container d-flex flex-wrap mb-4">
-        <a href="?tag=" class="<?=!$_GET['tag'] ? 'active' : ''?>">全部</a>
+      <div class="category-container d-flex flex-wrap mb-4 row">
+        <a href="?tag=" class="col-md-2 <?=!$_GET['tag'] ? 'active' : ''?>">全部</a>
         <?php foreach (get_tags() as $tag): ?>
-        <a href="?tag=<?=$tag->slug?>" class="text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
+        <a href="?tag=<?=$tag->slug?>" class="col-md-2 text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
         <?php endforeach; ?>
       </div>
       <div class="row">
@@ -26,7 +26,7 @@ get_header(); ?>
                   <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
                 <div class="card-body mt-4">
                   <div class="row head justify-content-between align-items-center">
-                    <span class="color-cyan">#<?php the_tags(); ?></span>
+                    <span class="color-cyan hashtag">#<?php the_tags(); ?></span>
                     <div class="tag tag-blue">-标签位置-</div>
                   </div>
                   <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
@@ -37,37 +37,26 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-secondary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news">发现更多</button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news">发现更多</button>
         </div>
         <div class="col-md-6">
-          <a href="#" class="card mb-3 item-sub-history">
+          <?php foreach (get_posts(array ('category_name' => 'news-list-ad', 'posts_per_page' => 2)) as $ad): ?>
+          <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
             <div class="card-label">
-              <span>#建筑设计</span>
+              <span class="hashtag">#建筑设计</span>
               <div class="tag tag-blue">-标签位置-</div>
             </div>
             <hr />
             <div class="card-body">
-              <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
+              <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
+              <p><?=get_the_excerpt($ad)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
               <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
             </div>
           </a>
-          <a href="#" class="card mb-3 item-sub-history">
-            <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">
-            <div class="card-label">
-              <span>#建筑设计</span>
-              <div class="tag tag-blue">-标签位置-</div>
-            </div>
-            <hr />
-            <div class="card-body">
-              <h4>2015 IN-BETWEEN<br>深圳蛇口太子湾公共文化建筑设计竞赛</h4>
-              <?php if ($ad_event = get_field('event', $ad)): ?>
-              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
-              <?php endif; ?>
-            </div>
-          </a>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
@@ -94,7 +83,7 @@ get_header(); ?>
       <a href="<?php the_permalink(); ?>"><img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap"></a>
       <div class="card-body mt-4">
         <div class="row head justify-content-between align-items-center">
-          <span class="color-cyan">#<?php the_tags(); ?></span>
+          <span class="color-cyan hashtag">#<?php the_tags(); ?></span>
           <div class="tag tag-blue">-标签位置-</div>
         </div>
         <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>

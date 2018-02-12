@@ -1,0 +1,21 @@
+.category.home-event-status {
+  font-weight: bold;
+}
+
+.list-competiton {
+  h5 {
+    font-weight: bold;
+    font-size: $font-size-base;
+    min-height: $font-size-base * 1.2;
+  }
+  .end-date {
+    font-weight: bold;
+    font-size: $font-size-xs;
+  }
+}
+
+.home-news {
+  .htitle {
+    margin-bottom: 2.5rem;
+  }
+}

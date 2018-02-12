@@ -25,7 +25,7 @@
         <span></span>
         <h1>热门竞赛</h1>
       </div>
-      <div class="category mb-4">
+      <div class="category home-event-status mb-4">
         <div class="row justify-content-center">
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-yellow mr-3"></i>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </div>
-      <a href="<?=site_url()?>/event/" class="btn btn-outline-secondary mx-auto d-block btn-common">发现更多</a>
+      <a href="<?=site_url()?>/event/" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
       <div class="row justify-content-between list-competiton mt-4">
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">
@@ -54,7 +54,7 @@
             <div class="card-body mt-4">
               <h5 class="text-truncate" title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
               <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
-              <span>截止日期/<?=get_post_meta($event->ID, 'end_date', true)?></span>
+              <span class="end-date">截止日期/<?=get_post_meta($event->ID, 'end_date', true)?></span>
               <i class="icon icon-yellow"></i>
             </div>
           </a>
@@ -116,7 +116,7 @@
           <?php endforeach; ?>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-secondary mx-auto d-block btn-common btn-loadmore">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore">发现更多</a>
     </div>
 
 <?php get_footer(); ?>

@@ -33,7 +33,7 @@
             </li>
           </ul>
           <form class="form-inline mt-md-4 mt-lg-0">
-            <a href="<?=site_url()?>/?s="><i class="fas fa-search"></i></a>
+            <a href="<?=site_url()?>/?s=" class="search"><i class="fas fa-search"></i></a>
             <?php if (is_user_logged_in()): ?>
             <a href="<?=site_url()?>/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
             <a href="<?=site_url()?>/sign-in/?logout=true" class="btn btn-link">退出登录</a>
