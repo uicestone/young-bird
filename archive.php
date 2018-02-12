@@ -14,7 +14,7 @@ get_header(); ?>
       <div class="category-container d-flex flex-wrap mb-4">
         <a href="?tag=" class="<?=!$_GET['tag'] ? 'active' : ''?>">全部</a>
         <?php foreach (get_tags() as $tag): ?>
-        <a href="?tag=<?=$tag->slug?>" class="<?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>"><?=$tag->name?></a>
+        <a href="?tag=<?=$tag->slug?>" class="text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
         <?php endforeach; ?>
       </div>
       <div class="row">
