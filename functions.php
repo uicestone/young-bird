@@ -55,6 +55,43 @@ add_action('admin_menu', function () {
 add_theme_support('post-thumbnails');
 
 add_action('init', function () {
+
+  register_taxonomy('event_category', 'event', array (
+    'label' => '竞赛分类',
+    'labels' => array(
+      'all_items' => '所有竞赛分类',
+      'add_new' => '添加竞赛分类',
+      'add_new_item' => '新竞赛分类',
+    ),
+    'public' => true,
+    'show_admin_column' => true,
+    'hierarchical' => true
+  ));
+
+  register_taxonomy('news_category', 'post', array (
+    'label' => '资讯分类',
+    'labels' => array(
+      'all_items' => '所有资讯分类',
+      'add_new' => '添加资讯分类',
+      'add_new_item' => '新资讯分类',
+    ),
+    'public' => true,
+    'show_admin_column' => true,
+    'hierarchical' => true
+  ));
+
+  register_taxonomy('ad_category', 'post', array (
+    'label' => '广告分类',
+    'labels' => array(
+      'all_items' => '所有广告分类',
+      'add_new' => '添加广告分类',
+      'add_new_item' => '新广告分类',
+    ),
+    'public' => true,
+    'show_admin_column' => true,
+    'hierarchical' => true
+  ));
+
   register_post_type('event', array(
     'label' => '竞赛',
     'labels' => array(
