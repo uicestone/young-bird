@@ -178,7 +178,6 @@ else:
             <span>竞赛命题</span>
           </h2>
           <div class="editor">
-            <h3>/设计要求</h3>
             <?php the_content(); ?>
           </div>
           <h2 class="row align-items-center mx-auto" id="section2">

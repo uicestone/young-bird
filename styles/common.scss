@@ -419,9 +419,10 @@ a.link {
   .banner {
     .avatar {
       flex: initial;
-      width: 16rem;
+      width: 14rem;
       img {
-        border: 2px solid #6d6d6d;
+        width: 14rem;
+        height: 14rem;
       }
     }
     .desc {
