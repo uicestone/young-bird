@@ -161,15 +161,12 @@ YB.Edit = (function($) {
 // 作品详情
 YB.Work = (function($) {
 	var workList = $('.toplist-container');
-	var workDetail = $('.work-detail');
+	var workDetail = $('.work-detail'),
+			previewBox = $('.preview-box');
 	var reviewList = $('.review-list');
 	// var pop = $('.fancypop');
 
 	function init() {
-		if(workDetail) {
-			// 初始化预览功能
-
-		}
     bindEvent();
 	}
 
@@ -230,6 +227,22 @@ YB.Work = (function($) {
 		// 作品预览
 		workDetail.on('click', '.btn-preview', function(e) {
 			e.preventDefault();
+			// render data
+			// title ?
+			// desc
+			var desc = workDetail.find('textarea').val();
+			previewBox.find('.w-100 p').text(desc);
+			// gallery
+			// clean
+			previewBox.children('a[class!="w-100"]').remove();
+			workDetail.find('.work-upload .col-lg-2-4').each(function() {
+				var src = $(this).find("img[class!='d-none']").attr('src');
+				if(src) {
+					previewBox.append('<a href="'+src+'">\
+						<img src="'+src+'" />\
+					</a>');
+				}
+			})
 			showWork($(this), true);
 		})
 		// 查看作品详情

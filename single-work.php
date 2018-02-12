@@ -110,7 +110,7 @@ get_header(); ?>
         <div class="row">
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview">预览</button>
-            <div class="d-none" data-judge-name="是大雨" data-judge-avatar="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" data-comment="这个作品真心不错">
+            <div class="d-none preview-box">
               <a class="w-100">
                 <div class="row mx-auto justify-content-between">
                   <h3>城市里的行走</h3>
