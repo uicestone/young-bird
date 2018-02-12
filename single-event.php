@@ -117,7 +117,7 @@ else:
       <div class="sidebar">
         <ul>
           <li>
-            <a href="#section1">竞赛命题</a>
+            <a href="#section1">竞赛介绍</a>
           </li>
           <li>
             <a href="#section2">奖项设置</a>
@@ -125,9 +125,11 @@ else:
           <li>
             <a href="#section3">评委介绍</a>
           </li>
+          <?php if ($qa = get_field('q&a')): ?>
           <li>
             <a href="#section4">Q&A</a>
           </li>
+          <?php endif; ?>
           <li>
             <a href="#section5">相关新闻</a>
           </li>
@@ -137,7 +139,7 @@ else:
           </li>
           <?php endif; ?>
           <li class="active">
-            <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events'))): ?>
+            <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a href="<?php the_permalink(); ?>?participate">参赛</a>
             <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
             <a href="<?=get_the_permalink($group->ID)?>">查看团队</a>
@@ -175,7 +177,7 @@ else:
         <div class="context">
           <h2 class="row align-items-center mx-auto" id="section1">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
-            <span>竞赛命题</span>
+            <span>竞赛介绍</span>
           </h2>
           <div class="editor">
             <?php the_content(); ?>
@@ -187,12 +189,13 @@ else:
           <div class="editor">
             <?=get_field('awards')?>
           </div>
+          <?php if ($judges = get_field('judges')): ?>
           <h2 class="row align-items-center mx-auto" id="section3">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
             <span>评委介绍</span>
           </h2>
           <div class="editor judge-list row">
-            <?php if ($judges = get_field('judges')): foreach ($judges as $judge): ?>
+            <?php foreach ($judges as $judge): ?>
             <div class="col-md-8">
               <a href="<?=get_the_permalink($judge->ID)?>">
                 <div class="d-flex align-items-center py-4">
@@ -206,15 +209,18 @@ else:
                 </div>
               </a>
             </div>
-            <?php endforeach; endif; ?>
+            <?php endforeach; ?>
           </div>
+          <?php endif; ?>
+          <?php if ($qa): ?>
           <h2 class="row align-items-center mx-auto" id="section4">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
             <span>Q&A</span>
           </h2>
           <div class="editor">
-            <?=get_field('q&a')?>
+            <?=$qa?>
           </div>
+          <?php endif; ?>
         </div>
       </div>
     </div>
