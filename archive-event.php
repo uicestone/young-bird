@@ -77,11 +77,12 @@
           <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</button>-->
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'ad')) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'event-list-ad')) as $ad): ?>
           <a href="#" class="card mb-3 item-sub-history">
             <?=get_the_post_thumbnail($ad->ID, '8-7', array ('class' => 'card-img-top'))?>
             <div class="card-body">
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
+              <p><?=get_the_excerpt($ad->ID)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
               <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
