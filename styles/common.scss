@@ -275,6 +275,9 @@ a.link {
       .hashtag {
         font-weight: $font-weight-bold;
       }
+      .labels {
+        line-height: 0;
+      }
       .label {
         font-size: $font-size-base;
         font-weight: $font-weight-bold;
@@ -288,6 +291,7 @@ a.link {
     }
     .organizer {
       font-weight: $font-weight-bold;
+      white-space: pre-line;
     }
     .action {
       width: calc(100% - 20px);

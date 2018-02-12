@@ -159,16 +159,18 @@ else:
           <div class="title row justify-content-between align-items-center mx-auto">
             <h1 class="color-black font-weight-bold"><?php the_title(); ?></h1>
             <div class="action">
+              <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
-              <span class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true)?></span>
+              <span class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
+              <?php endif; ?>
               <i class="far fa-heart"></i>
             </div>
           </div>
           <span><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
-            <?php foreach (get_the_tags() as $tag): ?>
+            <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
             <i class="tag tag-rose"><?=$tag->name?></i>
-            <?php endforeach; ?>
+            <?php endforeach; endif; ?>
             <!--<div>
               分享至：
             </div>-->
