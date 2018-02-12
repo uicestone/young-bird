@@ -161,11 +161,15 @@ YB.Edit = (function($) {
 // 作品详情
 YB.Work = (function($) {
 	var workList = $('.toplist-container');
-	var workDetail = $('.work-upload');
+	var workDetail = $('.work-detail');
 	var reviewList = $('.review-list');
 	// var pop = $('.fancypop');
 
 	function init() {
+		if(workDetail) {
+			// 初始化预览功能
+
+		}
     bindEvent();
 	}
 
@@ -191,9 +195,23 @@ YB.Work = (function($) {
 		$.fancybox.close();
 	}
 
+	function showWork(el, hideCaption) {
+		var box = el.next();
+		var items = box.children();
+		var avatar = box.data('judge-avatar');
+		var name = box.data('judge-name');
+		var comment = box.data('comment');
+		var caption = '<h3>评论</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+		if(hideCaption) {
+			YB.Util.open(items)
+		} else {
+			YB.Util.open(items, caption)
+		}
+	}
+
   function bindEvent() {
 		// 图片预览
-		$('.work-upload .custom-file-input').change(function() {
+		workDetail.find('.work-upload .custom-file-input').change(function() {
 			var input = this;
 			var _this = $(this);
 			if (input.files && input.files[0]) {
@@ -209,15 +227,15 @@ YB.Work = (function($) {
 			e.preventDefault();
 			$(this).addClass('d-none').prev('img').attr('src', '').addClass('d-none').prev('.custom-file-input').val('')
 		})
+		// 作品预览
+		workDetail.on('click', '.btn-preview', function(e) {
+			e.preventDefault();
+			showWork($(this), true);
+		})
 		// 查看作品详情
 		workList.on('click', '.item-work', function() {
-			var box = $(this).next();
-			var items = box.children();
-			var avatar = box.data('judge-avatar');
-			var name = box.data('judge-name');
-			var comment = box.data('comment');
-			var caption = '<h3>评论</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
-			YB.Util.open(items, caption)
+			showWork($(this))
+
 		})
 		// 入围弹层
 		reviewList.on('click', '.item-review', function() {
