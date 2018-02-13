@@ -111,47 +111,73 @@ get_header(); ?>
         </div>
         <div class="row">
           <div class="col-12">
+            <?php if ($identities): foreach ($identities as $identity): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if ($identities): foreach ($identities as $identity): ?>
                 <input type="text" name="identities[]" value="<?=$identity?>" class="form-control" placeholder="身份">
-                <?php endforeach; else: ?>
-                <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="身份">
-                <?php endif; ?>
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
                 <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
+            <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if ($titles): foreach ($titles as $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
+                <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="身份">
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-plus-circle mr-2"></i>
+                <i class="fas fa-trash-alt d-none"></i>
+              </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($titles): foreach ($titles as $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="institutions[]" value="<?=$institution?>" class="form-control" placeholder="机构">
                 <input type="text" name="titles[]" value="<?=$title?>" class="form-control" placeholder="部门/头衔">
-                <?php endforeach; else: ?>
-                <input type="text" name="institutions[]" class="form-control" placeholder="机构">
-                <input type="text" name="titles[]" class="form-control" placeholder="部门/头衔">
-                <?php endif; ?>
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
                 <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
+            <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if ($awards): foreach ($awards as $award): ?>
-                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="奖项">
-                <?php endforeach; else: ?>
-                <input type="text" name="awards[]" class="form-control" placeholder="奖项">
-                <?php endif; ?>
+                <input type="text" name="institutions[]" class="form-control" placeholder="机构">
+                <input type="text" name="titles[]" class="form-control" placeholder="部门/头衔">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
                 <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
+            <?php endif; ?>
+
+            <?php if ($awards): foreach ($awards as $award): ?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
+                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="奖项">
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-plus-circle mr-2"></i>
+                <i class="fas fa-trash-alt d-none"></i>
+              </div>
+            </div>
+            <?php endforeach; else: ?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
+                <input type="text" name="awards[]" class="form-control" placeholder="奖项">
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-plus-circle mr-2"></i>
+                <i class="fas fa-trash-alt d-none"></i>
+              </div>
+            </div>
+            <?php endif; ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="毕业院校（选填）">
