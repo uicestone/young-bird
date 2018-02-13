@@ -114,7 +114,7 @@ else:
 ?>
     <!-- Body -->
     <div class="container page-event-detail pb-4">
-      <div class="sidebar">
+      <div class="sidebar d-none d-md-block">
         <ul>
           <li>
             <a href="#section1">竞赛介绍</a>
