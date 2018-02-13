@@ -40,9 +40,6 @@ if (isset($_POST['sign_up_success'])) {
     require_once( ABSPATH . 'wp-admin/includes/file.php' );
   }
 
-  update_post_meta(get_the_ID(), 'award', $_POST['award']);
-  update_post_meta(get_the_ID(), 'desc', $_POST['desc']);
-
   $avatar = wp_handle_upload($_FILES['avatar'], array ('test_form' => false));
   $resume = wp_handle_upload($_FILES['resume'], array ('test_form' => false));
   update_user_meta($user->ID, 'avatar', $avatar['url']);

@@ -35,7 +35,7 @@
           <form class="form-inline mt-md-4 mt-lg-0">
             <a href="<?=site_url()?>/?s=" class="search"><i class="fas fa-search"></i></a>
             <?php if (is_user_logged_in()): ?>
-            <a href="<?=site_url()?>/user-center/" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
+            <a href="<?=site_url() . (current_user_can('judge_works') ? '/judge-center/' : '/user-center/')?>" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
             <a href="<?=site_url()?>/sign-in/?logout=true" class="btn btn-link">退出登录</a>
             <?php else: ?>
             <a href="<?=site_url()?>/sign-up/" class="btn btn-link">注册</a>

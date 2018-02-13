@@ -17,6 +17,8 @@ add_action('after_setup_theme', function () {
   add_role('attendee', '选手', array());
   remove_role('subscriber'); remove_role('author'); remove_role('contributor');
 
+  $judge_role = get_role('judge'); $judge_role->add_cap('judge_works');
+
   add_image_size('1-2', 350, 700, true);
   add_image_size('medium-sq', 300, 300, true);
   add_image_size('8-7', 320, 280, true);

@@ -50,7 +50,7 @@
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">
           <a href="<?=get_the_permalink($event->ID)?>" class="card link">
-            <?=get_the_post_thumbnail($event->ID, '8-7', array ('class' => 'card-img-top'))?>
+            <?=get_the_post_thumbnail($event->ID, 'vga', array ('class' => 'card-img-top'))?>
             <div class="card-body mt-4">
               <h5 class="text-truncate" title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
               <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
