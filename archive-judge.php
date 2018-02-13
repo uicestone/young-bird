@@ -14,7 +14,11 @@
             <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">
               <h5><?php the_title(); ?></h5>
-              <div style="height: 3.5rem"><?php the_excerpt(); ?></div>
+              <div class="excerpt">
+                <?php foreach (array_slice(explode("\n", get_the_excerpt()), 0, 2) as $line): ?>
+                <p class="text-truncate mb-0" title="<?=$line?>"><?=$line?></p>
+                <?php endforeach; ?>
+              </div>
             </div>
           </div>
         </a>

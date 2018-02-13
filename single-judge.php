@@ -6,10 +6,8 @@
           <?php the_post_thumbnail('medium-sq'); ?>
         </div>
         <div class="desc pl-3 pl-lg-5">
-          <h1 class="color-black font-weight-bold"><?php the_title(); ?></h1>
-          <h3 class="color-black font-weight-bold">资料1</h3>
-          <h3 class="color-black font-weight-bold">资料2</h3>
-          <p class="mb-0"><?php the_excerpt(); ?></p>
+          <h1 class="color-black font-weight-bold mb-4"><?php the_title(); ?></h1>
+          <?php the_excerpt(); ?>
         </div>
       </div>
     </div>
