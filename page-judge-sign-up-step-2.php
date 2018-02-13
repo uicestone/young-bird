@@ -12,30 +12,30 @@
           <form>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="身份">
+                <input type="text" name="identity" class="form-control" placeholder="身份">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="机构">
-                <input type="text" class="form-control" placeholder="部门/头衔">
+                <input type="text" name="institution" class="form-control" placeholder="机构">
+                <input type="text" name="position" class="form-control" placeholder="部门/头衔">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" class="form-control" placeholder="曾获奖项">
+                <input type="text" name="prize" class="form-control" placeholder="曾获奖项">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">

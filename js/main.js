@@ -327,6 +327,7 @@ YB.Carousel = (function($) {
 	}
 })(jQuery);
 
+// 通用
 YB.Common = (function($){
 	function init() {
 		bindEvent();
@@ -354,6 +355,7 @@ YB.Common = (function($){
 	}
 })(jQuery)
 
+// 首页
 YB.Home = (function($) {
 	var container = $('.home-news');
 	var left = container.find('.column-left'),
@@ -425,6 +427,7 @@ YB.Home = (function($) {
 	}
 })(jQuery)
 
+// 瀑布流
 YB.Pubu = (function($) {
 	var container = $('.pubu');
 	var list = container.find('.pubu-list');
@@ -459,9 +462,55 @@ YB.Pubu = (function($) {
 	function bindEvent() {
 		container.on('click', '.btn-loadmore', function(e) {
 			e.preventDefault();
-			console.log('click');
 			page++;
 			loadMore(updateBtn);
+		})
+	}
+
+	return {
+		init: init
+	}
+})(jQuery)
+
+// 大咖
+YB.Judge = (function($){
+	var page = $('.judge-sign-in');
+
+	function init() {
+		bindEvent();
+	}
+
+	function checkDelete(name) {
+		var input = page.find('input[name='+name+']')
+		var parent = input.parents('.form-group')
+		if(page.find('input[name='+name+']').length === 1) {
+			parent.find('.fa-trash-alt').addClass('d-none');
+		} else {
+			parent.find('.fa-trash-alt').removeClass('d-none');
+		}
+	}
+
+	function bindEvent() {
+		// 增加表单项
+		page.on('click', '.form-group .fa-plus-circle', function(e) {
+			e.preventDefault();
+			var parent = $(this).parents('.form-group');
+			var copy = parent.clone();
+			var name = parent.find('input').eq(0).attr('name');
+			$(copy).find('input').val('');
+			$(copy).insertAfter(parent);
+			checkDelete(name);
+		})
+		// 删除表单项
+		page.on('click', '.form-group .fa-trash-alt', function(e) {
+			e.preventDefault();
+			var parent = $(this).parents('.form-group');
+			var name = parent.find('input').eq(0).attr('name');
+			// 如果只有一项则不能删除
+			if(page.find('input[name='+name+']').length > 1) {
+				parent.remove();
+			}
+			checkDelete(name);
 		})
 	}
 
@@ -480,3 +529,4 @@ YB.Pubu.init();
 //
 YB.Common.init();
 YB.Home.init();
+YB.Judge.init();
