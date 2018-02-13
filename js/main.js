@@ -319,6 +319,18 @@ YB.Carousel = (function($) {
 			items: 4,
 			nav: true,
 			margin: 35,
+			responsiveClass:true,
+	    responsive:{
+	        0:{
+	            items:1
+	        },
+	        768:{
+	            items:3,
+	        },
+	        992:{
+	            items:4,
+	        }
+	    }
 		});
 	}
 
