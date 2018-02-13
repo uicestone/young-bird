@@ -48,6 +48,7 @@ if (isset($_POST['sign_up_success'])) {
   update_user_meta($user->ID, 'avatar', $avatar['url']);
   update_user_meta($user->ID, 'resume', $resume['url']);
   update_user_meta($user->ID, 'description', $_POST['bio']);
+  update_user_meta($user->ID, 'signed_up', 'yes');
 
   header('Location: ' . get_the_permalink() . '?success'); exit;
 }
