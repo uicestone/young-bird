@@ -28,10 +28,10 @@ get_header(); ?>
                 </a>
                 <div class="card-body mt-4">
                   <div class="row head justify-content-between align-items-center">
-                    <span class="color-cyan hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+                    <span class="color-cyan hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></span>
                     <div>
-                      <?php foreach (get_the_tags() ?: array() as $tag): ?>
-                      <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+                      <?php foreach (get_the_terms(get_the_ID(), 'news_category') ?: array() as $term): ?>
+                      <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
                       <?php endforeach; ?>
                     </div>
                   </div>
@@ -46,14 +46,14 @@ get_header(); ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news">发现更多</button>
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'news-list-ad', 'posts_per_page' => 2)) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'news-list-ad')) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <?=get_the_post_thumbnail($ad->ID, '8-7', array ('class' => 'card-img-top'))?>
             <div class="card-label">
-              <span class="hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+              <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $ad->ID))?></span>
               <div>
-                <?php foreach (get_the_tags($ad->ID) ?: array() as $tag): ?>
-                <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+                <?php foreach (get_the_terms($ad->ID, 'news_category') ?: array() as $term): ?>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
                 <?php endforeach; ?>
               </div>
             </div>
@@ -77,13 +77,13 @@ get_header(); ?>
     <div class="title text-truncate">
       <?php the_title()?>
     </div>
-    <div class="label text-truncate"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></div>
+    <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
     <p class="text-truncate">
       <?php the_excerpt()?>
     </p>
-    <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
-    <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
-    <?php endforeach; endif; ?>
+    <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+    <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+    <?php endforeach; ?>
   </div>
 </a>
 <?php endwhile; else: ?>
@@ -95,10 +95,10 @@ get_header(); ?>
       </a>
       <div class="card-body mt-4">
         <div class="row head justify-content-between align-items-center">
-          <span class="color-cyan hashtag"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></span>
+          <span class="color-cyan hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></span>
           <div>
-            <?php foreach (get_the_tags() ?: array() as $tag): ?>
-              <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+            <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+            <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
             <?php endforeach; ?>
           </div>
         </div>

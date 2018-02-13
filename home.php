@@ -76,10 +76,10 @@
             <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
             <div class="card-body">
               <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></div>
+              <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
               <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
-              <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-              <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+              <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+              <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
               <?php endforeach; ?>
             </div>
           </a>
@@ -91,10 +91,10 @@
             <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
             <div class="card-body">
               <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></div>
+              <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
               <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
-              <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-                <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+              <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+              <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
               <?php endforeach; ?>
             </div>
           </a>
@@ -106,10 +106,10 @@
               <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
               <div class="card-body">
                 <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-                <div class="label text-truncate"># <?=strip_tags(get_the_term_list($post->ID, 'news_category', '', ', '))?></div>
+                <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
                 <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
-                <?php foreach (get_the_tags($post->ID) ?: array() as $tag): ?>
-                  <i class="tag tag-grey" style="background: <?=get_field('color', $tag)?>"><?=$tag->name?></i>
+                <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
                 <?php endforeach; ?>
               </div>
             </a>

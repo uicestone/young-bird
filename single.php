@@ -36,19 +36,21 @@ get_header(); the_post(); ?>
           <?php endif; ?>
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'event-detail-ad')) as $ad): ?>
-          <a href="<?=get_the_permalink($ad->ID)?>" class="card mb-3 item-sub-history">
+          <?php foreach (get_posts(array ('category_name' => 'news-detail-ad')) as $ad): ?>
+          <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <?=get_the_post_thumbnail($ad->ID, '8-7', array ('class' => 'card-img-top'))?>
             <div class="card-label">
-              <?php foreach (get_the_tags($ad->ID) as $tag): ?>
-              <span>#<?=$tag->name?></span>
-              <?php endforeach; ?>
-              <div class="tag tag-blue">-标签位置-</div>
+              <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $ad->ID))?></span>
+              <div>
+                <?php foreach (get_the_terms($ad->ID, 'news_category') ?: array() as $term): ?>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+                <?php endforeach; ?>
+              </div>
             </div>
             <hr />
             <div class="card-body">
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
-              <p><?=get_the_excerpt($ad->ID)?></p>
+              <p><?=get_the_excerpt($ad)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
               <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
