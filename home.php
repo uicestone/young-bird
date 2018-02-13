@@ -70,7 +70,7 @@
         <h1>最新资讯</h1>
       </div>
       <div class="list-news mb-5">
-        <div class="order-sm-2 order-md-1 col-md-3-11 column-left">
+        <div class="order-sm-2 order-md-1 col-sm-8 col-md-3-11 column-left">
           <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 1) continue; ?>
           <a href="<?=get_the_permalink($post->ID)?>" class="card link">
             <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
@@ -85,7 +85,7 @@
           </a>
           <?php endforeach; ?>
         </div>
-        <div class="order-sm-1 order-md-2 col-md-5-11 column-middle">
+        <div class="order-sm-1 order-md-2 col-sm-8 col-md-5-11 column-middle">
           <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
           <a href="<?=get_the_permalink($post->ID)?>" class="card link">
             <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
@@ -100,7 +100,7 @@
           </a>
           <?php endforeach; ?>
         </div>
-        <div class="order-sm-3 order-md-3 col-md-3-11 column-right">
+        <div class="order-sm-3 order-md-3 col-sm-8 col-md-3-11 column-right">
           <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
               <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
