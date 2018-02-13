@@ -12,6 +12,10 @@ if(isset($_POST['login'])){
   wp_set_auth_cookie($user->ID, isset($_POST['remember']));
   wp_set_current_user($user->ID);
 
+  if (in_array('judge', $user->roles) && ! get_user_meta($user->ID, 'signed_up', true)) {
+    header('Location: /judge-sign-up/'); exit;
+  }
+
   header('Location: ' . ($_GET['intend'] ?: '/')); exit;
 }
 
@@ -42,7 +46,7 @@ get_header(); ?>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" name="password" class="form-control" placeholder="密码（12位数字或字母）">
+                <input type="password" name="password" class="form-control" placeholder="密码（包含数字和字母）">
               </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg">登录</button>

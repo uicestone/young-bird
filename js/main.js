@@ -351,7 +351,7 @@ YB.Common = (function($){
 	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
 	        || location.hostname == this.hostname) {
         var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        target = target.length ? target : $('[name="' + this.hash.slice(1) +'"]');
          if (target.length) {
            $('html,body').animate({
              scrollTop: target.offset().top
@@ -493,9 +493,9 @@ YB.Judge = (function($){
 	}
 
 	function checkDelete(name) {
-		var input = page.find('input[name='+name+']')
+		var input = page.find('input[name="'+name+'"]')
 		var parent = input.parents('.form-group')
-		if(page.find('input[name='+name+']').length === 1) {
+		if(page.find('input[name="'+name+'"]').length === 1) {
 			parent.find('.fa-trash-alt').addClass('d-none');
 		} else {
 			parent.find('.fa-trash-alt').removeClass('d-none');
@@ -519,7 +519,7 @@ YB.Judge = (function($){
 			var parent = $(this).parents('.form-group');
 			var name = parent.find('input').eq(0).attr('name');
 			// 如果只有一项则不能删除
-			if(page.find('input[name='+name+']').length > 1) {
+			if(page.find('input[name="'+name+'"]').length > 1) {
 				parent.remove();
 			}
 			checkDelete(name);

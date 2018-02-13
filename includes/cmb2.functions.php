@@ -16,6 +16,26 @@
  */
 add_action( 'cmb2_admin_init', function () {
 
+  $avatar_meta_box = new_cmb2_box(array (
+    'id'           => 'avatar_metabox',
+    'title'        => esc_html__( '头像', 'cmb2' ),
+    'object_types' => array ( 'user' ),
+    'show_on_cb'   => 'ybp_cmb2_show_on_user_role_judge',
+  ));
+
+  $avatar_meta_box->add_field(array (
+    'name' => esc_html__( '头像', 'cmb2' ),
+    'id' => 'avatar',
+    'type' => 'file',
+    'query_args' => array (
+      'type' => array(
+        'image/gif',
+        'image/jpeg',
+        'image/png',
+      )
+    )
+  ));
+
   $mobile_meta_box = new_cmb2_box(array (
     'id'           => 'mobile_metabox',
     'title'        => esc_html__( '手机', 'cmb2' ),
@@ -53,17 +73,17 @@ add_action( 'cmb2_admin_init', function () {
     'date_format' => 'Y-m-d'
   ));
 
-  $roles_meta_box = new_cmb2_box(array (
-    'id'           => 'roles_metabox',
+  $identities_meta_box = new_cmb2_box(array (
+    'id'           => 'identities_metabox',
     'title'        => esc_html__( '身份', 'cmb2' ),
     'object_types' => array ( 'user' ),
     'show_on_cb'   => 'ybp_cmb2_show_on_user_role_judge',
   ));
 
-  $roles_meta_box->add_field(array (
+  $identities_meta_box->add_field(array (
     'name' => esc_html__( '身份', 'cmb2' ),
     'desc' => esc_html__( '大咖的身份，一行表示一个', 'cmb2' ),
-    'id' => 'roles',
+    'id' => 'identities',
     'type' => 'text',
     'repeatable' => true,
     'text' => array (
@@ -109,6 +129,20 @@ add_action( 'cmb2_admin_init', function () {
       'add_row_text' => '新增奖项'
     )
   ));
+
+  $resume_meta_box = new_cmb2_box(array (
+    'id'           => 'resume_metabox',
+    'title'        => esc_html__( '简历', 'cmb2' ),
+    'object_types' => array ( 'user' ),
+    'show_on_cb'   => 'ybp_cmb2_show_on_user_role_judge',
+  ));
+
+  $resume_meta_box->add_field(array (
+    'name' => esc_html__( '简历', 'cmb2' ),
+    'id' => 'resume',
+    'type' => 'file'
+  ));
+
 });
 
 /**

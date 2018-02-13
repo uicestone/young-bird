@@ -1,8 +1,62 @@
-<?php get_header();
+<?php
+
+$user = wp_get_current_user();
+
+$sign_up_fields = array ('mobile', 'birthday', 'school', 'major', 'identities', 'titles', 'awards');
+foreach ($sign_up_fields as $field) {
+  $$field =  get_user_meta($user->ID, $field, true);
+}
+
+if (isset($_POST['sign_up_step'])) {
+
+  foreach ($sign_up_fields as $field) {
+    if (isset($_POST[$field])) {
+      update_user_meta($user->ID, $field, $_POST[$field]);
+    }
+  }
+  if ($_POST['institutions'] && $_POST['titles']) {
+    $titles = array_map(function ($institution, $title) {
+      return $institution . '/' . $title;
+    }, $_POST['institutions'], $_POST['titles']);
+    update_user_meta($user->ID, 'titles', $titles);
+  }
+
+  if ($_POST['judge_name']) {
+    $user->display_name = $_POST['judge_name'];
+    update_user_meta($user->ID, 'name', $_POST['judge_name']);
+  }
+  if ($_POST['email']) {
+    $user->user_email = $_POST['email'];
+  }
+  if ($_POST['judge_name'] || $_POST['email']) {
+    wp_update_user($user);
+  }
+
+  header('Location: ' . get_the_permalink() . '?step=' . $_POST['sign_up_step']); exit;
+}
+
+if (isset($_POST['sign_up_success'])) {
+  if ( ! function_exists( 'wp_handle_upload' ) ) {
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+  }
+
+  update_post_meta(get_the_ID(), 'award', $_POST['award']);
+  update_post_meta(get_the_ID(), 'desc', $_POST['desc']);
+
+  $avatar = wp_handle_upload($_FILES['avatar'], array ('test_form' => false));
+  $resume = wp_handle_upload($_FILES['resume'], array ('test_form' => false));
+  update_user_meta($user->ID, 'avatar', $avatar['url']);
+  update_user_meta($user->ID, 'resume', $resume['url']);
+  update_user_meta($user->ID, 'description', $_POST['bio']);
+
+  header('Location: ' . get_the_permalink() . '?success'); exit;
+}
+
+get_header();
     if (isset($_GET['step'])) :
-      get_template_part('page-judge-sign-up-step-' . $_GET['step']);
+      include(locate_template('page-judge-sign-up-step-' . $_GET['step'] . '.php'));
     elseif (isset($_GET['success'])) :
-      get_template_part('page-judge-sign-up-success');
+      include(locate_template('page-judge-sign-up-success.php'));
     else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-partners.jpg) center center / cover no-repeat">
@@ -19,31 +73,31 @@
         <div class="col-md-12">
           <h3 class="text-center">登录成功</h3>
           <p class="text-center mb-4"><strong>请填写下列信息来激活您的账号</strong></p>
-          <form>
+          <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="姓名">
+                <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="姓名">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="手机号（选填）">
+                <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="手机号（选填）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="邮箱（选填）">
+                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="邮箱（选填）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="生日信息（选填）">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="生日信息（选填）">
               </div>
             </div>
             <p class="text-right">
-              <small>注册即视为同意 <a href="" class="text-underline">隐私条款</a> 和 <a href="" class="text-underline">服务条款</a></small>
+              <small>激活即视为同意 <a href="" class="text-underline">隐私条款</a> 和 <a href="" class="text-underline">服务条款</a></small>
             </p>
-            <button type="button" class="btn btn-secondary btn-block btn-lg">下一步</button>
+            <button type="submit" name="sign_up_step" value="2" class="btn btn-secondary btn-block btn-lg">下一步</button>
           </form>
         </div>
       </div>

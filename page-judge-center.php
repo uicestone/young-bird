@@ -67,8 +67,8 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="company" class="form-control" placeholder="机构">
-                <input type="text" name="title" class="form-control" placeholder="部门/头衔">
+                <input type="text" name="companies[]" class="form-control" placeholder="机构">
+                <input type="text" name="titles[]" class="form-control" placeholder="部门/头衔">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -77,7 +77,7 @@
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="award" class="form-control" placeholder="奖项">
+                <input type="text" name="awards" class="form-control" placeholder="奖项">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
