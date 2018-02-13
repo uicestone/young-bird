@@ -173,11 +173,13 @@ get_header(); ?>
               <!-- En版请使用lang="en" -->
               <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
               <label class="custom-file-label" for="resume">点击上传详细简历</label>
-              <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
-              <!--TODO 显示链接-->
-              <a href="<?=$resume?>">查看/下载</a>
-              <?php endif; ?>
             </div>
+            <!-- 显示下载链接 -->
+            <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
+            <div class="input-group-append">
+              <a class="btn btn-outline-secondary" href="<?=$resume?>">查看/下载</a>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
         <div class="row mx-auto">
