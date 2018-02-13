@@ -62,7 +62,7 @@
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">
@@ -72,7 +72,7 @@
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">
@@ -81,7 +81,7 @@
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt"></i>
+                <i class="fas fa-trash-alt d-none"></i>
               </div>
             </div>
             <div class="form-group row align-items-center">
