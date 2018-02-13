@@ -522,6 +522,10 @@ YB.Judge = (function($){
 	var page = $('.judge-sign-in');
 
 	function init() {
+		// 检查删除按钮
+		checkDelete('identities[]');
+		checkDelete('institutions[]');
+		checkDelete('awards[]');
 		bindEvent();
 	}
 
