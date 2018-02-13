@@ -95,10 +95,16 @@ YB.Util = (function($) {
 	  return query_string;
 	}
 
+	function is_sm() {
+		var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+		return width < 768
+	}
+
   return {
 		confirm: confirm,
 		open: open,
-		parseQueryString: parseQueryString
+		parseQueryString: parseQueryString,
+		is_sm: is_sm
 	}
 })(jQuery);
 
@@ -369,6 +375,7 @@ YB.Common = (function($){
 
 // 首页
 YB.Home = (function($) {
+	var newsListContainer = $('.list-news-container');
 	var container = $('.home-news');
 	var left = container.find('.column-left'),
 			middle = container.find('.column-middle'),
@@ -376,6 +383,7 @@ YB.Home = (function($) {
 	var btn = container.find('.btn-loadmore');
 	var page = 1;
 	var totalPrimary = 2, totalSecondary = 2;
+	var is_sm = YB.Util.is_sm();
 
 	function init() {
 		bindEvent();
@@ -390,7 +398,11 @@ YB.Home = (function($) {
 		  .done(function( data, textStatus, jqXHR ) {
 				totalPrimary = jqXHR.getResponseHeader('total-pages');
 				var html = $.parseHTML(data);
-				middle.append(html);
+				if(!is_sm) {
+					middle.append(html);
+				} else {
+					newsListContainer.children().last().find('.column-middle').append(html);
+				}
 		  });
 		fn && fn();
 	}
@@ -410,9 +422,17 @@ YB.Home = (function($) {
 				  });
 				$(h).each(function(index) {
 					if(index % 2 === 0) {
-						left.append($(this))
+						if(!is_sm) {
+							left.append($(this))
+						} else {
+							newsListContainer.children().last().find('.column-left').append(html);
+						}
 					}else{
-						right.append($(this))
+						if(!is_sm) {
+							right.append($(this))
+						} else {
+							newsListContainer.children().last().find('.column-right').append(html);
+						}
 					}
 				});
 				fn && fn();
@@ -425,10 +445,23 @@ YB.Home = (function($) {
 		}
 	}
 
+	function generateTemplate() {
+		return '<div class="list-news">\
+		<div class="order-2 order-md-1 col-sm-8 col-md-3-11 column-left"></div>\
+		<div class="order-1 order-md-2 col-sm-8 col-md-5-11 column-middle"></div>\
+		<div class="order-3 order-md-3 col-sm-8 col-md-3-11 column-right"></div>\
+		</div>';
+	}
+
 	function bindEvent() {
 		container.on('click', '.btn-loadmore', function(e) {
 			e.preventDefault();
 			page++;
+			if(is_sm) {
+				// 手机版以8条数据为一个单元插入瀑布流
+				var pageContainer = generateTemplate();
+				newsListContainer.append($(pageContainer));
+			}
 			loadPrimary(updateBtn);
 			loadSecondary(updateBtn);
 		})

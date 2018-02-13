@@ -69,39 +69,10 @@
         <span></span>
         <h1>最新资讯</h1>
       </div>
-      <div class="list-news mb-5">
-        <div class="order-sm-2 order-md-1 col-sm-8 col-md-3-11 column-left">
-          <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 1) continue; ?>
-          <a href="<?=get_the_permalink($post->ID)?>" class="card link">
-            <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
-            <div class="card-body">
-              <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
-              <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
-              <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
-              <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
-              <?php endforeach; ?>
-            </div>
-          </a>
-          <?php endforeach; ?>
-        </div>
-        <div class="order-sm-1 order-md-2 col-sm-8 col-md-5-11 column-middle">
-          <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
-          <a href="<?=get_the_permalink($post->ID)?>" class="card link">
-            <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
-            <div class="card-body">
-              <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
-              <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
-              <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
-              <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
-              <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
-              <?php endforeach; ?>
-            </div>
-          </a>
-          <?php endforeach; ?>
-        </div>
-        <div class="order-sm-3 order-md-3 col-sm-8 col-md-3-11 column-right">
-          <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
+      <div class="mb-5 list-news-container">
+        <div class="list-news">
+          <div class="order-2 order-md-1 col-sm-8 col-md-3-11 column-left">
+            <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 1) continue; ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
               <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
               <div class="card-body">
@@ -113,7 +84,38 @@
                 <?php endforeach; ?>
               </div>
             </a>
-          <?php endforeach; ?>
+            <?php endforeach; ?>
+          </div>
+          <div class="order-1 order-md-2 col-sm-8 col-md-5-11 column-middle">
+            <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
+            <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+              <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
+              <div class="card-body">
+                <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
+                <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
+                <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
+                <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+                <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+                <?php endforeach; ?>
+              </div>
+            </a>
+            <?php endforeach; ?>
+          </div>
+          <div class="order-3 order-md-3 col-sm-8 col-md-3-11 column-right">
+            <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
+              <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+                <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
+                <div class="card-body">
+                  <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
+                  <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
+                  <p class="text-truncate"><?=get_the_excerpt($post->ID)?></p>
+                  <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
+                  <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+                  <?php endforeach; ?>
+                </div>
+              </a>
+            <?php endforeach; ?>
+          </div>
         </div>
       </div>
       <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore">发现更多</a>
