@@ -537,7 +537,7 @@ YB.Judge = (function($){
 
 	function bindEvent() {
 		// 大咖中心图片预览
-		page.find('.custom-file-input').change(function() {
+		page.find('.custom-file-container .custom-file-input').change(function() {
 			var input = this;
 			var _this = $(this);
 			if (input.files && input.files[0]) {
@@ -546,6 +546,14 @@ YB.Judge = (function($){
 					_this.next('img').attr('src', e.target.result).removeClass('d-none');
 				}
 				reader.readAsDataURL(input.files[0]);
+			}
+		})
+		// 文件名预览
+		page.find('input[name="resume"]').change(function() {
+			var input = this;
+			var _this = $(this);
+			if (input.files && input.files[0]) {
+				_this.next('label').text(input.files[0].name);
 			}
 		})
 
