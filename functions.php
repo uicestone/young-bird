@@ -243,6 +243,9 @@ if (WP_DEVELOP) {
 }
 
 add_filter('pre_get_posts', function ($query) {
+
+  if (is_admin()) return;
+
   if ($query->query['category_name'] === 'home-primary') {
     $limit = 2;
   }
