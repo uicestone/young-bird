@@ -168,12 +168,23 @@ else:
           </div>
           <span><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
-            <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
-            <i class="tag tag-rose"><?=$tag->name?></i>
-            <?php endforeach; endif; ?>
-            <!--<div>
-              分享至：
-            </div>-->
+            <div>
+              <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
+              <i class="tag tag-rose"><?=$tag->name?></i>
+              <?php endforeach; endif; ?>
+            </div>
+            <div class="d-flex align-items-center share">
+              分享至：<!-- JiaThis Button BEGIN -->
+              <div class="jiathis_style_32x32">
+              	<a class="jiathis_button_tsina"></a>
+              	<a class="jiathis_button_weixin"></a>
+              	<a class="jiathis_button_qzone"></a>
+              	<a class="jiathis_button_fb"></a>
+              	<a class="jiathis_button_twitter"></a>
+              </div>
+              <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+              <!-- JiaThis Button END -->
+            </div>
           </div>
         </section>
         <div class="context">
