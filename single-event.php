@@ -153,7 +153,7 @@ else:
         <section class="header">
           <!-- poster -->
           <div class="poster">
-            <?php the_post_thumbnail('hd'); ?>
+            <img src="<?=get_field('kv')['sizes']['hd']?>">
           </div>
           <!-- title -->
           <div class="title row justify-content-between align-items-center mx-auto">
