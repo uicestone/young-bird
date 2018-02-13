@@ -536,6 +536,19 @@ YB.Judge = (function($){
 	}
 
 	function bindEvent() {
+		// 大咖中心图片预览
+		page.find('.custom-file-input').change(function() {
+			var input = this;
+			var _this = $(this);
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					_this.next('img').attr('src', e.target.result).removeClass('d-none');
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		})
+
 		// 增加表单项
 		page.on('click', '.form-group .fa-plus-circle', function(e) {
 			e.preventDefault();

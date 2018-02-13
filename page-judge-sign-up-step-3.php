@@ -9,10 +9,11 @@
       <p class="mb-4"><strong>请填写下列信息来激活您的账号</strong></p>
       <form method="post" enctype="multipart/form-data" class="row step-3">
         <div class="col-md-6 mb-3">
-          <div class="avatar border bg-light-grey d-flex justify-content-center align-items-center flex-column">
+          <div class="custom-file-container avatar border bg-light-grey d-flex justify-content-center align-items-center flex-column">
             <i class="fas fa-plus"></i>
             <p class="mt-3">请上传您的公关照</p>
             <input type="file" name="avatar" class="custom-file-input">
+            <img src="" class="d-none">
           </div>
         </div>
         <div class="col-md-18">

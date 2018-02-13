@@ -77,6 +77,8 @@ get_header(); ?>
                   <input type="file" name="avatar" class="custom-file-input">
                   <?php if ($avatar = get_user_meta($user->ID, 'avatar', true)): ?>
                   <img src="<?=$avatar?>">
+                  <?php else: ?>
+                  <img src="" class="d-none">
                   <?php endif; ?>
                 </div>
               </div>
