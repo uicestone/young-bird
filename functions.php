@@ -254,6 +254,11 @@ add_filter('pre_get_posts', function ($query) {
   elseif ($query->query['category_name'] === 'home-secondary') {
     $limit = 6;
   }
+  elseif ($query->query['post_type'] === 'work' && $_GET['event_id']) {
+    $limit = 20;
+    set_query_var('meta_key', 'event');
+    set_query_var('meta_value', $_GET['event_id']);
+  }
   else {
     $limit = get_option('posts_per_page');
   }

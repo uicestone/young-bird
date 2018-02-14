@@ -1,10 +1,10 @@
-.pagination {
+.pagination, ul.page-numbers {
   display: flex;
   @include list-unstyled();
   @include border-radius();
 }
 
-.page-link {
+.page-link, a.page-numbers, span.page-numbers {
   position: relative;
   display: block;
   padding: $pagination-padding-y $pagination-padding-x;
@@ -28,9 +28,9 @@
   }
 }
 
-.page-item {
+.page-item, ul.page-numbers>li {
   &:first-child {
-    .page-link {
+    .page-link, a.page-numbers, span.page-numbers {
       margin-left: 0;
       @include border-left-radius($border-radius);
     }
@@ -41,7 +41,7 @@
     }
   }
 
-  &.active .page-link {
+  &.active .page-link, span.page-numbers.current {
     z-index: 1;
     color: $pagination-active-color;
     background-color: $pagination-active-bg;

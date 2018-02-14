@@ -50,23 +50,7 @@ get_header(); ?>
         <?php endwhile; ?>
       </div>
       <nav class="mt-5">
-        <ul class="pagination justify-content-end">
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-              <i class="fas fa-angle-left"></i>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item active"><a class="page-link" href="#">01</a></li>
-          <li class="page-item"><a class="page-link" href="#">02</a></li>
-          <li class="page-item"><a class="page-link" href="#">03</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <i class="fas fa-angle-right"></i>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
+        <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>', 'before_page_number' => '0'))?>
       </nav>
     </div>
 <?php get_footer(); ?>

@@ -40,17 +40,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // custom pagination
-.page-item {
-  &.active {
-    .page-link {
-      background-color: #686868;
-    }
+.pagination, ul.page-numbers {
+  justify-content: flex-end !important;
+}
+
+.page-item, ul.page-numbers {
+  &.active .page-link, >li>span.page-numbers.current {
+    background-color: #686868;
   }
   &:first-child .page-link,
-  &:last-child .page-link {
+  &:last-child .page-link,
+  >li>a.page-numbers.next,
+  >li>a.page-numbers.prev {
     background-color: $white;
   }
-  .page-link {
+  .page-link, a.page-numbers, span.page-numbers {
     border: none;
     background-color: #eeeeee;
     padding: 0.5rem 0.65rem;
