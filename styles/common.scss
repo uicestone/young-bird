@@ -787,6 +787,11 @@ a.link {
     }
     i, span {
       font-size: 1.4rem;
+      color: $silver;
+    }
+    i {
+      position: relative;
+      top: .1rem;
     }
   }
   .bg-light-grey {
@@ -851,12 +856,23 @@ a.link {
         margin-top: 40px;
       }
       .action {
+        min-width: 200px;
         .far, .fas {
           font-size: 1.2rem;
         }
         span {
+          font-size: $font-size-xs;
           color: $black;
         }
+      }
+      .time {
+        font-size: $font-size-base;
+        color: $silver;
+      }
+      .tag {
+        font-size: $font-size-base;
+        color: white;
+        font-weight: bold;
       }
     }
     .poster {
@@ -868,11 +884,12 @@ a.link {
     .context {
       h2 {
         font-size: 33px;
-        color: #717171;
+        color: $silver;
         border-top: 2px solid #7b7b7b;
         padding-top: 34px;
         padding-bottom: 20px;
         span {
+          font-weight: bold;
           margin-left: 28px;
         }
       }
@@ -893,11 +910,14 @@ a.link {
           }
         }
       }
-      .avatar img {
+      .avatar {
+        flex: none;
         width: 140px;
-        height: 140px;
-        border-radius: 70px;
-        overflow: hidden;
+        img {
+          width: 140px;
+          border-radius: 70px;
+          overflow: hidden;
+        }
       }
     }
   }

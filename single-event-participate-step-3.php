@@ -18,8 +18,8 @@
           <img src="<?=get_field('logo')['url']?>" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
-          <h1 class="text-center mb-4">报名信息填写</h1>
-          <h3 class="text-center">请选择您的参赛身份</h3>
+          <h1 class="font-weight-bold color-silver text-center mb-4">报名信息填写</h1>
+          <h3 class="font-weight-normal color-silver text-center">请选择您的参赛身份</h3>
           <div class="form-participate-position">
             <form method="post">
               <div class="row options mt-6 mb-5">
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="check-1 d-none">
-                <h4 class="my-3">你可以创建一个团队，或者去寻找一个团队加入</h4>
+                <h4 class="font-weight-normal color-silver my-3">你可以创建一个团队，或者去寻找一个团队加入</h4>
                 <div class="row no-gutters mb-4 tab">
                   <div class="col">
                     <button type="button" class="btn btn-lg btn-secondary btn-block">创建</button>

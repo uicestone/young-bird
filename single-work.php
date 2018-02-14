@@ -49,15 +49,15 @@ get_header(); ?>
     <div class="container mt-5 pb-6 work-detail">
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
-        <h1>请上传作品简介</h1>
-        <h2 class="color-black">参赛编号：YB<?=strtoupper($post->post_name)?></h2>
+        <h1 class="font-weight-bold color-silver">请上传作品简介</h1>
+        <h2 class="font-weight-bold color-silver">参赛编号：YB<?=strtoupper($post->post_name)?></h2>
       </div>
       <form method="post" enctype="multipart/form-data">
         <div class="row mt-3 word-desc">
           <div class="col-md-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="曾获奖项">
+                <input type="text" class="form-control" placeholder="作品名">
               </div>
             </div>
             <div class="input-group input-group-lg">
@@ -69,9 +69,9 @@ get_header(); ?>
               <?php if ($poster = get_post_meta(get_the_ID(), 'poster', true)): ?>
                 <img src="<?=$poster?>" style="width:100%;height:100%;object-fit:cover">
               <?php else: ?>
-              <i class="fas fa-plus mb-3"></i>
-              <p class="mb-1">点击上传封面</p>
-              <p class="mb-0">图片最大不超过500KB</p>
+              <i class="fas fa-plus mb-3 color-silver"></i>
+              <p class="mb-1 color-silver">点击上传封面</p>
+              <p class="mb-0 color-silver">图片最大不超过500KB</p>
               <?php endif; ?>
               <input type="file" name="poster" class="custom-file-input">
             </div>
@@ -79,15 +79,15 @@ get_header(); ?>
         </div>
         <!-- 作品 -->
         <div class="row mx-auto mt-4">
-          <h1>上传作品</h1>
+          <h1 class="font-weight-bold color-silver">上传作品</h1>
         </div>
-        <p>您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。</p>
+        <p class="font-weight-normal color-silver">您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。</p>
         <div class="row work-upload mb-3">
           <?php $images = get_post_meta(get_the_ID(), 'images'); foreach ($images as $index => $image): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
-              <i class="fas fa-plus"></i>
-              <p class="mt-2">点击上传图片</p>
+              <i class="fas fa-plus color-silver"></i>
+              <p class="mt-2 color-silver">点击上传图片</p>
               <input type="file" name="images[<?=$index?>]" class="custom-file-input">
               <img src="<?=$image?>">
               <a href="<?php the_permalink(); ?>?delete_image=<?=urlencode($image)?>"><i class="fas fa-trash-alt"></i></a>
@@ -97,8 +97,8 @@ get_header(); ?>
           <?php for ($i=0; $i<5-count($images); $i++): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
-              <i class="fas fa-plus"></i>
-              <p class="mt-2">点击上传图片</p>
+              <i class="fas fa-plus color-silver"></i>
+              <p class="mt-2 color-silver">点击上传图片</p>
               <input type="file" name="images[]" class="custom-file-input">
               <img src="" class="d-none" alt="">
               <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
@@ -106,7 +106,7 @@ get_header(); ?>
           </div>
           <?php endfor; ?>
         </div>
-        <p class="mb-5">拖动图片来改变顺序。</p>
+        <p class="mb-5 color-silver">拖动图片来改变顺序。</p>
         <div class="row">
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview">预览</button>

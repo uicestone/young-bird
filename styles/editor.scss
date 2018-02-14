@@ -5,7 +5,7 @@
   }
   hr {
     margin: 30px 0;
-    border-top: 2px solid #717171;
+    border-top: 2px solid $silver;
   }
   p {
     font-size: .9rem;
@@ -28,10 +28,10 @@
     margin-bottom: 1rem;
     strong {
       font-size: 1.8rem;
-      color: #717171;
+      color: $silver;
       display: inline-block;
       padding-top: .8rem;
-      border-top: 6px solid #717171;;
+      border-top: 6px solid $silver;;
     }
   }
 }

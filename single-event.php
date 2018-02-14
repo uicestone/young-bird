@@ -156,9 +156,9 @@ else:
             <img src="<?=get_field('kv')['sizes']['hd']?>">
           </div>
           <!-- title -->
-          <div class="title row justify-content-between align-items-center mx-auto">
+          <div class="title row flex-nowrap justify-content-between align-items-center mx-auto">
             <h1 class="color-black font-weight-bold"><?php the_title(); ?></h1>
-            <div class="action">
+            <div class="action d-flex align-items-center justify-content-end">
               <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
               <span class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
@@ -166,7 +166,7 @@ else:
               <i class="far fa-heart"></i>
             </div>
           </div>
-          <span><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
+          <span class="time"><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
             <div>
               <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
@@ -211,7 +211,7 @@ else:
             <?php foreach ($judges as $judge): ?>
             <div class="col-md-8">
               <a href="<?=get_the_permalink($judge->ID)?>">
-                <div class="d-flex align-items-center py-4">
+                <div class="d-flex flex-nowrap align-items-start py-4">
                   <div class="avatar">
                     <?=get_the_post_thumbnail($judge->ID, 'thumbnail')?>
                   </div>
@@ -255,7 +255,7 @@ else:
               <hr />
               <div class="card-body">
                 <h4 class="text-truncate"><?=get_the_title($news->ID)?></h4>
-                <h4 class="text-truncate"><?=get_the_subtitle($news->ID)?></h4>
+                <p class="text-truncate"><?=get_the_subtitle($news->ID)?></p>
               </div>
             </a>
           </div>

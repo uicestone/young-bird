@@ -51,15 +51,15 @@ get_header(); ?>
     <div class="mt-7 pb-7 page-group-detail">
       <div class="container members mb-5">
         <div class="row justify-content-between header mb-3">
-          <h3><?php the_title(); ?>（成员/<?=count(get_post_meta(get_the_ID(), 'members'))?>）</h3>
-          <h3>参赛编号：YB<?=$event_id?>-<?=get_the_ID()?></h3>
+          <h3 class="color-silver font-weight-bold"><?php the_title(); ?>（成员/<?=count(get_post_meta(get_the_ID(), 'members'))?>）</h3>
+          <h3 class="color-silver font-weight-bold">参赛编号：YB<?=$event_id?>-<?=get_the_ID()?></h3>
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">
             <?=get_avatar($captain->ID, 128, '', '', array('class' => 'rounded-circle'))?>
             <div class="ml-4">
-              <div class="role">/组长</div>
-              <div class="name"><?=$captain->display_name?></div>
+              <div class="role color-silver">/组长</div>
+              <div class="name color-silver"><?=$captain->display_name?></div>
             </div>
           </div>
           <div class="d-flex flex-wrap">
@@ -67,8 +67,8 @@ get_header(); ?>
             <div class="avatar-container d-flex align-items-center">
               <?=get_avatar($member_id, 128, '', '', array('class' => 'rounded-circle'))?>
               <div class="ml-4">
-                <div class="role">/组员</div>
-                <div class="name"><?=get_user_by('ID', $member_id)->display_name?></div>
+                <div class="role color-silver">/组员</div>
+                <div class="name color-silver"><?=get_user_by('ID', $member_id)->display_name?></div>
               </div>
               <?php if ($captain->ID == get_current_user_id()): ?>
               <a href="<?php the_permalink(); ?>?remove_member=<?=$member_id?>">
@@ -115,7 +115,7 @@ get_header(); ?>
       </div>
       <div class="container works">
         <div class="row header">
-          <h3>作品</h3>
+          <h3 class="color-silver font-weight-bold">作品</h3>
         </div>
         <div class="work-list">
           <?php if (get_current_user_id() == $captain->ID && !$work): ?>
@@ -123,7 +123,7 @@ get_header(); ?>
           <div class="no-work">
             <div class="row">
               <div class="col">
-                <h3 class="color-black mt-4 mb-3">请上传您的作品</h3>
+                <h3 class="font-weight-bold color-black mt-4 mb-3">请上传您的作品</h3>
               </div>
             </div>
             <div class="row justify-content-end">

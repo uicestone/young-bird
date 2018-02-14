@@ -20,7 +20,7 @@
         <div class="col-md-12 offset-md-2">
           <div class="msg text-center mb-4">
             <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="">
-            <h3 class="mt-3">恭喜参赛成功!</h3>
+            <h3 class="color-silver font-weight-normal mt-3">恭喜参赛成功!</h3>
             <a href="#" class="d-sm-block d-lg-none">请至PC端上传您的作品</a>
           </div>
           <a href="<?=get_permalink($group->ID)?>" class="btn btn-lg btn-secondary btn-block mt-6"><?=$im_leader ? '上传作品' : '查看团队'?></a>

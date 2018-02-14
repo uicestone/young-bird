@@ -18,7 +18,7 @@
           <img src="<?=get_field('logo')['url']?>" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
-          <h1 class="text-center mb-4">报名信息填写</h1>
+          <h1 class="font-weight-bold color-silver text-center mb-4">报名信息填写</h1>
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">

@@ -4,6 +4,7 @@ $body-color: #000;
 $link-color: #000;
 $font-size-base: 1rem;
 $font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
 $h1-font-size: $font-size-base * 2.5 !default;
 $h2-font-size: $font-size-base * 2 !default;
 $h3-font-size: $font-size-base * 1.25 !default;
@@ -45,8 +46,9 @@ $cyan:        #2b00ff;
 $green:       #6ad500;
 $orange:      #ff7900;
 $dark-grey:   #2e2e2e;
-$grey:        #9fa0a0;
 $light-grey:  #dfdfdf;
+$grey:        #9fa0a0;
+$silver:      #717171;
 $body-grey:   #686868;
 $black:       #000000;
 $white:       #ffffff;
@@ -72,7 +74,8 @@ $icons: map-merge((
   "black": $black,
   "white": $white,
   "brick": $brick,
-  "body-grey": $body-grey
+  "body-grey": $body-grey,
+  "silver": $silver
 ), $icons);
 
 $border-radius:    0;
@@ -95,7 +98,7 @@ $custom-file-height: 4rem;
 $custom-file-padding-y: 0;
 $custom-file-line-height: $custom-file-height;
 $link-hover-decoration: none;
-
+$input-placeholder-color: $silver;
 
 // bootstrap
 @import "../bootstrap/scss/bootstrap";
