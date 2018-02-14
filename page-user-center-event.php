@@ -53,7 +53,11 @@
                       <span class="mr-4">参赛人数 / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
                     </div>
                     <div>
-                      <button type="button" class="btn btn-outline-primary ml-2">我的作品</button>
+                      <?php if (!current_user_can('judge_works')): ?>
+                      <button type="button" onclick="location.href='<?=get_the_permalink($event->ID)?>';return false" class="btn btn-outline-primary ml-2">我的作品</button>
+                      <?php elseif (1 || get_post_meta($event->ID, 'status', true) === 'ended'): ?>
+                      <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2">评审作品</button>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
