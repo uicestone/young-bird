@@ -1,6 +1,9 @@
 <?php
 
 the_post();
+$event_id = get_post_meta(get_the_ID(), 'event', true);
+$captain = get_user_by('ID', get_post()->post_author);
+$work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
@@ -19,7 +22,6 @@ if ($remove_member = $_GET['remove_member']) {
 }
 
 if (isset($_GET['create-work'])) {
-  $event_id = get_post_meta(get_the_ID(), 'event', true);
   $work_id = wp_insert_post(array (
     'post_type' => 'work',
     'post_status' => 'publish',
@@ -30,8 +32,6 @@ if (isset($_GET['create-work'])) {
   add_post_meta($work_id, 'group', get_the_ID());
   header('Location: ' . get_the_permalink($work_id)); exit;
 }
-
-$captain = get_user_by('ID', get_post()->post_author);
 
 get_header(); ?>
     <!-- Banner -->
@@ -52,7 +52,7 @@ get_header(); ?>
       <div class="container members mb-5">
         <div class="row justify-content-between header mb-3">
           <h3><?php the_title(); ?>（成员/<?=count(get_post_meta(get_the_ID(), 'members'))?>）</h3>
-          <h3>参赛编号：YB<?=get_the_ID()?></h3>
+          <h3>参赛编号：YB<?=$event_id?>-<?=get_the_ID()?></h3>
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">
@@ -118,7 +118,7 @@ get_header(); ?>
           <h3>作品</h3>
         </div>
         <div class="work-list">
-          <?php if (get_current_user_id() == $captain->ID && !$work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0]): ?>
+          <?php if (get_current_user_id() == $captain->ID && !$work): ?>
           <!-- 未上传 -->
           <div class="no-work">
             <div class="row">
