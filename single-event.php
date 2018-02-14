@@ -28,7 +28,7 @@ if (isset($_POST['participate'])) {
 if (isset($_POST['create_group'])) {
   $groups = get_posts(array (
     'post_type' => 'group',
-    'title' => $_POST['group_name_join'],
+    'title' => $_POST['group_name_create'],
     'meta_key' => 'event',
     'meta_value' => get_the_ID()
   ));
