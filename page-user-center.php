@@ -55,7 +55,7 @@ else: ?>
       <div class="container">
         <ul>
           <li class="active"><a href="<?php the_permalink(); ?>">个人信息</a></li>
-          <li><a href="<?php the_permalink(); ?>?event">我的比赛</a></li>
+          <li><a href="<?php the_permalink(); ?>?event">我的竞赛</a></li>
           <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
         </ul>
       </div>

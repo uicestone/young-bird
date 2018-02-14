@@ -15,7 +15,7 @@
             <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="">
             <h3 class="mt-3">成功激活大咖账号！</h3>
             <!--<p class="mb-2">您即将进入评委中心，如果未自动跳转，请点击以下链接</p>-->
-            <a href="<?=site_url()?>/judge-center/"><u>进入评委中心</u></a>
+            <a href="<?=site_url()?>/judge-center/"><u>进入大咖中心</u></a>
           </div>
           <div class="qr text-center">
             <img src="<?=get_stylesheet_directory_uri()?>/images/qrcode.jpg" alt="">

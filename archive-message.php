@@ -2,7 +2,11 @@
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
+        <?php if (current_user_can('judge_works')): ?>
+        <h1>_大咖中心 <br>JUDGE CENTER</h1>
+        <?php else: ?>
         <h1>_用户中心 <br>USER CENTER</h1>
+        <?php endif; ?>
       </div>
     </div>
     <!-- Menu -->
@@ -10,7 +14,7 @@
       <div class="container">
         <ul>
           <li><a href="<?=site_url()?>/user-center/">个人信息</a></li>
-          <li><a href="<?=site_url()?>/event/?user-center">我的比赛</a></li>
+          <li><a href="<?=site_url()?>/event/?user-center">我的竞赛</a></li>
           <li class="active"><a href="<?=site_url()?>/message/">消息<i></i></a></li>
         </ul>
       </div>
