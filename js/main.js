@@ -494,6 +494,7 @@ YB.Pubu = (function($) {
 	var btn = container.find('.btn-loadmore');
 	var page = 1;
 	var total = 2;
+	var ajaxUrl;
 
 	function init() {
 		bindEvent();
@@ -506,10 +507,11 @@ YB.Pubu = (function($) {
 	}
 
 	function loadMore(fn) {
+		ajaxUrl = "/category/" +btn.data('name')+ '/page/' + page + '/?patial=true&' + (location.search.replace(/^\?/, ''));
 		if(page > total) return
 		$.ajax({
 		  method: "GET",
-		  url: "/category/"+btn.data('name')+"/page/"+page+"/?partial=true",
+		  url: ajaxUrl
 		})
 		  .done(function( data, textStatus, jqXHR ) {
 				totalPrimary = jqXHR.getResponseHeader('total-pages');
