@@ -245,10 +245,12 @@ else:
             <a href="<?=get_permalink($news->ID)?>" class="card mb-3 item-sub-history">
               <?=get_the_post_thumbnail($news->ID, '8-7', array ('class' => 'card-img-top'))?>
               <div class="card-label">
-                <?php if ($tags = get_the_tags($news->ID)): foreach ($tags as $tag): ?>
-                <span>#<?=$tag->name?></span>
-                <?php endforeach; endif; ?>
-                <div class="tag tag-blue">-标签位置-</div>
+                <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $news->ID))?></span>
+                <div>
+                  <?php foreach (get_the_terms($news->ID, 'news_category') ?: array() as $term): ?>
+                  <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+                  <?php endforeach; ?>
+                </div>
               </div>
               <hr />
               <div class="card-body">
