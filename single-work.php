@@ -3,28 +3,66 @@ if ( ! function_exists( 'wp_handle_upload' ) ) {
   require_once( ABSPATH . 'wp-admin/includes/file.php' );
 }
 
-if ($_FILES['poster'] && $_FILES['images']) {
-  update_post_meta(get_the_ID(), 'award', $_POST['award']);
-  update_post_meta(get_the_ID(), 'desc', $_POST['desc']);
+the_post();
+
+$event = get_field('event');
+$description = get_post_meta(get_the_ID(), 'description', true);
+$images = get_post_meta(get_the_ID(), 'images');
+
+if (isset($_POST['submit'])) {
+  $work = get_post();
+  $work->post_title = $_POST['work_title'];
+  wp_update_post($work);
+  update_post_meta(get_the_ID(), 'description', $_POST['description']);
 
   $poster = wp_handle_upload($_FILES['poster'], array ('test_form' => false));
-  update_post_meta(get_the_ID(), 'poster', $poster['url']);
+
+  if($poster['url']) {
+
+    if ( ! function_exists( 'wp_crop_image' ) ) {
+      include( ABSPATH . 'wp-admin/includes/image.php' );
+    }
+
+    update_post_meta(get_the_ID(), 'poster', $poster['url']);
+
+    $attachment = array(
+      'post_title' => $poster['name'],
+      'post_type' => 'attachment',
+      'post_parent' => get_the_ID(),
+      'post_mime_type' => $poster['type'],
+      'guid' => $poster['url']
+    );
+
+    $thumbnail_id = wp_insert_attachment( $attachment, $attachment[ 'file' ], get_the_ID() );
+    wp_update_attachment_metadata( $thumbnail_id, wp_generate_attachment_metadata( $thumbnail_id, $poster['file'] ) );
+    update_attached_file($thumbnail_id, $poster['file']);
+    set_post_thumbnail($work->ID, $thumbnail_id);
+  }
+
   $files = $_FILES['images'];
-  foreach ($files['name'] as $key => $value) {
-    if ($files['name'][$key]) {
+
+  foreach ($files['name'] as $index => $filename) {
+    if ($files['name'][$index]) {
       $file = array(
-        'name'     => $files['name'][$key],
-        'type'     => $files['type'][$key],
-        'tmp_name' => $files['tmp_name'][$key],
-        'error'    => $files['error'][$key],
-        'size'     => $files['size'][$key]
+        'name'     => $files['name'][$index],
+        'type'     => $files['type'][$index],
+        'tmp_name' => $files['tmp_name'][$index],
+        'error'    => $files['error'][$index],
+        'size'     => $files['size'][$index]
       );
 
       $upload_image = wp_handle_upload($file, array ('test_form' => false));
 
-      add_post_meta(get_the_ID(), 'images', $upload_image['url']);
+      if ($images[$index]) {
+        update_post_meta(get_the_ID(), 'images', $upload_image['url'], $images[$index]);
+      }
+      else {
+        add_post_meta(get_the_ID(), 'images', $upload_image['url']);
+      }
     }
   }
+
+  header('Location: ' . get_the_permalink()); exit;
 }
 
 if ($delete_image_url = $_GET['delete_image']) {
@@ -35,15 +73,15 @@ get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_desktop', $event)['url']?>" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_pad', $event)['url']?>" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_phone', $event)['url']?>" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6 work-detail">
@@ -57,11 +95,11 @@ get_header(); ?>
           <div class="col-md-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" class="form-control" placeholder="作品名">
+                <input type="text" name="work_title" value="<?php the_title(); ?>" class="form-control" placeholder="作品名">
               </div>
             </div>
             <div class="input-group input-group-lg">
-              <textarea class="form-control" placeholder="描述"></textarea>
+              <textarea class="form-control" name="description" placeholder="描述"><?=$description?></textarea>
             </div>
           </div>
           <div class="col-md-12">
@@ -84,7 +122,7 @@ get_header(); ?>
         </div>
         <p class="font-weight-normal color-silver">您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。</p>
         <div class="row work-upload mb-3">
-          <?php $images = get_post_meta(get_the_ID(), 'images'); foreach ($images as $index => $image): ?>
+          <?php foreach ($images as $index => $image): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
@@ -114,22 +152,20 @@ get_header(); ?>
             <div class="d-none preview-box">
               <a class="w-100">
                 <div class="row mx-auto justify-content-between">
-                  <h3>城市里的行走</h3>
+                  <h3><?php the_title(); ?></h3>
                   <h4>YB<?=strtoupper($post->post_name)?></h4>
                 </div>
-                <p class="mt-3">户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。
-                  户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+                <p class="mt-3">
+                  <?=$description?>
+                </p>
               </a>
-              <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
-              </a>
-              <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+              <a href="<?=get_the_post_thumbnail_url(get_the_ID())?>">
+                <?php the_post_thumbnail('full'); ?>
               </a>
             </div>
           </div>
           <div class="col-12">
-            <button type="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey">上传</button>
+            <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey">上传</button>
           </div>
         </div>
       </form>
