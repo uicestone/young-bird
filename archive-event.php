@@ -1,4 +1,33 @@
-<?php get_header();
+<?php
+if (!isset($_GET['partial'])):
+  while (have_posts()): the_post(); ?>
+  <div class="col-md-12">
+    <div class="card mb-4 item-history">
+      <a href="<?php the_permalink(); ?>">
+        <?php the_post_thumbnail('vga', array ('class' => 'card-img-top')); ?>
+        <div class="card-body mt-4">
+          <div class="row head justify-content-between align-items-center">
+            <div class="labels">
+              <?php if ($event_category = get_the_terms(get_the_ID(), 'event_category')): foreach ($event_category as $term): ?>
+                <b class="label color-grey" style="color: <?=get_field('color', $term)?>"><?=$term->name?></b>
+              <?php endforeach; endif; ?>
+            </div>
+            <div><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></div>
+          </div>
+          <h3 class="mt-3"><?php the_title(); ?></h3>
+          <p class="color-black mb-4 organizer"><?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
+          <p><?php the_excerpt(); ?></p>
+          <div class="action row align-items-center">
+            <i class="far fa-user mr-2"></i>
+            <b class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
+            <i class="far fa-heart"></i>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+<?php endwhile; else:
+get_header();
     if (isset($_GET['history'])):
       get_template_part('archive-event-history');
     else: ?>
@@ -105,3 +134,4 @@
     </div>
 <?php endif;
 get_footer();
+endif;
