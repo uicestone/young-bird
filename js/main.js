@@ -2,6 +2,16 @@ var YB = window.YB || {};
 
 // Confirm 弹窗
 YB.Util = (function($) {
+	function preview(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(input).next('img').attr('src', e.target.result).removeClass('d-none');
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
 	function confirm(opts) {
 		opts  = $.extend( true, {
 	    title     : 'Are you sure?',
@@ -104,7 +114,8 @@ YB.Util = (function($) {
 		confirm: confirm,
 		open: open,
 		parseQueryString: parseQueryString,
-		is_sm: is_sm
+		is_sm: is_sm,
+		preview: preview
 	}
 })(jQuery);
 
@@ -224,6 +235,10 @@ YB.Work = (function($) {
 		    }
 		    reader.readAsDataURL(input.files[0]);
 		  }
+		})
+		// 作品预览图预览
+		workDetail.find('.poster.custom-file-container .custom-file-input').change(function() {
+			YB.Util.preview(this);
 		})
 		// 删除图片
 		$('.work-upload').on('click', '.delete', function(e) {
@@ -542,15 +557,7 @@ YB.Judge = (function($){
 	function bindEvent() {
 		// 大咖中心图片预览
 		page.find('.custom-file-container .custom-file-input').change(function() {
-			var input = this;
-			var _this = $(this);
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					_this.next('img').attr('src', e.target.result).removeClass('d-none');
-				}
-				reader.readAsDataURL(input.files[0]);
-			}
+			YB.Util.preview(this);
 		})
 		// 文件名预览
 		page.find('input[name="resume"]').change(function() {
@@ -589,6 +596,26 @@ YB.Judge = (function($){
 	}
 })(jQuery)
 
+// 用户
+YB.User = (function($){
+	var page = $('.user-center-body');
+
+	function init() {
+		bindEvent();
+	}
+
+	function bindEvent() {
+		// 用户中心图片预览
+		page.find('.custom-file-container .custom-file-input').change(function() {
+			YB.Util.preview(this);
+		})
+	}
+
+	return {
+		init: init
+	}
+})(jQuery)
+
 // init
 YB.Work.init();
 YB.Edit.init();
@@ -600,3 +627,4 @@ YB.Pubu.init();
 YB.Common.init();
 YB.Home.init();
 YB.Judge.init();
+YB.User.init();

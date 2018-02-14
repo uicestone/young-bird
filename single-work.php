@@ -53,7 +53,7 @@ get_header(); ?>
         <h2 class="font-weight-bold color-silver">参赛编号：YB<?=strtoupper($post->post_name)?></h2>
       </div>
       <form method="post" enctype="multipart/form-data">
-        <div class="row mt-3 word-desc">
+        <div class="row mt-3 work-desc">
           <div class="col-md-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
@@ -66,14 +66,15 @@ get_header(); ?>
           </div>
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
+              <input type="file" name="poster" class="custom-file-input">
               <?php if ($poster = get_post_meta(get_the_ID(), 'poster', true)): ?>
-                <img src="<?=$poster?>" style="width:100%;height:100%;object-fit:cover">
+                <img src="<?=$poster?>">
               <?php else: ?>
+              <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
               <p class="mb-1 color-silver">点击上传封面</p>
               <p class="mb-0 color-silver">图片最大不超过500KB</p>
               <?php endif; ?>
-              <input type="file" name="poster" class="custom-file-input">
             </div>
           </div>
         </div>
