@@ -9,12 +9,18 @@ else:
       exit('两次输入密码不一致，请返回修改');
     }
 
-    $user_id = wp_insert_user(array(
+    $user_data = array(
       'user_pass' => $_POST['password'],
       'user_login' => $_POST['login'],
       'user_registered' => date('Y-m-d H:i:s'),
       'show_admin_bar_front' => false
-    ));
+    );
+
+    if (is_email($_POST['login'])) {
+      $user_data['user_email'] = $_POST['login'];
+    }
+
+    $user_id = wp_insert_user($user_data);
 
     if(is_a($user_id, 'WP_Error')){
       exit(array_values($user_id->errors)[0][0]);
