@@ -31,6 +31,8 @@ if (isset($_GET['create-work'])) {
   header('Location: ' . get_the_permalink($work_id)); exit;
 }
 
+$captain = get_user_by('ID', get_post()->post_author);
+
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
@@ -53,9 +55,8 @@ get_header(); ?>
           <h3>参赛编号：YB<?=get_the_ID()?></h3>
         </div>
         <div class="member-list">
-          <?php $captain = get_user_by('ID', get_post()->post_author) ?>
           <div class="captain avatar-container d-flex align-items-center">
-            <?=get_avatar($member_id, 128, '', '', array('class' => 'rounded-circle'))?>
+            <?=get_avatar($captain->ID, 128, '', '', array('class' => 'rounded-circle'))?>
             <div class="ml-4">
               <div class="role">/组长</div>
               <div class="name"><?=$captain->display_name?></div>
@@ -96,6 +97,19 @@ get_header(); ?>
                 </div>
             </div>
             <?php endforeach; endif; ?>
+            <?php if (in_array(get_current_user_id(), get_post_meta(get_the_ID(), 'members_pending'))): ?>
+            <div class="avatar-container d-flex flex-column align-items-center">
+              <div class="d-flex align-items-center">
+                <?=get_avatar(get_current_user_id(), 80, '', '', array('class' => 'rounded-circle'))?>
+                <strong class="name ml-4"><?=wp_get_current_user()->display_name?></strong>
+              </div>
+              <div class="row">
+                <div class="offset-12 col-12">
+                  <button type="button" disabled class="btn btn-outline-primary btn-block">等待组长同意</button>
+                </div>
+              </div>
+            </div>
+            <?php endif; ?>
           </div>
         </div>
       </div>
@@ -104,7 +118,7 @@ get_header(); ?>
           <h3>作品</h3>
         </div>
         <div class="work-list">
-          <?php if (!$work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0]): ?>
+          <?php if (get_current_user_id() == $captain->ID && !$work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0]): ?>
           <!-- 未上传 -->
           <div class="no-work">
             <div class="row">
@@ -118,7 +132,7 @@ get_header(); ?>
               </div>
             </div>
           </div>
-          <?php else: ?>
+          <?php elseif ($work): ?>
           <!-- 已上传 -->
           <div class="row mt-6 work-container">
             <div class="col-sm-12 mb-4 mb-md-0">
