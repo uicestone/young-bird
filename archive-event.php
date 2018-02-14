@@ -45,9 +45,9 @@
         </div>
         <!-- <div class="col-md-6"></div> -->
       </div>
-      <div class="row">
+      <div class="row pubu">
         <div class="col-md-18">
-          <div class="row">
+          <div class="row pubu-list">
             <?php while (have_posts()): the_post(); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history">
@@ -76,7 +76,7 @@
             </div>
             <?php endwhile; ?>
           </div>
-          <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</button>-->
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="event">发现更多</button>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'event-list-ad')) as $ad): ?>
