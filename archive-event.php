@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['partial'])):
+if (isset($_GET['partial'])):
   while (have_posts()): the_post(); ?>
   <div class="col-md-12">
     <div class="card mb-4 item-history">
