@@ -140,7 +140,7 @@ else:
           <?php endif; ?>
           <li class="active">
             <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
-            <a href="<?php the_permalink(); ?>?participate">参赛</a>
+            <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>">参赛</a>
             <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
             <a href="<?=get_the_permalink($group->ID)?>">查看团队</a>
             <?php else: ?>
