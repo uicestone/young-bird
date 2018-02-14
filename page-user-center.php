@@ -38,7 +38,12 @@ if (isset($_POST['submit'])) {
   header('Location: ' . get_the_permalink()); exit;
 }
 
-get_header(); ?>
+get_header(); the_post(); if (isset($_GET['event'])):
+
+  include(locate_template('page-user-center-event.php'));
+
+else: ?>
+
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
@@ -49,8 +54,8 @@ get_header(); ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="<?=site_url()?>/user-center/">个人信息</a></li>
-          <li><a href="<?=site_url()?>/event/?user-center">我的比赛</a></li>
+          <li class="active"><a href="<?php the_permalink(); ?>">个人信息</a></li>
+          <li><a href="<?php the_permalink(); ?>?event">我的比赛</a></li>
           <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
         </ul>
       </div>
@@ -154,4 +159,4 @@ get_header(); ?>
         </div>
       </form>
     </div>
-<?php get_footer(); ?>
+<?php endif; get_footer(); ?>

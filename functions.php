@@ -269,3 +269,16 @@ function redirect_login ($force = false) {
 
   header('Location: ' . site_url() . '/sign-up/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
 }
+
+function get_event_status ($event_id) {
+  $status = get_post_meta($event_id, 'status', true);
+  $statuses = array (
+    'starting' => '即将开始',
+    'started' => '进行中',
+    'ending' => '即将结束',
+    'endied' => '已经结束',
+    'judged' => '评审完成',
+    'history' => '历史竞赛'
+  );
+  return $statuses[$status];
+}

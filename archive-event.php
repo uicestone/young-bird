@@ -1,8 +1,6 @@
 <?php get_header();
     if (isset($_GET['history'])):
       get_template_part('archive-event-history');
-    elseif (isset($_GET['user-center'])):
-      get_template_part('archive-event-user-center');
     else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-competition.jpg) center center / cover no-repeat">
