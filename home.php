@@ -33,15 +33,15 @@
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-pink mr-3"></i>
-            <span><?=__('进行中', 'young-bird')?></span>
+            <span><?=__('开始报名', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-rose mr-3"></i>
-            <span><?=__('即将结束', 'young-bird')?></span>
+            <span><?=__('即将截止', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-red mr-3"></i>
-            <span><?=__('已经结束', 'young-bird')?></span>
+            <span><?=__('报名截止', 'young-bird')?></span>
           </div>
         </div>
       </div>

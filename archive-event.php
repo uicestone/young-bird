@@ -48,10 +48,10 @@ get_header();
                 <div class="col-sm-19">
                   <select name="status" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option value=""<?=!$_GET['status'] ? ' selected' : ''?>><?=__('全部状态', 'young-bird')?></option>
-                    <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>><?=__('进行中', 'young-bird')?></option>
+                    <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>><?=__('开始报名', 'young-bird')?></option>
                     <option value="starting"<?=$_GET['status']=='starting' ? ' selected' : ''?>><?=__('即将开始', 'young-bird')?></option>
-                    <option value="ending"<?=$_GET['status']=='ending' ? ' selected' : ''?>><?=__('即将结束', 'young-bird')?></option>
-                    <option value="ended"<?=$_GET['status']=='ended' ? ' selected' : ''?>><?=__('已经结束', 'young-bird')?></option>
+                    <option value="ending"<?=$_GET['status']=='ending' ? ' selected' : ''?>><?=__('即将截止', 'young-bird')?></option>
+                    <option value="ended"<?=$_GET['status']=='ended' ? ' selected' : ''?>><?=__('报名截止', 'young-bird')?></option>
                     <option value="judged"<?=$_GET['status']=='judged' ? ' selected' : ''?>><?=__('评审完成', 'young-bird')?></option>
                   </select>
                 </div>
