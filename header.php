@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
-    <title><?php echo strip_tags(html_entity_decode(wp_title('-', false, 'right'))); bloginfo('sitename'); ?></title>
+    <title><?php echo preg_replace('/^  – /', '', strip_tags(html_entity_decode(wp_title('-', false, 'right')))); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
   <body>
