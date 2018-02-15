@@ -16,7 +16,7 @@ get_header(); ?>
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
-      <h1>作品列表/<?=get_the_title($event->ID)?> <?=get_the_subtitle($event->ID)?></h1>
+      <h1><?=__('作品列表', 'young-bird')?>/<?=get_the_title($event->ID)?> <?=get_the_subtitle($event->ID)?></h1>
       <div class="row mt-5 review-list">
         <?php while (have_posts()): the_post(); ?>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
@@ -24,7 +24,7 @@ get_header(); ?>
             <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">
               <h5 class="color-black text-center">YB<?=strtoupper($post->post_name)?></h5>
-              <h3 class="mb-0 text-center">待处理</h3>
+              <h3 class="mb-0 text-center"><?=__('待处理', 'young-bird')?></h3>
             </div>
           </div>
           <div class="d-none">

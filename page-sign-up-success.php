@@ -13,19 +13,19 @@
         <div class="col-md-12">
           <div class="msg text-center mb-4">
             <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="">
-            <h3 class="mt-3">恭喜注册成功!</h3>
-            <a href="<?=site_url()?>/user-center/">请至用户中心完善您的资料</a>
+            <h3 class="mt-3"><?=__('恭喜注册成功', 'young-bird')?>!</h3>
+            <a href="<?=site_url()?>/user-center/"><?=__('请至用户中心完善您的资料', 'young-bird')?></a>
           </div>
           <div class="qr text-center">
             <img src="<?=get_stylesheet_directory_uri()?>/images/qrcode.jpg" alt="">
-            <p class="font-weight-bold">扫码关注<br>关注YoungBird公众号<br>接收更多资讯</p>
+            <p class="font-weight-bold"><?=__('扫码关注', 'young-bird')?><br><?=__('关注', 'young-bird')?> YoungBird <?=__('公众号', 'young-bird')?><br><?=__('接收更多资讯', 'young-bird')?></p>
           </div>
           <div class="row justify-content-between">
             <div class="col-md-12 mt-2">
-              <button type="button" class="btn btn-secondary btn-block btn-lg">进入网站</button>
+              <button type="button" class="btn btn-secondary btn-block btn-lg"><?=__('进入网站', 'young-bird')?></button>
             </div>
             <div class="col-md-12 mt-2">
-              <button type="button" class="btn btn-secondary btn-block btn-lg">返回</button>
+              <button type="button" class="btn btn-secondary btn-block btn-lg"><?=__('返回', 'young-bird')?></button>
             </div>
           </div>
         </div>

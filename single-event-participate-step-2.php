@@ -18,24 +18,24 @@
           <img src="<?=get_field('logo')['url']?>" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
-          <h1 class="font-weight-bold color-silver text-center mb-4">报名信息填写</h1>
+          <h1 class="font-weight-bold color-silver text-center mb-4"><?=__('报名信息填写', 'young-bird')?></h1>
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="公司">
+                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=__('公司', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="部门">
+                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="title" value="<?=$title?>" class="form-control" placeholder="职位">
+                <input type="text" name="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
               </div>
             </div>
-            <button type="submit" name="participate" value="step-3" class="btn btn-lg btn-secondary btn-block">下一步</button>
+            <button type="submit" name="participate" value="step-3" class="btn btn-lg btn-secondary btn-block"><?=__('下一步', 'young-bird')?></button>
           </form>
         </div>
       </div>

@@ -19,7 +19,7 @@ if (isset($_GET['partial'])):
           <p><?php the_excerpt(); ?></p>
           <div class="action row align-items-center">
             <i class="far fa-user mr-2"></i>
-            <b class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
+            <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
             <i class="far fa-heart"></i>
           </div>
         </div>
@@ -44,25 +44,25 @@ get_header();
           <form action="" class="row">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛状态</strong></label>
+                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong><?=__('竞赛状态', 'young-bird')?></strong></label>
                 <div class="col-sm-19">
                   <select name="status" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
-                    <option value=""<?=!$_GET['status'] ? ' selected' : ''?>>全部状态</option>
-                    <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>>进行中</option>
-                    <option value="starting"<?=$_GET['status']=='starting' ? ' selected' : ''?>>即将开始</option>
-                    <option value="ending"<?=$_GET['status']=='ending' ? ' selected' : ''?>>即将结束</option>
-                    <option value="ended"<?=$_GET['status']=='ended' ? ' selected' : ''?>>已经结束</option>
-                    <option value="judged"<?=$_GET['status']=='judged' ? ' selected' : ''?>>评审完成</option>
+                    <option value=""<?=!$_GET['status'] ? ' selected' : ''?>><?=__('全部状态', 'young-bird')?></option>
+                    <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>><?=__('进行中', 'young-bird')?></option>
+                    <option value="starting"<?=$_GET['status']=='starting' ? ' selected' : ''?>><?=__('即将开始', 'young-bird')?></option>
+                    <option value="ending"<?=$_GET['status']=='ending' ? ' selected' : ''?>><?=__('即将结束', 'young-bird')?></option>
+                    <option value="ended"<?=$_GET['status']=='ended' ? ' selected' : ''?>><?=__('已经结束', 'young-bird')?></option>
+                    <option value="judged"<?=$_GET['status']=='judged' ? ' selected' : ''?>><?=__('评审完成', 'young-bird')?></option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong>竞赛类别</strong></label>
+                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong><?=__('竞赛类别', 'young-bird')?></strong></label>
                 <div class="col-sm-19">
                   <select name="tag" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
-                    <option value=""<?=!$_GET['tag'] ? ' selected' : ''?>>全部类别</option>
+                    <option value=""<?=!$_GET['tag'] ? ' selected' : ''?>><?=__('全部类别', 'young-bird')?></option>
                     <?php foreach (get_tags() as $tag): ?>
                     <option value="<?=$tag->slug?>"<?=$_GET['tag']==$tag->slug ? ' selected' : ''?>><?=$tag->name?></option>
                     <?php endforeach; ?>
@@ -96,7 +96,7 @@ get_header();
                     <p><?php the_excerpt(); ?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <b class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
+                      <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
                       <i class="far fa-heart"></i>
                     </div>
                   </div>
@@ -105,7 +105,7 @@ get_header();
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="event">发现更多</button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="event"><?=__('发现更多', 'young-bird')?></button>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'event-list-ad')) as $ad): ?>
@@ -124,7 +124,7 @@ get_header();
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
               <p><?=get_the_excerpt($ad)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
-              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
             </div>
           </a>

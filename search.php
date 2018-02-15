@@ -20,8 +20,8 @@
       </div>
       <!-- 新闻搜索结果 -->
       <div class="row mx-auto mb-2 justify-content-between">
-        <h2>新闻：</h2>
-        <h2>总共：03</h2>
+        <h2><?=__('新闻：', 'young-bird')?></h2>
+        <h2><?=__('总共：', 'young-bird')?>03</h2>
       </div>
       <div class="row mt-3 mb-2">
         <div class="col-md-8">
@@ -67,11 +67,11 @@
           </a>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
       <!-- 竞赛搜索结果 -->
       <div class="row mx-auto mt-5 mb-2 justify-content-between">
-        <h2>竞赛：</h2>
-        <h2>总共：03</h2>
+        <h2><?=__('竞赛：', 'young-bird')?></h2>
+        <h2><?=__('总共：', 'young-bird')?>03</h2>
       </div>
       <div class="row mt-3 mb-2">
         <div class="col-md-8">
@@ -87,7 +87,7 @@
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
-                <span class="mr-4">参赛人数 / 921</span>
+                <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / 921</span>
                 <i class="far fa-heart"></i>
               </div>
             </div>
@@ -106,7 +106,7 @@
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
-                <span class="mr-4">参赛人数 / 921</span>
+                <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / 921</span>
                 <i class="far fa-heart"></i>
               </div>
             </div>
@@ -125,13 +125,13 @@
               <p>户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
-                <span class="mr-4">参赛人数 / 921</span>
+                <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / 921</span>
                 <i class="far fa-heart"></i>
               </div>
             </div>
           </a>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
     </div>
 <?php get_footer(); ?>

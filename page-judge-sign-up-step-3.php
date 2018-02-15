@@ -24,7 +24,7 @@
             <div class="custom-file">
               <!-- En版请使用lang="en" -->
               <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
-              <label class="custom-file-label" for="resume">点击上传详细简历</label>
+              <label class="custom-file-label" for="resume"><?=__('点击上传详细简历', 'young-bird')?></label>
             </div>
           </div>
           <button type="submit" name="sign_up_success" class="btn btn-secondary btn-lg btn-common float-right">保存</button>

@@ -15,7 +15,7 @@ get_header(); the_post(); ?>
             </div>
             <!-- title -->
             <h1 class="color-black"><?php the_title(); ?></h1>
-            <span>发布时间 <?php the_date(); ?></span>
+            <span><?=__('发布时间', 'young-bird')?> <?php the_date(); ?></span>
             <div class="row justify-content-between align-items-center mt-4">
               <div class="d-flex align-items-center">
                 <i class="fas fa-eye mr-2"></i>
@@ -24,7 +24,7 @@ get_header(); the_post(); ?>
                 <span class="mr-4"><?=$likes?></span>
               </div>
               <div class="d-flex align-items-center share">
-                分享至：<!-- JiaThis Button BEGIN -->
+                <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
                 <div class="jiathis_style_32x32">
                 	<a class="jiathis_button_tsina"></a>
                 	<a class="jiathis_button_weixin"></a>
@@ -41,7 +41,7 @@ get_header(); the_post(); ?>
             <?php the_content(); ?>
           </div>
           <?php if ($event = get_field('event')): ?>
-          <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">立即报名</a>
+          <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; ?>
         </div>
         <div class="col-md-6">
@@ -61,7 +61,7 @@ get_header(); the_post(); ?>
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
               <p><?=get_the_excerpt($ad)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
-              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
             </div>
           </a>

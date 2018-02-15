@@ -13,9 +13,9 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li><a href="<?=site_url()?>/user-center/">个人信息</a></li>
-          <li><a href="<?=site_url()?>/event/?user-center">我的竞赛</a></li>
-          <li class="active"><a href="<?=site_url()?>/message/">消息<i></i></a></li>
+          <li><a href="<?=site_url()?>/user-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <li><a href="<?=site_url()?>/event/?user-center"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li class="active"><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>

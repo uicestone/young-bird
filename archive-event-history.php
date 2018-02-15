@@ -28,7 +28,7 @@
                     <p><?php the_excerpt(); ?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <span class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
+                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
                       <i class="far fa-heart"></i>
                     </div>
                   </div>
@@ -37,7 +37,7 @@
             </div>
             <?php endwhile; ?>
           </div>
-          <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</button>-->
+          <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></button>-->
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'event-history-list-ad')) as $ad): ?>
@@ -47,7 +47,7 @@
                 <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
                 <p><?=get_the_excerpt($ad->ID)?></p>
                 <?php if ($ad_event = get_field('event', $ad)): ?>
-                <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+                <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
                 <?php endif; ?>
               </div>
             </a>

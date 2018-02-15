@@ -14,13 +14,13 @@
           <form method="post" action="/forget-password/?email-verify">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="email" name="email" class="form-control" placeholder="邮箱">
+                <input type="email" name="email" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
-            <button type="submit" class="btn btn-secondary btn-block btn-lg">找回密码</button>
+            <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('找回密码', 'young-bird')?></button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div><a href="<?=site_url()?>/login/" class="text-underline">返回登录页面</a></div>
-              <div><a href="<?=site_url()?>/forget-password/" class="text-underline">手机找回</a></div>
+              <div><a href="<?=site_url()?>/login/" class="text-underline"><?=__('返回登录页面', 'young-bird')?></a></div>
+              <div><a href="<?=site_url()?>/forget-password/" class="text-underline"><?=__('手机找回', 'young-bird')?></a></div>
             </div>
           </form>
         </div>

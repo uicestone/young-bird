@@ -18,7 +18,7 @@ add_action( 'cmb2_admin_init', function () {
 
   $avatar_meta_box = new_cmb2_box(array (
     'id'           => 'avatar_metabox',
-    'title'        => esc_html__( __('头像', 'young-bird'), 'cmb2' ),
+    'title'        => esc_html__( '头像', 'cmb2' ),
     'object_types' => array ( 'user' ),
     'show_on_cb'   => 'ybp_cmb2_show_on_user_role_judge',
   ));
@@ -87,7 +87,7 @@ add_action( 'cmb2_admin_init', function () {
     'type' => 'text',
     'repeatable' => true,
     'text' => array (
-      'add_row_text' => '新增身份'
+      'add_row_text' => __('新增身份', 'young-bird')
     )
   ));
 
@@ -126,7 +126,7 @@ add_action( 'cmb2_admin_init', function () {
     'type' => 'text',
     'repeatable' => true,
     'text' => array (
-      'add_row_text' => '新增奖项'
+      'add_row_text' => __('新增奖项', 'young-bird')
     )
   ));
 

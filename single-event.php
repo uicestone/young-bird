@@ -71,7 +71,7 @@ if (isset($_GET['create-work'])) {
   $work_id = wp_insert_post(array (
     'post_type' => 'work',
     'post_status' => 'publish',
-    'post_title' => '新作品',
+    'post_title' => __('新作品', 'young-bird'),
     'post_name' => $event_id . '-s' . $user->ID
   ));
   add_post_meta($work_id, 'event', $event_id);
@@ -117,13 +117,13 @@ else:
       <div class="sidebar d-none d-md-block">
         <ul>
           <li>
-            <a href="#section1">竞赛介绍</a>
+            <a href="#section1"><?=__('竞赛介绍', 'young-bird')?></a>
           </li>
           <li>
-            <a href="#section2">奖项设置</a>
+            <a href="#section2"><?=__('奖项设置', 'young-bird')?></a>
           </li>
           <li>
-            <a href="#section3">评委介绍</a>
+            <a href="#section3"><?=__('评委介绍', 'young-bird')?></a>
           </li>
           <?php if ($qa = get_field('q&a')): ?>
           <li>
@@ -131,20 +131,20 @@ else:
           </li>
           <?php endif; ?>
           <li>
-            <a href="#section5">相关新闻</a>
+            <a href="#section5"><?=__('相关新闻', 'young-bird')?></a>
           </li>
           <?php if ($document = get_field('document')): ?>
           <li>
-            <a href="<?=$document['url']?>" download>下载文件</a>
+            <a href="<?=$document['url']?>" download><?=__('下载文件', 'young-bird')?></a>
           </li>
           <?php endif; ?>
           <li class="active">
             <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
-            <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>">参赛</a>
+            <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
-            <a href="<?=get_the_permalink($group->ID)?>">查看团队</a>
+            <a href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>
             <?php else: ?>
-            <a href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>">编辑作品</a>
+            <a href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>"><?=__('编辑作品', 'young-bird')?></a>
             <?php endif; ?>
           </li>
         </ul>
@@ -161,7 +161,7 @@ else:
             <div class="action d-flex align-items-center justify-content-end">
               <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
-              <span class="mr-4">参赛人数 / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
+              <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
               <?php endif; ?>
               <i class="far fa-heart"></i>
             </div>
@@ -174,7 +174,7 @@ else:
               <?php endforeach; endif; ?>
             </div>
             <div class="d-flex align-items-center share">
-              分享至：<!-- JiaThis Button BEGIN -->
+              <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
               <div class="jiathis_style_32x32">
               	<a class="jiathis_button_tsina"></a>
               	<a class="jiathis_button_weixin"></a>
@@ -190,14 +190,14 @@ else:
         <div class="context">
           <h2 class="row align-items-center mx-auto" id="section1">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
-            <span>竞赛介绍</span>
+            <span><?=__('竞赛介绍', 'young-bird')?></span>
           </h2>
           <div class="editor">
             <?php the_content(); ?>
           </div>
           <h2 class="row align-items-center mx-auto" id="section2">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
-            <span>奖项设置</span>
+            <span><?=__('奖项设置', 'young-bird')?></span>
           </h2>
           <div class="editor">
             <?=get_field('awards')?>
@@ -205,7 +205,7 @@ else:
           <?php if ($judges = get_field('judges')): ?>
           <h2 class="row align-items-center mx-auto" id="section3">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
-            <span>评委介绍</span>
+            <span><?=__('评委介绍', 'young-bird')?></span>
           </h2>
           <div class="editor judge-list row">
             <?php foreach ($judges as $judge): ?>

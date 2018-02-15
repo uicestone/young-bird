@@ -24,31 +24,31 @@ else:
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="mobile" class="form-control" placeholder="手机">
+                <input type="text" name="mobile" class="form-control" placeholder="<?=__('手机', 'young-bird')?>">
               </div>
             </div>
             <!--<div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
+                <input type="text" name="captcha" class="form-control" placeholder="<?=__('输入验证码', 'young-bird')?>">
                 <div class="input-group-append">
                   <span class="input-group-text">ee131m</span>
-                  <button type="button" class="btn btn-outline-primary">刷新</button>
+                  <button type="button" class="btn btn-outline-primary"><?=__('刷新', 'young-bird')?></button>
                 </div>
               </div>
             </div>-->
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
+                <input type="text" name="code" class="form-control" placeholder="<?=__('输入短信验证码', 'young-bird')?>">
                 <div class="input-group-append">
                   <!--GET ?send_code_to_mobile=[mobile]-->
-                  <button type="button" class="btn btn-outline-primary">发送短信验证码</button>
+                  <button type="button" class="btn btn-outline-primary"><?=__('发送短信验证码', 'young-bird')?></button>
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-secondary btn-block btn-lg">找回密码</button>
+            <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('找回密码', 'young-bird')?></button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div><a href="<?=site_url()?>/login/" class="text-underline">返回登录页面</a></div>
-              <div><a href="<?=site_url()?>/forget-password/?email" class="text-underline">邮箱找回</a></div>
+              <div><a href="<?=site_url()?>/login/" class="text-underline"><?=__('返回登录页面', 'young-bird')?></a></div>
+              <div><a href="<?=site_url()?>/forget-password/?email" class="text-underline"><?=__('邮箱找回', 'young-bird')?></a></div>
             </div>
           </form>
         </div>

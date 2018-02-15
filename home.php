@@ -23,29 +23,29 @@
     <div class="container mt-7">
       <div class="htitle text-center">
         <span></span>
-        <h1>热门竞赛</h1>
+        <h1><?=__('热门竞赛', 'young-bird')?></h1>
       </div>
       <div class="category home-event-status mb-4">
         <div class="row justify-content-center">
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-yellow mr-3"></i>
-            <span>即将开始</span>
+            <span><?=__('即将开始', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-pink mr-3"></i>
-            <span>开始报名</span>
+            <span><?=__('进行中', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-rose mr-3"></i>
-            <span>即将截止</span>
+            <span><?=__('即将结束', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-3 mb-2">
             <i class="icon icon-red mr-3"></i>
-            <span>报名截止</span>
+            <span><?=__('已经结束', 'young-bird')?></span>
           </div>
         </div>
       </div>
-      <a href="<?=site_url()?>/event/" class="btn btn-outline-primary mx-auto d-block btn-common">发现更多</a>
+      <a href="<?=site_url()?>/event/" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
       <div class="row justify-content-between list-competiton mt-4">
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6 mb-4">
@@ -54,7 +54,7 @@
             <div class="card-body mt-4">
               <h5 class="text-truncate" title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
               <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
-              <span class="end-date">截止日期/<?=get_post_meta($event->ID, 'end_date', true)?></span>
+              <span class="end-date"><?=__('截止日期', 'young-bird')?>/<?=get_post_meta($event->ID, 'end_date', true)?></span>
               <i class="icon icon-yellow"></i>
             </div>
           </a>
@@ -67,7 +67,7 @@
     <div class="container mt-7 pb-4 home-news">
       <div class="htitle text-center">
         <span></span>
-        <h1>最新资讯</h1>
+        <h1><?=__('最新资讯', 'young-bird')?></h1>
       </div>
       <div class="mb-5 list-news-container">
         <div class="list-news">
@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore">发现更多</a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore"><?=__('发现更多', 'young-bird')?></a>
     </div>
 
 <?php get_footer(); ?>

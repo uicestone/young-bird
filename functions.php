@@ -113,13 +113,13 @@ add_action('init', function () {
   ));
 
   register_post_type('rank', array(
-    'label' => '轮次',
+    'label' => __('轮次', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有轮次',
-      'add_new' => '添加轮次',
-      'add_new_item' => '新轮次',
-      'edit_item' => '编辑轮次',
-      'not_found' => '未找到轮次'
+      'all_items' => __('所有轮次', 'young-bird'),
+      'add_new' => __('添加轮次', 'young-bird'),
+      'add_new_item' => __('新轮次', 'young-bird'),
+      'edit_item' => __('编辑轮次', 'young-bird'),
+      'not_found' => __('未找到轮次', 'young-bird')
     ),
     'public' => true,
     'supports' => array('title'),
@@ -129,13 +129,13 @@ add_action('init', function () {
   ));
 
   register_post_type('group', array(
-    'label' => '团队',
+    'label' => __('团队', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有团队',
-      'add_new' => '添加团队',
-      'add_new_item' => '新团队',
-      'edit_item' => '编辑团队',
-      'not_found' => '未找到团队'
+      'all_items' => __('所有团队', 'young-bird'),
+      'add_new' => __('添加团队', 'young-bird'),
+      'add_new_item' => __('新团队', 'young-bird'),
+      'edit_item' => __('编辑团队', 'young-bird'),
+      'not_found' => __('未找到团队', 'young-bird')
     ),
     'public' => true,
     'supports' => array('title', 'excerpt', 'thumbnail', 'author'),
@@ -145,13 +145,13 @@ add_action('init', function () {
   ));
 
   register_post_type('work', array(
-    'label' => '作品',
+    'label' => __('作品', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有作品',
-      'add_new' => '添加作品',
-      'add_new_item' => '新作品',
-      'edit_item' => '编辑作品',
-      'not_found' => '未找到作品'
+      'all_items' => __('所有作品', 'young-bird'),
+      'add_new' => __('添加作品', 'young-bird'),
+      'add_new_item' => __('新作品', 'young-bird'),
+      'edit_item' => __('编辑作品', 'young-bird'),
+      'not_found' => __('未找到作品', 'young-bird')
     ),
     'public' => true,
     'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
@@ -161,13 +161,13 @@ add_action('init', function () {
   ));
 
   register_post_type('judge', array(
-    'label' => '大咖',
+    'label' => __('大咖', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有大咖',
-      'add_new' => '添加大咖',
-      'add_new_item' => '新大咖',
-      'edit_item' => '编辑大咖',
-      'not_found' => '未找到大咖'
+      'all_items' => __('所有大咖', 'young-bird'),
+      'add_new' => __('添加大咖', 'young-bird'),
+      'add_new_item' => __('新大咖', 'young-bird'),
+      'edit_item' => __('编辑大咖', 'young-bird'),
+      'not_found' => __('未找到大咖', 'young-bird')
     ),
     'public' => true,
     'supports' => array('title', 'excerpt', 'editor', 'thumbnail', 'revisions'),
@@ -177,13 +177,13 @@ add_action('init', function () {
   ));
 
   register_post_type('message', array(
-    'label' => '消息',
+    'label' => __('消息', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有消息',
-      'add_new' => '添加消息',
-      'add_new_item' => '新消息',
-      'edit_item' => '编辑消息',
-      'not_found' => '未找到消息'
+      'all_items' => __('所有消息', 'young-bird'),
+      'add_new' => __('添加消息', 'young-bird'),
+      'add_new_item' => __('新消息', 'young-bird'),
+      'edit_item' => __('编辑消息', 'young-bird'),
+      'not_found' => __('未找到消息', 'young-bird')
     ),
     'public' => true,
     'supports' => array('title', 'editor', 'author'),
@@ -280,12 +280,12 @@ function redirect_login ($force = false) {
 function get_event_status ($event_id) {
   $status = get_post_meta($event_id, 'status', true);
   $statuses = array (
-    'starting' => '即将开始',
-    'started' => '进行中',
-    'ending' => '即将结束',
-    'endied' => '已经结束',
-    'judged' => '评审完成',
-    'history' => '历史竞赛'
+    'starting' => __('即将开始', 'young-bird'),
+    'started' => __('进行中', 'young-bird'),
+    'ending' => __('即将结束', 'young-bird'),
+    'endied' => __('已经结束', 'young-bird'),
+    'judged' => __('评审完成', 'young-bird'),
+    'history' => __('历史竞赛', 'young-bird')
   );
   return $statuses[$status];
 }

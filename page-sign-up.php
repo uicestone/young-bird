@@ -6,7 +6,7 @@ else:
   if(isset($_POST['login'])){
 
     if ($_POST['password'] !== $_POST['password_confirm']) {
-      exit('两次输入密码不一致，请返回修改');
+      exit(__('两次输入密码不一致，请返回修改', 'young-bird'));
     }
 
     $user_data = array(

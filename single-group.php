@@ -52,7 +52,7 @@ get_header(); ?>
       <div class="container members mb-5">
         <div class="row justify-content-between header mb-3">
           <h3 class="color-silver font-weight-bold"><?php the_title(); ?>（<?=__('成员', 'young-bird')?>/<?=count(get_post_meta(get_the_ID(), 'members'))?>）</h3>
-          <h3 class="color-silver font-weight-bold"><?=__('参赛编号', 'young-bird')?>：YB<?=$event_id?>-<?=get_the_ID()?></h3>
+          <h3 class="color-silver font-weight-bold"><?=__('参赛编号：', 'young-bird')?>YB<?=$event_id?>-<?=get_the_ID()?></h3>
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">
@@ -86,12 +86,12 @@ get_header(); ?>
                 <div class="row">
                   <div class="col-12">
                     <form method="post">
-                      <button type="submit" name="accept_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block">同意</button>
+                      <button type="submit" name="accept_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('同意', 'young-bird')?></button>
                     </form>
                   </div>
                   <div class="col-12">
                     <form method="post">
-                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block">忽略</button>
+                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('忽略', 'young-bird')?></button>
                     </form>
                   </div>
                 </div>
@@ -105,7 +105,7 @@ get_header(); ?>
               </div>
               <div class="row">
                 <div class="offset-12 col-12">
-                  <button type="button" disabled class="btn btn-outline-primary btn-block">等待组长同意</button>
+                  <button type="button" disabled class="btn btn-outline-primary btn-block"><?=__('等待组长同意', 'young-bird')?></button>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@ get_header(); ?>
       </div>
       <div class="container works">
         <div class="row header">
-          <h3 class="color-silver font-weight-bold">作品</h3>
+          <h3 class="color-silver font-weight-bold"><?=__('作品', 'young-bird')?></h3>
         </div>
         <div class="work-list">
           <?php if (get_current_user_id() == $captain->ID && !$work): ?>
@@ -123,12 +123,12 @@ get_header(); ?>
           <div class="no-work">
             <div class="row">
               <div class="col">
-                <h3 class="font-weight-bold color-black mt-4 mb-3">请上传您的作品</h3>
+                <h3 class="font-weight-bold color-black mt-4 mb-3"><?=__('请上传您的作品', 'young-bird')?></h3>
               </div>
             </div>
             <div class="row justify-content-end">
               <div class="col d-flex justify-content-end">
-                <a href="<?php the_permalink(); ?>?create-work" class="btn btn-outline-primary btn-common">上传</a>
+                <a href="<?php the_permalink(); ?>?create-work" class="btn btn-outline-primary btn-common"><?=__('上传', 'young-bird')?></a>
               </div>
             </div>
           </div>
@@ -147,7 +147,7 @@ get_header(); ?>
           </div>
           <div class="row mt-4">
             <div class="col d-flex justify-content-end">
-              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common">修改</a>
+              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改', 'young-bird')?></a>
             </div>
           </div>
           <?php endif; ?>

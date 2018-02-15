@@ -89,6 +89,6 @@
           </div>
         </div>
       </div>
-      <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</button>
+      <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></button>
     </div>
 <?php get_footer(); ?>

@@ -87,19 +87,19 @@ get_header(); ?>
     <div class="container mt-5 pb-6 work-detail">
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
-        <h1 class="font-weight-bold color-silver">请上传作品简介</h1>
-        <h2 class="font-weight-bold color-silver">参赛编号：YB<?=strtoupper($post->post_name)?></h2>
+        <h1 class="font-weight-bold color-silver"><?=__('请上传作品简介', 'young-bird')?></h1>
+        <h2 class="font-weight-bold color-silver"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($post->post_name)?></h2>
       </div>
       <form method="post" enctype="multipart/form-data">
         <div class="row mt-3 work-desc">
           <div class="col-md-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="work_title" value="<?php the_title(); ?>" class="form-control" placeholder="作品名">
+                <input type="text" name="work_title" value="<?php the_title(); ?>" class="form-control" placeholder="<?=__('作品名', 'young-bird')?>">
               </div>
             </div>
             <div class="input-group input-group-lg">
-              <textarea class="form-control" name="description" placeholder="描述"><?=$description?></textarea>
+              <textarea class="form-control" name="description" placeholder="<?=__('描述', 'young-bird')?>"><?=$description?></textarea>
             </div>
           </div>
           <div class="col-md-12">
@@ -110,23 +110,23 @@ get_header(); ?>
               <?php else: ?>
               <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
-              <p class="mb-1 color-silver">点击上传封面</p>
-              <p class="mb-0 color-silver">图片最大不超过500KB</p>
+              <p class="mb-1 color-silver"><?=__('点击上传封面', 'young-bird')?></p>
+              <p class="mb-0 color-silver"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
               <?php endif; ?>
             </div>
           </div>
         </div>
         <!-- 作品 -->
         <div class="row mx-auto mt-4">
-          <h1 class="font-weight-bold color-silver">上传作品</h1>
+          <h1 class="font-weight-bold color-silver"><?=__('上传作品', 'young-bird')?></h1>
         </div>
-        <p class="font-weight-normal color-silver">您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。</p>
+        <p class="font-weight-normal color-silver"><?=__('您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。', 'young-bird')?></p>
         <div class="row work-upload mb-3">
           <?php foreach ($images as $index => $image): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
-              <p class="mt-2 color-silver">点击上传图片</p>
+              <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
               <input type="file" name="images[<?=$index?>]" class="custom-file-input">
               <img src="<?=$image?>">
               <a href="<?php the_permalink(); ?>?delete_image=<?=urlencode($image)?>"><i class="fas fa-trash-alt"></i></a>
@@ -137,7 +137,7 @@ get_header(); ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
-              <p class="mt-2 color-silver">点击上传图片</p>
+              <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
               <input type="file" name="images[]" class="custom-file-input">
               <img src="" class="d-none" alt="">
               <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
@@ -145,10 +145,10 @@ get_header(); ?>
           </div>
           <?php endfor; ?>
         </div>
-        <p class="mb-5 color-silver">拖动图片来改变顺序。</p>
+        <p class="mb-5 color-silver"><?=__('拖动图片来改变顺序', 'young-bird')?></p>
         <div class="row">
           <div class="col-12">
-            <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview">预览</button>
+            <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
             <div class="d-none preview-box">
               <a class="w-100">
                 <div class="row mx-auto justify-content-between">
@@ -165,7 +165,7 @@ get_header(); ?>
             </div>
           </div>
           <div class="col-12">
-            <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey">上传</button>
+            <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('上传', 'young-bird')?></button>
           </div>
         </div>
       </form>

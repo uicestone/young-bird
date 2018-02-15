@@ -12,7 +12,7 @@ get_header(); ?>
     <div class="container mt-7 pb-4 pubu">
       <!-- Filter -->
       <div class="category-container d-flex flex-wrap mb-4 row">
-        <a href="?tag=" class="col-md-2 <?=!$_GET['tag'] ? 'active' : ''?>">全部</a>
+        <a href="?tag=" class="col-md-2 <?=!$_GET['tag'] ? 'active' : ''?>"><?=__('全部', 'young-bird')?></a>
         <?php foreach (get_tags() as $tag): ?>
         <a href="?tag=<?=$tag->slug?>" class="col-md-2 text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
         <?php endforeach; ?>
@@ -43,7 +43,7 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news">发现更多</button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news"><?=__('发现更多', 'young-bird')?></button>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'news-list-ad')) as $ad): ?>
@@ -62,7 +62,7 @@ get_header(); ?>
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
               <p><?=get_the_excerpt($ad)?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
-              <p>截止日期：<?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
             </div>
           </a>

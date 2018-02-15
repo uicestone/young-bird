@@ -12,16 +12,16 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li><a href="<?=site_url()?>/user-center/">个人信息</a></li>
-          <li class="active"><a href="<?=site_url()?>/event/?user-center">我的竞赛</a></li>
-          <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
+          <li><a href="<?=site_url()?>/user-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <li class="active"><a href="<?=site_url()?>/event/?user-center"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body">
       <?php if (current_user_can('judge_works')): ?>
-        <h3>（待）评分的项目</h3>
+        <h3><?=__('（待）评分的项目', 'young-bird')?></h3>
         <div class="row my-3 event-list">
           <?php if ($judge_post): foreach (get_posts(array (
             'post_type' => 'event', 'meta_key' => 'judges',
@@ -45,18 +45,18 @@
                 <div class="card-body mt-3">
                   <div class="row justify-content-between mx-auto pt-3 mb-3">
                     <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
-                    <strong>竞赛时间/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
+                    <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
                   </div>
                   <div class="action row align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <span class="mr-4">参赛人数 / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
                     </div>
                     <div>
                       <?php if (!current_user_can('judge_works')): ?>
-                      <button type="button" onclick="location.href='<?=get_the_permalink($event->ID)?>';return false" class="btn btn-outline-primary ml-2">我的作品</button>
+                      <button type="button" onclick="location.href='<?=get_the_permalink($event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('我的作品', 'young-bird')?></button>
                       <?php elseif (1 || get_post_meta($event->ID, 'status', true) === 'ended'): ?>
-                      <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2">评审作品</button>
+                      <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
                       <?php endif; ?>
                     </div>
                   </div>
@@ -66,7 +66,7 @@
           <?php endforeach; endif; ?>
         </div>
       <?php else: ?>
-      <h3>参与的项目</h3>
+      <h3><?=__('参与的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
         <?php if ($attend_events = get_user_meta($user->ID, 'attend_events')): foreach (get_posts(array ('post_type' => 'event', 'post__in' => $attend_events ?: array())) as $event): ?>
         <div class="col-md-12">
@@ -83,15 +83,15 @@
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
-                <strong>竞赛时间/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
+                <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                   <i class="far fa-user mr-2"></i>
-                  <span class="mr-4">参赛人数 / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-outline-primary ml-2">我的作品</button>
+                  <button type="button" class="btn btn-outline-primary ml-2"><?=__('我的作品', 'young-bird')?></button>
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@
         <?php endforeach; endif; ?>
       </div>
       <?php endif; ?>
-      <h3>关注的项目</h3>
+      <h3><?=__('关注的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
         <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array('post_type' => 'event', 'post__in' => $like_events)) as $event): ?>
         <div class="col-md-12">
@@ -117,12 +117,12 @@
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
-                <strong>竞赛时间/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
+                <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
                 <div class="d-flex align-items-center">
                   <i class="far fa-user mr-2"></i>
-                  <span class="mr-4">参赛人数 / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
                 </div>
               </div>
             </div>
@@ -130,5 +130,5 @@
         </div>
         <?php endforeach; endif; ?>
       </div>
-      <a href="<?=site_url('/event/')?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">发现更多</a>
+      <a href="<?=site_url('/event/')?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></a>
     </div>

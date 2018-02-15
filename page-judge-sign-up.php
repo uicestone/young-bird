@@ -69,33 +69,33 @@ get_header();
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12">
-          <h3 class="text-center">登录成功</h3>
-          <p class="text-center mb-4"><strong>请填写下列信息来激活您的账号</strong></p>
+          <h3 class="text-center"><?=__('登录成功', 'young-bird')?></h3>
+          <p class="text-center mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="姓名">
+                <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="手机号（选填）">
+                <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=__('手机号', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="邮箱（选填）">
+                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="生日信息（选填）">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日信息', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <p class="text-right">
-              <small>激活即视为同意 <a href="" class="text-underline">隐私条款</a> 和 <a href="" class="text-underline">服务条款</a></small>
+              <small><?=__('激活即视为同意', 'young-bird')?> <a href="" class="text-underline"><?=__('隐私条款', 'young-bird')?></a> <?=__('和', 'young-bird')?> <a href="" class="text-underline"><?=__('服务条款', 'young-bird')?></a></small>
             </p>
-            <button type="submit" name="sign_up_step" value="2" class="btn btn-secondary btn-block btn-lg">下一步</button>
+            <button type="submit" name="sign_up_step" value="2" class="btn btn-secondary btn-block btn-lg"><?=__('下一步', 'young-bird')?></button>
           </form>
         </div>
       </div>
