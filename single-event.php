@@ -174,7 +174,7 @@ else:
           <div class="row mx-auto justify-content-between align-items-center mt-3">
             <div>
               <?php if ($terms = get_the_terms(get_the_ID(), 'event_category')): foreach ($terms as $term): ?>
-              <i class="tag tag-rose"><?=$term->name?></i>
+              <i class="tag tag-grey" style="padding:5px 10px; background: <?=get_field('color', $term)?>"><?=$term->name?></i>
               <?php endforeach; endif; ?>
             </div>
             <div class="d-flex align-items-center share">
