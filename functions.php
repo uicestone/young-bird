@@ -278,7 +278,7 @@ function redirect_login ($force = false) {
     return;
   }
 
-  header('Location: ' . site_url() . '/sign-up/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
+  header('Location: ' . site_url() . '/sign-in/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
 }
 
 function get_event_status ($event_id) {
