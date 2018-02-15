@@ -476,11 +476,11 @@ a.link {
   }
   .banner {
     .avatar {
-      flex: initial;
+      flex: none;
       width: 14rem;
       img {
-        width: 14rem;
-        height: 14rem;
+        width: 100%;
+        height: auto;
       }
     }
     .desc {

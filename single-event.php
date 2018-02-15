@@ -209,7 +209,7 @@ else:
           </h2>
           <div class="editor judge-list row">
             <?php foreach ($judges as $judge): ?>
-            <div class="col-md-8">
+            <div class="col-md-12 col-lg-8">
               <a href="<?=get_the_permalink($judge->ID)?>">
                 <div class="d-flex flex-nowrap align-items-start py-4">
                   <div class="avatar">
