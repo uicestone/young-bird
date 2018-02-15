@@ -56,15 +56,15 @@ get_header();
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="login" class="form-control" placeholder="邮箱/手机">
+                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>/<?=__('手机', 'young-bird')?>">
               </div>
             </div>
             <!--<div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="captcha" class="form-control" placeholder="输入验证码">
+                <input type="text" name="captcha" class="form-control" placeholder="<?=__('输入验证码', 'young-bird')?>">
                 <div class="input-group-append">
                   <span class="input-group-text">EE131M</span>
-                  <button type="button" class="btn btn-outline-primary">刷新</button>
+                  <button type="button" class="btn btn-outline-primary"><?=__('刷新', 'young-bird')?></button>
                 </div>
               </div>
             </div>-->
@@ -72,26 +72,26 @@ get_header();
             <!--GET ?send_code_to_mobile=[mobile]-->
             <!--<div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="code" class="form-control" placeholder="输入短信验证码">
+                <input type="text" name="code" class="form-control" placeholder="<?=__('输入短信验证码', 'young-bird')?>">
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-primary">发送短信验证码</button>
+                  <button type="button" class="btn btn-outline-primary"><?=__('发送短信验证码', 'young-bird')?></button>
                 </div>
               </div>
             </div>-->
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" name="password" class="form-control" placeholder="密码（数字或字母）">
+                <input type="password" name="password" class="form-control" placeholder="<?=__('密码', 'young-bird')?>（<?=__('数字或字母', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" name="password_confirm" class="form-control" placeholder="确认密码">
+                <input type="password" name="password_confirm" class="form-control" placeholder="<?=__('确认密码', 'young-bird')?>">
               </div>
             </div>
             <p class="text-right">
-              <small>注册即视为同意 <a href="<?=site_url()?>/privacy-policy/" class="text-underline">隐私条款</a> 和 <a href="<?=site_url()?>/service-term/" class="text-underline">服务条款</a></small>
+              <small><?=__('注册即视为同意', 'young-bird')?> <a href="<?=site_url()?>/privacy-policy/" class="text-underline"><?=__('隐私条款', 'young-bird')?></a> <?=__('和', 'young-bird')?> <a href="<?=site_url()?>/service-term/" class="text-underline"><?=__('服务条款', 'young-bird')?></a></small>
             </p>
-            <button type="submit" class="btn btn-lg btn-secondary btn-block">注册</button>
+            <button type="submit" class="btn btn-lg btn-secondary btn-block"><?=__('注册', 'young-bird')?></button>
           </form>
         </div>
       </div>

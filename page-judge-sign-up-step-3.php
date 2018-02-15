@@ -6,19 +6,19 @@
     </div>
     <!-- Body -->
     <div class="container mt-7 pb-7 judge-sign-in">
-      <p class="mb-4"><strong>请填写下列信息来激活您的账号</strong></p>
+      <p class="mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
       <form method="post" enctype="multipart/form-data" class="row step-3">
         <div class="col-md-6 mb-3">
           <div class="custom-file-container avatar border bg-light-grey d-flex justify-content-center align-items-center flex-column">
             <i class="fas fa-plus"></i>
-            <p class="mt-3">请上传您的公关照</p>
+            <p class="mt-3"><?=__('请上传您的公关照', 'young-bird')?></p>
             <input type="file" name="avatar" class="custom-file-input">
             <img src="" class="d-none">
           </div>
         </div>
         <div class="col-md-18">
           <div class="input-group mb-3">
-            <textarea class="form-control" name="bio" placeholder="描述"></textarea>
+            <textarea class="form-control" name="bio" placeholder="<?=__('描述', 'young-bird')?>"></textarea>
           </div>
           <div class="input-group input-group-lg mb-3">
             <div class="custom-file">

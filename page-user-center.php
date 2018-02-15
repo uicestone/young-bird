@@ -54,9 +54,9 @@ else: ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="<?php the_permalink(); ?>">个人信息</a></li>
-          <li><a href="<?php the_permalink(); ?>?event">我的竞赛</a></li>
-          <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
+          <li class="active"><a href="<?php the_permalink(); ?>"><?=__('个人信息', 'young-bird')?></a></li>
+          <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>
@@ -80,82 +80,82 @@ else: ?>
               <div class="col-18">
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="user_name" value="<?=$user->display_name?>" class="form-control" placeholder="姓名">
+                    <input type="text" name="user_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="手机">
+                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=__('手机', 'young-bird')?>">
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="identity" value="<?=$identity?>" class="form-control" placeholder="身份">
+                <input type="text" name="identity" value="<?=$identity?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="学校">
+                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="星座">
+                <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="<?=__('星座', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="地址">
+                <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="<?=__('地址', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="部门">
+                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>">
               </div>
             </div>
           </div>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="身份证号/护照号">
+                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=__('身份证号', 'young-bird')?>/<?=__('护照号', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="邮箱">
+                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="生日">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="专业">
+                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="兴趣">
+                <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="<?=__('兴趣', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="公司">
+                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=__('公司', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="职位">
+                <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
               </div>
             </div>
           </div>
         </div>
         <div class="row mx-auto justify-content-end">
-          <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common">保存</button>
+          <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>
         </div>
       </form>
     </div>

@@ -41,18 +41,18 @@ get_header(); ?>
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="login" class="form-control" placeholder="邮箱/手机">
+                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>/<?=__('手机', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="password" name="password" class="form-control" placeholder="密码（包含数字和字母）">
+                <input type="password" name="password" class="form-control" placeholder="<?=__('密码', 'young-bird')?>（<?=__('包含数字和字母', 'young-bird')?>）">
               </div>
             </div>
-            <button type="submit" class="btn btn-secondary btn-block btn-lg">登录</button>
+            <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('登录', 'young-bird')?></button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div>没有账号？<a href="<?=site_url()?>/sign-up/" class="text-underline">现在注册</a></div>
-              <div><a href="<?=site_url()?>/forget-password/" class="text-underline">忘记密码</a></div>
+              <div><?=__('没有账号？', 'young-bird')?><a href="<?=site_url()?>/sign-up/" class="text-underline"><?=__('现在注册', 'young-bird')?></a></div>
+              <div><a href="<?=site_url()?>/forget-password/" class="text-underline"><?=__('忘记密码', 'young-bird')?></a></div>
             </div>
           </form>
         </div>

@@ -20,27 +20,27 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item mr-lg-3 mr-xl-5 active">
-              <a class="nav-link" href="<?=site_url()?>/category/news/">新 闻</a>
+              <a class="nav-link" href="<?=site_url()?>/category/news/"><?=__('新 闻', 'young-bird')?></a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="<?=site_url()?>/event/">竞 赛</a>
+              <a class="nav-link" href="<?=site_url()?>/event/"><?=__('竞 赛', 'young-bird')?></a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="<?=site_url()?>/judge/">大 咖</a>
+              <a class="nav-link" href="<?=site_url()?>/judge/"><?=__('大 咖', 'young-bird')?></a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
-              <a class="nav-link" href="<?=site_url()?>/event/?history">历 史</a>
+              <a class="nav-link" href="<?=site_url()?>/event/?history"><?=__('历 史', 'young-bird')?></a>
             </li>
           </ul>
           <form class="form-inline mt-md-4 mt-lg-0">
             <a href="<?=site_url()?>/?s=" class="search"><i class="fas fa-search"></i></a>
             <?php if (is_user_logged_in()): ?>
             <a href="<?=site_url() . (current_user_can('judge_works') ? '/judge-center/' : '/user-center/')?>" class="btn btn-link"><?=wp_get_current_user()->display_name?></a>
-            <a href="<?=site_url()?>/sign-in/?logout=true" class="btn btn-link">退出登录</a>
+            <a href="<?=site_url()?>/sign-in/?logout=true" class="btn btn-link"><?=__('退出登录', 'young-bird')?></a>
             <?php else: ?>
-            <a href="<?=site_url()?>/sign-up/" class="btn btn-link">注册</a>
+            <a href="<?=site_url()?>/sign-up/" class="btn btn-link"><?=__('注册', 'young-bird')?></a>
             <span>|</span>
-            <a href="<?=site_url()?>/sign-in/" class="btn btn-link">登录</a>
+            <a href="<?=site_url()?>/sign-in/" class="btn btn-link"><?=__('登录', 'young-bird')?></a>
             <?php endif; ?>
             <!--<a href="#" class="btn btn-link pl-0">EN</a>-->
           </form>

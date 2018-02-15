@@ -64,9 +64,9 @@ else: ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="<?=site_url()?>/judge-center/">个人信息</a></li>
-          <li><a href="<?php the_permalink(); ?>?event">我的竞赛</a></li>
-          <li><a href="<?=site_url()?>/message/">消息<i></i></a></li>
+          <li class="active"><a href="<?=site_url()?>/judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>
@@ -90,12 +90,12 @@ else: ?>
               <div class="col-18">
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="姓名">
+                    <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="手机">
+                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=__('手机', 'young-bird')?>">
                   </div>
                 </div>
               </div>
@@ -104,12 +104,12 @@ else: ?>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="生日">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="邮箱">
+                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@ else: ?>
             <?php if ($identities): foreach ($identities as $identity): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="identities[]" value="<?=$identity?>" class="form-control" placeholder="身份">
+                <input type="text" name="identities[]" value="<?=$identity?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -129,7 +129,7 @@ else: ?>
             <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="身份">
+                <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -141,8 +141,8 @@ else: ?>
             <?php if ($titles): foreach ($titles as $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="institutions[]" value="<?=$institution?>" class="form-control" placeholder="机构">
-                <input type="text" name="titles[]" value="<?=$title?>" class="form-control" placeholder="部门/头衔">
+                <input type="text" name="institutions[]" value="<?=$institution?>" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
+                <input type="text" name="titles[]" value="<?=$title?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -152,8 +152,8 @@ else: ?>
             <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="institutions[]" class="form-control" placeholder="机构">
-                <input type="text" name="titles[]" class="form-control" placeholder="部门/头衔">
+                <input type="text" name="institutions[]" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
+                <input type="text" name="titles[]" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -165,7 +165,7 @@ else: ?>
             <?php if ($awards): foreach ($awards as $award): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="奖项">
+                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -175,7 +175,7 @@ else: ?>
             <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="awards[]" class="form-control" placeholder="奖项">
+                <input type="text" name="awards[]" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
               </div>
               <div class="col-md-4">
                 <i class="fas fa-plus-circle mr-2"></i>
@@ -185,36 +185,36 @@ else: ?>
             <?php endif; ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="毕业院校（选填）">
+                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('毕业院校', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="专业（选填）">
+                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
           </div>
         </div>
         <div class="row mx-auto">
           <div class="input-group mb-3">
-            <textarea name="description" class="form-control form-control-lg desc" placeholder="描述"><?=$description?></textarea>
+            <textarea name="description" class="form-control form-control-lg desc" placeholder="<?=__('描述', 'young-bird')?>"><?=$description?></textarea>
           </div>
           <div class="input-group input-group-lg mb-3">
             <div class="custom-file">
               <!-- En版请使用lang="en" -->
               <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
-              <label class="custom-file-label" for="resume">点击上传详细简历</label>
+              <label class="custom-file-label" for="resume"><?=__('点击上传详细简历', 'young-bird')?></label>
             </div>
             <!-- 显示下载链接 -->
             <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
             <div class="input-group-append">
-              <a class="btn btn-outline-secondary" href="<?=$resume?>">查看/下载</a>
+              <a class="btn btn-outline-secondary" href="<?=$resume?>"><?=__('查看', 'young-bird')?>/<?=__('下载', 'young-bird')?></a>
             </div>
             <?php endif; ?>
           </div>
         </div>
         <div class="row mx-auto">
-          <button type="submit" name="submit" class="btn btn-secondary btn-lg btn-common float-right">保存</button>
+          <button type="submit" name="submit" class="btn btn-secondary btn-lg btn-common float-right"><?=__('保存', 'young-bird')?></button>
         </div>
       </form>
     </div>

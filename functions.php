@@ -13,8 +13,8 @@ add_action('after_setup_theme', function () {
     init_page_placeholder($name);
   }
 
-  add_role('judge', '大咖', array());
-  add_role('attendee', '选手', array());
+  add_role('judge', __('大咖', 'young-bird'), array());
+  add_role('attendee', __('选手', 'young-bird'), array());
   remove_role('subscriber'); remove_role('author'); remove_role('contributor');
 
   $judge_role = get_role('judge'); $judge_role->add_cap('judge_works');
@@ -61,11 +61,11 @@ add_theme_support('post-thumbnails');
 add_action('init', function () {
 
   register_taxonomy('event_category', 'event', array (
-    'label' => '竞赛分类',
+    'label' => __('竞赛分类', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有竞赛分类',
-      'add_new' => '添加竞赛分类',
-      'add_new_item' => '新竞赛分类',
+      'all_items' => __('所有竞赛分类', 'young-bird'),
+      'add_new' => __('添加竞赛分类', 'young-bird'),
+      'add_new_item' => __('新竞赛分类', 'young-bird'),
     ),
     'public' => true,
     'show_admin_column' => true,
@@ -73,11 +73,11 @@ add_action('init', function () {
   ));
 
   register_taxonomy('news_category', 'post', array (
-    'label' => '资讯分类',
+    'label' => __('资讯分类', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有资讯分类',
-      'add_new' => '添加资讯分类',
-      'add_new_item' => '新资讯分类',
+      'all_items' => __('所有资讯分类', 'young-bird'),
+      'add_new' => __('添加资讯分类', 'young-bird'),
+      'add_new_item' => __('新资讯分类', 'young-bird'),
     ),
     'public' => true,
     'show_admin_column' => true,
@@ -85,11 +85,11 @@ add_action('init', function () {
   ));
 
   register_taxonomy('ad_category', 'post', array (
-    'label' => '广告分类',
+    'label' => __('广告分类', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有广告分类',
-      'add_new' => '添加广告分类',
-      'add_new_item' => '新广告分类',
+      'all_items' => __('所有广告分类', 'young-bird'),
+      'add_new' => __('添加广告分类', 'young-bird'),
+      'add_new_item' => __('新广告分类', 'young-bird'),
     ),
     'public' => true,
     'show_admin_column' => true,
@@ -97,12 +97,12 @@ add_action('init', function () {
   ));
 
   register_post_type('event', array(
-    'label' => '竞赛',
+    'label' => __('竞赛', 'young-bird'),
     'labels' => array(
-      'all_items' => '所有竞赛',
-      'add_new' => '添加竞赛',
-      'add_new_item' => '新竞赛',
-      'edit_item' => '编辑竞赛',
+      'all_items' => __('所有竞赛', 'young-bird'),
+      'add_new' => __('添加竞赛', 'young-bird'),
+      'add_new_item' => __('新竞赛', 'young-bird'),
+      'edit_item' => __('编辑竞赛', 'young-bird'),
       'not_found' => '未找到竞赛'
     ),
     'public' => true,

@@ -18,7 +18,7 @@ add_action( 'cmb2_admin_init', function () {
 
   $avatar_meta_box = new_cmb2_box(array (
     'id'           => 'avatar_metabox',
-    'title'        => esc_html__( '头像', 'cmb2' ),
+    'title'        => esc_html__( __('头像', 'young-bird'), 'cmb2' ),
     'object_types' => array ( 'user' ),
     'show_on_cb'   => 'ybp_cmb2_show_on_user_role_judge',
   ));
