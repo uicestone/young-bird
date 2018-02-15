@@ -815,6 +815,28 @@ a.link {
   }
 }
 
+
+@include media-breakpoint-down(sm) {
+  .page-event-detail {
+    .content {
+      .header {
+        .title {
+          h1 {
+            font-size: 1.4rem;
+          }
+        }
+        .action {
+          justify-content: flex-start!important;
+        }
+      }
+      .context {
+        .editor {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
 .page-event-detail {
   .sidebar {
     position: fixed;
@@ -852,7 +874,6 @@ a.link {
         margin-top: 40px;
       }
       .action {
-        min-width: 200px;
         .far, .fas {
           font-size: 1.2rem;
         }

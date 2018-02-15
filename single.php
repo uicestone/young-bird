@@ -23,7 +23,7 @@ get_header(); the_post(); ?>
                 <i class="far fa-heart mr-2"></i>
                 <span class="mr-4"><?=$likes?></span>
               </div>
-              <div class="d-flex align-items-center share">
+              <div class="d-flex align-items-center share mt-3 mt-md-0">
                 <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
                 <div class="jiathis_style_32x32">
                 	<a class="jiathis_button_tsina"></a>
