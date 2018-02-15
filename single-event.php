@@ -271,6 +271,7 @@ else:
               <div class="card-body">
                 <h4 class="text-truncate"><?=get_the_title($news->ID)?></h4>
                 <p class="text-truncate"><?=get_the_subtitle($news->ID)?></p>
+                <p><?=get_the_excerpt($news->ID)?></p>
               </div>
             </a>
           </div>
