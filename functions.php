@@ -29,6 +29,8 @@ add_action('after_setup_theme', function () {
   add_image_size('hd', 1280, 720, true);
   add_image_size('movie', 1920, 800, true);
   add_image_size('5-1', 1920, 384, true);
+
+  load_theme_textdomain('young-bird', get_template_directory() . '/languages');
 });
 
 function init_page_placeholder ($name) {
