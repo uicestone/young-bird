@@ -42,7 +42,9 @@
             <span>|</span>
             <a href="<?=site_url()?>/sign-in/" class="btn btn-link"><?=__('登录', 'young-bird')?></a>
             <?php endif; ?>
-            <!--<a href="#" class="btn btn-link pl-0">EN</a>-->
+            <ul class="language-swicher mb-0">
+              <?php pll_the_languages(array ('hide_current' => true, 'display_names_as' => 'slug')); ?>
+            </ul>
           </form>
         </div>
       </nav>
