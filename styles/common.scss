@@ -916,15 +916,14 @@ a.link {
       }
     }
     .judge-list {
-      >.col-md-8 >.d-flex {
-        .desc {
-          p {
-            margin-bottom: 10px;
-            line-height: 1.4;
-          }
-          small {
-            white-space: pre-line;
-          }
+      .desc {
+        p {
+          margin-bottom: 10px;
+          line-height: 1.4;
+        }
+        small {
+          white-space: pre;
+          font-size: $font-size-xs;
         }
       }
       .avatar {
