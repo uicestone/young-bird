@@ -493,7 +493,7 @@ YB.Pubu = (function($) {
 	var list = container.find('.pubu-list');
 	var btn = container.find('.btn-loadmore');
 	var page = 1;
-	var total = 2;
+	var total = null;
 	var ajaxUrl;
 
 	function init() {
@@ -501,20 +501,20 @@ YB.Pubu = (function($) {
 	}
 
 	function updateBtn() {
-		if(page >= total) {
+		if(total && page >= total) {
 			btn.removeClass('d-block').addClass('d-none');
 		}
 	}
 
 	function loadMore(fn) {
-		ajaxUrl = "/category/" +btn.data('name')+ '/page/' + page + '/?patial=true&' + (location.search.replace(/^\?/, ''));
-		if(page > total) return
+		ajaxUrl = "/category/" +btn.data('name')+ '/page/' + page + '/?partial=true&' + (location.search.replace(/^\?/, ''));
+		if(total && page > total) return
 		$.ajax({
 		  method: "GET",
 		  url: ajaxUrl
 		})
 		  .done(function( data, textStatus, jqXHR ) {
-				totalPrimary = jqXHR.getResponseHeader('total-pages');
+				total = jqXHR.getResponseHeader('total-pages');
 				var html = $.parseHTML(data);
 				list.append(html);
 		  });
