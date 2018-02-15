@@ -1,19 +1,19 @@
 <?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid px-0 banner-home owl-carousel owl-theme">
-      <?php foreach (get_posts(array('category_name' => 'home-banner')) as $banner): ?>
-      <a href="<?=get_the_permalink($banner->ID)?>">
+      <?php foreach (get_posts(array('category_name' => 'home-banner', 'post_type' => 'any')) as $banner): ?>
+      <a href="<?=get_field('has_content', $banner) ? get_the_permalink($banner->ID) : 'javascript:return false'?>">
         <!-- for desktop -->
         <div class="container-fluid px-0 d-none d-lg-block">
-          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
+          <img src="<?=get_field('home_banner_desktop', $banner)['url']?>">
         </div>
         <!-- for pad -->
         <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
+          <img src="<?=get_field('home_banner_pad', $banner)['url']?>">
         </div>
         <!-- for smart phone -->
         <div class="container-fluid px-0 d-md-none">
-          <?=get_the_post_thumbnail($banner->ID, 'movie', array('width'=>'100%'))?>
+          <img src="<?=get_field('home_banner_phone', $banner)['url']?>">
         </div>
       </a>
       <?php endforeach; ?>
