@@ -173,8 +173,8 @@ else:
           </div>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
             <div>
-              <?php if ($tags = get_the_tags()): foreach ($tags as $tag): ?>
-              <i class="tag tag-rose"><?=$tag->name?></i>
+              <?php if ($terms = get_the_terms(get_the_ID(), 'event_category')): foreach ($terms as $term): ?>
+              <i class="tag tag-rose"><?=$term->name?></i>
               <?php endforeach; endif; ?>
             </div>
             <div class="d-flex align-items-center share">
