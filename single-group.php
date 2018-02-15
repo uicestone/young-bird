@@ -136,18 +136,18 @@ get_header(); ?>
           <!-- 已上传 -->
           <div class="row mt-6 work-container">
             <div class="col-sm-12 mb-4 mb-md-0">
-              <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
+              <?=get_the_post_thumbnail($work->ID, 'vga')?>
             </div>
             <div class="col-sm-12 order-sm-first card item-top3">
               <div class="card-body pb-5">
                 <h3><?=get_the_title($work->ID)?></h3>
-                <p><?=get_the_excerpt($work->ID)?></p>
+                <p><?=get_post_meta($work->ID, 'description', true)?></p>
               </div>
             </div>
           </div>
           <div class="row mt-4">
             <div class="col d-flex justify-content-end">
-              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改', 'young-bird')?></a>
+              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__(($captain->ID == get_current_user_id() ? '修改' : '查看'), 'young-bird')?></a>
             </div>
           </div>
           <?php endif; ?>

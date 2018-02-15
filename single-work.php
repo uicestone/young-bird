@@ -164,9 +164,11 @@ get_header(); ?>
               </a>
             </div>
           </div>
+          <?php if ($post->post_author == get_current_user_id()): ?>
           <div class="col-12">
             <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('上传', 'young-bird')?></button>
           </div>
+          <?php endif; ?>
         </div>
       </form>
     </div>
