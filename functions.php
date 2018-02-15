@@ -261,6 +261,10 @@ add_filter('pre_get_posts', function ($query) {
     set_query_var('meta_key', 'event');
     set_query_var('meta_value', $_GET['event_id']);
   }
+  elseif ($query->query['post_type'] === 'event' && $_GET['status']) {
+    set_query_var('meta_key', 'status');
+    set_query_var('meta_value', $_GET['status']);
+  }
   else {
     $limit = get_option('posts_per_page');
   }

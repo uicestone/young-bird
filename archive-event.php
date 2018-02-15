@@ -61,10 +61,10 @@ get_header();
               <div class="form-group row">
                 <label for="inputPassword6" class="col-sm-5 col-form-label"><strong><?=__('竞赛类别', 'young-bird')?></strong></label>
                 <div class="col-sm-19">
-                  <select name="tag" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
-                    <option value=""<?=!$_GET['tag'] ? ' selected' : ''?>><?=__('全部类别', 'young-bird')?></option>
-                    <?php foreach (get_tags() as $tag): ?>
-                    <option value="<?=$tag->slug?>"<?=$_GET['tag']==$tag->slug ? ' selected' : ''?>><?=$tag->name?></option>
+                  <select name="event_category" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
+                    <option value=""<?=!$_GET['event_category'] ? ' selected' : ''?>><?=__('全部类别', 'young-bird')?></option>
+                    <?php foreach (get_terms(array('taxonomy' => 'event_category')) as $term): ?>
+                    <option value="<?=$term->slug?>"<?=$_GET['event_category']==$term->slug ? ' selected' : ''?>><?=$term->name?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
