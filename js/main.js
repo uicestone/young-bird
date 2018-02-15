@@ -618,6 +618,37 @@ YB.User = (function($){
 	}
 })(jQuery)
 
+// 竞赛
+YB.Event = (function($){
+  function init() {
+    bindEvent();
+  }
+
+  function bindEvent() {
+    $('.like').click(function (e) {
+    	if ($(this).hasClass('far')) {
+    		// 添加收藏
+    		$(this).removeClass('far').addClass('fas');
+    		$.post($(this).data('event-link'), {
+    			like: true
+				});
+			}
+			else {
+    		// 取消收藏
+        $(this).removeClass('fas').addClass('far');
+        $.post($(this).data('event-link'), {
+          like: false
+        });
+			}
+			return false;
+		});
+  }
+
+  return {
+    init: init
+  }
+})(jQuery)
+
 // init
 YB.Work.init();
 YB.Edit.init();
@@ -630,3 +661,4 @@ YB.Common.init();
 YB.Home.init();
 YB.Judge.init();
 YB.User.init();
+YB.Event.init();

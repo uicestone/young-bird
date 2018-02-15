@@ -3,6 +3,17 @@ if (isset($_GET['participate'])) {
   redirect_login();
 }
 
+if (isset($_POST['like'])) {
+  redirect_login();
+  if (json_decode($_POST['like'])) {
+    add_user_meta(get_current_user_id(), 'like_events', get_the_ID());
+  }
+  else {
+    delete_user_meta(get_current_user_id(), 'like_events', get_the_ID());
+  }
+  exit;
+}
+
 the_post();
 
 $user = wp_get_current_user();
@@ -168,7 +179,7 @@ else:
               <i class="far fa-user mr-2"></i>
               <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
               <?php endif; ?>
-              <i class="far fa-heart"></i>
+              <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events')) ? 'fas ' : 'far'?> fa-heart like"></i>
             </div>
           </div>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
