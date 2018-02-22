@@ -133,17 +133,21 @@ else:
           <li>
             <a href="#section2"><?=__('奖项设置', 'young-bird')?></a>
           </li>
+          <?php if ($judges = get_field('judges')): ?>
           <li>
             <a href="#section3"><?=__('评委介绍', 'young-bird')?></a>
           </li>
+          <?php endif; ?>
           <?php if ($qa = get_field('q&a')): ?>
           <li>
             <a href="#section4">Q&A</a>
           </li>
           <?php endif; ?>
+          <?php if ($newses = get_field('news')): ?>
           <li>
             <a href="#section5"><?=__('相关新闻', 'young-bird')?></a>
           </li>
+          <?php endif; ?>
           <?php if ($document = get_field('document')): ?>
           <li>
             <a href="<?=$document['url']?>" download><?=__('下载文件', 'young-bird')?></a>
