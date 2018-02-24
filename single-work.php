@@ -62,7 +62,13 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  header('Location: ' . get_the_permalink()); exit;
+  $group_id = get_post_meta($work->ID, 'group', true);
+
+  if ($group_id) {
+    header('Location: ' . get_the_permalink($group_id)); exit;
+  } else {
+    header('Location: ' . get_the_permalink($event->ID)); exit;
+  }
 }
 
 if ($delete_image_url = $_GET['delete_image']) {
