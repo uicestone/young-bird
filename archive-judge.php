@@ -15,7 +15,7 @@
             <div class="card-body mt-4">
               <h5><?php the_title(); ?></h5>
               <div class="excerpt">
-                <?php foreach (array_slice(explode("\n", get_the_excerpt()), 0, 2) as $line): ?>
+                <?php foreach (array_slice(explode("\n", $post->post_excerpt), 0, 2) as $line): ?>
                 <p class="text-truncate mb-0" title="<?=$line?>"><?=$line?></p>
                 <?php endforeach; ?>
               </div>

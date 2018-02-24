@@ -236,7 +236,9 @@ else:
                   </div>
                   <div class="desc pl-3">
                     <p class="color-black font-weight-bold"><?=get_the_title($judge->ID)?></p>
-                    <small class="color-black font-weight-bold"><?=get_the_excerpt($judge->ID)?></small>
+                    <?php foreach (array_slice(explode("\n", $judge->post_excerpt), 0, 2) as $line): ?>
+                    <small class="color-black font-weight-bold text-truncate mb-0"><?=$line?></small>
+                    <?php endforeach; ?>
                   </div>
                 </div>
               </a>
