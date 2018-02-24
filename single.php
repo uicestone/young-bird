@@ -10,20 +10,20 @@ get_header(); the_post(); ?>
         <div class="col-md-18 news-detail">
           <section class="header">
             <!-- poster -->
-            <div class="row justify-content-center">
+            <div class="text-center">
             <?php the_post_thumbnail('5-3', array('class'=>'mb-4')) ?>
             </div>
             <!-- title -->
             <h1 class="color-black"><?php the_title(); ?></h1>
-            <span><?=__('发布时间', 'young-bird')?> <?php the_date(); ?></span>
-            <div class="row justify-content-between align-items-center mt-4">
+            <span class="published-at"><?=__('发布时间', 'young-bird')?> <?php the_date(); ?></span>
+            <div class="row justify-content-between align-items-center mt-2 mt-md-4 infos">
               <div class="d-flex align-items-center">
                 <i class="fas fa-eye mr-2"></i>
                 <span class="mr-4"><?=$views?></span>
                 <i class="far fa-heart mr-2"></i>
                 <span class="mr-4"><?=$likes?></span>
               </div>
-              <div class="d-flex align-items-center share mt-3 mt-md-0">
+              <div class="d-none d-md-flex align-items-center share mt-3 mt-md-0">
                 <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
                 <div class="jiathis_style_32x32">
                 	<a class="jiathis_button_tsina"></a>
@@ -37,7 +37,7 @@ get_header(); the_post(); ?>
               </div>
             </div>
           </section>
-          <div class="editor my-5">
+          <div class="editor my-3 my-md-5">
             <?php the_content(); ?>
           </div>
           <?php if ($event = get_field('event')): ?>

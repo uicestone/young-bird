@@ -3,7 +3,7 @@
   box-sizing: border-box;
   background: $black;
   span, a, p {
-    font-size: 12px;
+    font-size: $font-size-xs;
     color: $white;
   }
   .nowrap {
@@ -11,5 +11,28 @@
   }
   a:hover {
     text-decoration: underline;
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .footer {
+    ul {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      li a {
+        font-size: $font-size-base;
+      }
+    }
+    .contact {
+      text-align: center;
+      > div {
+        font-size: $font-size-xs;
+        color: $white;
+        margin-bottom: 1.6rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
 }

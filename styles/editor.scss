@@ -8,7 +8,7 @@
     border-top: 2px solid $silver;
   }
   p {
-    font-size: .9rem;
+    font-size: $font-size-sm;
     line-height: 1.8;
   }
   img {
@@ -32,6 +32,16 @@
       display: inline-block;
       padding-top: .8rem;
       border-top: 6px solid $silver;;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .page-editor,
+  .editor {
+    p {
+      font-size: $font-size-xs;
+      line-height: 1.8;
     }
   }
 }

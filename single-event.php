@@ -192,7 +192,7 @@ else:
               <i class="tag tag-grey" style="padding:5px 10px; background: <?=get_field('color', $term)?>"><?=$term->name?></i>
               <?php endforeach; endif; ?>
             </div>
-            <div class="d-flex align-items-center share">
+            <div class="d-none d-md-flex align-items-center share">
               <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
               <div class="jiathis_style_32x32">
               	<a class="jiathis_button_tsina"></a>

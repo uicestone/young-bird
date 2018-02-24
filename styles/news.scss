@@ -9,6 +9,37 @@
     }
     .far, .fas {
       font-size: 1.4rem;
+      color: $silver;
+    }
+    .infos {
+      color: $silver;
+    }
+    .published-at {
+      font-weight: bold;
+      color: $silver;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .news-detail {
+    h1 {
+      font-weight: bold;
+      font-size: $font-size-base;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .published-at {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .news-detail {
+    h1 {
+      font-size: $font-size-base * 1.4;
+      line-height: 1.6;
     }
   }
 }
