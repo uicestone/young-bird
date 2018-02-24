@@ -47,7 +47,7 @@ get_header();
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-7 sign-up">
+    <div class="container mt-32 mt-md-7 pb-5 pb-md-7 sign-up">
       <div class="row align-items-center">
         <div class="col-md-10 d-none d-md-flex justify-content-center align-items-center logo">
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">

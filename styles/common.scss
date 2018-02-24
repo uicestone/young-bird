@@ -948,11 +948,56 @@ a.link {
   }
 }
 
+
 @include media-breakpoint-down(sm) {
+  .form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-prepend > .input-group-text, .input-group-lg > .input-group-append > .input-group-text, .input-group-lg > .input-group-prepend > .btn, .input-group-lg > .input-group-append > .btn,
+  .btn-lg, .btn-group-lg > .btn {
+    padding: .48rem 1rem;
+    font-size: $font-size-sm;
+  }
   .btn-common {
     width: 100px;
     font-size: $font-size-xs;
     letter-spacing: .2rem;
     text-indent: .2rem;
+  }
+  .sub-banner {
+    height: rem(200);
+    .container {
+      height: rem(200);
+    }
+    h1 {
+      font-size: rem(22);
+      left: rem(20);
+      bottom: -.3rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-prepend > .input-group-text, .input-group-lg > .input-group-append > .input-group-text, .input-group-lg > .input-group-prepend > .btn, .input-group-lg > .input-group-append > .btn {
+    padding: .61rem 1rem;
+    font-size: $font-size-sm;
+  }
+  .btn-lg, .btn-group-lg > .btn {
+    padding: .61rem 1rem;
+    font-size: $font-size-sm;
+  }
+  .btn-common {
+    width: 100px;
+    font-size: $font-size-xs;
+    letter-spacing: .2rem;
+    text-indent: .2rem;
+  }
+  .sub-banner {
+    height: rem(250);
+    .container {
+      height: rem(250);
+    }
+    h1 {
+      font-size: rem(30);
+      left: rem(20);
+      bottom: rem(-3);
+    }
   }
 }

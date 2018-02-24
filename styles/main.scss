@@ -34,6 +34,7 @@ $spacers: (
   5: ($spacer * 3),
   6: ($spacer * 4.5),
   7: ($spacer * 6),
+  32: ($spacer * 2),
 );
 
 $yellow:      #ffde00;
@@ -102,6 +103,9 @@ $input-placeholder-color: $silver;
 
 // bootstrap
 @import "../bootstrap/scss/bootstrap";
+
+// function
+@import "function";
 
 // main
 @import "common";

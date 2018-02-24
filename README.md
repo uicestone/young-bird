@@ -31,10 +31,10 @@ yarn start
 #### 自适应
 - event_detail-01.png
 - events_list-01.png
-- hom-01.png
+- hom-01.png (x)
 - judges_detail-01.png
 - judges_list-01.png
-- news_detail-01.png
+- news_detail-01.png (x)
 - participate_event_step_1-01.png
 - sign_in-01.png
 - sign_up_success-01.png
