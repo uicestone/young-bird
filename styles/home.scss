@@ -1,4 +1,4 @@
-.category.home-event-status {
+.home-event-status {
   font-weight: bold;
 }
 
@@ -17,5 +17,49 @@
 .home-news {
   .htitle {
     margin-bottom: 2.5rem;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .home-event-status {
+    span {
+      font-size: $font-size-xs;
+    }
+  }
+  .htitle {
+    h1 {
+      font-size: $font-size-base * 1.25;
+    }
+  }
+  .home-news {
+    margin-top: 2.875rem!important;
+    .htitle {
+      margin-bottom: 1.2rem;
+    }
+  }
+  .list-competiton {
+    >div {
+      margin-bottom: 1.875rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    h5 {
+      font-size: $font-size-sm;
+    }
+    .end-date {
+      font-size: $font-size-xs;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .list-competiton {
+    >div {
+      margin-bottom: 1.875rem;
+      &:nth-last-child(-n+2) {
+        margin-bottom: 0;
+      }
+    }
   }
 }
