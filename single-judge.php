@@ -13,7 +13,7 @@
     </div>
     <!-- Body -->
     <div class="judge-detail">
-      <div class="container mt-6 pb-7">
+      <div class="container mt-3 mt-lg-6 pb-7">
         <div class="editor">
           <?php the_content(); ?>
         </div>

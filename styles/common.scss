@@ -492,24 +492,6 @@ a.link {
   }
 }
 
-@include media-breakpoint-down(sm) {
-  .judge-detail {
-    .banner {
-      .avatar {
-        width: 8rem;
-      }
-      .desc {
-        h1 {
-          font-size: 1.2rem;
-        }
-        h3 {
-          font-size: .9rem
-        }
-      }
-    }
-  }
-}
-
 .judge-sign-in {
   .fas {
     font-size: 1.6rem;
@@ -973,6 +955,31 @@ a.link {
       }
     }
   }
+  .judge-detail {
+    > .container {
+      padding: rem(20)!important;
+    }
+    .banner {
+      padding-top: rem(20)!important;
+      padding-bottom: rem(20)!important;
+      .avatar {
+        width: rem(104);
+      }
+      .desc {
+        h1 {
+          font-size: $font-size-sm;
+          margin-bottom: rem(10)!important;
+        }
+        h3, p {
+          font-size: $font-size-xs;
+          font-weight: bold;
+        }
+        p {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(md) {
@@ -1002,6 +1009,31 @@ a.link {
       font-size: rem(30);
       left: rem(20);
       bottom: rem(-3);
+    }
+  }
+  .judge-detail {
+    > .container {
+      padding: rem(30)!important;
+    }
+    .banner {
+      padding-top: rem(30)!important;
+      padding-bottom: rem(30)!important;
+      .avatar {
+        width: rem(160);
+      }
+      .desc {
+        h1 {
+          font-size: $font-size-base *1.2;
+          margin-bottom: rem(10)!important;
+        }
+        h3, p {
+          font-size: $font-size-xs *1.2;
+          font-weight: bold;
+        }
+        p {
+          margin-bottom: 0;
+        }
+      }
     }
   }
 }
