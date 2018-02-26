@@ -125,7 +125,7 @@ else:
 ?>
     <!-- Body -->
     <div class="container page-event-detail pb-4">
-      <div class="sidebar d-none d-md-block">
+      <div class="sidebar d-none d-lg-block">
         <ul>
           <li>
             <a href="#section1"><?=__('竞赛介绍', 'young-bird')?></a>

@@ -31,6 +31,9 @@ yarn start
 #### 自适应
 - event_detail-01.png
 - events_list-01.png
+- work_detail-01.png
+- work_list__winner_3_-01.png
+- work_list__winner_10__-01.png
 - hom-01.png (x)
 - judges_detail-01.png (x)
 - judges_list-01.png (x)
@@ -39,6 +42,3 @@ yarn start
 - sign_in-01.png (x)
 - sign_up_success-01.png (x)
 - sign_up-01.png (x)
-- work_detail-01.png
-- work_list__winner_3_-01.png
-- work_list__winner_10__-01.png
