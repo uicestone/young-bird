@@ -13,9 +13,9 @@
       <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
     </div>
     <!-- Body -->
-    <div class="container mt-5 pb-6 toplist-container">
+    <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
       <h1 class="text-center color-dark-yellow">TOP50</h1>
-      <div class="row mt-5">
+      <div class="row mt-4 mt-md-5">
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
           <div class="card mb-4 item-history item-top50 item-work">
             <img class="card-img-top" src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-history.jpg" alt="Card image cap">

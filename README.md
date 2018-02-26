@@ -32,8 +32,8 @@ yarn start
 - event_detail-01.png
 - events_list-01.png
 - work_detail-01.png
-- work_list__winner_3_-01.png
-- work_list__winner_10__-01.png
+- work_list__winner_3_-01.png (x)
+- work_list__winner_10__-01.png (x)
 - hom-01.png (x)
 - judges_detail-01.png (x)
 - judges_list-01.png (x)
