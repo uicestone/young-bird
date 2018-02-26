@@ -9,12 +9,12 @@ get_header(); ?>
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-4 pubu">
+    <div class="container mt-4 mt-lg-7 pb-4 pubu">
       <!-- Filter -->
       <div class="category-container d-flex flex-wrap mb-4 row">
-        <a href="?tag=" class="col-md-2 <?=!$_GET['tag'] ? 'active' : ''?>"><?=__('全部', 'young-bird')?></a>
+        <a href="?tag=" class="col-6 col-md-4 col-lg-2 <?=!$_GET['tag'] ? 'active' : ''?>"><?=__('全部', 'young-bird')?></a>
         <?php foreach (get_tags() as $tag): ?>
-        <a href="?tag=<?=$tag->slug?>" class="col-md-2 text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
+        <a href="?tag=<?=$tag->slug?>" class="col-6 col-md-4 col-lg-2 text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
         <?php endforeach; ?>
       </div>
       <div class="row">
