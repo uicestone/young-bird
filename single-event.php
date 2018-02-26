@@ -171,14 +171,14 @@ else:
             <img src="<?=get_field('kv')['sizes']['hd']?>">
           </div>
           <!-- title -->
-          <div class="title row justify-content-between mx-auto">
-            <div class="col-lg-18 col-md-24">
+          <div class="title row justify-content-between flex-nowrap align-items-start">
+            <div class="col-md-18">
               <h1 class="color-black font-weight-bold">
                 <?php the_title(); ?>
               </h1>
               <span class="time"><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
             </div>
-            <div class="col-lg-6 col-md-24 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
+            <div class="col-md-6 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
               <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
               <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>

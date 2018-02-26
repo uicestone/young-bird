@@ -880,7 +880,9 @@ a.link {
         padding-bottom: 20px;
         span {
           font-weight: bold;
-          margin-left: 28px;
+        }
+        img {
+          margin-right: 28px;
         }
       }
       .editor {
@@ -983,15 +985,16 @@ a.link {
         h1 {
           font-size: $font-size-lg;
         }
+        .share, .tag, .time {
+          font-size: $font-size-xs;
+        }
       }
       .context {
         h2 {
           font-size: rem(20);
           img {
             width: rem(32);
-          }
-          span {
-            margin-left: rem(16);
+            margin-right: rem(16);
           }
         }
         .editor {
@@ -1154,17 +1157,31 @@ a.link {
     .content {
       .header {
         .title {
+          margin-top: rem(10);
+          flex-wrap: wrap!important;
           h1 {
-            font-size: 1.4rem;
+            font-size: $font-size-base;
           }
+        }
+        .share, .tag, .time {
+          font-size: $font-size-xs;
         }
         .action {
           justify-content: flex-start!important;
         }
       }
       .context {
+        h2 {
+          font-size: rem(20);
+          padding-top: rem(10);
+          padding-bottom: rem(10);
+          img {
+            width: rem(32);
+            margin-right: rem(16);
+          }
+        }
         .editor {
-          margin-left: 0;
+          margin-left: rem(20);
         }
       }
     }
