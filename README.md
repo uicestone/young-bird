@@ -29,7 +29,7 @@ yarn start
 - 报名截止 icon-red
 
 #### 自适应
-- event_detail-01.png
+- event_detail-01.png (x)
 - events_list-01.png (x)
 - work_detail-01.png
 - work_list__winner_3_-01.png (x)

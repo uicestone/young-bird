@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-12 offset-md-2">
           <div class="msg text-center mb-4">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="">
+            <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="" class="checkicon">
             <h3 class="color-silver font-weight-normal mt-3"><?=__('恭喜参赛成功！', 'young-bird')?></h3>
             <a href="#" class="d-sm-block d-lg-none"><?=__('请至PC端上传您的作品', 'young-bird')?></a>
           </div>
