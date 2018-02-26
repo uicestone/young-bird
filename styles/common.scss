@@ -897,7 +897,7 @@ a.link {
           line-height: 1.4;
         }
         small {
-          white-space: pre;
+          max-width: rem(140);
           font-size: $font-size-xs;
         }
       }
