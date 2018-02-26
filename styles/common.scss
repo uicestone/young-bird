@@ -327,9 +327,10 @@ a.link {
       padding-bottom: 1rem;
       .far, .fas {
         font-size: 1.2rem;
+        color: $silver;
       }
       span {
-        color: $black;
+        color: $silver;
       }
     }
   }
@@ -1012,6 +1013,20 @@ a.link {
       }
     }
   }
+  .item-top50 {
+    .card-body {
+      border-top: 2px solid $black;
+      .head {
+        font-size: $font-size-xs;
+        .label {
+          font-size: $font-size-xs;
+        }
+      }
+      .action {
+        border-bottom: 2px solid $black;
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(sm) {
@@ -1117,6 +1132,22 @@ a.link {
       }
       .action {
         bottom: rem(10);
+      }
+    }
+  }
+  .toplist-container {
+    h1 {
+      font-size: rem(30);
+    }
+  }
+  .item-top50 {
+    .card-body {
+      margin-top: rem(20)!important;
+      .head {
+        font-size: $font-size-xs;
+        .label {
+          font-size: $font-size-xs;
+        }
       }
     }
   }
