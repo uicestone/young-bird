@@ -12,7 +12,7 @@
       <img src="<?=get_field('banner_phone')['url']?>" width="100%" alt="">
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-7 sign-up">
+    <div class="container mt-32 mt-md-7 pb-48 pb-md-7 sign-up page-participate">
       <div class="row align-items-center">
         <div class="col-md-10 d-none d-md-flex justify-content-start align-items-center logo">
           <img src="<?=get_field('logo')['url']?>" alt="">

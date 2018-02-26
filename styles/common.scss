@@ -779,24 +779,6 @@ a.link {
   }
 }
 
-.form-participate-position {
-  .options {
-    > .col {
-      cursor: pointer;
-    }
-    i, span {
-      font-size: 1.4rem;
-      color: $silver;
-    }
-    i {
-      position: relative;
-      top: .1rem;
-    }
-  }
-  .bg-light-grey {
-    border-color: $light-grey;
-  }
-}
 
 .toplist-container {
   .item-work {
@@ -979,6 +961,9 @@ a.link {
   .form-control-lg, .input-group-lg > .form-control, .input-group-lg > .input-group-prepend > .input-group-text, .input-group-lg > .input-group-append > .input-group-text, .input-group-lg > .input-group-prepend > .btn, .input-group-lg > .input-group-append > .btn {
     padding: .61rem 1rem;
     font-size: $font-size-sm;
+  }
+  select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]) {
+    height: calc(2.532rem + 2px);
   }
   .btn-lg, .btn-group-lg > .btn {
     padding: .61rem 1rem;

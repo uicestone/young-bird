@@ -12,7 +12,7 @@
       <img src="<?=get_field('banner_phone')['url']?>" width="100%" alt="">
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-7">
+    <div class="container mt-32 mt-md-7 pb-32 pb-md-7 sign-up page-participate">
       <div class="row align-items-center">
         <div class="col-md-10 d-none d-md-flex justify-content-start align-items-center logo">
           <img src="<?=get_field('logo')['url']?>" alt="">
@@ -22,7 +22,7 @@
           <h3 class="font-weight-normal color-silver text-center"><?=__('请选择您的参赛身份', 'young-bird')?></h3>
           <div class="form-participate-position">
             <form method="post">
-              <div class="row options mt-6 mb-5">
+              <div class="row options mt-4 mt-md-6 mb-4 mb-md-5">
                 <div class="col d-flex justify-content-center align-items-center">
                   <i class="far fa-square"></i>
                   <span class="mx-4"><?=__('个人参赛', 'young-bird')?></span>
@@ -39,7 +39,7 @@
               </div>
               <div class="check-1 d-none">
                 <h4 class="font-weight-normal color-silver my-3"><?=__('你可以创建一个团队，或者去寻找一个团队加入', 'young-bird')?></h4>
-                <div class="row no-gutters mb-4 tab">
+                <div class="row no-gutters mb-3 mb-md-4 tab">
                   <div class="col">
                     <button type="button" class="btn btn-lg btn-secondary btn-block"><?=__('创建', 'young-bird')?></button>
                   </div>
