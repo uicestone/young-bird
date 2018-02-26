@@ -208,14 +208,14 @@ else:
         </section>
         <div class="context">
           <h2 class="row align-items-center mx-auto" id="section1">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
+            <!-- <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt=""> -->
             <span><?=__('竞赛介绍', 'young-bird')?></span>
           </h2>
           <div class="editor">
             <?php the_content(); ?>
           </div>
           <h2 class="row align-items-center mx-auto" id="section2">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
+            <!-- <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt=""> -->
             <span><?=__('奖项设置', 'young-bird')?></span>
           </h2>
           <div class="editor">
@@ -223,7 +223,7 @@ else:
           </div>
           <?php if ($judges = get_field('judges')): ?>
           <h2 class="row align-items-center mx-auto" id="section3">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
+            <!-- <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt=""> -->
             <span><?=__('评委介绍', 'young-bird')?></span>
           </h2>
           <div class="editor judge-list row">
@@ -248,7 +248,7 @@ else:
           <?php endif; ?>
           <?php if ($qa): ?>
           <h2 class="row align-items-center mx-auto" id="section4">
-            <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt="">
+            <!-- <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt=""> -->
             <span>Q&A</span>
           </h2>
           <div class="editor">
