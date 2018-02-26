@@ -20,7 +20,7 @@
     <div class="container mt-5 pb-6 toplist-container">
       <h1 class="text-center color-dark-yellow">TOP3</h1>
       <div>
-        <div class="row mt-5 item-work">
+        <div class="row mt-5 item-work item-top3-container">
           <div class="col-sm-12 mb-4 mb-md-0">
             <img src="<?=get_stylesheet_directory_uri()?>/images/sample/poster-work.jpg" width="100%" alt="">
           </div>

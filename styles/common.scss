@@ -372,16 +372,38 @@ a.link {
 
 .item-top3 {
   @extend .item-history;
+  padding-bottom: 0;
   .card-body {
     border-top: 1px solid $black;
     border-bottom: 1px solid $black;
+    position: relative;
+    h3 {
+      font-size: $font-size-lg;
+    }
+    p {
+      font-size: $font-size-base;
+      color: $silver;
+      line-height: 1.8;
+    }
     .head {
       border-bottom: 1px solid $grey;
+      font-size: $font-size-base;
+      .label {
+        font-size: rem(34);
+      }
     }
     .action {
       position: absolute;
-      bottom: 1rem;
+      bottom: rem(16);
       left: 0;
+      border-bottom: 0;
+      padding-bottom: 0;
+      span {
+        font-size: $font-size-xs;
+      }
+      span, i {
+        color: $silver;
+      }
     }
   }
 }
@@ -969,6 +991,27 @@ a.link {
       }
     }
   }
+  .item-top3 {
+    .card-body {
+      h3 {
+        font-size: rem(18);
+        min-height: rem(30);
+      }
+      p {
+        font-size: $font-size-xs;
+        line-height: 1.6;
+      }
+      .head {
+        font-size: $font-size-xs;
+        .label {
+          font-size: rem(18);
+        }
+      }
+      .action {
+        bottom: rem(10);
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(sm) {
@@ -1053,6 +1096,27 @@ a.link {
         .editor {
           margin-left: 0;
         }
+      }
+    }
+  }
+  .item-top3 {
+    .card-body {
+      h3 {
+        font-size: $font-size-sm;
+        min-height: rem(30);
+      }
+      p {
+        font-size: $font-size-xs;
+        line-height: 1.8;
+      }
+      .head {
+        font-size: $font-size-xs;
+        .label {
+          font-size: $font-size-xs;
+        }
+      }
+      .action {
+        bottom: rem(10);
       }
     }
   }
