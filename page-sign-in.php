@@ -50,7 +50,7 @@ get_header(); ?>
               </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('登录', 'young-bird')?></button>
-            <div class="row justify-content-between pl-2 pr-2 mt-2">
+            <div class="row mx-auto justify-content-between mt-2 small-tip">
               <div><?=__('没有账号？', 'young-bird')?><a href="<?=site_url()?>/sign-up/" class="text-underline"><?=__('现在注册', 'young-bird')?></a></div>
               <div><a href="<?=site_url()?>/forget-password/" class="text-underline"><?=__('忘记密码', 'young-bird')?></a></div>
             </div>
