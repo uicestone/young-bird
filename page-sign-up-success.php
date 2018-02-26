@@ -5,7 +5,7 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-7 sign-up">
+    <div class="container mt-48 mt-md-7 pb-48 pb-md-7 sign-up sign-up-success">
       <div class="row align-items-center">
         <div class="col-md-12 d-none d-md-flex justify-content-center align-items-center logo">
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">

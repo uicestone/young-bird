@@ -5,3 +5,57 @@
     }
   }
 }
+
+.sign-up-success {
+  .msg {
+    h3 {
+      font-size: $font-size-lg;
+      color: $body-grey;
+    }
+    a {
+      color: #A39D9B;
+      text-decoration: underline;
+    }
+  }
+  .qr {
+    p {
+      color: $body-grey;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .sign-up-success {
+    .msg {
+      img {
+        width: rem(30);
+      }
+      h3 {
+        font-size: $font-size-sm;
+        margin-bottom: 0;
+      }
+      a {
+        font-size: $font-size-xs;
+      }
+    }
+    .qr {
+      img {
+        width: rem(150);
+      }
+      p {
+        font-size: $font-size-xs;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-down(sm) {
+  .sign-up-success {
+    .qr {
+      img {
+        width: rem(133);
+      }
+    }
+  }
+}
