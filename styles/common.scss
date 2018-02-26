@@ -955,6 +955,24 @@ a.link {
       bottom: -.3rem;
     }
   }
+  .item-judge-container {
+    margin-bottom: rem(20)!important;
+    .card-body {
+      margin-top: rem(10);
+      padding-top: rem(8);
+      h5 {
+        font-size: $font-size-sm;
+        margin-bottom: rem(2);
+      }
+      p {
+        font-size: $font-size-xs;
+        font-weight: bold;
+      }
+      .excerpt {
+        height: rem(40);
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(md) {
