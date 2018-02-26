@@ -32,8 +32,8 @@ yarn start
 - event_detail-01.png
 - events_list-01.png
 - hom-01.png (x)
-- judges_detail-01.png
-- judges_list-01.png
+- judges_detail-01.png (x)
+- judges_list-01.png (x)
 - news_detail-01.png (x)
 - participate_event_step_1-01.png (x)
 - sign_in-01.png (x)
