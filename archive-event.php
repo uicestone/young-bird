@@ -38,14 +38,14 @@ get_header();
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-7 pb-4">
+    <div class="container mt-32 mt-lg-7 pb-4">
       <div class="row mb-2">
         <div class="col-md-18">
-          <form action="" class="row">
+          <form action="" class="row event-filter">
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong><?=__('竞赛状态', 'young-bird')?></strong></label>
-                <div class="col-sm-19">
+                <label for="status" class="col-5 col-md-6 col-lg-5 col-form-label"><strong><?=__('竞赛状态', 'young-bird')?></strong></label>
+                <div class="col-19 col-md-18 col-lg-19">
                   <select name="status" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option value=""<?=!$_GET['status'] ? ' selected' : ''?>><?=__('全部状态', 'young-bird')?></option>
                     <option value="started"<?=$_GET['status']=='started' ? ' selected' : ''?>><?=__('开始报名', 'young-bird')?></option>
@@ -59,8 +59,8 @@ get_header();
             </div>
             <div class="col-md-12">
               <div class="form-group row">
-                <label for="inputPassword6" class="col-sm-5 col-form-label"><strong><?=__('竞赛类别', 'young-bird')?></strong></label>
-                <div class="col-sm-19">
+                <label for="event_category" class="col-5 col-md-6 col-lg-5 col-form-label"><strong><?=__('竞赛类别', 'young-bird')?></strong></label>
+                <div class="col-19 col-md-18 col-lg-19">
                   <select name="event_category" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option value=""<?=!$_GET['event_category'] ? ' selected' : ''?>><?=__('全部类别', 'young-bird')?></option>
                     <?php foreach (get_terms(array('taxonomy' => 'event_category')) as $term): ?>

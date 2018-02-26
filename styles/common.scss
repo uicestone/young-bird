@@ -784,6 +784,11 @@ a.link {
   }
 }
 
+.event-filter {
+  label {
+    color: $silver;
+  }
+}
 
 .toplist-container {
   .item-work {
@@ -920,6 +925,9 @@ a.link {
     padding: .61rem 1rem;
     font-size: $font-size-sm;
   }
+  select.form-control:not([size]):not([multiple]) {
+    font-size: $font-size-xs;
+  }
   select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.input-group-text:not([size]):not([multiple]), .input-group-lg > .input-group-prepend > select.btn:not([size]):not([multiple]), .input-group-lg > .input-group-append > select.btn:not([size]):not([multiple]) {
     height: calc(2.532rem + 2px);
   }
@@ -1027,6 +1035,12 @@ a.link {
       }
     }
   }
+  .event-filter {
+    label {
+      font-size: $font-size-xs;
+      padding-right: 0!important;
+    }
+  }
 }
 
 @include media-breakpoint-down(sm) {
@@ -1034,6 +1048,9 @@ a.link {
   .btn-lg, .btn-group-lg > .btn {
     padding: .48rem 1rem;
     font-size: $font-size-sm;
+  }
+  select.form-control:not([size]):not([multiple]) {
+    font-size: $font-size-xs;
   }
   .btn-common {
     width: 100px;
@@ -1149,6 +1166,12 @@ a.link {
           font-size: $font-size-xs;
         }
       }
+    }
+  }
+  .event-filter {
+    label {
+      font-size: $font-size-xs;
+      padding-right: 0!important;
     }
   }
 }
