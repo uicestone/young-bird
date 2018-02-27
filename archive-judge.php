@@ -24,5 +24,8 @@
         </a>
         <?php endwhile; ?>
       </div>
+      <nav class="mt-5">
+        <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>', 'before_page_number' => '0'))?>
+      </nav>
     </div>
 <?php get_footer(); ?>

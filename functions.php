@@ -265,7 +265,9 @@ add_filter('pre_get_posts', function ($query) {
     set_query_var('meta_key', 'status');
     set_query_var('meta_value', $_GET['status']);
   }
-  else {
+  elseif ($query->query['post_type'] === 'judge') {
+    $limit = 12;
+  } else {
     $limit = get_option('posts_per_page');
   }
 
