@@ -7,7 +7,9 @@
         </div>
         <div class="desc pl-3 pl-lg-5">
           <h1 class="color-black font-weight-bold mb-4"><?php the_title(); ?></h1>
-          <?php the_excerpt(); ?>
+          <?php foreach (array_slice(explode("\n", $post->post_excerpt), 0, 2) as $line): ?>
+          <p><?=$line?></p>
+          <?php endforeach; ?>
         </div>
       </div>
     </div>
