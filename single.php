@@ -11,7 +11,8 @@ get_header(); the_post(); ?>
           <section class="header">
             <!-- poster -->
             <div class="text-center">
-            <?php the_post_thumbnail('5-3', array('class'=>'mb-4')) ?>
+            <!-- <?php the_post_thumbnail('5-3', array('class'=>'mb-4')) ?> -->
+            <img src="<?=get_field('news_kv')['sizes']['hd']?>">
             </div>
             <!-- title -->
             <h1 class="color-black"><?php the_title(); ?></h1>
