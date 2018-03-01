@@ -631,13 +631,21 @@ YB.Event = (function($){
     		$(this).removeClass('far').addClass('fas');
     		$.post($(this).data('event-link'), {
     			like: true
-				});
+				}).fail(function (response) {
+					if (response.status === 401) {
+						window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
+					}
+        });
 			}
 			else {
     		// 取消收藏
         $(this).removeClass('fas').addClass('far');
         $.post($(this).data('event-link'), {
           like: false
+        }).fail(function (response) {
+          if (response.status === 401) {
+            window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
+          }
         });
 			}
 			return false;

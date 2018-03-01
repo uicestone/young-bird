@@ -279,8 +279,11 @@ function redirect_login ($force = false) {
   if (!$force && is_user_logged_in()) {
     return;
   }
-
-  header('Location: ' . site_url() . '/sign-in/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
+  if ($_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+    status_header(401); exit;
+  } else {
+    header('Location: ' . site_url() . '/sign-in/?intend=' . ($_SERVER['REQUEST_URI'])); exit;
+  }
 }
 
 function get_event_status ($event_id) {
