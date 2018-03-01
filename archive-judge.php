@@ -6,8 +6,8 @@
       </div>
     </div>
     <!-- Body -->
-    <div class="container mt-32 mt-md-7 pb-4">
-      <div class="row mx-auto">
+    <div class="container mt-32 mt-md-7 pb-4 pubu">
+      <div class="row mx-auto pubu-list">
         <?php while (have_posts()): the_post(); ?>
         <a href="<?php the_permalink(); ?>" class="col-12 col-md-8 col-lg-6 mb-4 mb-md-5 link item-judge-container">
           <div class="card item-judge">
@@ -24,6 +24,7 @@
         </a>
         <?php endwhile; ?>
       </div>
+      <!-- <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="judge"><?=__('更多导师', 'young-bird')?></button> -->
       <nav class="mt-5">
         <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>', 'before_page_number' => '0'))?>
       </nav>
