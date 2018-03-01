@@ -1,4 +1,20 @@
 <?php
+
+if (isset($_POST['attend'])) {
+
+  redirect_login();
+
+  $attend = json_decode($_POST['attend']);
+
+  if ($attend) {
+    add_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
+  } else {
+    delete_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
+  }
+
+  exit;
+}
+
 $views = (get_post_meta(get_the_ID(), 'views', true) ?: 0) + 1;
 update_post_meta(get_the_ID(), 'views', $views);
 $likes = get_post_meta(get_the_ID(), 'likes', true) ?: 0;
@@ -44,6 +60,11 @@ get_header(); the_post(); ?>
           <?php if ($event = get_field('event')): ?>
           <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; ?>
+          <?php if (get_field('attendable')): if (in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'attend_activities'))): ?>
+          <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
+          <?php else: ?>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>
+          <?php endif; endif; ?>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'news-detail-ad')) as $ad): ?>
