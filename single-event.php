@@ -154,7 +154,7 @@ else:
           </li>
           <?php endif; ?>
           <li class="active">
-            <?php if (!in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
+            <?php if (in_array(get_field('status', $event->ID), array('started', 'ending')) && !in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
             <a href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>

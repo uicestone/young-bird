@@ -57,7 +57,7 @@ get_header(); the_post(); ?>
           <div class="editor my-3 my-md-5">
             <?php the_content(); ?>
           </div>
-          <?php if ($event = get_field('event')): ?>
+          <?php if ($event = get_field('event') && in_array(get_field('status', $event->ID), array('started', 'ending'))): ?>
           <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; ?>
           <?php if (get_field('attendable')): if (in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'attend_activities'))): ?>
