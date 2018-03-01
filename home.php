@@ -50,7 +50,9 @@
         <?php foreach (get_posts(array ('post_type' => 'event', 'category_name' => 'home-primary', 'posts_per_page' => 4)) as $event): ?>
         <div class="col-md-12 col-lg-6">
           <a href="<?=get_the_permalink($event->ID)?>" class="card link">
+            <div>
             <?=get_the_post_thumbnail($event->ID, 'vga', array ('class' => 'card-img-top'))?>
+            </div>
             <div class="card-body">
               <h5 class="text-truncate" title="<?=get_the_title($event->ID)?>"><?=get_the_title($event->ID)?></h5>
               <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
@@ -85,7 +87,9 @@
           <div class="order-2 order-md-1 col-sm-8 col-md-3-11 column-left">
             <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 1) continue; ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+              <div>
               <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
+              </div>
               <div class="card-body">
                 <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
                 <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
@@ -100,7 +104,9 @@
           <div class="order-1 order-md-2 col-sm-8 col-md-5-11 column-middle">
             <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+              <div>
               <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
+              </div>
               <div class="card-body">
                 <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
                 <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
@@ -115,7 +121,9 @@
           <div class="order-3 order-md-3 col-sm-8 col-md-3-11 column-right">
             <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
               <a href="<?=get_the_permalink($post->ID)?>" class="card link">
+                <div>
                 <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
+                </div>
                 <div class="card-body">
                   <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
                   <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
