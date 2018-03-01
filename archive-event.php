@@ -19,7 +19,9 @@ if (isset($_GET['partial'])):
           <p><?php the_excerpt(); ?></p>
           <div class="action row align-items-center">
             <i class="far fa-user mr-2"></i>
-            <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
+            <?php if ($attendees = get_post_meta(get_the_ID(), 'attendees', true)): ?>
+            <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></b>
+            <?php endif; ?>
             <i class="far fa-heart"></i>
           </div>
         </div>

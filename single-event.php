@@ -181,7 +181,9 @@ else:
             <div class="col-md-6 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
               <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
-              <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
+              <?php if ($attendees = get_post_meta(get_the_ID(), 'attendees', true)): ?>
+              <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+              <?php endif; ?>
               <?php endif; ?>
               <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events')) ? 'fas ' : 'far'?> fa-heart like"></i>
             </div>
