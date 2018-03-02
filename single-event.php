@@ -33,7 +33,14 @@ if (isset($_POST['participate'])) {
     $user->display_name = $_POST['name'];
     wp_update_user($user);
   }
-  header('Location: ' . get_the_permalink() . '?participate=' . $_POST['participate']); exit;
+
+  $next_step = $_POST['participate'];
+
+  if ($_POST['identity'] === 'studying') {
+    $next_step = 'step-3';
+  }
+
+  header('Location: ' . get_the_permalink() . '?participate=' . $next_step); exit;
 }
 
 if (isset($_POST['create_group'])) {
