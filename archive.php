@@ -43,7 +43,7 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
           </div>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="news"><?=__('发现更多', 'young-bird')?></button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="category/news"><?=__('发现更多', 'young-bird')?></button>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'news-list-ad')) as $ad): ?>

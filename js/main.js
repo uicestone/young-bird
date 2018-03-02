@@ -152,7 +152,7 @@ YB.Participate = (function($) {
 				form.find('.team').eq(_index).removeClass('d-none').siblings('.team').addClass('d-none');
 			}
 		})
-		
+
 		// 活动报名（非竞赛）
 		$('.attend-activity').on('click', function () {
 			YB.Util.confirm({
@@ -523,7 +523,7 @@ YB.Pubu = (function($) {
 	}
 
 	function loadMore(fn) {
-		ajaxUrl = "/category/" +btn.data('name')+ '/page/' + page + '/?partial=true&' + (location.search.replace(/^\?/, ''));
+		ajaxUrl = "/" +btn.data('name')+ '/page/' + page + '/?partial=true&' + (location.search.replace(/^\?/, ''));
 		if(total && page > total) return
 		$.ajax({
 		  method: "GET",
