@@ -43,7 +43,9 @@ get_header(); ?>
             </div>
             <?php endwhile; ?>
           </div>
+          <?php if ($wp_query->max_num_pages > 1): ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="category/news"><?=__('发现更多', 'young-bird')?></button>
+          <?php endif; ?>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'news-list-ad')) as $ad): ?>

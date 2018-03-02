@@ -1,4 +1,5 @@
 <?php
+header('Total-Pages: ' . $wp_query->max_num_pages);
 if (isset($_GET['partial'])):
   while (have_posts()): the_post(); ?>
   <div class="col-md-12">
@@ -107,7 +108,9 @@ get_header();
             </div>
             <?php endwhile; ?>
           </div>
+          <?php if ($wp_query->max_num_pages > 1): ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="event"><?=__('发现更多', 'young-bird')?></button>
+          <?php endif; ?>
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'event-list-ad')) as $ad): ?>
