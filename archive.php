@@ -60,7 +60,7 @@ get_header(); ?>
             <hr />
             <div class="card-body">
               <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
-              <p><?=get_the_excerpt($ad)?></p>
+              <p><?=$ad->post_excerpt?></p>
               <?php if ($ad_event = get_field('event', $ad)): ?>
               <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
               <?php endif; ?>
