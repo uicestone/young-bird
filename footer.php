@@ -5,13 +5,13 @@
           <div class="col-lg-8">
             <ul class="list-inline">
               <li class="list-inline-item mr-4">
-                <a href="<?=site_url()?>/about-us/"><?=__('关于我们', 'young-bird')?></a>
+                <a href="<?=pll_home_url()?>about-us/"><?=__('关于我们', 'young-bird')?></a>
               </li>
               <li class="list-inline-item mr-4">
-                <a href="<?=site_url()?>/business-cooperation/"><?=__('商务合作', 'young-bird')?></a>
+                <a href="<?=pll_home_url()?>business-cooperation/"><?=__('商务合作', 'young-bird')?></a>
               </li>
               <li class="list-inline-item mr-4">
-                <a href="<?=site_url()?>/help-center/"><?=__('帮助中心', 'young-bird')?></a>
+                <a href="<?=pll_home_url()?>help-center/"><?=__('帮助中心', 'young-bird')?></a>
               </li>
             </ul>
           </div>

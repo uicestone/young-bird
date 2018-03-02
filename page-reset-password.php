@@ -25,8 +25,8 @@
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('确认', 'young-bird')?></button>
             <div class="row justify-content-between pl-2 pr-2 mt-2">
-              <div><a href="<?=site_url()?>/login/" class="text-underline"><?=__('返回登录页面', 'young-bird')?></a></div>
-              <div><a href="<?=site_url()?>/forget-password/" class="text-underline"><?=__('手机找回', 'young-bird')?></a></div>
+              <div><a href="<?=pll_home_url()?>login/" class="text-underline"><?=__('返回登录页面', 'young-bird')?></a></div>
+              <div><a href="<?=pll_home_url()?>forget-password/" class="text-underline"><?=__('手机找回', 'young-bird')?></a></div>
             </div>
           </form>
         </div>

@@ -14,7 +14,7 @@
           <div class="msg text-center mb-4">
             <img src="<?=get_stylesheet_directory_uri()?>/images/icon-check.png" alt="" class="checkicon">
             <h3 class="mt-3"><?=__('恭喜注册成功', 'young-bird')?>!</h3>
-            <a href="<?=site_url()?>/user-center/"><?=__('请至用户中心完善您的资料', 'young-bird')?></a>
+            <a href="<?=pll_home_url()?>user-center/"><?=__('请至用户中心完善您的资料', 'young-bird')?></a>
           </div>
           <div class="qr text-center">
             <img src="<?=get_stylesheet_directory_uri()?>/images/qrcode.jpg" alt="">

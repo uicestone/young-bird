@@ -61,7 +61,7 @@ else: ?>
           <li class="active"><a href="<?php the_permalink(); ?>"><?=__('个人信息', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?activity"><?=__('我的活动', 'young-bird')?></a></li>
-          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
+          <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>

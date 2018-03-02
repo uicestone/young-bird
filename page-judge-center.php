@@ -64,9 +64,9 @@ else: ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="<?=site_url()?>/judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <li class="active"><a href="<?=pll_home_url()?>judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
-          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
+          <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>

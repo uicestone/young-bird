@@ -21,7 +21,7 @@ if(isset($_POST['login'])){
 
 if(isset($_GET['logout'])){
   wp_logout();
-  header('Location: ' . site_url());
+  header('Location: ' . pll_home_url());
 }
 
 get_header(); ?>
@@ -51,8 +51,8 @@ get_header(); ?>
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('登录', 'young-bird')?></button>
             <div class="row mx-auto justify-content-between mt-2 small-tip">
-              <div><?=__('没有账号？', 'young-bird')?><a href="<?=site_url()?>/sign-up/" class="text-underline"><?=__('现在注册', 'young-bird')?></a></div>
-              <div><a href="<?=site_url()?>/forget-password/" class="text-underline"><?=__('忘记密码', 'young-bird')?></a></div>
+              <div><?=__('没有账号？', 'young-bird')?><a href="<?=pll_home_url()?>sign-up/" class="text-underline"><?=__('现在注册', 'young-bird')?></a></div>
+              <div><a href="<?=pll_home_url()?>forget-password/" class="text-underline"><?=__('忘记密码', 'young-bird')?></a></div>
             </div>
           </form>
         </div>

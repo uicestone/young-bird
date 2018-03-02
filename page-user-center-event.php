@@ -12,10 +12,10 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li><a href="<?=site_url()?>/user-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <li><a href="<?=pll_home_url()?>user-center/"><?=__('个人信息', 'young-bird')?></a></li>
           <li class="active"><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?activity"><?=__('我的活动', 'young-bird')?></a></li>
-          <li><a href="<?=site_url()?>/message/"><?=__('消息', 'young-bird')?><i></i></a></li>
+          <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
     </div>
@@ -131,5 +131,5 @@
         </div>
         <?php endforeach; endif; ?>
       </div>
-      <a href="<?=site_url('/event/')?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></a>
+      <a href="<?=pll_home_url()?>event/" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></a>
     </div>

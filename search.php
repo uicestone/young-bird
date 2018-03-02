@@ -48,7 +48,7 @@
         </div>
         <?php endforeach; ?>
       </div>
-      <a href="<?=site_url('news/')?>" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
+      <a href="<?=pll_home_url()?>/news/" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
       <!-- 竞赛搜索结果 -->
       <div class="row mx-auto mt-5 mb-2 justify-content-between">
         <h2><?=__('竞赛：', 'young-bird')?></h2>
@@ -81,6 +81,6 @@
         </div>
         <?php endforeach; ?>
       </div>
-      <a href="<?=site_url('event/')?>" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
+      <a href="<?=pll_home_url()?>event/" class="btn btn-outline-primary mx-auto d-block btn-common"><?=__('发现更多', 'young-bird')?></a>
     </div>
 <?php get_footer(); ?>
