@@ -49,9 +49,11 @@
                     <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
                   </div>
                   <div class="action row align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center" style="height:1.2rem">
+                      <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
                       <i class="far fa-user mr-2"></i>
-                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                      <?php endif; ?>
                     </div>
                     <div>
                       <?php if (!current_user_can('judge_works')): ?>
@@ -87,9 +89,11 @@
                 <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center" style="height:1.2rem">
+                  <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
                   <i class="far fa-user mr-2"></i>
-                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                  <?php endif; ?>
                 </div>
                 <div>
                   <button type="button" class="btn btn-outline-primary ml-2"><?=__('我的作品', 'young-bird')?></button>
@@ -121,9 +125,11 @@
                 <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center" style="height:1.2rem">
+                  <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
                   <i class="far fa-user mr-2"></i>
-                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                  <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>

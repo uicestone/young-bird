@@ -64,6 +64,8 @@ if (isset($_POST['create_group'])) {
   add_post_meta($group_id, 'members', $user->ID);
   add_user_meta($user->ID, 'attend_events', get_the_ID());
   add_user_meta($user->ID, 'attend_events_captain', get_the_ID());
+  $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
+  update_post_meta(get_the_ID(), 'attendees', ++$attendees);
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
@@ -161,11 +163,11 @@ else:
           </li>
           <?php endif; ?>
           <li class="active">
-            <?php if (in_array(get_field('status', $event->ID), array('started', 'ending')) && !in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
+            <?php if ($attendable = in_array(get_field('status', $event->ID), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
-            <?php elseif (in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
+            <?php elseif ($attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
             <a href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>
-            <?php else: ?>
+            <?php elseif ($group || $work): ?>
             <a href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>"><?=__('编辑作品', 'young-bird')?></a>
             <?php endif; ?>
           </li>

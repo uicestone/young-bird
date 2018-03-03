@@ -154,7 +154,7 @@ add_action('init', function () {
       'not_found' => __('未找到作品', 'young-bird')
     ),
     'public' => true,
-    'supports' => array('title', 'excerpt', 'editor', 'thumbnail'),
+    'supports' => array('title', 'excerpt', 'editor', 'thumbnail', 'author'),
     'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-admin-customizer',
     'has_archive' => true

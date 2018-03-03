@@ -8,7 +8,10 @@ $work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_val
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
   delete_post_meta(get_the_ID(), 'members_pending', $accept_member);
+  $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
+  update_post_meta($event_id, 'attendees', ++$attendees);
   header('Location: ' . get_the_permalink()); exit;
+  // TODO handle message send
 }
 
 if ($ignore_member = $_POST['ignore_member_request']) {
@@ -18,7 +21,11 @@ if ($ignore_member = $_POST['ignore_member_request']) {
 
 if ($remove_member = $_GET['remove_member']) {
   delete_post_meta(get_the_ID(), 'members', $remove_member);
+  $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
+  update_post_meta($event_id, 'attendees', --$attendees);
   header('Location: ' . get_the_permalink()); exit;
+  // TODO handle message send
+  // TODO handle user attend_events_member and attend_events
 }
 
 if (isset($_GET['create-work'])) {
