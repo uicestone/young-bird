@@ -46,6 +46,10 @@ elseif (isset($_GET['activity'])):
 
   include(locate_template('page-user-center-activity.php'));
 
+elseif (isset($_GET['like'])):
+
+  include(locate_template('page-user-center-like.php'));
+
 else: ?>
 
     <!-- Banner -->
@@ -61,6 +65,7 @@ else: ?>
           <li class="active"><a href="<?php the_permalink(); ?>"><?=__('个人信息', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?activity"><?=__('我的活动', 'young-bird')?></a></li>
+          <li><a href="<?php the_permalink(); ?>?like"><?=__('我的收藏', 'young-bird')?></a></li>
           <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>

@@ -15,6 +15,21 @@ if (isset($_POST['attend'])) {
   exit;
 }
 
+if (isset($_POST['like'])) {
+  redirect_login();
+  $likes = get_post_meta(get_the_ID(), 'likes', true);
+  if (json_decode($_POST['like'])) {
+    add_user_meta(get_current_user_id(), 'like_posts', get_the_ID());
+    update_post_meta(get_the_ID(), 'likes', ++$likes);
+  }
+  else {
+    delete_user_meta(get_current_user_id(), 'like_posts', get_the_ID());
+    update_post_meta(get_the_ID(), 'likes', --$likes);
+  }
+
+  echo $likes; exit;
+}
+
 $views = (get_post_meta(get_the_ID(), 'views', true) ?: 0) + 1;
 update_post_meta(get_the_ID(), 'views', $views);
 $likes = get_post_meta(get_the_ID(), 'likes', true) ?: 0;
@@ -37,8 +52,8 @@ get_header(); the_post(); ?>
               <div class="d-flex align-items-center">
                 <i class="fas fa-eye mr-2"></i>
                 <span class="mr-4"><?=$views?></span>
-                <i class="far fa-heart mr-2"></i>
-                <span class="mr-4"><?=$likes?></span>
+                <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_posts')) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
+                <span class="mr-4 likes"><?=$likes?></span>
               </div>
               <div class="d-none d-md-flex align-items-center share mt-3 mt-md-0">
                 <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->

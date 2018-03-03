@@ -15,6 +15,7 @@
           <li><a href="<?=pll_home_url()?>user-center/"><?=__('个人信息', 'young-bird')?></a></li>
           <li class="active"><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?activity"><?=__('我的活动', 'young-bird')?></a></li>
+          <li><a href="<?php the_permalink(); ?>?like"><?=__('我的收藏', 'young-bird')?></a></li>
           <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
         </ul>
       </div>
@@ -45,7 +46,7 @@
                 <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
                 <div class="card-body mt-3">
                   <div class="row justify-content-between mx-auto pt-3 mb-3">
-                    <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
+                    <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
                     <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
                   </div>
                   <div class="action row align-items-center justify-content-between">
@@ -121,7 +122,7 @@
             <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
-                <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
+                <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
                 <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">

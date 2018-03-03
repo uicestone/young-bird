@@ -642,6 +642,7 @@ YB.Event = (function($){
 
   function bindEvent() {
     $('.like').click(function (e) {
+    	var self = this;
     	if ($(this).hasClass('far')) {
     		// 添加收藏
     		$(this).removeClass('far').addClass('fas');
@@ -650,6 +651,11 @@ YB.Event = (function($){
 				}).fail(function (response) {
 					if (response.status === 401) {
 						window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
+					}
+        }).done(function (likes) {
+        	var likesContainer = $(self).next('.likes');
+					if (likesContainer.length) {
+						likesContainer.text(likes);
 					}
         });
 			}
@@ -661,6 +667,11 @@ YB.Event = (function($){
         }).fail(function (response) {
           if (response.status === 401) {
             window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
+          }
+        }).done(function (likes) {
+          var likesContainer = $(self).next('.likes');
+          if (likesContainer.length) {
+            likesContainer.text(likes);
           }
         });
 			}
