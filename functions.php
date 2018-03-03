@@ -276,6 +276,10 @@ add_filter('pre_get_posts', function ($query) {
   }
   elseif ($query->query['post_type'] === 'judge') {
     $limit = 12;
+  }
+  elseif ($query->query['post_type'] === 'message') {
+    set_query_var('meta_key', 'to');
+    set_query_var('meta_value', get_current_user_id());
   } else {
     $limit = get_option('posts_per_page');
   }
