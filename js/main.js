@@ -617,9 +617,18 @@ YB.Judge = (function($){
 // 用户
 YB.User = (function($){
 	var page = $('.user-center-body');
-
+	var mobileCodeContainer = $('.verify-code.login-is-mobile');
+	var emailCodeContainer = $('.verify-code.login-is-email');
 	function init() {
 		bindEvent();
+	}
+
+	function isMobile(s) {
+		return !isNaN(s) && s.length === 11;
+	}
+
+	function isEmail(s) {
+		return !!s.match(/[^@]+@[^@]+/);
 	}
 
 	function bindEvent() {
@@ -627,6 +636,35 @@ YB.User = (function($){
 		page.find('.custom-file-container .custom-file-input').change(function() {
 			YB.Util.preview(this);
 		})
+
+		// 注册页验证码
+		$('.sign-up [name="login"]').on('keyup change', function () {
+			var login = $(this).val();
+      $('.verify-code').hide()
+        .find('[name="code"]').prop('disabled', true);
+			if (isMobile($(this).val())) {
+        mobileCodeContainer.show()
+					.find('.send-verify-code').data('mobile', login).end()
+					.find('[name="code"]').prop('disabled', false);
+        emailCodeContainer
+					.find('.send-verify-code').removeData('email');
+      }
+      // else if (isEmail($(this).val())) {
+      //   emailCodeContainer.show()
+				// 	.find('.send-verify-code').data('email', login).end()
+      //     .find('[name="code"]').prop('disabled', false);
+      //   mobileCodeContainer
+      //     .find('.send-verify-code').removeData('mobile');
+      // }
+    })
+
+		$('.sign-up .send-verify-code').click(function () {
+			if ($(this).data('mobile')) {
+				$.get(window.location.href + '?send_code_to_mobile=' + $(this).data('mobile'));
+			} else if ($(this).data('email')) {
+        $.get(window.location.href + '?send_code_to_email=' + $(this).data('email'));
+			}
+		});
 	}
 
 	return {

@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/includes/cmb2.functions.php';
+require __DIR__ . '/includes/aliyun.signature_helper.php';
 
 remove_filter('template_redirect','redirect_canonical');
 
@@ -310,4 +311,24 @@ function get_event_status ($event_id) {
     'history' => __('历史竞赛', 'young-bird')
   );
   return $statuses[$status];
+}
+
+function send_sms_code($mobile) {
+  $code = generate_code($mobile);
+  aliyun_send_sms($mobile, ALIYUN_SMS_TEMPLATE_VERIFY, array('code' => $code));
+}
+
+function generate_code($login) {
+  $code = get_option('verify_' . $login);
+  if (!$code) {
+    $code = (string) rand(1000, 9999);
+    update_option('verify_' . $login, $code);
+  }
+  return $code;
+}
+
+function verify_code($login, $input_code) {
+  $code = get_option('verify_' . $login);
+  delete_option('verify_' . $login);
+  return $input_code === $code;
 }

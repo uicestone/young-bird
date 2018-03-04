@@ -1,12 +1,21 @@
 <?php
-if ($_GET['send_code_to_mobile']) :
+if ($mobile = $_GET['send_code_to_mobile']) :
   // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+  send_sms_code($mobile);
+
+elseif ($email = $_GET['send_code_to_email']) :
+    // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+    // send_email_code($email);
 else:
 
   if(isset($_POST['login'])){
 
     if ($_POST['password'] !== $_POST['password_confirm']) {
       exit(__('两次输入密码不一致，请返回修改', 'young-bird'));
+    }
+
+    if (isset($_POST['code']) && !verify_code($_POST['login'], $_POST['code'])) {
+      exit(__('短信/邮箱验证码输入错误', 'young-bird'));
     }
 
     $user_data = array(
@@ -70,14 +79,23 @@ get_header();
             </div>-->
             <!--show if [login] is mobile-->
             <!--GET ?send_code_to_mobile=[mobile]-->
-            <!--<div class="form-group">
+            <div class="form-group verify-code login-is-mobile collapse">
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="<?=__('输入短信验证码', 'young-bird')?>">
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-primary"><?=__('发送短信验证码', 'young-bird')?></button>
+                  <button type="button" class="btn btn-outline-primary send-verify-code"><?=__('发送短信验证码', 'young-bird')?></button>
                 </div>
               </div>
-            </div>-->
+            </div>
+            <!--show if [login] is email-->
+            <div class="form-group verify-code login-is-email collapse">
+              <div class="input-group input-group-lg">
+                <input type="text" name="code" class="form-control" placeholder="<?=__('输入邮箱验证码', 'young-bird')?>">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-primary send-verify-code"><?=__('发送邮箱验证码', 'young-bird')?></button>
+                </div>
+              </div>
+            </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="password" name="password" class="form-control" placeholder="<?=__('密码', 'young-bird')?>（<?=__('数字或字母', 'young-bird')?>）">
