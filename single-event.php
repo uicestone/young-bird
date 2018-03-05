@@ -165,7 +165,7 @@ else:
           <li class="active">
             <?php if ($attendable = in_array(get_field('status', $event->ID), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
-            <?php elseif ($attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member'))): ?>
+            <?php elseif ($attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
             <a href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>
             <?php elseif ($group || $work): ?>
             <a href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>"><?=__('编辑作品', 'young-bird')?></a>
