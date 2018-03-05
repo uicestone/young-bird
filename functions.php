@@ -332,3 +332,9 @@ function verify_code($login, $input_code) {
   delete_option('verify_' . $login);
   return $input_code === $code;
 }
+
+if (!function_exists('pll_home_url')) {
+  function pll_home_url () {
+    return site_url('/');
+  }
+}
