@@ -47,10 +47,14 @@ function init_page_placeholder ($name) {
 
 add_action( 'admin_notices', function () {
   if( ! function_exists('get_fields') )
-    echo '<div class="error"><p>' . __( '需要激活 Advanced Custom Fields 插件' ) . '</p></div>';
+    echo '<div class="error"><p>' . __( '需要启用 Advanced Custom Fields 插件' ) . '</p></div>';
 
   if ( ! function_exists('new_cmb2_box'))
-    echo '<div class="error"><p>' . __( '需要激活 CMB2 插件' ) . '</p></div>';
+    echo '<div class="error"><p>' . __( '需要启用 CMB2 插件' ) . '</p></div>';
+
+  if( ! function_exists('the_subtitle') )
+    echo '<div class="error"><p>' . __( '需要启用 Subtitles 插件' ) . '</p></div>';
+
 } );
 
 add_action('admin_menu', function () {
