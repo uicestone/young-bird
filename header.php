@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="<?=get_stylesheet_directory_uri()?>/images/favicon.ico">
     <title><?php echo preg_replace('/^  – /', '', strip_tags(html_entity_decode(wp_title('-', false, 'right')))); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
