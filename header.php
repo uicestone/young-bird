@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="<?=get_stylesheet_directory_uri()?>/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="<?=get_stylesheet_directory_uri()?>/images/logo-144.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="<?=get_stylesheet_directory_uri()?>/images/logo-144.png" />
     <title><?php echo preg_replace('/^  – /', '', strip_tags(html_entity_decode(wp_title('-', false, 'right')))); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
