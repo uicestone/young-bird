@@ -18,7 +18,7 @@
           <div class="col-lg-16 contact d-none d-lg-flex">
             <span class="mr-md-4">TELEPHONE & FAX&nbsp;&nbsp;+86 021 6258 5617&nbsp;&nbsp;+86 021 6258 5617-102</span>
             <span class="nowrap">E-MAIL&nbsp;&nbsp;competition@youngbird.com.cn</span>
-            <span class="nowrap">沪ICP备 16055号-1|© 2016-2017 Design Verse <?=__('版权所有', 'young-bird')?></span>
+            <span class="nowrap">沪ICP备 16055号-1|© 2016-2018 Design Verse <?=__('版权所有', 'young-bird')?></span>
           </div>
           <div class="col-lg-16 contact d-lg-none">
             <div>TELEPHONE & FAX<br />+86 021 6258 5617<br />+86 021 6258 5617-102</div>
