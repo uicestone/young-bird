@@ -36,7 +36,7 @@ get_header(); ?>
                     </div>
                   </div>
                   <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
-                  <p><?php the_excerpt(); ?></p>
+                  <p class="color-silver"><?=$post->post_excerpt?></p>
                   <div class="action"></div>
                 </div>
               </div>
@@ -105,7 +105,7 @@ get_header(); ?>
           </div>
         </div>
         <h3 class="mt-3"><a href="<?php the_permalink()?>"><?php the_title(); ?></a></h3>
-        <p><?php the_excerpt(); ?></p>
+        <p class="color-silver"><?=$post->post_excerpt?></p>
         <div class="action"></div>
       </div>
     </div>

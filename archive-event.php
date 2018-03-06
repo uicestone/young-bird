@@ -17,7 +17,7 @@ if (isset($_GET['partial'])):
           </div>
           <h3 class="mt-3"><?php the_title(); ?></h3>
           <p class="color-black mb-4 organizer"><?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
-          <p><?php the_excerpt(); ?></p>
+          <p class="color-silver"><?=$post->post_excerpt?></p>
           <div class="action row align-items-center">
             <i class="far fa-user mr-2"></i>
             <?php if ($attendees = get_post_meta(get_the_ID(), 'attendees', true)): ?>
@@ -96,7 +96,7 @@ get_header();
                     </div>
                     <h3 class="mt-3"><?php the_title(); ?></h3>
                     <p class="color-black mb-4 organizer"><?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
-                    <p><?php the_excerpt(); ?></p>
+                    <p class="color-silver"><?=$post->post_excerpt?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
                       <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
