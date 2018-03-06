@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
+    <meta name="keywords" content="YoungBirdPlan 设计师 创新 年轻 高品质竞赛平台" />
+    <meta name="description" content="<?php bloginfo('description'); ?>" />
     <link rel="shortcut icon" type="image/x-icon" href="<?=get_stylesheet_directory_uri()?>/images/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
     <link rel="apple-touch-icon" sizes="114x114" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
