@@ -121,7 +121,7 @@ $group = $group ?: $group_pending;
 if ($group) {
   $im_leader = $group->post_author == $user->ID;
 } else {
-  $work = get_posts(array ('post_type' =>'work', 'event' => get_the_ID(), 'author' => $user->ID))[0];
+  $work = get_posts(array ('post_type' =>'work', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => get_the_ID()))[0];
 }
 
 get_header();
