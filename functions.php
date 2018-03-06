@@ -322,6 +322,11 @@ function send_sms_code($mobile) {
   aliyun_send_sms($mobile, ALIYUN_SMS_TEMPLATE_VERIFY, array('code' => $code));
 }
 
+function send_email_code($email) {
+  $code = generate_code($email);
+  var_export(wp_mail($email, '邮件验证码', '您的验证码为：' . $code . '，请返回网站填写。'));
+}
+
 function generate_code($login) {
   $code = get_option('verify_' . $login);
   if (!$code) {
