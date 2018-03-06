@@ -660,6 +660,20 @@ YB.User = (function($){
 
 		$('.sign-up .send-verify-code').click(function () {
 			if ($(this).data('mobile')) {
+				var _this = $(this);
+				var countdown = 60, interval;
+				_this.text('已发送(' + countdown + ')s');
+				// 开始倒计时
+				_this.attr('disabled', true);
+				interval = setInterval(function () {
+					countdown--;
+					_this.text('已发送(' + countdown + ')s');
+					if(countdown === 0) {
+						clearInterval(interval);
+						_this.attr('disabled', false);
+						_this.text('重新发送');
+					}
+				}, 1000);
 				$.get(window.location.href + '?send_code_to_mobile=' + $(this).data('mobile'));
 			} else if ($(this).data('email')) {
         $.get(window.location.href + '?send_code_to_email=' + $(this).data('email'));

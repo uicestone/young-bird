@@ -83,7 +83,7 @@ get_header();
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="<?=__('输入短信验证码', 'young-bird')?>">
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-primary send-verify-code"><?=__('发送短信验证码', 'young-bird')?></button>
+                  <button type="button" class="btn btn-secondary send-verify-code"><?=__('发送短信验证码', 'young-bird')?></button>
                 </div>
               </div>
             </div>
