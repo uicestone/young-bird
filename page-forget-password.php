@@ -1,13 +1,42 @@
 <?php
-if ($_GET['send_code_to_mobile']):
+if ($mobile = $_GET['send_code_to_mobile']) :
   // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+  send_sms_code($mobile);
+
+elseif ($email = $_GET['send_code_to_email']) :
+  // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+  send_email_code($email);
 else:
-  get_header();
-    if (isset($_GET['email'])) :
-      get_template_part('page-forget-password-email');
-    elseif (isset($_GET['email-verify'])) :
-      get_template_part('page-forget-password-email-verify');
-    else: ?>
+  if(isset($_POST['login'])){
+
+    if ($_POST['reset_password'] !== $_POST['reset_password_confirm']) {
+      exit(__('两次输入密码不一致，请返回修改', 'young-bird'));
+    }
+
+    if (isset($_POST['code']) && !verify_code($_POST['login'], $_POST['code'])) {
+      exit(__('短信/邮箱验证码输入错误', 'young-bird'));
+    }
+
+    $user = get_user_by('login', $_POST['login']);
+
+    if (!$user) {
+      if (is_email($_POST['login'])) {
+        $user = get_user_by('email', $_POST['login']);
+      } elseif (is_numeric($_POST['login'])) {
+        $user = get_users(array('meta_key' => 'mobile', 'meta_value' => $_POST['login']))[0];
+      }
+    }
+
+    if (!$user) {
+      exit(__('找不到这个用户', 'young-bird') . ' ' . $_POST['login']);
+    }
+
+    reset_password($user, $_POST['reset_password']);
+
+    header('Location: ' . pll_home_url() . '/sign-in/?reset=true'); exit;
+  }
+
+get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-sign-up.jpg) center center / cover no-repeat">
       <div class="container">
@@ -24,7 +53,7 @@ else:
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="mobile" class="form-control" placeholder="<?=__('手机', 'young-bird')?>">
+                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?> / <?=__('手机', 'young-bird')?>">
               </div>
             </div>
             <!--<div class="form-group">
@@ -36,13 +65,31 @@ else:
                 </div>
               </div>
             </div>-->
-            <div class="form-group">
+            <div class="form-group verify-code login-is-mobile collapse">
               <div class="input-group input-group-lg">
                 <input type="text" name="code" class="form-control" placeholder="<?=__('输入短信验证码', 'young-bird')?>">
                 <div class="input-group-append">
-                  <!--GET ?send_code_to_mobile=[mobile]-->
-                  <button type="button" class="btn btn-outline-primary"><?=__('发送短信验证码', 'young-bird')?></button>
+                  <button type="button" class="btn btn-secondary send-verify-code"><?=__('发送短信验证码', 'young-bird')?></button>
                 </div>
+              </div>
+            </div>
+            <!--show if [login] is email-->
+            <div class="form-group verify-code login-is-email collapse">
+              <div class="input-group input-group-lg">
+                <input type="text" name="code" class="form-control" placeholder="<?=__('输入邮箱验证码', 'young-bird')?>">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-primary send-verify-code"><?=__('发送邮箱验证码', 'young-bird')?></button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <input type="password" name="reset_password" class="form-control" placeholder="<?=__('重置密码', 'young-bird')?>（<?=__('数字或字母', 'young-bird')?>）">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <input type="password" name="reset_password_confirm" class="form-control" placeholder="<?=__('确认重置密码', 'young-bird')?>">
               </div>
             </div>
             <button type="submit" class="btn btn-secondary btn-block btn-lg"><?=__('找回密码', 'young-bird')?></button>
@@ -54,6 +101,4 @@ else:
         </div>
       </div>
     </div>
-<?php endif;
-get_footer();
-endif;
+<?php get_footer(); endif;

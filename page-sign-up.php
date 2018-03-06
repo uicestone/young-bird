@@ -65,7 +65,7 @@ get_header();
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>/<?=__('手机', 'young-bird')?>">
+                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?> / <?=__('手机', 'young-bird')?>">
               </div>
             </div>
             <!--<div class="form-group">

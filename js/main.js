@@ -638,7 +638,7 @@ YB.User = (function($){
 		})
 
 		// 注册页验证码
-		$('.sign-up [name="login"]').on('keyup change', function () {
+		$('.sign-up [name="login"]').on('keyup change focus', function () {
 			var login = $(this).val();
       $('.verify-code').hide()
         .find('[name="code"]').prop('disabled', true);

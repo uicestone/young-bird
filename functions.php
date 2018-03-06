@@ -324,7 +324,7 @@ function send_sms_code($mobile) {
 
 function send_email_code($email) {
   $code = generate_code($email);
-  var_export(wp_mail($email, '邮件验证码', '您的验证码为：' . $code . '，请返回网站填写。'));
+  wp_mail($email, '邮件验证码', '您的验证码为：' . $code . '，请返回网站填写。');
 }
 
 function generate_code($login) {
@@ -347,3 +347,11 @@ if (!function_exists('pll_home_url')) {
     return site_url('/');
   }
 }
+
+add_filter('lostpassword_url', function ($default_url) {
+  if (is_admin()) {
+    return $default_url;
+  } else {
+    return pll_home_url() . 'forget-password/';
+  }
+});
