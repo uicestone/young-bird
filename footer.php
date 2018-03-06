@@ -3,14 +3,22 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-8">
+            <div class="share">
+              <a class="button-tsina" href="https://weibo.com/youngbirdplan" target="_blank"></a>
+              <a class="button-weixin">
+                <div>
+                  <img src="<?=get_stylesheet_directory_uri()?>/images/wechat-qr.png" alt="">
+                </div>
+              </a>
+            </div>
             <ul class="list-inline">
-              <li class="list-inline-item mr-4">
+              <li class="list-inline-item mx-2">
                 <a href="<?=pll_home_url()?>about-us/"><?=__('关于我们', 'young-bird')?></a>
               </li>
-              <li class="list-inline-item mr-4">
+              <li class="list-inline-item mx-2">
                 <a href="<?=pll_home_url()?>business-cooperation/"><?=__('商务合作', 'young-bird')?></a>
               </li>
-              <li class="list-inline-item mr-4">
+              <li class="list-inline-item mx-2">
                 <a href="<?=pll_home_url()?>help-center/"><?=__('帮助中心', 'young-bird')?></a>
               </li>
             </ul>
