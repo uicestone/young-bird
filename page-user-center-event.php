@@ -23,50 +23,48 @@
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body">
       <?php if (current_user_can('judge_works')): ?>
-        <h3><?=__('（待）评分的项目', 'young-bird')?></h3>
-        <div class="row my-3 event-list">
-          <?php if ($judge_post): foreach (get_posts(array (
-            'post_type' => 'event', 'meta_key' => 'judges',
-            'meta_compare' => 'LIKE', 'meta_value' => '"' . $judge_post->ID . '"'
-          )) as $event):
-            if (!in_array($judge_post->ID, array_column(get_field('judges', $event->ID), 'ID'))) {
-              continue;
-            }
-          ?>
-            <div class="col-md-12">
-              <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
-                <div class="card-head row mx-0">
-                  <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
-                  <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
-                    <?php foreach (get_the_terms($event->ID, 'event_category') as $term): ?>
-                      <span><?=$term->name?></span>
-                    <?php endforeach; ?>
+      <h3><?=__('（待）评分的项目', 'young-bird')?></h3>
+      <div class="row my-3 event-list">
+        <?php if ($judge_post): foreach (get_posts(array (
+          'post_type' => 'event', 'meta_key' => 'judges',
+          'meta_compare' => 'LIKE', 'meta_value' => '"' . $judge_post->ID . '"'
+        )) as $event):
+          if (!in_array($judge_post->ID, array_column(get_field('judges', $event->ID), 'ID'))) {
+            continue;
+          }
+        ?>
+          <div class="col-md-12">
+            <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
+              <div class="card-head row mx-0">
+                <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
+                <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
+                  <?php foreach (get_the_terms($event->ID, 'event_category') as $term): ?>
+                    <span><?=$term->name?></span>
+                  <?php endforeach; ?>
+                </div>
+              </div>
+              <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+              <div class="card-body mt-3">
+                <div class="row justify-content-between mx-auto pt-3 mb-3">
+                  <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
+                  <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
+                </div>
+                <div class="action row align-items-center justify-content-between">
+                  <div class="d-flex align-items-center" style="height:1.2rem">
+                    <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
+                    <i class="far fa-user mr-2"></i>
+                    <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                    <?php endif; ?>
+                  </div>
+                  <div>
+                    <?php if (get_post_meta($event->ID, 'status', true) === 'ended'): ?>
+                    <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
+                    <?php endif; ?>
                   </div>
                 </div>
-                <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
-                <div class="card-body mt-3">
-                  <div class="row justify-content-between mx-auto pt-3 mb-3">
-                    <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
-                    <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
-                  </div>
-                  <div class="action row align-items-center justify-content-between">
-                    <div class="d-flex align-items-center" style="height:1.2rem">
-                      <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
-                      <i class="far fa-user mr-2"></i>
-                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
-                      <?php endif; ?>
-                    </div>
-                    <div>
-                      <?php if (!current_user_can('judge_works')): ?>
-                      <button type="button" onclick="location.href='<?=get_the_permalink($event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('我的作品', 'young-bird')?></button>
-                      <?php elseif (1 || get_post_meta($event->ID, 'status', true) === 'ended'): ?>
-                      <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
-                      <?php endif; ?>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
+              </div>
+            </a>
+          </div>
           <?php endforeach; endif; ?>
         </div>
       <?php else: ?>
@@ -97,7 +95,24 @@
                   <?php endif; ?>
                 </div>
                 <div>
-                  <button type="button" class="btn btn-outline-primary ml-2"><?=__('我的作品', 'young-bird')?></button>
+                  <?php $work = get_event_work($event->ID); ?>
+                  <?php if ($work): ?>
+                  <button type="button" class="btn btn-outline-primary btn-preview ml-2"><?=__('我的作品', 'young-bird')?></button>
+                  <div class="d-none preview-box">
+                    <span class="w-100">
+                      <div class="row mx-auto justify-content-between">
+                        <h3><?php get_the_title($work->ID); ?></h3>
+                        <h4>YB<?=strtoupper($work->post_name)?></h4>
+                      </div>
+                      <p class="mt-3">
+                        <?=get_post_meta($work->ID, 'description', true)?>
+                      </p>
+                    </span>
+                    <span href="<?=get_the_post_thumbnail_url($work->ID)?>">
+                      <?php get_the_post_thumbnail($work->ID, 'full'); ?>
+                    </span>
+                  </div>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>

@@ -264,6 +264,7 @@ YB.Work = (function($) {
 		// 作品预览
 		workDetail.on('click', '.btn-preview', function(e) {
 			e.preventDefault();
+			e.stopPropagation();
 			// render data
 			// title ?
 			// desc

@@ -355,3 +355,22 @@ add_filter('lostpassword_url', function ($default_url) {
     return pll_home_url() . 'forget-password/';
   }
 });
+
+function get_event_group ($event_id, $user_id = null) {
+  if (!$user_id) {
+    $user_id = get_current_user_id();
+  }
+
+  return get_posts(array('post_type' => 'group', 'meta_query' => array(
+    array('key' => 'event', 'value' => $event_id),
+    array('key' => 'member', 'value' => $user_id),
+  )))[0];
+}
+
+function get_event_work ($event_id, $user_id = null) {
+  if (!$user_id) {
+    $user_id = get_current_user_id();
+  }
+
+  return get_posts(array('post_type' => 'work', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
+}
