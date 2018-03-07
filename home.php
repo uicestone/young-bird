@@ -105,7 +105,7 @@
             <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
               <div>
-              <?=get_the_post_thumbnail($post->ID, '5-4', array ('class' => 'card-img-top'))?>
+              <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
               </div>
               <div class="card-body">
                 <div class="title text-truncate"><?=get_the_title($post->ID)?><br><?=get_the_subtitle($post->ID)?></div>
