@@ -19,7 +19,7 @@ get_header(); ?>
       <h1><?=__('作品列表', 'young-bird')?>/<?=get_the_title($event->ID)?> <?=get_the_subtitle($event->ID)?></h1>
       <div class="row mt-5 review-list">
         <?php while (have_posts()): the_post(); ?>
-        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
+        <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4" data-url="<?=get_the_permalink($post->ID)?>">
           <div class="card mb-4 item-review" id="yb<?=$post->post_name?>">
             <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">

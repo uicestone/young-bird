@@ -156,7 +156,7 @@ get_header(); ?>
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
             <div class="d-none preview-box">
-              <a class="w-100" style="padding:3rem 6rem">
+              <a class="w-100" style="padding:10vh 20vw">
                 <div class="row mx-auto justify-content-between">
                   <h3><?php the_title(); ?></h3>
                   <h4>YB<?=strtoupper($post->post_name)?></h4>

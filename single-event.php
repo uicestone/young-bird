@@ -163,7 +163,9 @@ else:
           </li>
           <?php endif; ?>
           <li class="active">
-            <?php if ($attendable = in_array(get_field('status', $event->ID), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
+            <?php if (current_user_can('edit_user')): ?>
+            <a class="text-truncate" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>"><?=__('评审', 'young-bird')?></a>
+            <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
             <a class="text-truncate" href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>

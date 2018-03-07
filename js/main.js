@@ -206,10 +206,10 @@ YB.Work = (function($) {
 
 	// 入围 / 不入围
 	function update(id, status) {
-		console.log(id);
 		// ajax ...
+		$.post();
 		// callback
-		var result = status === 0 ? '不入围' : '入围';
+		var result = status === 0 ? '不入围 / Rejected' : '入围 / Passed';
 		$('#'+id).find('h3').text(result);
 		close();
 	}
@@ -217,7 +217,7 @@ YB.Work = (function($) {
 	function rate(id) {
 		// ajax ...
 		// callback
-		var result = '分数：' + $('#rateStar').val();
+		var result = '分数 / Score：' + $('#rateStar').val();
 		$('#'+id).find('h3').text(result);
 		close();
 	}
@@ -333,7 +333,7 @@ YB.Work = (function($) {
 				}
 			} else {
 				// 入围评选
-				caption = '<div class="row mb-4 tab"><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block" onclick="YB.Work.update(\''+id+'\', 1)">入围</button></div><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block bg-light-grey" onclick="YB.Work.update(\''+id+'\', 0)">不入围</button></div></div>';
+				caption = '<div class="row mb-4 tab"><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block" onclick="YB.Work.update(\''+id+'\', 1)">入围 / Pass</button></div><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block bg-light-grey" onclick="YB.Work.update(\''+id+'\', 0)">不入围 / Reject</button></div></div>';
 			}
 			YB.Util.open(items, caption, onInit)
 		})
