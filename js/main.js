@@ -193,6 +193,7 @@ YB.Edit = (function($) {
 
 // 作品详情
 YB.Work = (function($) {
+	var eventList = $('.event-list');
 	var workList = $('.toplist-container');
 	var workDetail = $('.work-detail'),
 			previewBox = $('.preview-box');
@@ -286,7 +287,9 @@ YB.Work = (function($) {
 		// 查看作品详情
 		workList.on('click', '.item-work', function() {
 			showWork($(this))
-
+		})
+		eventList.on('click', '.item-work-anchor', function() {
+			showWork($(this))
 		})
 		// 入围弹层
 		reviewList.on('click', '.item-review', function() {

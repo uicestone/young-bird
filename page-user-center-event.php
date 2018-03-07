@@ -34,7 +34,7 @@
           }
         ?>
           <div class="col-md-12">
-            <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
+            <div class="card mb-4 item-event">
               <div class="card-head row mx-0">
                 <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
                 <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
@@ -43,7 +43,9 @@
                   <?php endforeach; ?>
                 </div>
               </div>
-              <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+              <a href="<?=get_the_permalink($event->ID)?>" class="link">
+                <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+              </a>
               <div class="card-body mt-3">
                 <div class="row justify-content-between mx-auto pt-3 mb-3">
                   <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
@@ -63,7 +65,7 @@
                   </div>
                 </div>
               </div>
-            </a>
+            </div>
           </div>
           <?php endforeach; endif; ?>
         </div>
@@ -72,7 +74,7 @@
       <div class="row my-3 event-list">
         <?php if ($attend_events = get_user_meta($user->ID, 'attend_events')): foreach (get_posts(array ('post_type' => 'event', 'post__in' => $attend_events ?: array())) as $event): ?>
         <div class="col-md-12">
-          <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
+          <div class="card mb-4 item-event">
             <div class="card-head row mx-0">
               <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
@@ -81,7 +83,9 @@
                 <?php endforeach; ?>
               </div>
             </div>
-            <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+            <a href="<?=get_the_permalink($event->ID)?>" class="link">
+              <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+            </a>
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
@@ -97,7 +101,23 @@
                 <div>
                   <?php $work = get_event_work($event->ID); ?>
                   <?php if ($work): ?>
-                  <button type="button" class="btn btn-outline-primary btn-preview ml-2"><?=__('我的作品', 'young-bird')?></button>
+                  <button type="button" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('我的作品', 'young-bird')?></button>
+                  <div class="d-none" data-judge-name="是大雨" data-judge-avatar="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" data-comment="这个作品真心不错">
+                    <a class="w-100">
+                      <div class="row mx-auto justify-content-between">
+                        <h3>城市里的行走</h3>
+                        <h4>YB11110</h4>
+                      </div>
+                      <p class="mt-3">户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。
+                        户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
+                    </a>
+                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
+                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+                    </a>
+                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
+                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+                    </a>
+                  </div>
                   <div class="d-none preview-box">
                     <span class="w-100">
                       <div class="row mx-auto justify-content-between">
@@ -116,7 +136,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <?php endforeach; endif; ?>
       </div>
@@ -125,7 +145,7 @@
       <div class="row my-3 event-list">
         <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array('post_type' => 'event', 'post__in' => $like_events)) as $event): ?>
         <div class="col-md-12">
-          <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
+          <div class="card mb-4 item-event">
             <div class="card-head row mx-0">
               <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
@@ -134,7 +154,9 @@
                 <?php endforeach; ?>
               </div>
             </div>
-            <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+            <a href="<?=get_the_permalink($event->ID)?>" class="link">
+              <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+            </a>
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
                 <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
@@ -149,7 +171,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <?php endforeach; endif; ?>
       </div>
