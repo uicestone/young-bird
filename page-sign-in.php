@@ -16,7 +16,7 @@ if(isset($_POST['login'])){
     header('Location: /judge-sign-up/'); exit;
   }
 
-  header('Location: ' . ($_GET['intend'] ?: '/')); exit;
+  header('Location: ' . ($_GET['intend'] ?: pll_home_url())); exit;
 }
 
 if(isset($_GET['logout'])){

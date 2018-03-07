@@ -13,10 +13,14 @@
       <div class="container">
         <ul>
           <li><a href="<?=pll_home_url()?>user-center/"><?=__('个人信息', 'young-bird')?></a></li>
-          <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
-          <li class="active"><a href="<?php the_permalink(); ?>?activity"><?=__('我的活动', 'young-bird')?></a></li>
-          <li><a href="<?php the_permalink(); ?>?like"><?=__('我的收藏', 'young-bird')?></a></li>
-          <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
+          <li><a href="<?=pll_home_url()?>user-center/?event"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li class="active"><a href="<?=pll_home_url()?>user-center/?activity"><?=__('我的活动', 'young-bird')?></a></li>
+          <li><a href="<?=pll_home_url()?>user-center/?like"><?=__('我的收藏', 'young-bird')?></a></li>
+          <li>
+            <a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?>
+              <?php if ($has_unread_message = get_user_meta(get_current_user_id(), 'has_unread_message', true)): ?><i></i><?php endif; ?>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
