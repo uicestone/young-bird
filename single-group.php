@@ -148,7 +148,7 @@ get_header(); ?>
             <div class="col-sm-12 order-sm-first card item-top3">
               <div class="card-body pb-5">
                 <h3><?=get_the_title($work->ID)?></h3>
-                <p><?=get_post_meta($work->ID, 'description', true)?></p>
+                <?=wpautop(get_post_meta($work->ID, 'description', true))?>
               </div>
             </div>
           </div>

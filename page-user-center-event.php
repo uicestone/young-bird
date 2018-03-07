@@ -102,8 +102,8 @@
                   <?php $work = get_event_work($event->ID); ?>
                   <?php if ($work): ?>
                   <button type="button" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('我的作品', 'young-bird')?></button>
-                  <div class="d-none" data-judge-name="是大雨" data-judge-avatar="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" data-comment="这个作品真心不错">
-                    <a class="w-100">
+                  <div class="d-none">
+                    <a class="w-100" style="padding:3rem 6rem">
                       <div class="row mx-auto justify-content-between">
                         <h3><?php get_the_title($work->ID); ?></h3>
                         <h4>YB<?=strtoupper($work->post_name)?></h4>
@@ -115,14 +115,11 @@
                     <a href="<?=get_the_post_thumbnail_url($work->ID)?>">
                       <?php get_the_post_thumbnail($work->ID, 'full'); ?>
                     </a>
-                    <!-- 请替换此处测试数据 start -->
-                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+                    <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
+                    <a href="<?=$image_url?>">
+                      <img src="<?=$image_url?>" alt="" />
                     </a>
-                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
-                    </a>
-                    <!-- end -->
+                    <?php endforeach; ?>
                   </div>
                   <?php endif; ?>
                 </div>

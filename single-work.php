@@ -156,14 +156,14 @@ get_header(); ?>
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
             <div class="d-none preview-box">
-              <a class="w-100">
+              <a class="w-100" style="padding:3rem 6rem">
                 <div class="row mx-auto justify-content-between">
                   <h3><?php the_title(); ?></h3>
                   <h4>YB<?=strtoupper($post->post_name)?></h4>
                 </div>
-                <p class="mt-3">
-                  <?=$description?>
-                </p>
+                <div class="mt-3">
+                  <?=wpautop($description)?>
+                </div>
               </a>
               <a href="<?=get_the_post_thumbnail_url(get_the_ID())?>">
                 <?php the_post_thumbnail('full'); ?>
