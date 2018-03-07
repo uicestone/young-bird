@@ -27,7 +27,7 @@
         <h2><?=__('总共：', 'young-bird')?><?=count(get_posts(array('category_name' => 'news', 's' => $_GET['s'], 'posts_per_page' => -1)))?></h2>
       </div>
       <div class="row mt-3 mb-2">
-        <?php foreach ($posts = get_posts(array('category_name' => 'news', 's' => $_GET['s'])) as $post): ?>
+        <?php foreach ($posts = get_posts(array('category_name' => 'news', 's' => $_GET['s'], 'posts_per_page' => 6)) as $post): ?>
         <div class="col-md-8">
           <a href="<?=get_the_permalink($post->ID)?>" class="card mb-4 item-history item-history-no-action link">
             <?=get_the_post_thumbnail($post->ID, 'vga', array('class' => 'card-img-top'))?>
@@ -55,7 +55,7 @@
         <h2><?=__('总共：', 'young-bird')?><?=count(get_posts(array('post_type' => 'event', 's' => $_GET['s'], 'posts_per_page' => -1)))?></h2>
       </div>
       <div class="row mt-3 mb-2">
-        <?php foreach ($events = get_posts(array('post_type' => 'event', 's' => $_GET['s'])) as $event): ?>
+        <?php foreach ($events = get_posts(array('post_type' => 'event', 's' => $_GET['s'], 'posts_per_page' => 6)) as $event): ?>
         <div class="col-md-8">
           <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-history link">
             <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
