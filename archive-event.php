@@ -109,7 +109,7 @@ get_header();
             <?php endwhile; ?>
           </div>
           <?php if ($wp_query->max_num_pages > 1): ?>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="event"><?=__('发现更多', 'young-bird')?></button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-base-url="<?=pll_home_url()?>event/"><?=__('发现更多', 'young-bird')?></button>
           <?php endif; ?>
         </div>
         <div class="col-md-6">

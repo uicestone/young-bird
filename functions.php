@@ -255,10 +255,10 @@ add_filter('pre_get_posts', function ($query) {
 
   if (is_admin()) return;
 
-  if ($query->query['category_name'] === 'home-primary') {
+  if (preg_match('/^home-primary/', $query->query['category_name'])) {
     $limit = 2;
   }
-  elseif ($query->query['category_name'] === 'home-secondary') {
+  elseif (preg_match('/^home-secondary/', $query->query['category_name'])) {
     $limit = 6;
   }
   elseif ($query->query['post_type'] === 'work' && $_GET['event_id']) {
@@ -373,4 +373,13 @@ function get_event_work ($event_id, $user_id = null) {
   }
 
   return get_posts(array('post_type' => 'work', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
+}
+
+function language_slug_suffix () {
+  if (pll_current_language() === pll_default_language()) {
+    return '';
+  }
+  else {
+    return '-' . pll_current_language();
+  }
 }

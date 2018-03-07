@@ -102,7 +102,7 @@
             <?php endforeach; ?>
           </div>
           <div class="order-1 order-md-2 col-sm-8 col-md-5-11 column-middle">
-            <?php foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
+            <?php $total_primary = count(get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => -1))); foreach (get_posts(array ('category_name' => 'home-primary', 'posts_per_page' => 2)) as $post): ?>
             <a href="<?=get_the_permalink($post->ID)?>" class="card link">
               <div>
               <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
@@ -119,7 +119,7 @@
             <?php endforeach; ?>
           </div>
           <div class="order-3 order-md-3 col-sm-8 col-md-3-11 column-right">
-            <?php foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
+            <?php $total_secondary = count(get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => -1))); foreach (get_posts(array ('category_name' => 'home-secondary', 'posts_per_page' => 6)) as $index => $post): if ($index % 2 === 0) continue; ?>
               <a href="<?=get_the_permalink($post->ID)?>" class="card link">
                 <div>
                 <?=get_the_post_thumbnail($post->ID, 'vga', array ('class' => 'card-img-top'))?>
@@ -137,7 +137,9 @@
           </div>
         </div>
       </div>
-      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore"><?=__('发现更多', 'young-bird')?></a>
+      <?php if ($total_primary > 2 || $total_secondary > 12): ?>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore" data-base-url-primary="<?=pll_home_url()?>category/home-primary<?=language_slug_suffix()?>/" data-base-url-secondary="<?=pll_home_url()?>category/home-primary<?=language_slug_suffix()?>/"><?=__('发现更多', 'young-bird')?></a>
+      <?php endif; ?>
     </div>
 
 <?php get_footer(); ?>

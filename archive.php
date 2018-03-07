@@ -44,7 +44,7 @@ get_header(); ?>
             <?php endwhile; ?>
           </div>
           <?php if ($wp_query->max_num_pages > 1): ?>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-name="category/news"><?=__('发现更多', 'young-bird')?></button>
+          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 btn-loadmore" data-base-url="<?=pll_home_url()?>category/news<?=language_slug_suffix()?>/"><?=__('发现更多', 'young-bird')?></button>
           <?php endif; ?>
         </div>
         <div class="col-md-6">
@@ -72,7 +72,7 @@ get_header(); ?>
         </div>
       </div>
     </div>
-<?php get_footer(); elseif (in_array($wp_query->query['category_name'], array ('home-primary', 'home-secondary'))): while (have_posts()): the_post(); ?>
+<?php get_footer(); elseif (preg_match('/^home-/', $wp_query->query['category_name'])): while (have_posts()): the_post(); ?>
 <a href="<?php the_permalink()?>" class="card link">
   <?php the_post_thumbnail($_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
   <div class="card-body">

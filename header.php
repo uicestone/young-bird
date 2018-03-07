@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item mr-lg-3 mr-xl-5 active">
-              <a class="nav-link" href="<?=pll_home_url()?>category/news<?=pll_current_language()==pll_default_language()?'':('-'.pll_current_language())?>/"><?=__('新 闻', 'young-bird')?></a>
+              <a class="nav-link" href="<?=pll_home_url()?>category/news<?=language_slug_suffix()?>/"><?=__('新 闻', 'young-bird')?></a>
             </li>
             <li class="nav-item mr-lg-3 mr-xl-5">
               <a class="nav-link" href="<?=pll_home_url()?>event/"><?=__('竞 赛', 'young-bird')?></a>

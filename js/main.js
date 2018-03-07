@@ -428,7 +428,7 @@ YB.Home = (function($) {
 		if(page > totalPrimary) return
 		$.ajax({
 		  method: "GET",
-		  url: "/category/home-primary/page/"+page+"/?partial=true",
+		  url: btn.data('base-url-primary') + "page/"+page+"/?partial=true",
 		})
 		  .done(function( data, textStatus, jqXHR ) {
 				totalPrimary = jqXHR.getResponseHeader('total-pages');
@@ -445,8 +445,8 @@ YB.Home = (function($) {
 	function loadSecondary(fn) {
 		if(page > totalSecondary) return
 		$.ajax({
-		  method: "POST",
-		  url: "/category/home-secondary/page/"+page+"/?partial=true",
+		  method: "GET",
+		  url: btn.data('base-url-secondary') + "page/"+page+"/?partial=true",
 			dataType: "html",
 		})
 		  .done(function( data, textStatus, jqXHR ) {
@@ -527,7 +527,7 @@ YB.Pubu = (function($) {
 	}
 
 	function loadMore(fn) {
-		ajaxUrl = "/" +btn.data('name')+ '/page/' + page + '/?partial=true&' + (location.search.replace(/^\?/, ''));
+		ajaxUrl = btn.data('base-url') + 'page/' + page + '/?partial=true&' + (location.search.replace(/^\?/, ''));
 		if(total && page > total) return
 		$.ajax({
 		  method: "GET",
@@ -537,8 +537,8 @@ YB.Pubu = (function($) {
 				total = jqXHR.getResponseHeader('total-pages');
 				var html = $.parseHTML(data);
 				list.append(html);
+        fn && fn();
 		  });
-		fn && fn();
 	}
 
 	function bindEvent() {
