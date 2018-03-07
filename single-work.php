@@ -5,7 +5,7 @@ if ( ! function_exists( 'wp_handle_upload' ) ) {
 
 the_post();
 
-$event = get_field('event');
+$event_id = get_post_meta(get_the_ID(), 'event', true);
 $description = get_post_meta(get_the_ID(), 'description', true);
 $images = get_post_meta(get_the_ID(), 'images');
 
@@ -67,7 +67,7 @@ if (isset($_POST['submit'])) {
   if ($group_id) {
     header('Location: ' . get_the_permalink($group_id)); exit;
   } else {
-    header('Location: ' . get_the_permalink($event->ID)); exit;
+    header('Location: ' . get_the_permalink($event_id)); exit;
   }
 }
 
@@ -79,15 +79,15 @@ get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="<?=get_field('banner_desktop', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_desktop', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="<?=get_field('banner_pad', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_pad', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="<?=get_field('banner_phone', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_phone', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6 work-detail">
