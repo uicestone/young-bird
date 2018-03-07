@@ -105,32 +105,24 @@
                   <div class="d-none" data-judge-name="是大雨" data-judge-avatar="<?=get_stylesheet_directory_uri()?>/images/sample/judge.jpg" data-comment="这个作品真心不错">
                     <a class="w-100">
                       <div class="row mx-auto justify-content-between">
-                        <h3>城市里的行走</h3>
-                        <h4>YB11110</h4>
-                      </div>
-                      <p class="mt-3">户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。
-                        户外遮阳伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮伞在城市公共场所中的使用随处可见。它不仅成为人们抵抗紫外线的一道屏障，也装点着城市的户外环境。然而国内市场上的户外遮阳伞普遍存在着褪色，发霉，肮脏和破损等现象。</p>
-                    </a>
-                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
-                    </a>
-                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
-                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
-                    </a>
-                  </div>
-                  <div class="d-none preview-box">
-                    <span class="w-100">
-                      <div class="row mx-auto justify-content-between">
                         <h3><?php get_the_title($work->ID); ?></h3>
                         <h4>YB<?=strtoupper($work->post_name)?></h4>
                       </div>
                       <p class="mt-3">
                         <?=get_post_meta($work->ID, 'description', true)?>
                       </p>
-                    </span>
-                    <span href="<?=get_the_post_thumbnail_url($work->ID)?>">
+                    </a>
+                    <a href="<?=get_the_post_thumbnail_url($work->ID)?>">
                       <?php get_the_post_thumbnail($work->ID, 'full'); ?>
-                    </span>
+                    </a>
+                    <!-- 请替换此处测试数据 start -->
+                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
+                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+                    </a>
+                    <a href="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg">
+                      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" alt="" />
+                    </a>
+                    <!-- end -->
                   </div>
                   <?php endif; ?>
                 </div>
