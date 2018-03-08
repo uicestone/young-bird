@@ -7,12 +7,17 @@ remove_filter('template_redirect','redirect_canonical');
 
 show_admin_bar(false);
 
-add_action('after_setup_theme', function () {
+add_action('after_switch_theme', function () {
   // foreach (array(
   //   'Judge Center', 'Judge Sign Up', 'Forget Password', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
   // ) as $name) {
   //   init_page_placeholder($name);
   // }
+
+  foreach (get_users() as $user) {
+    $message_id = wp_insert_post(array('post_type' => 'message', 'post_title' => '欢迎注册', 'post_content' => '亲爱的 ' . $user->display_name . '，Young Bird Plan 欢迎您的加入。', 'post_status' => 'publish'));
+    add_post_meta($message_id, 'to', $user->ID);
+  }
 
   add_role('judge', __('大咖', 'young-bird'), array());
   add_role('attendee', __('选手', 'young-bird'), array());
@@ -285,6 +290,7 @@ add_filter('pre_get_posts', function ($query) {
   elseif ($query->query['post_type'] === 'message') {
     set_query_var('meta_key', 'to');
     set_query_var('meta_value', get_current_user_id());
+    set_query_var('lang', '');
   } else {
     $limit = get_option('posts_per_page');
   }

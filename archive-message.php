@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+<?php redirect_login(); get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
@@ -28,8 +28,8 @@
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body">
       <div class="row mx-auto mb-2 justify-content-between">
-        <h4>全部消息：<?=$wp_query->found_posts?></h4>
-        <h4>未读消息：<?=get_user_meta(get_the_ID(), 'unread_messages', true) ?: 0?></h4>
+        <h4><?=__('全部消息：', 'young-bird')?><?=$wp_query->found_posts?></h4>
+        <h4><?=__('未读消息：', 'young-bird')?><?=get_user_meta(get_the_ID(), 'unread_messages', true) ?: 0?></h4>
       </div>
       <ul class="message-list pl-0">
         <?php while(have_posts()): the_post(); ?>
