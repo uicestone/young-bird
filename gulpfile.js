@@ -149,7 +149,12 @@ gulp.task('build', ['theme', 'php', 'css', 'fonts', 'js']);
 
 // Browsersync options
 const syncOpts = {
-  proxy       : process.env.PROXY_URL,
+  proxy       : {
+    target     : process.env.PROXY_URL,
+    proxyOptions: {
+      xfwd: true
+    }
+  },
   files       : dir.build + '**/*',
   serveStatic : [dir.build, dir.src],
   open        : false,
