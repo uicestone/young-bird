@@ -63,7 +63,11 @@ get_header(); ?>
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">
+            <?php if ($avatar_url = get_user_meta($captain->ID, 'avatar', true)): ?>
+            <img src="<?=$avatar_url?>" width="128" height="128" class="rounded-circle">
+            <?php else: ?>
             <?=get_avatar($captain->ID, 128, '', '', array('class' => 'rounded-circle'))?>
+            <?php endif; ?>
             <div class="ml-4">
               <div class="role color-silver">/<?=__('组长', 'young-bird')?></div>
               <div class="name color-silver"><?=$captain->display_name?></div>
@@ -72,7 +76,11 @@ get_header(); ?>
           <div class="d-flex flex-wrap">
             <?php foreach (get_post_meta(get_the_ID(), 'members') as $member_id): if ($member_id == get_post()->post_author) continue; ?>
             <div class="avatar-container d-flex align-items-center">
+              <?php if ($avatar_url = get_user_meta($member_id, 'avatar', true)): ?>
+              <img src="<?=$avatar_url?>" width="128" height="128" class="rounded-circle">
+              <?php else: ?>
               <?=get_avatar($member_id, 128, '', '', array('class' => 'rounded-circle'))?>
+              <?php endif; ?>
               <div class="ml-4">
                 <div class="role color-silver">/<?=__('组员', 'young-bird')?></div>
                 <div class="name color-silver"><?=get_user_by('ID', $member_id)->display_name?></div>
@@ -87,7 +95,11 @@ get_header(); ?>
             <?php if ($captain->ID == get_current_user_id()): foreach (get_post_meta(get_the_ID(), 'members_pending') as $member_id): ?>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
+                <?php if ($avatar_url = get_user_meta($member_id, 'avatar', true)): ?>
+                <img src="<?=$avatar_url?>" width="80" height="80" class="rounded-circle">
+                <?php else: ?>
                 <?=get_avatar($member_id, 80, '', '', array('class' => 'rounded-circle'))?>
+                <?php endif; ?>
                 <strong class="name ml-4"><?=get_user_by('ID', $member_id)->display_name?></strong>
               </div>
                 <div class="row">
