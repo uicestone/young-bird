@@ -270,6 +270,7 @@ add_filter('pre_get_posts', function ($query) {
     $limit = 20;
     set_query_var('meta_key', 'event');
     set_query_var('meta_value', $_GET['event_id']);
+    set_query_var('lang', '');
   }
   elseif ($query->query['post_type'] === 'event' && !get_query_var('event') && $_GET['status']) {
     set_query_var('meta_key', 'status');
