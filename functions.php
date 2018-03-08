@@ -8,11 +8,11 @@ remove_filter('template_redirect','redirect_canonical');
 show_admin_bar(false);
 
 add_action('after_setup_theme', function () {
-  foreach (array(
-    'Judge Center', 'Judge Sign Up', 'Forget Password', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
-  ) as $name) {
-    init_page_placeholder($name);
-  }
+  // foreach (array(
+  //   'Judge Center', 'Judge Sign Up', 'Forget Password', 'Reset Password', 'Sign In', 'Sign Up', 'User Center'
+  // ) as $name) {
+  //   init_page_placeholder($name);
+  // }
 
   add_role('judge', __('大咖', 'young-bird'), array());
   add_role('attendee', __('选手', 'young-bird'), array());
