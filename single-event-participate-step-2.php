@@ -22,17 +22,17 @@
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=__('公司', 'young-bird')?>">
+                <input type="text" required name="company" value="<?=$company?>" class="form-control" placeholder="<?=__('公司', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>">
+                <input type="text" required name="department" value="<?=$department?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
+                <input type="text" required name="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
               </div>
             </div>
             <button type="submit" name="participate" value="step-3" class="btn btn-lg btn-secondary btn-block"><?=__('下一步', 'young-bird')?></button>

@@ -22,12 +22,12 @@
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="name" value="<?=$name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
+                <input type="text" required name="name" value="<?=$name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <select name="identity" class="form-control custom-select">
+                <select name="identity" required class="form-control custom-select">
                   <option<?=!$identity ? ' selected' : ''?> disabled><?=__('状态', 'young-bird')?></option>
                   <option<?='studying' === $identity ? ' selected' : ''?> value="studying"><?=__('学生', 'young-bird')?></option>
                   <option<?='working' === $identity ? ' selected' : ''?> value="working"><?=__('在职', 'young-bird')?></option>
@@ -36,34 +36,34 @@
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=__('身份证', 'young-bird')?>/<?=__('护照号码', 'young-bird')?>">
+                <input type="text" required name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=__('身份证', 'young-bird')?>/<?=__('护照号码', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('出生日期', 'young-bird')?>">
+                <input type="text" required name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('出生日期', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="text" required name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="text" required name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
               <div class="row">
                 <div class="col">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="country" value="<?=$country?>" class="form-control" placeholder="<?=__('国家', 'young-bird')?>">
+                    <input type="text" required name="country" value="<?=$country?>" class="form-control" placeholder="<?=__('国家', 'young-bird')?>">
                   </div>
                 </div>
                 <div class="col">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="city" value="<?=$city?>" class="form-control" placeholder="<?=__('城市', 'young-bird')?>">
+                    <input type="text" required name="city" value="<?=$city?>" class="form-control" placeholder="<?=__('城市', 'young-bird')?>">
                   </div>
                 </div>
               </div>
