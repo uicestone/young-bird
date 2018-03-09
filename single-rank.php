@@ -1,24 +1,29 @@
 <?php
-    get_header();
-    if (isset($_GET['more'])):
-      get_template_part('single-rank-more');
-    else: ?>
+$rank_length = get_post_meta(get_the_ID(), 'length', true);
+$event_id = get_post_meta(get_the_ID(), 'event', true);
+
+get_header(); ?>
+
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-lg.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_desktop', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-md.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_pad', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="<?=get_stylesheet_directory_uri()?>/images/sample/banner-competition-sm.jpg" width="100%" alt="">
+      <img src="<?=get_field('banner_phone', $event_id)['url']?>" width="100%" alt="">
     </div>
+
+<?php if ($rank_length > 10):
+      include(locate_template('single-rank-more.php'));
+    else: ?>
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
-      <h1 class="text-center color-dark-yellow">TOP3</h1>
+      <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
           <div class="col-sm-12 mb-4 mb-md-0">

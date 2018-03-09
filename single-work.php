@@ -85,7 +85,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   $score = (int) $_POST['score'];
 
   $score_previous = get_post_meta(get_the_ID(), 'score' . get_current_user_id(), true);
-  $scores = get_post_meta(get_the_ID(), 'score', true) ?: array();
+  $scores = get_post_meta(get_the_ID(), 'scores', true) ?: array();
 
   update_post_meta(get_the_ID(), 'score_' . get_current_user_id(), $score);
   update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $_POST['comment']);
@@ -98,7 +98,8 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
     $scores[] = $score;
   }
 
-  update_post_meta(get_the_ID(), 'score', $scores);
+  update_post_meta(get_the_ID(), 'scores', $scores);
+  update_post_meta(get_the_ID(), 'score', array_sum($scores) / count($scores));
   exit;
 }
 
