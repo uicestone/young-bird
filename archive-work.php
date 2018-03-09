@@ -1,27 +1,44 @@
 <?php
-$event = get_post($_GET['event_id']);
+$event_id = get_post($_GET['event_id']);
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
-      <img src="<?=get_field('banner_desktop', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_desktop', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for pad -->
     <div class="container-fluid px-0 d-none d-md-block d-lg-none">
-      <img src="<?=get_field('banner_pad', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_pad', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- for smart phone -->
     <div class="container-fluid px-0 d-md-none">
-      <img src="<?=get_field('banner_phone', $event)['url']?>" width="100%" alt="">
+      <img src="<?=get_field('banner_phone', $event_id)['url']?>" width="100%" alt="">
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
       <h1>
         <?=__('作品列表', 'young-bird')?> /
-        <small><?=$wp_query->found_posts . __('个作品', 'young-bird')?> / <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
+        <?php if (current_user_can('edit_user')): ?>
+        <small>
+          <?=$wp_query->found_posts . __('个作品', 'young-bird')?> /
+          <?php
+          $meta_db_result_score = $wpdb->get_results("select meta_value from wp_postmeta where meta_key = 'score'");
+          $works_scores = array_map('unserialize', array_column($meta_db_result_score, 'meta_value'));
+          $works_score_count = array_map('count', array_column($meta_db_result_score, 'meta_value'));
+          $total_score_count = array_sum($works_score_count);
+          $judge_count = count(get_field('judges', $event_id));
+          ?>
+          <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
+        </small>
+        <?php else: ?>
+        <small>
+          <?=$wp_query->found_posts . __('个作品', 'young-bird')?> /
+          <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
             array('key' => 'event', 'value' => $_GET['event_id']),
-            array('key' => 'score', 'compare' => 'EXISTS')
-          )))) . __('个已评分', 'young-bird')?></small>
+            array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
+          )))) . __('个已评分', 'young-bird')?>
+        </small>
+        <?php endif; ?>
       </h1>
       <div class="row mt-5 review-list">
         <?php while (have_posts()): the_post(); ?>
@@ -32,7 +49,7 @@ get_header(); ?>
               <h5 class="color-black text-center">YB<?=strtoupper($post->post_name)?></h5>
               <?php if (isset($_GET['stage']) && $_GET['stage'] === 'rating'): ?>
               <h3 class="mb-0 text-center">
-                <?php if ($score = get_post_meta(get_the_ID(), 'score', true)): ?>
+                <?php if ($score = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true)): ?>
                 <?=__('分数：', 'young-bird') . $score?>
                 <?php else: ?>
                 <?=__('待处理', 'young-bird')?>
