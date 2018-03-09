@@ -218,6 +218,22 @@ add_action('wp', function() {
   wp_register_script('barrating', get_stylesheet_directory_uri() . '/js/jquery.barrating.min.js', array('jquery'), false, true);
   wp_register_script('popper', get_stylesheet_directory_uri() . '/js/popper.min.js', array('jquery'), false, true);
   wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel'), '1.0.0', true);
+
+  // Localize the script with new data
+  $translation_array = array(
+    'ok' => __('确定', 'young-bird'),
+    'cancel' => __('取消', 'young-bird'),
+    'confirm_role' => __('是否确认您的参赛身份，确认后将不能变更', 'young-bird'),
+    'confirm_participate' => __('确定报名此活动吗？', 'young-bird'),
+    'pass' => __('入围', 'young-bird'),
+    'reject' => __('不入围', 'young-bird'),
+    'score' => __('分数：', 'young-bird'),
+    'comment' => __('评论', 'young-bird'),
+    'resend' => __('重新发送', 'young-bird'),
+    'sent' => __('已发送', 'young-bird'),
+    'save' => __('保存', 'young-bird')
+  );
+  wp_localize_script( 'main', 'locale', $translation_array );
 });
 
 add_action('wp_enqueue_scripts', function(){

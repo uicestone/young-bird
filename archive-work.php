@@ -20,7 +20,7 @@ get_header(); ?>
         <?=__('作品列表', 'young-bird')?> /
         <?php if (current_user_can('edit_user')): ?>
         <small>
-          <?=$wp_query->found_posts . __('个作品', 'young-bird')?> /
+          <?=$wp_query->found_posts . ' ' . __('个作品', 'young-bird')?> /
           <?php
           $meta_db_result_score = $wpdb->get_results("select meta_value from wp_postmeta where meta_key = 'score'");
           $works_scores = array_map('unserialize', array_column($meta_db_result_score, 'meta_value'));

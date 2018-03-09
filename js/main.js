@@ -16,8 +16,8 @@ YB.Util = (function($) {
 		opts  = $.extend( true, {
 	    title     : 'Are you sure?',
 	    message   : '',
-	    okButton  : '确认',
-	    noButton  : '取消',
+	    okButton  : locale.confirm,
+	    noButton  : locale.cancel,
 	    callback  : $.noop
 	  }, opts || {} );
 		$.fancybox.open({
@@ -132,7 +132,7 @@ YB.Participate = (function($) {
 			var _this = $(this);
 			var index = $(this).index();
 			YB.Util.confirm({
-				title     : "是否确认您的参赛身份，确认后将不能变更",
+				title     : locale.confirm_role,
 				callback  : function (value) {
 					if (value) {
 						_this.children('i').removeClass('fa-square').addClass('fa-check-square').parent()
@@ -156,7 +156,7 @@ YB.Participate = (function($) {
 		// 活动报名（非竞赛）
 		$('.attend-activity').on('click', function () {
 			YB.Util.confirm({
-        title     : '确定报名此活动吗？',
+        title     : locale.confirm_participate,
         callback  : function () {
 					$.post(window.location.href, {attend:true}).done(function () {
 						window.location.reload();
@@ -208,7 +208,7 @@ YB.Work = (function($) {
 	function update(id, status) {
 		var reviewItem = $('#'+id);
 		$.post(reviewItem.data('url'), {status:status}, function () {
-      var result = status === 0 ? '不入围 / Rejected' : '入围 / Passed';
+      var result = status === 0 ? locale.reject : locale.pass;
       reviewItem.find('h3').text(result);
       close();
 		});
@@ -220,7 +220,7 @@ YB.Work = (function($) {
 		var comment = $('.custom-rate-container textarea').val();
 
 		$.post(reviewItem.data('url'), {score: score, comment: comment}, function () {
-      var result = '分数 / Score：' + score;
+      var result = locale.score + score;
       reviewItem.find('h3').text(result);
       close();
     });
@@ -236,7 +236,7 @@ YB.Work = (function($) {
 		var avatar = box.data('judge-avatar');
 		var name = box.data('judge-name');
 		var comment = box.data('comment');
-		var caption = '<h3>评论</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+		var caption = '<h3>'+locale.comment+'</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
 		if(hideCaption) {
 			YB.Util.open(items)
 		} else {
@@ -327,7 +327,7 @@ YB.Work = (function($) {
 								<option value="9">9</option>\
 								<option value="10">10</option>\
 							</select>\
-							<button type="button" class="btn btn-lg btn-secondary btn-block bg-cyan mt-3" onclick="YB.Work.rate(\''+id+'\')">保存</button>\
+							<button type="button" class="btn btn-lg btn-secondary btn-block bg-cyan mt-3" onclick="YB.Work.rate(\''+id+'\')">'+locale.save+'</button>\
 						</div>\
 					</div>';
 				// init star rating
@@ -339,7 +339,7 @@ YB.Work = (function($) {
 				}
 			} else {
 				// 入围评选
-				caption = '<div class="row mb-4 tab"><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block" onclick="YB.Work.update(\''+id+'\', 1)">入围 / Pass</button></div><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block bg-light-grey" onclick="YB.Work.update(\''+id+'\', 0)">不入围 / Reject</button></div></div>';
+				caption = '<div class="row mb-4 tab"><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block" onclick="YB.Work.update(\''+id+'\', 1)">'+locale.pass+'</button></div><div class="col"><button type="button" class="btn btn-lg btn-secondary btn-block bg-light-grey" onclick="YB.Work.update(\''+id+'\', 0)">'+locale.reject+'</button></div></div>';
 			}
 			YB.Util.open(items, caption, onInit)
 		})
@@ -671,16 +671,16 @@ YB.User = (function($){
 		$('.sign-up .send-verify-code').click(function () {
       var _this = $(this);
       var countdown = 60, interval;
-      _this.text('已发送(' + countdown + ')s');
+      _this.text(locale.sent+'(' + countdown + ')s');
       // 开始倒计时
       _this.attr('disabled', true);
       interval = setInterval(function () {
         countdown--;
-        _this.text('已发送(' + countdown + ')s');
+        _this.text(locale.sent+'(' + countdown + ')s');
         if(countdown === 0) {
           clearInterval(interval);
           _this.attr('disabled', false);
-          _this.text('重新发送');
+          _this.text(locale.resend);
         }
       }, 1000);
 			if ($(this).data('mobile')) {
