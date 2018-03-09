@@ -25,17 +25,6 @@ add_action('after_switch_theme', function () {
 
   $judge_role = get_role('judge'); $judge_role->add_cap('judge_works');
 
-  add_image_size('1-2', 350, 700, true);
-  add_image_size('medium-sq', 300, 300, true);
-  add_image_size('8-7', 320, 280, true);
-  add_image_size('5-4', 500, 400, true);
-  add_image_size('5-3', 1000, 600, true);
-  add_image_size('vga', 640, 480, true);
-  add_image_size('3-2', 600, 400, true);
-  add_image_size('hd', 1280, 720, true);
-  add_image_size('movie', 1920, 800, true);
-  add_image_size('5-1', 1920, 384, true);
-
   load_theme_textdomain('young-bird', get_template_directory() . '/languages');
 });
 
@@ -69,6 +58,17 @@ add_action('admin_menu', function () {
 add_theme_support('post-thumbnails');
 
 add_action('init', function () {
+
+  add_image_size('1-2', 350, 700, true);
+  add_image_size('medium-sq', 300, 300, true);
+  add_image_size('8-7', 320, 280, true);
+  add_image_size('5-4', 500, 400, true);
+  add_image_size('5-3', 1000, 600, true);
+  add_image_size('vga', 640, 480, true);
+  add_image_size('3-2', 600, 400, true);
+  add_image_size('hd', 1280, 720, true);
+  add_image_size('movie', 1920, 800, true);
+  add_image_size('5-1', 1920, 384, true);
 
   register_taxonomy('event_category', 'event', array (
     'label' => __('竞赛分类', 'young-bird'),
