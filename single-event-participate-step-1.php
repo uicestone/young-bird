@@ -46,12 +46,12 @@
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" required name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="text" required name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" required name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="text" required name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
