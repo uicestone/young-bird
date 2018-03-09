@@ -18,27 +18,23 @@ get_header(); ?>
     <div class="container mt-5 pb-6">
       <h1>
         <?=__('作品列表', 'young-bird')?> /
-        <?php if (current_user_can('edit_user')): ?>
         <small>
           <?=$wp_query->found_posts . ' ' . __('个作品', 'young-bird')?> /
-          <?php
-          $meta_db_result_score = $wpdb->get_results("select meta_value from wp_postmeta where meta_key = 'score'");
-          $works_scores = array_map('unserialize', array_column($meta_db_result_score, 'meta_value'));
-          $works_score_count = array_map('count', array_column($meta_db_result_score, 'meta_value'));
-          $total_score_count = array_sum($works_score_count);
-          $judge_count = count(get_field('judges', $event_id));
-          ?>
+          <?php if (current_user_can('edit_user') && $_GET['stage'] === 'rating'):
+            $meta_db_result_score = $wpdb->get_results("select meta_value from wp_postmeta where meta_key = 'score'");
+            $works_scores = array_map('unserialize', array_column($meta_db_result_score, 'meta_value'));
+            $works_score_count = array_map('count', array_column($meta_db_result_score, 'meta_value'));
+            $total_score_count = array_sum($works_score_count);
+            $judge_count = count(get_field('judges', $event_id)); ?>
           <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
-        </small>
-        <?php else: ?>
-        <small>
+          <?php else: ?>
           <?=$wp_query->found_posts . __('个作品', 'young-bird')?> /
           <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
             array('key' => 'event', 'value' => $_GET['event_id']),
             array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
           )))) . __('个已评分', 'young-bird')?>
+          <?php endif; ?>
         </small>
-        <?php endif; ?>
       </h1>
       <div class="row mt-5 review-list">
         <?php while (have_posts()): the_post(); ?>
