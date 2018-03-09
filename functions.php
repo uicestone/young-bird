@@ -268,9 +268,18 @@ add_filter('pre_get_posts', function ($query) {
   }
   elseif ($query->query['post_type'] === 'work' && $_GET['event_id']) {
     $limit = 20;
-    set_query_var('meta_key', 'event');
-    set_query_var('meta_value', $_GET['event_id']);
     set_query_var('lang', '');
+
+    if (isset($_GET['stage']) && $_GET['stage'] === 'rating') {
+      set_query_var('meta_query', array(
+        array('key' => 'event', 'value' => $_GET['event_id']),
+        array('key' => 'status', 'value' => '1')
+      ));
+    } else {
+      set_query_var('meta_key', 'event');
+      set_query_var('meta_value', $_GET['event_id']);
+    }
+
   }
   elseif ($query->query['post_type'] === 'event' && !get_query_var('event') && $_GET['status']) {
     set_query_var('meta_key', 'status');

@@ -16,7 +16,13 @@ get_header(); ?>
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-6">
-      <h1><?=__('作品列表', 'young-bird')?>/<?=get_the_title($event->ID)?> <?=get_the_subtitle($event->ID)?></h1>
+      <h1>
+        <?=__('作品列表', 'young-bird')?> /
+        <small><?=$wp_query->found_posts . __('个作品', 'young-bird')?> / <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
+            array('key' => 'event', 'value' => $_GET['event_id']),
+            array('key' => 'score', 'compare' => 'EXISTS')
+          )))) . __('个已评分', 'young-bird')?></small>
+      </h1>
       <div class="row mt-5 review-list">
         <?php while (have_posts()): the_post(); ?>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
@@ -24,6 +30,15 @@ get_header(); ?>
             <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             <div class="card-body mt-4">
               <h5 class="color-black text-center">YB<?=strtoupper($post->post_name)?></h5>
+              <?php if (isset($_GET['stage']) && $_GET['stage'] === 'rating'): ?>
+              <h3 class="mb-0 text-center">
+                <?php if ($score = get_post_meta(get_the_ID(), 'score', true)): ?>
+                <?=__('分数：', 'young-bird') . $score?>
+                <?php else: ?>
+                <?=__('待处理', 'young-bird')?>
+                <?php endif; ?>
+              </h3>
+              <?php else: ?>
               <h3 class="mb-0 text-center">
                 <?php if ($status = get_post_meta(get_the_ID(), 'status', true)): ?>
                 <?=__('入围', 'young-bird')?>
@@ -33,6 +48,7 @@ get_header(); ?>
                 <?=__('待处理', 'young-bird')?>
                 <?php endif; ?>
               </h3>
+              <?php endif; ?>
             </div>
           </div>
           <div class="d-none">

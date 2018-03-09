@@ -80,8 +80,9 @@ if (isset($_POST['status'])) {
   exit;
 }
 
-if (isset($_POST['score'])) {
+if (isset($_POST['score']) && isset($_POST['comment'])) {
   update_post_meta(get_the_ID(), 'score', $_POST['score']);
+  update_post_meta(get_the_ID(), 'comment', $_POST['comment']);
   exit;
 }
 

@@ -63,8 +63,8 @@
                     <?php endif; ?>
                   </div>
                   <div>
-                    <?php if (get_post_meta($event->ID, 'status', true) === 'ended'): ?>
-                    <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID)?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
+                    <?php if (get_post_meta($event->ID, 'status', true) === 'judging'): ?>
+                    <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID . '&stage=rating')?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
                     <?php endif; ?>
                   </div>
                 </div>

@@ -217,7 +217,9 @@ YB.Work = (function($) {
 	function rate(id) {
 		var reviewItem = $('#'+id);
 		var score = $('#rateStar').val();
-		$.post(reviewItem.data('url'), {score:score}, function () {
+		var comment = $('.custom-rate-container textarea').val();
+
+		$.post(reviewItem.data('url'), {score: score, comment: comment}, function () {
       var result = '分数 / Score：' + score;
       reviewItem.find('h3').text(result);
       close();
