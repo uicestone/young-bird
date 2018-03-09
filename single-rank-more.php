@@ -3,7 +3,10 @@
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
       <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
       <div class="row mt-4 mt-md-5">
-        <?php foreach (get_posts(array('post_type' => 'work', 'posts_per_page' => $rank_length)) as $work): ?>
+        <?php foreach (get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
+          array('key' => 'event', 'value' => $event_id),
+          array('key' => 'score', 'compare' => 'EXISTS')
+        ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC')) as $work): ?>
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
           <div class="card mb-4 item-history item-top50 item-work">
             <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top'))?>
@@ -12,7 +15,7 @@
                 <div class="label color-black font-weight-bold"><?=get_the_title($work->ID)?></div>
                 <div>YB<?=strtoupper($work->post_name)?></div>
               </div>
-              <p class="pt-3"><?=get_post_meta($work->ID, 'description', true)?></p>
+              <p class="pt-3 text-truncate"><?=get_post_meta($work->ID, 'description', true)?></p>
               <div class="action row align-items-center">
                 <!--<i class="fas fa-eye mr-1"></i>-->
                 <!--<span class="mr-2">921</span>-->
