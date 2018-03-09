@@ -138,7 +138,7 @@
         </div>
       </div>
       <?php if ($total_primary > 2 || $total_secondary > 12): ?>
-      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore" data-base-url-primary="<?=pll_home_url()?>category/home-primary<?=language_slug_suffix()?>/" data-base-url-secondary="<?=pll_home_url()?>category/home-primary<?=language_slug_suffix()?>/"><?=__('发现更多', 'young-bird')?></a>
+      <a href="#" class="btn btn-outline-primary mx-auto d-block btn-common btn-loadmore" data-base-url-primary="<?=pll_home_url()?>category/home-primary<?=language_slug_suffix()?>/" data-base-url-secondary="<?=pll_home_url()?>category/home-secondary<?=language_slug_suffix()?>/"><?=__('发现更多', 'young-bird')?></a>
       <?php endif; ?>
     </div>
 
