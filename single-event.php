@@ -120,8 +120,8 @@ $group = $group ?: $group_pending;
 
 if ($group) {
   $im_leader = $group->post_author == $user->ID;
-} else {
-  $work = get_posts(array ('post_type' =>'work', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => get_the_ID()))[0];
+} elseif ($user->ID) {
+  $work = get_posts(array ('post_type' =>'work', 'lang' => '', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => get_the_ID()))[0];
 }
 
 get_header();
@@ -162,6 +162,11 @@ else:
             <a class="text-truncate" href="<?=$document['url']?>" download><?=__('下载文件', 'young-bird')?></a>
           </li>
           <?php endif; ?>
+          <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): ?>
+          <li>
+            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>"><?=get_the_title($rank->ID)?></a>
+          </li>
+          <?php endforeach; ?>
           <li class="active">
             <?php if (current_user_can('edit_user')): ?>
             <a class="text-truncate" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>"><?=__('评审', 'young-bird')?></a>
