@@ -206,20 +206,22 @@ YB.Work = (function($) {
 
 	// 入围 / 不入围
 	function update(id, status) {
-		// ajax ...
-		$.post();
-		// callback
-		var result = status === 0 ? '不入围 / Rejected' : '入围 / Passed';
-		$('#'+id).find('h3').text(result);
-		close();
+		var reviewItem = $('#'+id);
+		$.post(reviewItem.data('url'), {status:status}, function () {
+      var result = status === 0 ? '不入围 / Rejected' : '入围 / Passed';
+      reviewItem.find('h3').text(result);
+      close();
+		});
 	}
 
 	function rate(id) {
-		// ajax ...
-		// callback
-		var result = '分数 / Score：' + $('#rateStar').val();
-		$('#'+id).find('h3').text(result);
-		close();
+		var reviewItem = $('#'+id);
+		var score = $('#rateStar').val();
+		$.post(reviewItem.data('url'), {score:score}, function () {
+      var result = '分数 / Score：' + score;
+      reviewItem.find('h3').text(result);
+      close();
+    });
 	}
 
 	function close() {
@@ -300,6 +302,8 @@ YB.Work = (function($) {
 			var qs = YB.Util.parseQueryString(query);
 			var caption;
 			var onInit;
+			var workUrl = $(this).data('url');
+
 			if(qs && qs.stage === 'rating') {
 				// 评分阶段
 				caption = '\

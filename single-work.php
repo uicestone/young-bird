@@ -75,6 +75,16 @@ if ($delete_image_url = $_GET['delete_image']) {
   delete_post_meta(get_the_ID(), 'images', $delete_image_url);
 }
 
+if (isset($_POST['status'])) {
+  update_post_meta(get_the_ID(), 'status', $_POST['status']);
+  exit;
+}
+
+if (isset($_POST['score'])) {
+  update_post_meta(get_the_ID(), 'score', $_POST['score']);
+  exit;
+}
+
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
