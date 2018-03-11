@@ -70,7 +70,7 @@ get_header(); ?>
             <?php endif; ?>
             <div class="ml-4">
               <div class="role color-silver">/<?=__('组长', 'young-bird')?></div>
-              <div class="name color-silver"><?=$captain->display_name?></div>
+              <div class="name color-silver text-truncate"><?=$captain->display_name?></div>
             </div>
           </div>
           <div class="d-flex flex-wrap">
@@ -83,7 +83,7 @@ get_header(); ?>
               <?php endif; ?>
               <div class="ml-4">
                 <div class="role color-silver">/<?=__('组员', 'young-bird')?></div>
-                <div class="name color-silver"><?=get_user_by('ID', $member_id)->display_name?></div>
+                <div class="name color-silver text-truncate"><?=get_user_by('ID', $member_id)->display_name?></div>
               </div>
               <?php if ($captain->ID == get_current_user_id()): ?>
               <a href="<?php the_permalink(); ?>?remove_member=<?=$member_id?>">
@@ -100,7 +100,7 @@ get_header(); ?>
                 <?php else: ?>
                 <?=get_avatar($member_id, 80, '', '', array('class' => 'rounded-circle'))?>
                 <?php endif; ?>
-                <strong class="name ml-4"><?=get_user_by('ID', $member_id)->display_name?></strong>
+                <strong class="name text-truncate ml-4"><?=get_user_by('ID', $member_id)->display_name?></strong>
               </div>
                 <div class="row">
                   <div class="col-12">
@@ -120,7 +120,7 @@ get_header(); ?>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
                 <?=get_avatar(get_current_user_id(), 80, '', '', array('class' => 'rounded-circle'))?>
-                <strong class="name ml-4"><?=wp_get_current_user()->display_name?></strong>
+                <strong class="name text-truncate ml-4"><?=wp_get_current_user()->display_name?></strong>
               </div>
               <div class="row">
                 <div class="offset-12 col-12">
