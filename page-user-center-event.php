@@ -30,7 +30,7 @@
       <h3><?=__('（待）评分的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
         <?php if ($judge_post): foreach (get_posts(array (
-          'post_type' => 'event', 'meta_key' => 'judges',
+          'post_type' => 'event', 'post_status' => 'publish,private', 'meta_key' => 'judges',
           'meta_compare' => 'LIKE', 'meta_value' => '"' . $judge_post->ID . '"'
         )) as $event):
           if (!in_array($judge_post->ID, array_column(get_field('judges', $event->ID), 'ID'))) {
@@ -76,7 +76,7 @@
       <?php else: ?>
       <h3><?=__('参与的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
-        <?php if ($attend_events = get_user_meta($user->ID, 'attend_events')): foreach (get_posts(array ('post_type' => 'event', 'post__in' => $attend_events ?: array())) as $event): ?>
+        <?php if ($attend_events = get_user_meta($user->ID, 'attend_events')): foreach (get_posts(array ('post_type' => 'event', 'post_status' => 'publish,private', 'post__in' => $attend_events ?: array())) as $event): ?>
         <div class="col-md-12">
           <div class="card mb-4 item-event">
             <div class="card-head row mx-0">
@@ -136,7 +136,7 @@
       <?php endif; ?>
       <h3><?=__('关注的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
-        <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array('post_type' => 'event', 'post__in' => $like_events)) as $event): ?>
+        <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array('post_type' => 'event', 'post_status' => 'publish,private', 'post__in' => $like_events)) as $event): ?>
         <div class="col-md-12">
           <div class="card mb-4 item-event">
             <div class="card-head row mx-0">

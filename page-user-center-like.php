@@ -26,9 +26,9 @@
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body">
-      <h3><?=__('收藏的活动', 'young-bird')?></h3>
+      <h3><?=__('收藏的竞赛', 'young-bird')?></h3>
       <div class="row my-3 event-list">
-        <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array ('post_type' => 'event', 'post__in' => $like_events ?: array())) as $event): ?>
+        <?php if ($like_events = get_user_meta($user->ID, 'like_events')): foreach (get_posts(array ('post_type' => 'event', 'post_status' => 'publish,private', 'post__in' => $like_events ?: array())) as $event): ?>
         <div class="col-md-12">
           <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
@@ -60,7 +60,7 @@
       </div>
       <h3><?=__('收藏的资讯', 'young-bird')?></h3>
       <div class="row my-3 event-list">
-        <?php if ($like_posts = get_user_meta($user->ID, 'like_posts')): foreach (get_posts(array ('post_type' => 'post', 'post__in' => $like_posts ?: array())) as $news): ?>
+        <?php if ($like_posts = get_user_meta($user->ID, 'like_posts')): foreach (get_posts(array ('post_type' => 'post', 'post_status' => 'publish,private', 'post__in' => $like_posts ?: array())) as $news): ?>
           <div class="col-md-12">
             <a href="<?=get_the_permalink($news->ID)?>" class="card mb-4 item-event link">
               <div class="card-head row mx-0">

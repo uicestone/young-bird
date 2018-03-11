@@ -28,7 +28,7 @@
     <div class="container mt-5 pb-7 user-center-body">
       <h3><?=__('报名的活动', 'young-bird')?></h3>
       <div class="row my-3 event-list">
-        <?php if ($attend_activities = get_user_meta($user->ID, 'attend_activities')): foreach (get_posts(array ('post_type' => 'post', 'post__in' => $attend_activities ?: array())) as $activity): ?>
+        <?php if ($attend_activities = get_user_meta($user->ID, 'attend_activities')): foreach (get_posts(array ('post_type' => 'post', 'post_status' => 'publish,private', 'post__in' => $attend_activities ?: array())) as $activity): ?>
         <div class="col-md-12">
           <a href="<?=get_the_permalink($activity->ID)?>" class="card mb-4 item-event link">
             <div class="card-head row mx-0">
