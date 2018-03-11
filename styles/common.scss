@@ -1111,6 +1111,17 @@ a.link {
       bottom: -.3rem;
     }
   }
+  .list-news {
+    .column-middle {
+      .card {
+        .card-body {
+          .title {
+            font-size: $font-size-base;
+          }
+        }
+      }
+    }
+  }
   .item-judge-container {
     margin-bottom: rem(20)!important;
     .card-body {
