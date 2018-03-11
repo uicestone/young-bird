@@ -39,23 +39,24 @@ $spacers: (
   48: ($spacer * 3),
 );
 
-$yellow:      #ffde00;
-$dark-yellow: #6e5400;
-$pink:        #dc80a5;
-$rose:        #d1007f;
-$red:         #d30012;
-$blue:        #004fff;
-$cyan:        #2b00ff;
-$green:       #6ad500;
-$orange:      #ff7900;
-$dark-grey:   #2e2e2e;
-$light-grey:  #dfdfdf;
-$grey:        #9fa0a0;
-$silver:      #717171;
-$body-grey:   #686868;
-$black:       #000000;
-$white:       #ffffff;
-$brick:       #742b33;
+$yellow:       #ffde00;
+$dark-yellow:  #6e5400;
+$pink:         #dc80a5;
+$rose:         #d1007f;
+$red:          #d30012;
+$blue:         #004fff;
+$cyan:         #2b00ff;
+$green:        #6ad500;
+$orange:       #ff7900;
+$dark-grey:    #2e2e2e;
+$light-grey:   #dfdfdf;
+$bg-light-grey:#dedede;
+$grey:         #9fa0a0;
+$silver:       #717171;
+$body-grey:    #686868;
+$black:        #000000;
+$white:        #ffffff;
+$brick:        #742b33;
 
 $primary:    $dark-grey;
 $secondary:  $grey;
@@ -78,7 +79,8 @@ $icons: map-merge((
   "white": $white,
   "brick": $brick,
   "body-grey": $body-grey,
-  "silver": $silver
+  "silver": $silver,
+  "bg-light-grey": $bg-light-grey
 ), $icons);
 
 $border-radius:    0;

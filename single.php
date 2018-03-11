@@ -80,7 +80,7 @@ get_header(); the_post(); ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>
           <?php endif; endif; ?>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 news-detail-ad">
           <?php foreach (get_posts(array ('category_name' => 'news-detail-ad')) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">

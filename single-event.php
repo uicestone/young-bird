@@ -276,7 +276,7 @@ else:
         </div>
       </div>
     </div>
-    <div class="container-fluid bg-light-grey" id="section5">
+    <div class="container-fluid bg-bg-light-grey" id="section5">
       <div class="container">
         <div class="owl-carousel related-news owl-theme">
           <?php if ($newses = get_field('news')): foreach ($newses as $news): ?>
