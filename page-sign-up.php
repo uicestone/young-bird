@@ -1,7 +1,7 @@
 <?php
 if ($mobile = $_GET['send_code_to_mobile']) :
   // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
-  send_sms_code($mobile);
+  send_sms_code($mobile, 'register');
 
 elseif ($email = $_GET['send_code_to_email']) :
     // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options

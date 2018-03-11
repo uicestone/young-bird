@@ -350,9 +350,9 @@ function get_event_status ($event_id) {
   return $statuses[$status];
 }
 
-function send_sms_code($mobile) {
+function send_sms_code($mobile, $scene = 'register'/*or 'reset'*/) {
   $code = generate_code($mobile);
-  aliyun_send_sms($mobile, ALIYUN_SMS_TEMPLATE_VERIFY, array('code' => $code));
+  aliyun_send_sms($mobile, ALIYUN_SMS_TEMPLATE_VERIFY_ . strtoupper($scene), array('code' => $code));
 }
 
 function send_email_code($email) {
