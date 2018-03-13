@@ -1166,6 +1166,21 @@ a.link {
     }
   }
   .page-event-detail {
+    .sidebar {
+      li {
+        a {
+          font-size: rem(14);
+          width: rem(80);
+          height: rem(40);
+          line-height: rem(40);
+          background-position: 0 -51px*4/5;
+          background-size: 111px*4/5 152px*4/5;
+          &:hover {
+            background-position: 0 -102px*4/5;
+          }
+        }
+      }
+    }
     .content {
       .header {
         .title {
