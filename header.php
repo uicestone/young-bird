@@ -6,10 +6,18 @@
     <meta name="keywords" content="YoungBirdPlan 设计师 创新 年轻 高品质竞赛平台" />
     <meta name="description" content="<?php bloginfo('description'); ?>" />
     <link rel="shortcut icon" type="image/x-icon" href="<?=get_stylesheet_directory_uri()?>/images/favicon.ico">
-    <link rel="apple-touch-icon" sizes="57x57" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="<?=get_stylesheet_directory_uri()?>/images/logo-114.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="<?=get_stylesheet_directory_uri()?>/images/logo-144.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="<?=get_stylesheet_directory_uri()?>/images/logo-144.png" />
+    <!-- For Chrome for Android: -->
+    <link rel="icon" sizes="192x192" href="<?=get_stylesheet_directory_uri()?>/images/touch-icon-192x192.png">
+    <!-- For iPhone 6 Plus with @3× display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="<?=get_stylesheet_directory_uri()?>/images/apple-touch-icon-180x180-precomposed.png">
+    <!-- For iPad with @2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?=get_stylesheet_directory_uri()?>/images/apple-touch-icon-152x152-precomposed.png">
+    <!-- For iPhone with @2× display running iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?=get_stylesheet_directory_uri()?>/images/apple-touch-icon-120x120-precomposed.png">
+    <!-- For the iPad mini and the first- and second-generation iPad (@1× display) on iOS ≥ 7: -->
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="<?=get_stylesheet_directory_uri()?>/images/apple-touch-icon-76x76-precomposed.png">
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <link rel="apple-touch-icon-precomposed" href="<?=get_stylesheet_directory_uri()?>/images/apple-touch-icon-precomposed.png"><!-- 57×57px -->
     <title><?php echo preg_replace('/^  – /', '', strip_tags(html_entity_decode(wp_title('-', false, 'right')))); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
