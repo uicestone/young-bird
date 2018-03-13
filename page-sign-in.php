@@ -1,27 +1,32 @@
 <?php
+try {
 
-if(isset($_POST['login'])){
-  $user = wp_authenticate($_POST['login'], $_POST['password']);
+  if (isset($_POST['login'])) {
+    $user = wp_authenticate($_POST['login'], $_POST['password']);
 
-  if(is_a($user, 'WP_Error')){
-    echo '<meta charset="utf-8">';
-    echo array_values($user->errors)[0][0];
+    if (is_a($user, 'WP_Error')) {
+      throw new Exception(array_values($user->errors)[0][0]);
+    }
+
+    wp_set_auth_cookie($user->ID, isset($_POST['remember']));
+    wp_set_current_user($user->ID);
+
+    if (in_array('judge', $user->roles) && !get_user_meta($user->ID, 'signed_up', true)) {
+      header('Location: /judge-sign-up/');
+      exit;
+    }
+
+    header('Location: ' . ($_GET['intend'] ?: pll_home_url()));
     exit;
   }
 
-  wp_set_auth_cookie($user->ID, isset($_POST['remember']));
-  wp_set_current_user($user->ID);
-
-  if (in_array('judge', $user->roles) && ! get_user_meta($user->ID, 'signed_up', true)) {
-    header('Location: /judge-sign-up/'); exit;
+  if (isset($_GET['logout'])) {
+    wp_logout();
+    header('Location: ' . pll_home_url());
   }
-
-  header('Location: ' . ($_GET['intend'] ?: pll_home_url())); exit;
 }
-
-if(isset($_GET['logout'])){
-  wp_logout();
-  header('Location: ' . pll_home_url());
+catch (Exception $e) {
+  $form_error = $e->getMessage();
 }
 
 get_header(); ?>
@@ -38,6 +43,9 @@ get_header(); ?>
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12 offset-md-2">
+          <?php if (isset($form_error)): ?>
+          <div class="alert alert-danger"><?=$form_error?></div>
+          <?php endif; ?>
           <form method="post">
             <div class="form-group">
               <div class="input-group input-group-lg">
