@@ -115,7 +115,7 @@ get_header();
               </div>
             </div>
             <p class="text-right">
-              <small><?=__('注册即视为同意', 'young-bird')?> <a href="<?=pll_home_url()?>privacy-policy/" class="text-underline"><?=__('隐私条款', 'young-bird')?></a> <?=__('和', 'young-bird')?> <a href="<?=pll_home_url()?>service-term/" class="text-underline"><?=__('服务条款', 'young-bird')?></a></small>
+              <small><?=__('注册即视为同意', 'young-bird')?> <a href="<?=pll_home_url()?>user-term/" class="text-underline"><?=__('用户协议', 'young-bird')?></a></small>
             </p>
             <button type="submit" class="btn btn-lg btn-secondary btn-block"><?=__('注册', 'young-bird')?></button>
           </form>
