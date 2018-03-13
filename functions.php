@@ -357,7 +357,7 @@ function send_sms_code($mobile, $scene = 'register'/*or 'reset'*/) {
 
 function send_email_code($email) {
   $code = generate_code($email);
-  wp_mail($email, '邮件验证码', '您的验证码为：' . $code . '，请返回网站填写。');
+  wp_mail($email, '邮件验证码', "[Young Bird Plan 嫩鸟计划] 感谢您的关注，您正在用邮箱注册Young Bird Plan平台，您的注册验证码是${code}\n\nThank you for your attention, you are using your email to register our website, here is your registration verification code ${code}");
 }
 
 function generate_code($login) {
