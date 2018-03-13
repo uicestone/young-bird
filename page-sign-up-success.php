@@ -22,7 +22,7 @@
           </div>
           <div class="row justify-content-between">
             <div class="col-md-12 mt-2">
-              <button type="button" class="btn btn-secondary btn-block btn-lg"><?=__('进入网站', 'young-bird')?></button>
+              <a href="<?=pll_home_url()?>" class="btn btn-secondary btn-block btn-lg"><?=__('进入网站', 'young-bird')?></a>
             </div>
             <div class="col-md-12 mt-2">
               <button type="button" class="btn btn-secondary btn-block btn-lg"><?=__('返回', 'young-bird')?></button>

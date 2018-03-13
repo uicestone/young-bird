@@ -44,7 +44,7 @@ else:
       wp_set_auth_cookie($user_id, true);
       wp_set_current_user($user_id);
 
-      header('Location: ' . ($_GET['intend'] ?: '/')); exit;
+      header('Location: ' . ($_GET['intend'] ?: pll_home_url() . 'sign-up/?success')); exit;
     }
   }
   catch (Exception $e) {
