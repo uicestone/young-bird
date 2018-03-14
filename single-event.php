@@ -201,7 +201,7 @@ else:
               <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
               <?php endif; ?>
               <?php endif; ?>
-              <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events')) ? 'fas ' : 'far'?> fa-heart like"></i>
+              <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like"></i>
             </div>
           </div>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
