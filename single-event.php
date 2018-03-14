@@ -164,7 +164,7 @@ else:
           <?php endif; ?>
           <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): ?>
           <li>
-            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>"><?=get_the_title($rank->ID)?></a>
+            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>"><?php printf(__('%s强', 'young-bird'), get_post_meta($rank->ID, 'length', true)); ?></a>
           </li>
           <?php endforeach; ?>
           <li class="active">

@@ -4,7 +4,7 @@
       <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
       <div class="row mt-4 mt-md-5">
         <?php foreach (get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
-          array('key' => 'event', 'value' => $event_id),
+          array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
           array('key' => 'score', 'compare' => 'EXISTS')
         ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC')) as $work): ?>
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
