@@ -4,6 +4,8 @@ the_post();
 $event_id = get_post_meta(get_the_ID(), 'event', true);
 $captain = get_user_by('ID', get_post()->post_author);
 $work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
+$members = get_post_meta(get_the_ID(), 'members') ?: array();
+$members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
 
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
@@ -58,7 +60,7 @@ get_header(); ?>
     <div class="mt-7 pb-7 page-group-detail">
       <div class="container members mb-5">
         <div class="row justify-content-between header mb-3">
-          <h3 class="color-silver font-weight-bold"><?php the_title(); ?>（<?=__('成员', 'young-bird')?>/<?=count(get_post_meta(get_the_ID(), 'members'))?>）</h3>
+          <h3 class="color-silver font-weight-bold"><?php the_title(); ?>（<?=__('成员', 'young-bird')?>/<?=count($members)?>）</h3>
           <h3 class="color-silver font-weight-bold"><?=__('参赛编号：', 'young-bird')?>YB<?=$event_id?>-<?=get_the_ID()?></h3>
         </div>
         <div class="member-list">
@@ -74,7 +76,7 @@ get_header(); ?>
             </div>
           </div>
           <div class="d-flex flex-wrap">
-            <?php foreach (get_post_meta(get_the_ID(), 'members') as $member_id): if ($member_id == get_post()->post_author) continue; ?>
+            <?php foreach ($members as $member_id): if ($member_id == get_post()->post_author) continue; ?>
             <div class="avatar-container d-flex align-items-center">
               <?php if ($avatar_url = get_user_meta($member_id, 'avatar', true)): ?>
               <img src="<?=$avatar_url?>" width="128" height="128" class="rounded-circle">
@@ -92,7 +94,7 @@ get_header(); ?>
               <?php endif; ?>
             </div>
             <?php endforeach; ?>
-            <?php if ($captain->ID == get_current_user_id()): foreach (get_post_meta(get_the_ID(), 'members_pending') as $member_id): ?>
+            <?php if ($captain->ID == get_current_user_id()): foreach ($members_pending as $member_id): ?>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
                 <?php if ($avatar_url = get_user_meta($member_id, 'avatar', true)): ?>
@@ -116,7 +118,7 @@ get_header(); ?>
                 </div>
             </div>
             <?php endforeach; endif; ?>
-            <?php if (in_array(get_current_user_id(), get_post_meta(get_the_ID(), 'members_pending'))): ?>
+            <?php if (in_array(get_current_user_id(), $members_pending)): ?>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
                 <?=get_avatar(get_current_user_id(), 80, '', '', array('class' => 'rounded-circle'))?>
@@ -164,11 +166,13 @@ get_header(); ?>
               </div>
             </div>
           </div>
+          <?php   if (in_array(get_current_user_id(), $members)): ?>
           <div class="row mt-4">
             <div class="col d-flex justify-content-end">
               <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__(($captain->ID == get_current_user_id() ? '修改' : '查看'), 'young-bird')?></a>
             </div>
           </div>
+          <?php   endif; ?>
           <?php endif; ?>
         </div>
       </div>
