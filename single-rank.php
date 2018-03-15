@@ -1,6 +1,10 @@
 <?php
 $rank_length = get_post_meta(get_the_ID(), 'length', true);
 $event_id = get_post_meta(get_the_ID(), 'event', true);
+$works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
+  array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
+  array('key' => 'score', 'compare' => 'EXISTS')
+), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC'));
 
 get_header(); ?>
 
@@ -24,10 +28,7 @@ get_header(); ?>
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
       <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
-      <?php foreach (get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
-        array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
-        array('key' => 'score', 'compare' => 'EXISTS')
-      ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC')) as $index => $work): ?>
+      <?php foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
           <div class="col-sm-12 mb-4 mb-md-0">
@@ -36,7 +37,7 @@ get_header(); ?>
           <div class="col-sm-12 order-sm-first card item-top3">
             <div class="card-body pb-5">
               <div class="row head justify-content-between align-items-center">
-                <div class="label color-dark-yellow font-weight-bold"># <?=$index+1?></div>
+                <div class="label color-dark-yellow font-weight-bold">#<?=$index+1?></div>
                 <div class="color-black">YB<?=strtoupper($work->post_name)?></div>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
