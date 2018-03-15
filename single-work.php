@@ -33,7 +33,7 @@ if (isset($_POST['submit'])) {
       'guid' => $poster['url']
     );
 
-    $thumbnail_id = wp_insert_attachment( $attachment, $attachment[ 'file' ], get_the_ID() );
+    $thumbnail_id = wp_insert_attachment( $attachment, $poster[ 'file' ], get_the_ID() );
     wp_update_attachment_metadata( $thumbnail_id, wp_generate_attachment_metadata( $thumbnail_id, $poster['file'] ) );
     update_attached_file($thumbnail_id, $poster['file']);
     set_post_thumbnail($work->ID, $thumbnail_id);
