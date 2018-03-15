@@ -12,7 +12,7 @@
             <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top'))?>
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
-                <div class="label color-black font-weight-bold"><?=get_the_title($work->ID)?></div>
+                <div class="label color-black font-weight-bold text-truncate col-18"><?=get_the_title($work->ID)?></div>
                 <div>YB<?=strtoupper($work->post_name)?></div>
               </div>
               <p class="pt-3 text-truncate"><?=get_post_meta($work->ID, 'description', true)?></p>
