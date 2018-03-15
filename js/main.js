@@ -236,7 +236,10 @@ YB.Work = (function($) {
 		var avatar = box.data('judge-avatar');
 		var name = box.data('judge-name');
 		var comment = box.data('comment');
-		var caption = '<h3>'+locale.comment+'</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+		var caption;
+		if (name && comment) {
+      caption = '<h3>'+locale.comment+'</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+		}
 		if(hideCaption) {
 			YB.Util.open(items)
 		} else {

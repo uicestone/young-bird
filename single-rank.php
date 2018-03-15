@@ -52,7 +52,7 @@ get_header(); ?>
           </div>
         </div>
         <div class="d-none">
-          <a class="w-100">
+          <a class="w-100" style="padding:10vh 20vw">
             <div class="row mx-auto justify-content-between">
               <h3><?=get_the_title($work->ID)?></h3>
               <h4>YB<?=strtoupper($work->post_name)?></h4>
