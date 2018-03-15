@@ -31,6 +31,12 @@ if (isset($_POST['participate'])) {
   }
   if ($_POST['name']) {
     $user->display_name = $_POST['name'];
+  }
+  if ($_POST['email']) {
+    $user->user_email = $_POST['email'];
+  }
+
+  if ($_POST['name'] || $_POST['email']) {
     wp_update_user($user);
   }
 

@@ -25,6 +25,13 @@
                 <input type="text" required name="name" value="<?=$name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
               </div>
             </div>
+            <?php if (!$user->user_email): ?>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <input type="email" required name="email" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
+              </div>
+            </div>
+            <?php endif; ?>
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <select name="identity" required class="form-control custom-select">
