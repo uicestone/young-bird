@@ -28,7 +28,6 @@ get_header(); ?>
             $judge_count = count(get_field('judges', $event_id)); ?>
           <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
           <?php else: ?>
-          <?=$wp_query->found_posts . __('个作品', 'young-bird')?> /
           <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
             array('key' => 'event', 'value' => $_GET['event_id']),
             array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
