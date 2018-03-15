@@ -121,7 +121,7 @@
                     </a>
                     <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
                     <a href="<?=$image_url?>">
-                      <img src="<?=$image_url?>" alt="" />
+                      <img src="" alt="" />
                     </a>
                     <?php endforeach; ?>
                   </div>
