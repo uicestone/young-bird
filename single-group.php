@@ -126,7 +126,7 @@ get_header(); ?>
               </div>
               <div class="row">
                 <div class="offset-12 col-12">
-                  <button type="button" disabled class="btn btn-outline-primary btn-block"><?=__('等待组长同意', 'young-bird')?></button>
+                  <button type="button" disabled class="btn btn-outline-primary btn-block"><?=__('待队长审批', 'young-bird')?></button>
                 </div>
               </div>
             </div>
