@@ -21,7 +21,7 @@
                 <!--<span class="mr-2">921</span>-->
                 <?php if (false): ?>
                 <i class="far fa-heart mr-1"></i>
-                <span class="mr-2">921</span>
+                <span class="mr-2">0</span>
                 <?php endif; ?>
               </div>
             </div>
