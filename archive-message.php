@@ -29,7 +29,7 @@
     <div class="container mt-5 pb-7 user-center-body">
       <div class="row mx-auto mb-2 justify-content-between">
         <h4><?=__('全部消息：', 'young-bird')?><?=$wp_query->found_posts?></h4>
-        <h4><?=__('未读消息：', 'young-bird')?><?=get_user_meta(get_the_ID(), 'unread_messages', true) ?: 0?></h4>
+        <h4><?=__('未读消息：', 'young-bird')?><?=get_user_meta(get_current_user_id(), 'unread_messages', true) ?: 0?></h4>
       </div>
       <ul class="message-list pl-0">
         <?php while(have_posts()): the_post(); ?>
@@ -43,4 +43,7 @@
         <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>', 'before_page_number' => '0'))?>
       </nav>
     </div>
-<?php get_footer(); ?>
+<?php get_footer();
+
+delete_user_meta(get_current_user_id(), 'unread_messages');
+delete_user_meta(get_current_user_id(), 'has_unread_message');

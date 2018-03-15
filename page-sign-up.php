@@ -41,6 +41,8 @@ else:
         add_user_meta($user_id, 'mobile', $_POST['login']);
       }
 
+      add_user_meta($user_id, 'lang', pll_current_language());
+
       wp_set_auth_cookie($user_id, true);
       wp_set_current_user($user_id);
 

@@ -186,16 +186,23 @@ add_action('init', function () {
     'has_archive' => true
   ));
 
-  register_post_type('message', array(
+  register_post_type('message_template', array(
     'label' => __('消息', 'young-bird'),
     'labels' => array(
-      'all_items' => __('所有消息', 'young-bird'),
-      'add_new' => __('添加消息', 'young-bird'),
-      'add_new_item' => __('新消息', 'young-bird'),
-      'edit_item' => __('编辑消息', 'young-bird'),
-      'not_found' => __('未找到消息', 'young-bird')
+      'all_items' => __('所有消息模版', 'young-bird'),
+      'add_new' => __('添加消息模版', 'young-bird'),
+      'add_new_item' => __('新消息模版', 'young-bird'),
+      'edit_item' => __('编辑消息模版', 'young-bird'),
+      'not_found' => __('未找到消息模版', 'young-bird')
     ),
     'public' => true,
+    'supports' => array('title', 'editor'),
+    'menu_icon' => 'dashicons-email',
+  ));
+
+  register_post_type('message', array(
+    'public' => false,
+    'publicly_queryable' => true,
     'supports' => array('title', 'editor', 'author'),
     'menu_icon' => 'dashicons-email',
     'has_archive' => true
@@ -355,9 +362,52 @@ function send_sms_code($mobile, $scene = 'register'/*or 'reset'*/) {
   aliyun_send_sms($mobile, constant('ALIYUN_SMS_TEMPLATE_VERIFY_' . strtoupper($scene)), array('code' => $code));
 }
 
-function send_email_code($email) {
+function send_email_code ($email) {
   $code = generate_code($email);
   wp_mail($email, '邮件验证码', "[Young Bird Plan 嫩鸟计划] 感谢您的关注，您正在用邮箱注册Young Bird Plan平台，您的注册验证码是${code}\n\nThank you for your attention, you are using your email to register our website, here is your registration verification code ${code}");
+}
+
+function send_message ($to, $template_slug, $vars = array()) {
+  $lang = get_user_meta($to, 'lang', true) ?: pll_default_language();
+
+  $templates = get_posts(array('post_type' => 'message_template', 'lang' => $lang, 'posts_per_page' => -1));
+
+  $templates = array_filter($templates, function ($template) use ($template_slug) {
+    return $template->post_name === $template_slug;
+  });
+
+  if (!$templates) {
+    error_log('Message template not found: ' . $template_slug . ', lang: ' . $lang);
+    return;
+  }
+  $template = $templates[0];
+  $template_content = $template->post_content;
+
+  $args_title = array_merge(array($template->post_title), $vars);
+  $message_title = call_user_func_array('sprintf', $args_title);
+  $args_content = array_merge(array($template_content), $vars);
+  $message_content = call_user_func_array('sprintf', $args_content);
+
+  $message_id = wp_insert_post(array('post_type' => 'message',
+    'post_status' => 'publish',
+    'post_title' => $message_title,
+    'post_content' => $message_content
+  ));
+
+  add_post_meta($message_id, 'to', $to);
+  $unread_messages = get_user_meta($to, 'unread_messages', true) ?: 0;
+  update_user_meta($to, 'unread_messages', ++$unread_messages);
+  update_user_meta($to, 'has_unread_message', 1);
+
+  if (get_field('external', $template->ID)) {
+    $to_user = get_user_by('ID', $to);
+    if ($to_user->user_email) {
+      wp_mail($to_user->user_email, $message_title, $message_content);
+    }
+    else if ($mobile = get_user_meta($to, 'mobile', true)){
+      aliyun_send_sms($mobile, get_field('aliyun_sms_template', $template->ID), $vars);
+    }
+  }
 }
 
 function generate_code($login) {
