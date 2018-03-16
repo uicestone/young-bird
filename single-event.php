@@ -143,14 +143,14 @@ else:
       <div class="sidebar">
         <ul>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="#section1"><?=__('竞赛介绍', 'young-bird')?></a>
+            <a class="text-truncate" href="#section1" title="<?=__('竞赛介绍', 'young-bird')?>"><?=__('竞赛介绍', 'young-bird')?></a>
           </li>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="#section2"><?=__('奖项设置', 'young-bird')?></a>
+            <a class="text-truncate" href="#section2" title="<?=__('奖项设置', 'young-bird')?>"><?=__('奖项设置', 'young-bird')?></a>
           </li>
           <?php if ($judges = get_field('judges')): ?>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="#section3"><?=__('评委介绍', 'young-bird')?></a>
+            <a class="text-truncate" href="#section3" title="<?=__('评委介绍', 'young-bird')?>"><?=__('评委介绍', 'young-bird')?></a>
           </li>
           <?php endif; ?>
           <?php if ($qa = get_field('q&a')): ?>
@@ -158,30 +158,30 @@ else:
             <a class="text-truncate" href="#section4">Q&A</a>
           </li>
           <?php endif; ?>
-          <?php if ($newses = get_field('news')): ?>
+          <?php if ($news_ids = get_post_meta(pll_get_post(get_the_ID(), pll_default_language()), 'news', true)): ?>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="#section5"><?=__('相关新闻', 'young-bird')?></a>
+            <a class="text-truncate" href="#section5" title="<?=__('相关新闻', 'young-bird')?>"><?=__('相关新闻', 'young-bird')?></a>
           </li>
           <?php endif; ?>
           <?php if ($document = get_field('document')): ?>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="<?=$document['url']?>" download><?=__('下载文件', 'young-bird')?></a>
+            <a class="text-truncate" href="<?=$document['url']?>" download title="<?=__('下载文件', 'young-bird')?>"><?=__('下载文件', 'young-bird')?></a>
           </li>
           <?php endif; ?>
-          <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): ?>
+          <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): $length =  get_post_meta($rank->ID, 'length', true); ?>
           <li>
-            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>"><?php printf(__('%s强', 'young-bird'), get_post_meta($rank->ID, 'length', true)); ?></a>
+            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $length); ?>"><?php printf(__('%s强', 'young-bird'), $length); ?></a>
           </li>
           <?php endforeach; ?>
           <li class="active">
             <?php if (current_user_can('edit_user')): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>"><?=__('评审', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>" title="<?=__('评审', 'young-bird')?>"><?=__('评审', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
-            <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>"><?=__('参赛', 'young-bird')?></a>
+            <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($group && $attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>"><?=__('查看团队', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>" title="<?=__('查看团队', 'young-bird')?>"><?=__('查看团队', 'young-bird')?></a>
             <?php elseif ($group || $work): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>"><?=__('编辑作品', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>" title="<?=__('编辑作品', 'young-bird')?>"><?=__('编辑作品', 'young-bird')?></a>
             <?php endif; ?>
           </li>
         </ul>
@@ -285,7 +285,7 @@ else:
     <div class="container-fluid bg-bg-light-grey" id="section5">
       <div class="container">
         <div class="owl-carousel related-news owl-theme">
-          <?php if ($newses = get_field('news')): foreach ($newses as $news): ?>
+          <?php if ($news_ids): $newses = get_posts(array('post__in' => $news_ids)); foreach ($newses as $news): $news = get_post($news->ID) ?>
           <div class="item">
             <a href="<?=get_permalink($news->ID)?>" class="card mb-3 item-sub-history">
               <?=get_the_post_thumbnail($news->ID, '8-7', array ('class' => 'card-img-top'))?>
@@ -301,7 +301,7 @@ else:
               <div class="card-body">
                 <h4 class="text-truncate"><?=get_the_title($news->ID)?></h4>
                 <p class="text-truncate"><?=get_the_subtitle($news->ID)?></p>
-                <p><?=get_the_excerpt($news->ID)?></p>
+                <p><?=$news->post_excerpt?></p>
               </div>
             </a>
           </div>
