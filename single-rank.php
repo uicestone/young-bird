@@ -1,10 +1,9 @@
 <?php
 $rank_length = get_post_meta(get_the_ID(), 'length', true);
 $event_id = get_post_meta(get_the_ID(), 'event', true);
-$works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
-  array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
-  array('key' => 'score', 'compare' => 'EXISTS')
-), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC'));
+$works = array_map(function ($work_id) {
+  return get_post($work_id);
+}, get_post_meta(get_the_ID(), 'works', true));
 $stage = get_field('stage');
 $public_vote_start = get_field('voting_start_at');
 $public_vote_stop = get_field('voting_stop_at');

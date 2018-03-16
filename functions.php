@@ -340,7 +340,27 @@ add_action('acf/update_value/name=stage', function ($value, $post_id) {
   }
 
   return $value;
-  
+
+}, 10, 2);
+
+// update rank work list
+add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
+  if (get_post_type($post_id) === 'rank') {
+    $rank_length = get_field('length', $post_id);
+    $event_id = get_post_meta($post_id, 'event', true);
+    $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
+      array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
+      array('key' => 'score', 'compare' => 'EXISTS')
+    ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC'));
+    if (!$value) {
+      usort($works, function ($work_a, $work_b) {
+        return $work_a->ID < $work_b;
+      });
+    }
+    $work_ids = array_column($works, 'ID');
+    update_post_meta($post_id, 'works', $work_ids);
+  }
+  return $value;
 }, 10, 2);
 
 function redirect_login ($force = false) {
