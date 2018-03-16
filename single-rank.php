@@ -5,6 +5,10 @@ $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' =
   array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
   array('key' => 'score', 'compare' => 'EXISTS')
 ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC'));
+$stage = get_field('stage');
+$public_vote_start = get_field('voting_start_at');
+$public_vote_stop = get_field('voting_stop_at');
+$public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_start) && time() <= strtotime($public_vote_stop) ;
 
 get_header(); ?>
 
@@ -45,8 +49,10 @@ get_header(); ?>
               <div class="action row align-items-center">
                 <!--<i class="fas fa-eye mr-2"></i>-->
                 <!--<span class="mr-4">921</span>-->
-                <i class="far fa-heart mr-2"></i>
-                <span class="mr-4">0</span>
+                <?php if ($public_voting): ?>
+                <i class="<?=in_array($work->ID, get_user_meta(get_current_user_id(), 'vote_works') ?: array()) ? 'fas ' : 'far'?> fa-heart like mr-2" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
+                <span class="mr-4 likes"><?=get_post_meta($work->ID, 'votes', true) ?: 0?></span>
+                <?php endif; ?>
               </div>
             </div>
           </div>

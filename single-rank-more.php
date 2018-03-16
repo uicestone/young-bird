@@ -16,9 +16,9 @@
               <div class="action row align-items-center">
                 <!--<i class="fas fa-eye mr-1"></i>-->
                 <!--<span class="mr-2">921</span>-->
-                <?php if (false): ?>
-                <i class="far fa-heart mr-1"></i>
-                <span class="mr-2">0</span>
+                <?php if ($public_voting): ?>
+                <i class="<?=in_array($work->ID, get_user_meta(get_current_user_id(), 'vote_works') ?: array()) ? 'fas ' : 'far'?> fa-heart like mr-1" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
+                <span class="mr-2 likes">0</span>
                 <?php endif; ?>
               </div>
             </div>

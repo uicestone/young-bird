@@ -103,6 +103,21 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   exit;
 }
 
+if (isset($_POST['like'])) {
+  redirect_login();
+  $votes = get_post_meta(get_the_ID(), 'votes', true);
+  if (json_decode($_POST['like'])) {
+    add_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
+    update_post_meta(get_the_ID(), 'votes', ++$votes);
+  }
+  else {
+    delete_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
+    update_post_meta(get_the_ID(), 'votes', --$votes);
+  }
+
+  echo $votes; exit;
+}
+
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->

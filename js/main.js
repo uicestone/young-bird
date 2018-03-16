@@ -709,11 +709,11 @@ YB.Event = (function($){
     $('.like').click(function (e) {
     	var self = this;
     	if ($(this).hasClass('far')) {
-    		// 添加收藏
+    		// 添加收藏/大众投票
     		$(this).removeClass('far').addClass('fas');
-    		$.post($(this).data('event-link'), {
+        $.post($(this).data('post-link') || window.location.href, {
     			like: true
-				}).fail(function (response) {
+        }).fail(function (response) {
 					if (response.status === 401) {
 						window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
 					}
@@ -725,9 +725,9 @@ YB.Event = (function($){
         });
 			}
 			else {
-    		// 取消收藏
+    		// 取消收藏/大众投票
         $(this).removeClass('fas').addClass('far');
-        $.post($(this).data('event-link'), {
+        $.post($(this).data('post-link') || window.location.href, {
           like: false
         }).fail(function (response) {
           if (response.status === 401) {

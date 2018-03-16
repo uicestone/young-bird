@@ -29,7 +29,7 @@
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
                       <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
-                      <i class="far fa-heart"></i>
+                      <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
                     </div>
                   </div>
                 </a>
