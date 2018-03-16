@@ -1,6 +1,7 @@
 <?php
 $rank_length = get_post_meta(get_the_ID(), 'length', true);
 $event_id = get_post_meta(get_the_ID(), 'event', true);
+$event_status = get_post_meta($event_id, 'status', true);
 $works = array_map(function ($work_id) {
   return get_post($work_id);
 }, get_post_meta(get_the_ID(), 'works', true));
@@ -41,17 +42,24 @@ get_header(); ?>
           <div class="col-sm-12 order-sm-first card item-top3">
             <div class="card-body pb-5">
               <div class="row head justify-content-between align-items-center">
-                <?php if ($ranking_judge && $index === 0): ?>
-                <div class="label color-dark-yellow font-weight-bold">CHAMPION</div>
-                <?php elseif ($ranking_judge): ?>
-                <div class="label color-dark-yellow font-weight-bold">No. <?=$index+1?></div>
-                <?php else: ?>
-                <div class="label color-dark-yellow font-weight-bold">TOP<?=$rank_length?></div>
-                <?php endif; ?>
+                <div class="label color-dark-yellow font-weight-bold col-12">
+                  <?php if ($ranking_judge && $index === 0): ?>
+                  <span>CHAMPION</span>
+                  <?php elseif ($ranking_judge): ?>
+                  <span>No. <?=$index+1?></span>
+                  <?php else: ?>
+                  <span>TOP<?=$rank_length?></span>
+                  <?php endif; ?>
+                </div>
                 <div class="color-black">YB<?=strtoupper($work->post_name)?></div>
+                <?php if ($event_status === 'second_judging' && $work->post_author == get_current_user_id()): ?>
+                  <div>
+                    <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改作品', 'young-bird')?></a>
+                  </div>
+                <?php endif; ?>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
-              <p><?=get_post_meta($work->ID, 'description', true)?></p>
+              <?=wpautop(get_post_meta($work->ID, 'description', true))?>
               <div class="action row align-items-center">
                 <!--<i class="fas fa-eye mr-2"></i>-->
                 <!--<span class="mr-4">921</span>-->
