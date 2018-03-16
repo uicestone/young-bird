@@ -331,6 +331,18 @@ add_filter('pre_get_posts', function ($query) {
   set_query_var('posts_per_archive_page', $limit);
 });
 
+// update event status to 'second_judging' after rank save to 'second_rating'
+add_action('acf/update_value/name=stage', function ($value, $post_id) {
+
+  if (get_post_type($post_id) === 'rank' && get_field('stage', $post_id, true) !== 'second_rating' && $value === 'second_rating') {
+    $event_id = get_post_meta($post_id, 'event', true);
+    update_post_meta($event_id, 'status', 'second_judging');
+  }
+
+  return $value;
+  
+}, 10, 2);
+
 function redirect_login ($force = false) {
 
   if (!$force && is_user_logged_in()) {
