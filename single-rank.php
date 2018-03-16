@@ -8,6 +8,7 @@ $stage = get_field('stage');
 $public_vote_start = get_field('voting_start_at');
 $public_vote_stop = get_field('voting_stop_at');
 $public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_start) && time() <= strtotime($public_vote_stop) ;
+$ranking_judge = get_field('ranking_judge');
 
 get_header(); ?>
 
@@ -40,7 +41,13 @@ get_header(); ?>
           <div class="col-sm-12 order-sm-first card item-top3">
             <div class="card-body pb-5">
               <div class="row head justify-content-between align-items-center">
-                <div class="label color-dark-yellow font-weight-bold">#<?=$index+1?></div>
+                <?php if ($ranking_judge && $index === 0): ?>
+                <div class="label color-dark-yellow font-weight-bold">CHAMPION</div>
+                <?php elseif ($ranking_judge): ?>
+                <div class="label color-dark-yellow font-weight-bold">No. <?=$index+1?></div>
+                <?php else: ?>
+                <div class="label color-dark-yellow font-weight-bold">TOP<?=$rank_length?></div>
+                <?php endif; ?>
                 <div class="color-black">YB<?=strtoupper($work->post_name)?></div>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
