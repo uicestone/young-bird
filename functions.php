@@ -405,7 +405,7 @@ function send_message ($to, $template_slug, $vars = array()) {
       wp_mail($to_user->user_email, $message_title, $message_content);
     }
     else if ($mobile = get_user_meta($to, 'mobile', true)){
-      aliyun_send_sms($mobile, get_field('aliyun_sms_template', $template->ID), $vars);
+      aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $vars);
     }
   }
 }
