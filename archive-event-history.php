@@ -41,16 +41,25 @@
         </div>
         <div class="col-md-6">
           <?php foreach (get_posts(array ('category_name' => 'event-history-list-ad')) as $ad): ?>
-            <a href="#" class="card mb-3 item-sub-history">
-              <?=get_the_post_thumbnail($ad->ID, '8-7', array ('class' => 'card-img-top'))?>
-              <div class="card-body">
-                <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
-                <p><?=get_the_excerpt($ad->ID)?></p>
-                <?php if ($ad_event = get_field('event', $ad)): ?>
-                <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
-                <?php endif; ?>
+          <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
+            <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
+            <div class="card-label">
+              <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $ad->ID))?></span>
+              <div>
+                <?php foreach (get_the_terms($ad->ID, 'news_category') ?: array() as $term): ?>
+                  <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
+                <?php endforeach; ?>
               </div>
-            </a>
+            </div>
+            <hr />
+            <div class="card-body">
+              <h4><?=get_the_title($ad->ID)?><br><?=get_the_subtitle($ad->ID)?></h4>
+              <p><?=$ad->post_excerpt?></p>
+              <?php if ($ad_event = get_field('event', $ad)): ?>
+                <p><?=__('截止日期：', 'young-bird')?><?=get_post_meta($ad_event->ID, 'end_date', true)?></p>
+              <?php endif; ?>
+            </div>
+          </a>
           <?php endforeach; ?>
         </div>
       </div>
