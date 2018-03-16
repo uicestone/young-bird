@@ -363,6 +363,21 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
   return $value;
 }, 10, 2);
 
+if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
+
+  // Define action to send to event participator using custom callback to generate the label
+  add_action('mailusers_group_custom_meta_key_filter', function () {
+    $events = array();
+    mailusers_register_group_custom_meta_key_filter('attend_events', null, function ($mk, $mv) use ($events) {
+      if (empty($events[$mv])) {
+        $events[$mv] = get_the_title($mv);
+      }
+      return $events[$mv];
+    });
+  }, 5);
+
+}
+
 function redirect_login ($force = false) {
 
   if (!$force && is_user_logged_in()) {
