@@ -16,7 +16,7 @@ YB.Util = (function($) {
 		opts  = $.extend( true, {
 	    title     : 'Are you sure?',
 	    message   : '',
-	    okButton  : locale.confirm,
+	    okButton  : locale.ok,
 	    noButton  : locale.cancel,
 	    callback  : $.noop
 	  }, opts || {} );
