@@ -8,6 +8,7 @@ if (isset($_POST['attend'])) {
 
   if ($attend) {
     add_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
+    send_message(get_current_user_id(), 'successfully-applied-for-this-activity');
   } else {
     delete_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
   }

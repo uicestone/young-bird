@@ -68,7 +68,6 @@ if (isset($_POST['create_group'])) {
   ));
   add_post_meta($group_id, 'event', get_the_ID());
   add_post_meta($group_id, 'members', $user->ID);
-  add_user_meta($user->ID, 'attend_events', get_the_ID());
   add_user_meta($user->ID, 'attend_events_captain', get_the_ID());
   $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
   update_post_meta(get_the_ID(), 'attendees', ++$attendees);
@@ -86,11 +85,18 @@ if (isset($_POST['join_group'])) {
     exit('Group not found.');
   }
   update_post_meta($group->ID, 'members_pending', $user->ID);
-  add_user_meta($user->ID, 'attend_events', get_the_ID());
   add_user_meta($user->ID, 'attend_events_member', get_the_ID());
+  send_message($group->post_author, 'an-application-for-joining-the-team');
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
+if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
+  // TODO 重复访问本页会导致重复发送消息和添加meta信息
+  add_user_meta($user->ID, 'attend_events', get_the_ID());
+  send_message($user->ID, 'successfully-applied-for-this-competition');
+}
+
+// 以个人名义参赛
 if (isset($_GET['create-work'])) {
   $event_id = get_the_ID();
   $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;

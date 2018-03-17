@@ -65,6 +65,13 @@ if (isset($_POST['submit'])) {
   $group_id = get_post_meta($work->ID, 'group', true);
 
   if ($group_id) {
+    $group = get_post($group_id);
+    $captain_id = $group->post_author;
+    $member_ids = get_post_meta($group_id, 'members') ?: array();
+    foreach ($member_ids as $member_id) {
+      if ($member_id == $captain_id) continue;
+      send_message($member_id, 'the-team-project-has-been-uploaded');
+    }
     header('Location: ' . get_the_permalink($group_id)); exit;
   } else {
     header('Location: ' . get_the_permalink($event_id)); exit;
