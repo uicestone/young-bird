@@ -378,6 +378,23 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 
 }
 
+// Add the custom columns to the book post type:
+add_filter('manage_message_template_posts_columns', function ($columns) {
+  array_insert($columns, 'date', array('slug' => __( '简称', 'young-bird')));
+  return $columns;
+});
+
+
+// Add the data to the custom columns for the book post type:
+add_action('manage_message_template_posts_custom_column' , function ($column, $post_id) {
+  switch ( $column ) {
+    case 'slug' :
+      echo get_post($post_id)->post_name;
+      break;
+
+  }
+}, 10, 2 );
+
 function redirect_login ($force = false) {
 
   if (!$force && is_user_logged_in()) {
@@ -511,5 +528,18 @@ function language_slug_suffix () {
   }
   else {
     return '-' . pll_current_language();
+  }
+}
+
+function array_insert(&$array, $position, $insert) {
+  if (is_int($position)) {
+    array_splice($array, $position, 0, $insert);
+  } else {
+    $pos   = array_search($position, array_keys($array));
+    $array = array_merge(
+      array_slice($array, 0, $pos),
+      $insert,
+      array_slice($array, $pos)
+    );
   }
 }
