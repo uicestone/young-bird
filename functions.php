@@ -431,14 +431,14 @@ function send_email_code ($email) {
   wp_mail($email, '邮件验证码', "[Young Bird Plan 嫩鸟计划] 感谢您的关注，您正在用邮箱注册Young Bird Plan平台，您的注册验证码是${code}\n\nThank you for your attention, you are using your email to register our website, here is your registration verification code ${code}");
 }
 
-function send_message ($to, $template_slug, $vars = array()) {
+function send_message ($to, $template_slug, $params = array()) {
   $lang = get_user_meta($to, 'lang', true) ?: pll_default_language();
 
   $templates = get_posts(array('post_type' => 'message_template', 'lang' => $lang, 'posts_per_page' => -1));
 
-  $templates = array_filter($templates, function ($template) use ($template_slug) {
+  $templates = array_values(array_filter($templates, function ($template) use ($template_slug) {
     return $template->post_name === $template_slug;
-  });
+  }));
 
   if (!$templates) {
     error_log('Message template not found: ' . $template_slug . ', lang: ' . $lang);
@@ -447,10 +447,8 @@ function send_message ($to, $template_slug, $vars = array()) {
   $template = $templates[0];
   $template_content = $template->post_content;
 
-  $args_title = array_merge(array($template->post_title), $vars);
-  $message_title = call_user_func_array('sprintf', $args_title);
-  $args_content = array_merge(array($template_content), $vars);
-  $message_content = call_user_func_array('sprintf', $args_content);
+  $message_title = replace_content_params($template->post_title, $params);
+  $message_content = replace_content_params($template_content, $params);
 
   $message_id = wp_insert_post(array('post_type' => 'message',
     'post_status' => 'publish',
@@ -466,12 +464,20 @@ function send_message ($to, $template_slug, $vars = array()) {
   if (get_field('external', $template->ID)) {
     $to_user = get_user_by('ID', $to);
     if ($to_user->user_email) {
-      wp_mail($to_user->user_email, $message_title, $message_content);
+      wp_mail($to_user->user_email, $message_title, $message_content, 'Content-Type: text/html');
     }
     else if ($mobile = get_user_meta($to, 'mobile', true)){
-      aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $vars);
+      aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $params);
     }
   }
+}
+
+function replace_content_params ($template, $params = array()) {
+  $content = $template;
+  foreach ($params as $key => $value) {
+    $content = str_replace('${' . $key . '}', $value, $content);
+  }
+  return $content;
 }
 
 function generate_code($login) {
