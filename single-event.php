@@ -14,6 +14,22 @@ if (isset($_POST['like'])) {
   exit;
 }
 
+if (isset($_POST['remind_event_ending'])) {
+  $days_left = ceil((strtotime(get_field('end_date')) - time()) / 86400);
+  $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . get_the_ID() . "'");
+  if ($days_left < 3) {
+    $template = 'the-deadline-for-submissions';
+  } elseif ($days_left < 7) {
+    $template = 'the-competition-is-closing';
+  } elseif ($days_left < 30) {
+    $template = 'the-midway-point-of-the-competition';
+  }
+  foreach ($attended_user_ids as $attended_user_id) {
+    send_message($attended_user_id, $template, array('competition' => get_the_title()));
+  }
+  exit;
+}
+
 the_post();
 
 $user = wp_get_current_user();
@@ -180,8 +196,10 @@ else:
           </li>
           <?php endforeach; ?>
           <li class="active">
-            <?php if (current_user_can('edit_user')): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>" title="<?=__('评审', 'young-bird')?>"><?=__('评审', 'young-bird')?></a>
+            <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): ?>
+            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
+            <?php elseif (current_user_can('edit_user')): ?>
+            <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($group && $attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>

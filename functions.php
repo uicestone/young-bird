@@ -238,7 +238,8 @@ add_action('wp', function() {
     'comment' => __('评论', 'young-bird'),
     'resend' => __('重新发送', 'young-bird'),
     'sent' => __('已发送', 'young-bird'),
-    'save' => __('保存', 'young-bird')
+    'save' => __('保存', 'young-bird'),
+    'remind_event_ending' => __('竞赛报名即将截止通知', 'young-bird')
   );
   wp_localize_script( 'main', 'locale', $translation_array );
 });

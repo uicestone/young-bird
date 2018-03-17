@@ -742,6 +742,13 @@ YB.Event = (function($){
 			}
 			return false;
 		});
+
+    $('.remind-event-ending').click(function (event) {
+    	event.preventDefault();
+    	YB.Util.confirm({title: locale.remind_event_ending, callback: function () {
+				$.post(window.location.href, {remind_event_ending: true});
+			}});
+		});
   }
 
   return {
