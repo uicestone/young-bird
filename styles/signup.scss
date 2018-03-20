@@ -6,6 +6,36 @@
   }
 }
 
+.third-party {
+  margin-bottom: .8rem;
+  span {
+    font-size: rem(17);
+    color: $silver;
+  }
+  a {
+    margin-left: rem(14);
+  }
+  a.button-share-item {
+    width: 42px;
+    height: 42px;
+    background: url(../images/icon-share.png) no-repeat left;
+    background-size: auto 52px*(42/26);
+
+    &.button-tsina {
+      background-position: 0 0;
+      &:hover {
+        background-position: 0 -42px;
+      }
+    }
+    &.button-weixin {
+      background-position: -58px 0;
+      &:hover {
+        background-position: -58px -42px;
+      }
+    }
+  }
+}
+
 .sign-up-success {
   .msg {
     h3 {

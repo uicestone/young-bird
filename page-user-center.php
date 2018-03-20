@@ -168,7 +168,11 @@ else: ?>
             </div>
           </div>
         </div>
-        <div class="row mx-auto justify-content-end">
+        <div class="row mx-auto justify-content-between">
+          <div class="d-flex justify-content-end align-items-end third-party">
+            <span>第三方登录</span>
+            <a href="#" class="button-share-item button-weixin"></a>
+          </div>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>
         </div>
       </form>

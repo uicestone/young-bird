@@ -1,3 +1,47 @@
+a.button-share-item {
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background: url(../images/icon-share.png) no-repeat left;
+  background-size: auto 52px;
+  &:hover {
+    div {
+      opacity: 1;
+      transform: scale(1);
+      top: -200px - 10px;
+      z-index: 999;
+    }
+  }
+  div {
+    opacity: 0;
+    transition: all .2s;
+    transform: scale(.9);
+    position: absolute;
+    top: -200px;
+    left: -100px + 13px;
+    z-index: -1;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
+  &.button-tsina {
+    background-position: 0 0;
+    &:hover {
+      background-position: 0 -26px;
+    }
+  }
+  &.button-weixin {
+    background-position: -36px 0;
+    &:hover {
+      background-position: -36px -26px;
+    }
+  }
+}
+
 .footer {
   padding: 65px 0 45px;
   box-sizing: border-box;
@@ -26,49 +70,7 @@
     margin-right: 30px;
     position: relative;
     top: 4px;
-    a {
-      cursor: pointer;
-      position: relative;
-      display: inline-block;
-      width: 26px;
-      height: 26px;
-      background: url(../images/icon-share.png) no-repeat left;
-      background-size: auto 52px;
-      &:hover {
-        div {
-          opacity: 1;
-          transform: scale(1);
-          top: -200px - 10px;
-          z-index: 999;
-        }
-      }
-      div {
-        opacity: 0;
-        transition: all .2s;
-        transform: scale(.9);
-        position: absolute;
-        top: -200px;
-        left: -100px + 13px;
-        z-index: -1;
-        img {
-          width: 200px;
-          height: 200px;
-        }
-      }
-    }
-    .button-tsina {
-      background-position: 0 0;
-      &:hover {
-        background-position: 0 -26px;
-      }
-    }
-    .button-weixin {
-      background-position: -36px 0;
-      &:hover {
-        background-position: -36px -26px;
-      }
-    }
-
+    @extend .button-share-item;
   }
 }
 
