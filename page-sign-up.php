@@ -1,9 +1,9 @@
 <?php
-if ($mobile = $_GET['send_code_to_mobile']) :
+if (isset($_GET['send_code_to_mobile']) && $mobile = $_GET['send_code_to_mobile']) :
   // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
   send_sms_code($mobile, 'register');
 
-elseif ($email = $_GET['send_code_to_email']) :
+elseif (isset($_GET['send_code_to_email']) && $email = $_GET['send_code_to_email']) :
     // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
     send_email_code($email);
 else:
@@ -43,6 +43,10 @@ else:
 
       add_user_meta($user_id, 'lang', pll_current_language());
 
+      if (isset($_GET['wx_unionid'])) {
+        add_user_meta($user_id, 'wx_unionid', $_GET['wx_unionid']);
+      }
+
       wp_set_auth_cookie($user_id, true);
       wp_set_current_user($user_id);
 
@@ -54,7 +58,29 @@ else:
   catch (Exception $e) {
     $form_error = $e->getMessage();
   }
-get_header();
+
+  $wx = new WeixinAPI();
+
+  if (isset($_GET['code']) && $oauth_info = $wx->get_oauth_info()) {
+    header('Location: ' . pll_home_url() . 'sign-up/?wx_unionid=' . $oauth_info->unionid); exit;
+  }
+
+  if (isset($_GET['wx_unionid'])) {
+    $user_id = $wpdb->get_var("select user_id from {$wpdb->usermeta} where meta_key = 'wx_unionid' and meta_value = '{$_GET['wx_unionid']}'");
+    if ($user_id) {
+      $user = get_user_by('ID', $user_id);
+      wp_set_auth_cookie($user_id);
+      if (in_array('judge', $user->roles) && !get_user_meta($user->ID, 'signed_up', true)) {
+        header('Location: ' . pll_home_url() . 'judge-sign-up/');
+        exit;
+      }
+
+      header('Location: ' . ($_GET['intend'] ?: pll_home_url()));
+      exit;
+    }
+  }
+
+  get_header();
     if (isset($_GET['success'])) :
       get_template_part('page-sign-up-success');
     else: ?>
@@ -75,10 +101,12 @@ get_header();
           <div class="alert alert-danger"><?=$form_error?></div>
           <?php endif; ?>
           <form method="post">
+            <?php if (empty($_GET['wx_unionid'])): ?>
             <div class="d-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>
-              <a href="#" class="button-share-item button-weixin"></a>
+              <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'sign-up/')?>" class="button-share-item button-weixin"></a>
             </div>
+            <?php endif; ?>
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?><?php if (pll_current_language()=='zh'){ ?> / <?=__('手机', 'young-bird')?><?php } ?>">

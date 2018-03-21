@@ -12,7 +12,7 @@ try {
     wp_set_current_user($user->ID);
 
     if (in_array('judge', $user->roles) && !get_user_meta($user->ID, 'signed_up', true)) {
-      header('Location: /judge-sign-up/');
+      header('Location: ' . pll_home_url() . 'judge-sign-up/');
       exit;
     }
 
@@ -27,6 +27,27 @@ try {
 }
 catch (Exception $e) {
   $form_error = $e->getMessage();
+}
+
+$wx = new WeixinAPI();
+
+if (isset($_GET['code']) && $oauth_info = $wx->get_oauth_info()) {
+  header('Location: ' . pll_home_url() . 'sign-in/?wx_unionid=' . $oauth_info->unionid); exit;
+}
+
+if (isset($_GET['wx_unionid'])) {
+  $user_id = $wpdb->get_var("select user_id from {$wpdb->usermeta} where meta_key = 'wx_unionid' and meta_value = '{$_GET['wx_unionid']}'");
+  if ($user_id) {
+    $user = get_user_by('ID', $user_id);
+    wp_set_auth_cookie($user->ID);
+    if (in_array('judge', $user->roles) && !get_user_meta($user->ID, 'signed_up', true)) {
+      header('Location: ' . pll_home_url() . 'judge-sign-up/');
+      exit;
+    }
+
+    header('Location: ' . ($_GET['intend'] ?: pll_home_url()));
+    exit;
+  }
 }
 
 get_header(); ?>
@@ -49,7 +70,7 @@ get_header(); ?>
           <form method="post">
             <div class="d-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>
-              <a href="#" class="button-share-item button-weixin"></a>
+              <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'sign-in/')?>" class="button-share-item button-weixin"></a>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">

@@ -49,6 +49,13 @@ if (isset($_POST['submit'])) {
   header('Location: ' . get_the_permalink()); exit;
 }
 
+$wx = new WeixinAPI();
+
+if (isset($_GET['code']) && $oauth_info = $wx->get_oauth_info()) {
+  update_user_meta($user->ID, 'wx_unionid', $oauth_info->unionid);
+  header('Location: ' . pll_home_url() . 'user-center/'); exit;
+}
+
 get_header(); the_post(); if (isset($_GET['event'])):
 
   include(locate_template('page-user-center-event.php'));
@@ -214,8 +221,14 @@ else: ?>
             <?php endif; ?>
           </div>
         </div>
-        <div class="row mx-auto">
-          <button type="submit" name="submit" class="btn btn-secondary btn-lg btn-common float-right"><?=__('保存', 'young-bird')?></button>
+        <div class="row mx-auto justify-content-between">
+          <div class="d-flex justify-content-end align-items-end third-party">
+            <?php if(!get_user_meta($user->ID, 'wx_unionid', true)): ?>
+              <span>第三方登录</span>
+              <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
+            <?php endif; ?>
+          </div>
+          <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>
         </div>
       </form>
     </div>
