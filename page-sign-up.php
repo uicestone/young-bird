@@ -4,8 +4,8 @@ if (isset($_GET['send_code_to_mobile']) && $mobile = $_GET['send_code_to_mobile'
   send_sms_code($mobile, 'register');
 
 elseif (isset($_GET['send_code_to_email']) && $email = $_GET['send_code_to_email']) :
-    // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
-    send_email_code($email);
+  // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
+  send_email_code($email);
 else:
 
   try {

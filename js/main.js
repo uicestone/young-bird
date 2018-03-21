@@ -674,6 +674,7 @@ YB.User = (function($){
 		$('.sign-up .send-verify-code').click(function () {
       var _this = $(this);
       var countdown = 60, interval;
+      var urlPath = location.protocol + '//' + location.host + location.pathname;
       _this.text(locale.sent+'(' + countdown + ')s');
       // 开始倒计时
       _this.attr('disabled', true);
@@ -687,9 +688,9 @@ YB.User = (function($){
         }
       }, 1000);
 			if ($(this).data('mobile')) {
-				$.get(window.location.href + '?send_code_to_mobile=' + $(this).data('mobile'));
+				$.get(urlPath + '?send_code_to_mobile=' + $(this).data('mobile'));
 			} else if ($(this).data('email')) {
-        $.get(window.location.href + '?send_code_to_email=' + $(this).data('email'));
+        $.get(urlPath + '?send_code_to_email=' + $(this).data('email'));
 			}
 		});
 	}
