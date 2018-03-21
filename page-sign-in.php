@@ -68,7 +68,7 @@ get_header(); ?>
           <div class="alert alert-danger"><?=$form_error?></div>
           <?php endif; ?>
           <form method="post">
-            <div class="d-flex justify-content-end align-items-end third-party">
+            <div class="d-none d-block-lg d-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'sign-in/')?>" class="button-share-item button-weixin"></a>
             </div>

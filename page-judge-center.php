@@ -224,8 +224,10 @@ else: ?>
         <div class="row mx-auto justify-content-between">
           <div class="d-flex justify-content-end align-items-end third-party">
             <?php if(!get_user_meta($user->ID, 'wx_unionid', true)): ?>
-              <span>第三方登录</span>
-              <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
+              <div class="d-none d-block-lg">
+                <span>第三方登录</span>
+                <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
+              </div>
             <?php endif; ?>
           </div>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>

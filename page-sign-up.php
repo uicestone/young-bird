@@ -102,7 +102,7 @@ else:
           <?php endif; ?>
           <form method="post">
             <?php if (empty($_GET['wx_unionid'])): ?>
-            <div class="d-flex justify-content-end align-items-end third-party">
+            <div class="d-none d-block-lg d-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'sign-up/')?>" class="button-share-item button-weixin"></a>
             </div>
