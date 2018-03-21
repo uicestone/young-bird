@@ -4,8 +4,8 @@
         <div class="row justify-content-center">
           <div class="col-lg-8">
             <div class="share">
-              <a class="button-tsina" href="https://weibo.com/youngbirdplan" target="_blank"></a>
-              <a class="button-weixin">
+              <a class="button-share-item button-tsina" href="https://weibo.com/youngbirdplan" target="_blank"></a>
+              <a class="button-share-item button-weixin">
                 <div>
                   <img src="<?=get_stylesheet_directory_uri()?>/images/wechat-qr.png" alt="">
                 </div>
