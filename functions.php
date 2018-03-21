@@ -284,13 +284,13 @@ add_filter('pre_get_posts', function ($query) {
 
   if (is_admin()) return;
 
-  if (preg_match('/^home-primary/', $query->query['category_name'])) {
+  if (isset($query->query['category_name']) && preg_match('/^home-primary/', $query->query['category_name'])) {
     $limit = 2;
   }
-  elseif (preg_match('/^home-secondary/', $query->query['category_name'])) {
+  elseif (isset($query->query['category_name']) && preg_match('/^home-secondary/', $query->query['category_name'])) {
     $limit = 6;
   }
-  elseif ($query->query['post_type'] === 'work' && $_GET['event_id']) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && $_GET['event_id']) {
     $limit = 20;
     set_query_var('lang', '');
 
@@ -305,27 +305,29 @@ add_filter('pre_get_posts', function ($query) {
     }
 
   }
-  elseif ($query->query['post_type'] === 'event' && !get_query_var('event') && $_GET['status']) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['status'])) {
     set_query_var('meta_key', 'status');
     set_query_var('meta_value', $_GET['status']);
   }
-  elseif ($query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['history'])) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['history'])) {
     set_query_var('meta_key', 'status');
     set_query_var('meta_value', 'history');
   }
-  elseif ($query->query['post_type'] === 'event' && !get_query_var('event')) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event')) {
     set_query_var('meta_key', 'status');
     set_query_var('meta_compare', '!=');
     set_query_var('meta_value', 'history');
   }
-  elseif ($query->query['post_type'] === 'judge') {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'judge') {
     $limit = 12;
   }
-  elseif ($query->query['post_type'] === 'message') {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'message') {
     set_query_var('meta_key', 'to');
     set_query_var('meta_value', get_current_user_id());
     set_query_var('lang', '');
-  } else {
+  }
+
+  if (empty($limit)) {
     $limit = get_option('posts_per_page');
   }
 
