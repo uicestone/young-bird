@@ -47,6 +47,8 @@ if (isset($_GET['wx_unionid'])) {
 
     header('Location: ' . ($_GET['intend'] ?: pll_home_url()));
     exit;
+  } else {
+    header('Location: ' . pll_home_url() . 'sign-up/?wx_unionid=' . $_GET['wx_unionid']); exit;
   }
 }
 
