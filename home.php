@@ -2,7 +2,7 @@
     <!-- Banner -->
     <div class="container-fluid px-0 banner-home owl-carousel owl-theme">
       <?php foreach (get_posts(array('category_name' => 'home-banner', 'post_type' => 'any')) as $banner): ?>
-      <a href="<?=get_field('has_content', $banner) ? get_the_permalink($banner->ID) : 'javascript:return false'?>">
+      <a<?=get_field('has_content', $banner) ? ' href="' . get_the_permalink($banner->ID) . '"' : ''?>>
         <!-- for desktop -->
         <div class="container-fluid px-0 d-none d-lg-block">
           <img src="<?=get_field('home_banner_desktop', $banner)['url']?>">
