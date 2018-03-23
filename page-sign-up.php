@@ -80,6 +80,8 @@ else:
     }
   }
 
+  $user_agreement = get_posts(array('post_name' => 'user-agreement'))[0];
+
   get_header();
     if (isset($_GET['success'])) :
       get_template_part('page-sign-up-success');
@@ -151,7 +153,7 @@ else:
               </div>
             </div>
             <p class="text-right">
-              <small><?=__('注册即视为同意', 'young-bird')?> <a href="<?=pll_home_url()?>user-term/" class="text-underline"><?=__('用户协议', 'young-bird')?></a></small>
+              <small><?=__('注册即视为同意', 'young-bird')?> <a href="<?=get_permalink($user_agreement->ID)?>" class="text-underline"><?=__('用户协议', 'young-bird')?></a></small>
             </p>
             <button type="submit" class="btn btn-lg btn-secondary btn-block"><?=__('注册', 'young-bird')?></button>
           </form>
