@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
     <meta name="keywords" content="YoungBirdPlan 设计师 创新 年轻 高品质竞赛平台" />
-    <meta name="description" content="<?php bloginfo('description'); ?>" />
+    <meta name="description" content="<?php is_single() ? print(get_the_excerpt()) : bloginfo('description'); ?>" />
     <link rel="shortcut icon" type="image/x-icon" href="<?=get_stylesheet_directory_uri()?>/images/favicon.ico">
     <!-- For Chrome for Android: -->
     <link rel="icon" sizes="192x192" href="<?=get_stylesheet_directory_uri()?>/images/touch-icon-192x192.png">
