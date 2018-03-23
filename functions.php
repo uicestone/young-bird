@@ -225,6 +225,7 @@ add_action('wp', function() {
   wp_register_script('barrating', get_stylesheet_directory_uri() . '/js/jquery.barrating.min.js', array('jquery'), false, true);
   wp_register_script('popper', get_stylesheet_directory_uri() . '/js/popper.min.js', array('jquery'), false, true);
   wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel'), '1.0.0', true);
+  wp_register_script('wx', 'http://res.wx.qq.com/open/js/jweixin-1.2.0.js', array(), '1.2.0', true);
 
   // Localize the script with new data
   $translation_array = array(
@@ -254,6 +255,9 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('popper');
   wp_enqueue_script('main');
+  if (class_exists('WeixinAPI') && WeixinAPI::in_wx()) {
+    wp_enqueue_script('wx');
+  }
 });
 
 add_filter ('sanitize_user', function ($username, $raw_username, $strict) {
