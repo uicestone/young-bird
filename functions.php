@@ -49,6 +49,9 @@ add_action( 'admin_notices', function () {
   if( ! function_exists('the_subtitle') )
     echo '<div class="error"><p>' . __( '需要启用 Subtitles 插件' ) . '</p></div>';
 
+  if( ! class_exists('WeixinAPI') )
+    echo '<div class="error"><p>' . __( '需要启用 WeixinAPI 插件' ) . '</p></div>';
+
 } );
 
 add_action('admin_menu', function () {

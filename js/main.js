@@ -395,7 +395,7 @@ YB.Common = (function($){
 		var shareIconUrl = location.protocol + '//' + location.hostname + '/wp-content/themes/young-bird/images/share_icon.png';
 		var desc = $('meta[name="description"]').attr('content');
 		bindEvent();
-		if (wx) {
+		if (typeof wx !== 'undefined') {
 			$.get('/wx-js-config/', function (data) {
 				// data.debug = true;
 				data.jsApiList = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
