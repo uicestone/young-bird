@@ -18,7 +18,7 @@
                 <!--<span class="mr-2">921</span>-->
                 <?php if ($public_voting): ?>
                 <i class="<?=in_array($work->ID, get_user_meta(get_current_user_id(), 'vote_works') ?: array()) ? 'fas ' : 'far'?> fa-heart like mr-1" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
-                <span class="mr-2 likes">0</span>
+                <span class="mr-2 likes"><?=get_post_meta($work->ID, 'votes', true) ?: 0?></span>
                 <?php endif; ?>
               </div>
             </div>
