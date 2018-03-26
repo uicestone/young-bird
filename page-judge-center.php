@@ -224,7 +224,7 @@ else: ?>
         <div class="row mx-auto justify-content-between">
           <div class="d-flex justify-content-end align-items-end third-party">
             <?php if(!get_user_meta($user->ID, 'wx_unionid', true)): ?>
-            <div class="d-flex align-items-end d-none d-lg-block">
+            <div class="d-lg-flex align-items-end d-none">
               <span>第三方登录</span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
             </div>
