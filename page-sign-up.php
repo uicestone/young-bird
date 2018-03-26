@@ -103,8 +103,8 @@ else:
           <div class="alert alert-danger"><?=$form_error?></div>
           <?php endif; ?>
           <form method="post">
-            <?php if (empty($_GET['wx_unionid'])): ?>
-            <div class="d-none d-block-lg d-flex justify-content-end align-items-end third-party">
+            <?php if (empty($_GET['wx_unionid']) && pll_current_language() === 'zh'): ?>
+            <div class="d-none d-lg-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'sign-up/')?>" class="button-share-item button-weixin"></a>
             </div>
