@@ -46,7 +46,7 @@ get_header(); ?>
                   <?php if ($ranking_judge && $index === 0): ?>
                   <span>CHAMPION</span>
                   <?php elseif ($ranking_judge): ?>
-                  <span>No. <?=$index+1?></span>
+                  <span>TOP <?=$index+1?></span>
                   <?php else: ?>
                   <span>TOP<?=$rank_length?></span>
                   <?php endif; ?>
