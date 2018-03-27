@@ -388,14 +388,14 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 
 }
 
-// Add the custom columns to the book post type:
+// Add the custom columns to the message_template post type:
 add_filter('manage_message_template_posts_columns', function ($columns) {
   array_insert($columns, 'date', array('slug' => __( '简称', 'young-bird')));
   return $columns;
 });
 
 
-// Add the data to the custom columns for the book post type:
+// Add the data to the custom columns for the message_template post type:
 add_action('manage_message_template_posts_custom_column' , function ($column, $post_id) {
   switch ( $column ) {
     case 'slug' :
@@ -404,6 +404,41 @@ add_action('manage_message_template_posts_custom_column' , function ($column, $p
 
   }
 }, 10, 2 );
+
+
+add_filter('manage_users_columns', function ( $column ) {
+  unset($column['nickname']);
+  unset($column['posts']);
+  array_insert($column, 'email', array('name' => __( '姓名', 'young-bird')));
+  array_insert($column, 'role', array('mobile' => __( '手机', 'young-bird')));
+  array_insert($column, 'role', array('works' => __( '作品', 'young-bird')));
+  array_insert($column, 'role', array('events' => __( '竞赛', 'young-bird')));
+  array_insert($column, 'role', array('country' => __( '国家', 'young-bird')));
+  return $column;
+});
+
+add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id) {
+  switch ($column_name) {
+    case 'name' :
+      return get_user_meta($user_id, 'name', true);
+      break;
+    case 'mobile' :
+      return get_user_meta($user_id, 'mobile', true);
+      break;
+    case 'country' :
+      return get_user_meta($user_id, 'country', true);
+      break;
+    case 'events' :
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=event&attended_user=' . $user_id) . '">' . count(get_user_meta($user_id, 'attend_events')) . '</a>';
+      // TODO attended_user needs to be filtered in event
+      break;
+    case 'works' :
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'post_author' => $user_id))) . '</a>';
+      break;
+    default:
+  }
+  return $val;
+}, 10, 3 );
 
 function redirect_login ($force = false) {
 
