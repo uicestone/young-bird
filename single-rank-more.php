@@ -23,7 +23,7 @@
               </div>
             </div>
           </div>
-          <div class="d-none">
+          <div class="d-none" data-comments="<?=json_encode(get_post_meta($work->ID, 'comment'), JSON_UNESCAPED_UNICODE)?>">
             <!-- 作品简介 -->
             <a class="w-100" style="padding:10vh 20vw">
               <div class="row mx-auto justify-content-between">

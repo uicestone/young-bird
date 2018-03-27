@@ -233,12 +233,14 @@ YB.Work = (function($) {
 	function showWork(el, hideCaption) {
 		var box = el.next();
 		var items = box.children();
-		var avatar = box.data('judge-avatar');
-		var name = box.data('judge-name');
-		var comment = box.data('comment');
-		var caption;
-		if (name && comment) {
-      caption = '<h3>'+locale.comment+'</h3><p>'+comment+'</p><p class="text-right">--'+name+'</p>';
+		var comments = box.data('comments');
+		var caption = '';
+		if (comments && $.isArray(comments)) {
+      caption = '<h3 class="text-white">'+locale.comment+'</h3>';
+      comments.forEach(function (comment) {
+      	caption += '<p>' + comment + '</p>';
+				caption += '<p class="text-right">一位大咖</p>';
+			});
 		}
 		if(hideCaption) {
 			YB.Util.open(items)
@@ -289,7 +291,7 @@ YB.Work = (function($) {
 					</a>');
 				}
 			})
-			showWork($(this), true);
+			showWork($(this));
 		})
 		// 查看作品详情
 		workList.on('click', '.item-work', function() {

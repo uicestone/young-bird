@@ -106,7 +106,7 @@
                   <?php $work = get_event_work($event->ID); ?>
                   <?php if ($work): ?>
                   <button type="button" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('我的作品', 'young-bird')?></button>
-                  <div class="d-none">
+                  <div class="d-none" data-comments="<?=json_encode(get_post_meta($work->ID, 'comment'), JSON_UNESCAPED_UNICODE)?>">
                     <a class="w-100" style="padding:10vh 20vw">
                       <div class="row mx-auto justify-content-between">
                         <h3><?php get_the_title($work->ID); ?></h3>

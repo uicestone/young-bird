@@ -71,7 +71,7 @@ get_header(); ?>
             </div>
           </div>
         </div>
-        <div class="d-none">
+        <div class="d-none" data-comments="<?=json_encode(get_post_meta($work->ID, 'comment'), JSON_UNESCAPED_UNICODE)?>">
           <a class="w-100" style="padding:10vh 20vw">
             <div class="row mx-auto justify-content-between">
               <h3><?=get_the_title($work->ID)?></h3>

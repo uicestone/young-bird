@@ -103,12 +103,13 @@ if (isset($_POST['status'])) {
 if (isset($_POST['score']) && isset($_POST['comment'])) {
 
   $score = (int) $_POST['score'];
+  $comment = $_POST['comment'];
 
-  $score_previous = get_post_meta(get_the_ID(), 'score' . get_current_user_id(), true);
+  $score_previous = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true);
   $scores = get_post_meta(get_the_ID(), 'scores', true) ?: array();
 
   update_post_meta(get_the_ID(), 'score_' . get_current_user_id(), $score);
-  update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $_POST['comment']);
+  update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $comment);
 
   if ($score_previous) {
     $index = array_search($score_previous, $scores);
@@ -226,7 +227,7 @@ get_header(); ?>
         <div class="row">
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
-            <div class="d-none preview-box">
+            <div class="d-none preview-box" data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comment'), JSON_UNESCAPED_UNICODE)?>'>
               <a class="w-100" style="padding:10vh 20vw">
                 <div class="row mx-auto justify-content-between">
                   <h3><?php the_title(); ?></h3>
