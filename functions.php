@@ -341,6 +341,13 @@ add_filter('pre_get_posts', function ($query) {
   set_query_var('posts_per_archive_page', $limit);
 });
 
+add_filter('pre_get_posts', function ($query) {
+  if (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id']) && $_GET['event_id']) {
+    set_query_var('meta_key', 'event');
+    set_query_var('meta_value', $_GET['event_id']);
+  }
+});
+
 // update event status to 'second_judging' after rank save to 'second_rating'
 add_action('acf/update_value/name=stage', function ($value, $post_id) {
 
@@ -405,6 +412,22 @@ add_action('manage_message_template_posts_custom_column' , function ($column, $p
   }
 }, 10, 2 );
 
+// Add the custom columns to the event post type:
+add_filter('manage_event_posts_columns', function ($column) {
+  array_insert($column, 'date', array('works' => __( '作品', 'young-bird')));
+  return $column;
+});
+
+// Add the data to the custom columns for the event post type:
+add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
+  switch ( $column ) {
+    case 'works' :
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'meta_key' => 'event', 'meta_value' => $post_id))) . '</a>';
+      break;
+
+  }
+}, 10, 2 );
+
 // Add the custom columns to the work post type:
 add_filter('manage_work_posts_columns', function ($column) {
   unset($column['tags']);
@@ -417,7 +440,6 @@ add_filter('manage_work_posts_columns', function ($column) {
   // var_export($column); exit;
   return $column;
 });
-
 
 // Add the data to the custom columns for the work post type:
 add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
