@@ -120,7 +120,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   }
 
   update_post_meta(get_the_ID(), 'scores', $scores);
-  update_post_meta(get_the_ID(), 'score', array_sum($scores) / count($scores));
+  update_post_meta(get_the_ID(), 'score', array_sum($scores));
   exit;
 }
 

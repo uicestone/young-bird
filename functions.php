@@ -389,9 +389,9 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 }
 
 // Add the custom columns to the message_template post type:
-add_filter('manage_message_template_posts_columns', function ($columns) {
-  array_insert($columns, 'date', array('slug' => __( '简称', 'young-bird')));
-  return $columns;
+add_filter('manage_message_template_posts_columns', function ($column) {
+  array_insert($column, 'date', array('slug' => __( '简称', 'young-bird')));
+  return $column;
 });
 
 
@@ -405,6 +405,52 @@ add_action('manage_message_template_posts_custom_column' , function ($column, $p
   }
 }, 10, 2 );
 
+// Add the custom columns to the work post type:
+add_filter('manage_work_posts_columns', function ($column) {
+  unset($column['tags']);
+  unset($column['author']);
+  unset($column['title']);
+  array_insert($column, 'date', array('title_link' => __( '名称', 'young-bird')));
+  array_insert($column, 'date', array('slug' => __( '编号', 'young-bird')));
+  array_insert($column, 'date', array('authors' => __( '选手', 'young-bird')));
+  array_insert($column, 'date', array('score' => __( '获奖状态', 'young-bird')));
+  // var_export($column); exit;
+  return $column;
+});
+
+
+// Add the data to the custom columns for the work post type:
+add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
+  switch ( $column ) {
+    case 'title_link' :
+      echo '<a href="' . get_the_permalink($post_id) . '" target="_blank">' . get_the_title($post_id) . '</a>';
+      break;
+    case 'slug' :
+      echo 'YB' . strtoupper(get_post($post_id)->post_name);
+      break;
+    case 'authors' :
+      $group_id = get_post_meta($post_id, 'group', true);
+      $group = get_post($group_id);
+      if ($group) {
+        echo $group->post_title . ': ';
+        $member_ids = get_post_meta($group->ID, 'members');
+        foreach ($member_ids as $member_id) {
+          echo '<span style="margin-right:0.5em"><a href="' . get_admin_url(null, 'user-edit.php?user_id=' . $member_id) . '">' . get_user_by('ID', $member_id)->display_name . '</a></span>';
+        }
+      } else {
+        $work = get_post($post_id);
+        echo '<a href="' . get_admin_url(null, 'user-edit.php?user_id=' . $work->post_author) . '">' . get_user_by('ID', $work->post_author)->display_name . '</a>';
+      }
+      break;
+    case 'score' :
+      if ($score = get_post_meta($post_id, 'score', true)) {
+        echo $score;
+      } elseif ($status = get_post_meta($post_id, 'status', true)) {
+        echo $status;
+      }
+      break;
+  }
+}, 10, 2 );
 
 add_filter('manage_users_columns', function ( $column ) {
   unset($column['nickname']);
