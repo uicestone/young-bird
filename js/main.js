@@ -280,9 +280,9 @@ YB.Work = (function($) {
 			previewBox.find('.w-100 p').text(desc);
 			// gallery
 			// clean
-			previewBox.children('a[class!="w-100"]').remove();
+			// previewBox.children('a[class!="w-100"]').remove();
 			workDetail.find('.work-upload .col-lg-2-4').each(function() {
-				var src = $(this).find("img[class!='d-none']").attr('src');
+				var src = $(this).find('img[src^="data:"]').attr('src');
 				if(src) {
 					previewBox.append('<a href="'+src+'">\
 						<img src="'+src+'" />\
