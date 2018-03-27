@@ -8,6 +8,7 @@ the_post();
 $event_id = get_post_meta(get_the_ID(), 'event', true);
 $description = get_post_meta(get_the_ID(), 'description', true);
 $images = get_post_meta(get_the_ID(), 'images');
+$editable = $post->post_author == get_current_user_id();
 
 if (isset($_POST['submit'])) {
   $work = get_post();
@@ -78,7 +79,7 @@ if (isset($_POST['submit'])) {
   }
 }
 
-if ($delete_image_url = $_GET['delete_image']) {
+if (isset($_GET['delete_image']) && $delete_image_url = $_GET['delete_image']) {
   delete_post_meta(get_the_ID(), 'images', $delete_image_url);
 }
 
@@ -143,7 +144,7 @@ get_header(); ?>
     <div class="container mt-5 pb-6 work-detail">
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
-        <h1 class="font-weight-bold color-silver"><?=__('请上传作品简介', 'young-bird')?></h1>
+        <h1 class="font-weight-bold color-silver"><?=$editable ? __('请上传作品简介', 'young-bird') : __('作品简介', 'young-bird')?></h1>
         <h2 class="font-weight-bold color-silver"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($post->post_name)?></h2>
       </div>
       <form method="post" enctype="multipart/form-data">
@@ -151,16 +152,16 @@ get_header(); ?>
           <div class="col-md-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="work_title" value="<?php the_title(); ?>" class="form-control" placeholder="<?=__('作品名', 'young-bird')?>">
+                <input type="text" name="work_title" value="<?php the_title(); ?>"<?=$editable? '' : ' disabled'?> class="form-control" placeholder="<?=__('作品名', 'young-bird')?>">
               </div>
             </div>
             <div class="input-group input-group-lg">
-              <textarea class="form-control" name="description" placeholder="<?=__('描述', 'young-bird')?>"><?=$description?></textarea>
+              <textarea class="form-control" name="description"<?=$editable? '' : ' disabled'?> placeholder="<?=__('描述', 'young-bird')?>"><?=$description?></textarea>
             </div>
           </div>
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
-              <input type="file" name="poster" class="custom-file-input">
+              <input type="file" name="poster"<?=$editable? '' : ' disabled'?> class="custom-file-input">
               <?php if ($poster = get_post_meta(get_the_ID(), 'poster', true)): ?>
                 <img src="<?=$poster?>">
               <?php else: ?>
@@ -174,22 +175,26 @@ get_header(); ?>
         </div>
         <!-- 作品 -->
         <div class="row mx-auto mt-4">
-          <h1 class="font-weight-bold color-silver"><?=__('上传作品', 'young-bird')?></h1>
+          <h1 class="font-weight-bold color-silver"><?=$editable ? __('上传作品', 'young-bird') : __('作品', 'young-bird')?></h1>
         </div>
+        <?php if ($editable): ?>
         <p class="font-weight-normal color-silver"><?=__('您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。', 'young-bird')?></p>
+        <?php endif; ?>
         <div class="row work-upload mb-3">
           <?php foreach ($images as $index => $image): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
-              <input type="file" name="images[<?=$index?>]" class="custom-file-input">
+              <input type="file" name="images[<?=$index?>]"<?=$editable? '' : ' disabled'?> class="custom-file-input">
               <img src="<?=$image?>?imageView2/1/w/640/h/480">
+              <?php if ($editable): ?>
               <a href="<?php the_permalink(); ?>?delete_image=<?=urlencode($image)?>"><i class="fas fa-trash-alt"></i></a>
+              <?php endif; ?>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php for ($i=0; $i<5-count($images); $i++): ?>
+          <?php if ($editable): for ($i=0; $i<5-count($images); $i++): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
@@ -199,9 +204,11 @@ get_header(); ?>
               <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>
-          <?php endfor; ?>
+          <?php endfor; endif; ?>
         </div>
+        <?php if ($editable): ?>
         <p class="mb-5 color-silver"><?=__('拖动图片来改变顺序', 'young-bird')?></p>
+        <?php endif; ?>
         <div class="row">
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
@@ -220,7 +227,7 @@ get_header(); ?>
               </a>
             </div>
           </div>
-          <?php if ($post->post_author == get_current_user_id()): ?>
+          <?php if ($editable): ?>
           <div class="col-12">
             <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('上传', 'young-bird')?></button>
           </div>

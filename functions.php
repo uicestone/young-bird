@@ -297,7 +297,7 @@ add_filter('pre_get_posts', function ($query) {
   elseif (isset($query->query['category_name']) && preg_match('/^home-secondary/', $query->query['category_name'])) {
     $limit = 6;
   }
-  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && $_GET['event_id']) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id']) && $_GET['event_id']) {
     $limit = 20;
     set_query_var('lang', '');
 
