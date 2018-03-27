@@ -184,7 +184,7 @@ get_header(); ?>
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
               <input type="file" name="images[<?=$index?>]" class="custom-file-input">
-              <img src="<?=$image?>">
+              <img src="<?=$image?>?imageView2/1/w/640/h/480">
               <a href="<?php the_permalink(); ?>?delete_image=<?=urlencode($image)?>"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>
