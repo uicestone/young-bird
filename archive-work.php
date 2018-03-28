@@ -1,5 +1,5 @@
 <?php
-$event_id = get_post($_GET['event_id']);
+$event_id = $_GET['event_id'];
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
@@ -29,7 +29,7 @@ get_header(); ?>
           <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
           <?php else: ?>
           <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
-            array('key' => 'event', 'value' => $_GET['event_id']),
+            array('key' => 'event', 'value' => $event_id),
             array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
           )))) . __('个已评分', 'young-bird')?>
           <?php endif; ?>
@@ -45,6 +45,7 @@ get_header(); ?>
               <?php if (isset($_GET['stage']) && $_GET['stage'] === 'rating'): ?>
               <h3 class="mb-0 text-center">
                 <?php if ($score = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true)): ?>
+                <?php if (get_post_meta($event_id, 'status', true) === 'second_judging') { $score = floor($score / 100); } ?>
                 <?=__('分数：', 'young-bird') . $score?>
                 <?php else: ?>
                 <?=__('待处理', 'young-bird')?>
