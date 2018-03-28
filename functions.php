@@ -353,6 +353,13 @@ add_filter('pre_get_posts', function ($query) {
   }
 });
 
+add_filter('pre_get_users', function ($query) {
+  if (isset($_GET['attend_activities'])) {
+    $query->set('meta_key', 'attend_activities');
+    $query->set('meta_value', $_GET['attend_activities']);
+  }
+});
+
 // update event status to 'second_judging' after rank save to 'second_rating'
 add_action('acf/update_value/name=stage', function ($value, $post_id) {
 
@@ -399,6 +406,13 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
   }, 5);
 
 }
+
+add_filter('post_row_actions', function ($actions, $post) {
+  if ($attendable = get_post_meta($post->ID, 'attendable', true)) {
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . $post->ID) . '" target="_blank">' . __('报名用户', 'young-bird') . '</a>';
+  }
+  return $actions;
+}, 10, 2);
 
 // Add the custom columns to the message_template post type:
 add_filter('manage_message_template_posts_columns', function ($column) {
