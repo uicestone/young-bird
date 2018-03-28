@@ -4,7 +4,7 @@ $event_id = get_post_meta(get_the_ID(), 'event', true);
 $event_status = get_post_meta($event_id, 'status', true);
 $works = array_map(function ($work_id) {
   return get_post($work_id);
-}, get_post_meta(get_the_ID(), 'works', true));
+}, get_post_meta(get_the_ID(), 'works', true) ?: array());
 $stage = get_field('stage');
 $public_vote_start = get_field('voting_start_at');
 $public_vote_stop = get_field('voting_stop_at');
