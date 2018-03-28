@@ -337,6 +337,15 @@ a.link {
   }
 }
 
+@include media-breakpoint-up(sm) {
+  .item-history {
+    .card-img-top {
+      height: 165px;
+      object-fit: cover;
+    }
+  }
+}
+
 .item-event {
   border: none;
   .card-img-top {
