@@ -11,6 +11,21 @@
   overflow-y: auto;
 }
 
+.fancybox-navigation {
+  .fas {
+    font-size: rem(50);
+    color: #515151;
+    opacity: 1;
+  }
+  .fancybox-button {
+    padding: 10px;
+    width: 68px;
+  }
+  button:before {
+    background: none!important;
+  }
+}
+
 // confirm
 
 .fc-container .fancybox-bg {
