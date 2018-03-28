@@ -369,7 +369,7 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
     $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
       array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
       array('key' => 'score', 'compare' => 'EXISTS')
-    ), 'orderby' => 'meta_value', 'meta_key' => 'score', 'order' => 'DESC'));
+    ), 'orderby' => 'meta_value_num', 'meta_key' => 'score', 'order' => 'DESC'));
     if (!$value) {
       usort($works, function ($work_a, $work_b) {
         return $work_a->ID < $work_b;
@@ -423,7 +423,7 @@ add_filter('manage_event_posts_columns', function ($column) {
 add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
   switch ( $column ) {
     case 'works' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'meta_key' => 'event', 'meta_value' => $post_id))) . '</a>';
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
       break;
 
   }
@@ -502,7 +502,7 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       // TODO attended_user needs to be filtered in event
       break;
     case 'works' :
-      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'post_author' => $user_id))) . '</a>';
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'post_author' => $user_id, 'posts_per_page' => -1))) . '</a>';
       break;
     default:
   }
