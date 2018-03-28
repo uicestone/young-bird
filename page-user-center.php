@@ -179,7 +179,7 @@ else: ?>
           <div class="d-flex justify-content-end align-items-end third-party">
             <?php if(!get_user_meta($user->ID, 'wx_unionid', true) && pll_current_language() === 'zh'): ?>
             <div class="d-lg-flex align-items-end d-none">
-              <span>第三方登录</span>
+              <span>链接到：</span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
             </div>
             <?php endif; ?>
