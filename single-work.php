@@ -146,43 +146,6 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   exit;
 }
 
-if (isset($_POST['score']) && isset($_POST['comment'])) {
-
-  $score = (int) $_POST['score'];
-  $comment = $_POST['comment'];
-
-  $score_previous = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true);
-  $scores = get_post_meta(get_the_ID(), 'scores', true) ?: array();
-
-  $comment_previous = get_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), true);
-  $comments = get_post_meta(get_the_ID(), 'comments', true) ?: array();
-
-  update_post_meta(get_the_ID(), 'score_' . get_current_user_id(), $score);
-  update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $comment);
-
-  if ($score_previous) {
-    $index = array_search($score_previous, $scores);
-    $scores[$index] = $score;
-  }
-  else {
-    $scores[] = $score;
-  }
-
-  if ($comment_previous) {
-    $index = array_search($comment_previous, $comments);
-    $comments[$index] = $comment;
-  }
-  else {
-    $comments[] = $comment;
-  }
-
-  update_post_meta(get_the_ID(), 'scores', $scores);
-  update_post_meta(get_the_ID(), 'score', array_sum($scores));
-
-  update_post_meta(get_the_ID(), 'comments', $comments);
-  exit;
-}
-
 if (isset($_POST['like'])) {
   redirect_login();
   $votes = get_post_meta(get_the_ID(), 'votes', true);
@@ -309,6 +272,11 @@ get_header(); ?>
           <?php if ($editable): ?>
           <div class="col-12">
             <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('上传', 'young-bird')?></button>
+          </div>
+          <?php endif; ?>
+          <?php if (current_user_can('edit_users')): ?>
+          <div class="col-12">
+            <a href="<?php the_permalink(); ?>?download" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('下载', 'young-bird')?></a>
           </div>
           <?php endif; ?>
         </div>
