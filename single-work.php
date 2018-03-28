@@ -234,8 +234,8 @@ get_header(); ?>
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
               <input type="file" name="poster"<?=$editable? '' : ' disabled'?> class="custom-file-input">
-              <?php if ($poster = get_post_meta(get_the_ID(), 'poster', true)): ?>
-                <img src="<?=$poster?>">
+              <?php if (has_post_thumbnail()): ?>
+              <?php the_post_thumbnail('vga'); ?>
               <?php else: ?>
               <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
@@ -297,7 +297,7 @@ get_header(); ?>
                 </div>
               </a>
               <a href="<?=get_the_post_thumbnail_url(get_the_ID())?>">
-                <?php the_post_thumbnail('full'); ?>
+                <img src="">
               </a>
               <?php foreach ($images as $image_url): ?>
               <a href="<?=$image_url?>">
