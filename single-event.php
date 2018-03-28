@@ -108,6 +108,7 @@ if (isset($_POST['join_group'])) {
 
 if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   // TODO 重复访问本页会导致重复发送消息和添加meta信息
+  add_post_meta(get_the_ID(), 'attend_users', $user->ID);
   add_user_meta($user->ID, 'attend_events', get_the_ID());
   send_message($user->ID, 'successfully-applied-for-this-competition');
 }
@@ -124,6 +125,7 @@ if (isset($_GET['create-work'])) {
   ));
   add_post_meta($work_id, 'event', $event_id);
   update_post_meta(get_the_ID(), 'attendees', ++$attendees);
+  add_post_meta(get_the_ID(), 'attend_users', $user->ID);
   add_user_meta($user->ID, 'attend_events', get_the_ID());
   add_user_meta($user->ID, 'attend_events_solo', get_the_ID());
   header('Location: ' . get_the_permalink($work_id)); exit;

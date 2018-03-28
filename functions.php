@@ -298,7 +298,7 @@ add_filter('pre_get_posts', function ($query) {
   elseif (isset($query->query['category_name']) && preg_match('/^home-secondary/', $query->query['category_name'])) {
     $limit = 6;
   }
-  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id']) && $_GET['event_id']) {
+  elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id'])) {
     $limit = 20;
     set_query_var('lang', '');
 
@@ -343,9 +343,13 @@ add_filter('pre_get_posts', function ($query) {
 });
 
 add_filter('pre_get_posts', function ($query) {
-  if (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id']) && $_GET['event_id']) {
+  if (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id'])) {
     set_query_var('meta_key', 'event');
     set_query_var('meta_value', $_GET['event_id']);
+  }
+  if (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && isset($_GET['attend_users'])) {
+    set_query_var('meta_key', 'attend_users');
+    set_query_var('meta_value', $_GET['attend_users']);
   }
 });
 
@@ -505,7 +509,7 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       return get_user_meta($user_id, 'country', true);
       break;
     case 'events' :
-      return '<a href="' . get_admin_url(null, 'edit.php?post_type=event&attended_user=' . $user_id) . '">' . count(get_user_meta($user_id, 'attend_events')) . '</a>';
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=event&attend_users=' . $user_id) . '">' . count(get_user_meta($user_id, 'attend_events')) . '</a>';
       // TODO attended_user needs to be filtered in event
       break;
     case 'works' :
