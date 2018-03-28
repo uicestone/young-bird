@@ -157,7 +157,8 @@ YB.Participate = (function($) {
 		$('.attend-activity').on('click', function () {
 			YB.Util.confirm({
         title     : locale.confirm_participate,
-        callback  : function () {
+        callback  : function (confirm) {
+        	if (!confirm) return;
 					$.post(window.location.href, {attend:true}).done(function () {
 						window.location.reload();
 					}).fail(function (response) {
