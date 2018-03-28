@@ -509,7 +509,7 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       // TODO attended_user needs to be filtered in event
       break;
     case 'works' :
-      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'post_author' => $user_id, 'posts_per_page' => -1))) . '</a>';
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'author' => $user_id, 'posts_per_page' => -1))) . '</a>';
       break;
     default:
   }
