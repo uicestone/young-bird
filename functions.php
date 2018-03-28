@@ -437,7 +437,7 @@ add_filter('manage_work_posts_columns', function ($column) {
   array_insert($column, 'date', array('title_link' => __( '名称', 'young-bird')));
   array_insert($column, 'date', array('slug' => __( '编号', 'young-bird')));
   array_insert($column, 'date', array('authors' => __( '选手', 'young-bird')));
-  array_insert($column, 'date', array('score' => __( '获奖状态', 'young-bird')));
+  array_insert($column, 'date', array('score' => __( '状态', 'young-bird')));
   // var_export($column); exit;
   return $column;
 });
@@ -467,7 +467,14 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
       break;
     case 'score' :
       if ($score = get_post_meta($post_id, 'score', true)) {
-        echo $score;
+        // get votes, votes of same event
+        $event_id = get_post_meta($post_id, 'event', true);
+        $vote_weight = get_post_meta($event_id, 'vote_weight', true) ?: 10;
+        $votes = get_post_meta($post_id, 'votes', true);
+        global $wpdb;
+        $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
+        $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
+        echo '得分: ' . ($score + $vote_score);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
         echo $status;
       }
