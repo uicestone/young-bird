@@ -161,6 +161,37 @@ if (isset($_POST['like'])) {
   echo $votes; exit;
 }
 
+if (isset($_GET['download']) && current_user_can('edit_user')) {
+  $zip = new ZipArchive();
+  $filename = wp_upload_dir()['path'] . '/work-' . get_the_ID() . '.zip';
+
+  if ($zip->open($filename, ZipArchive::CREATE)!==TRUE) {
+      exit("cannot open <$filename>\n");
+  }
+
+  $zip->addFromString("summary.txt", get_the_title() . "\n\n" . get_post_meta(get_the_ID(), 'description', true));
+  $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+  $thumbnail_path = parse_url($thumbnail_url, PHP_URL_PATH);
+  $thumbnail_filename = basename($thumbnail_url);
+  $zip->addFile(get_home_path() . substr($thumbnail_path, 1), '/cover-' . $thumbnail_filename);
+  foreach ($images as $image) {
+    $path = parse_url($image, PHP_URL_PATH);
+    $image_filename = basename($image);
+    $zip->addFile(get_home_path() . substr($path, 1), '/' . $image_filename);
+  }
+  $zip->close();
+  header('Content-Description: File Transfer');
+  header('Content-Type: application/octet-stream');
+  header('Content-Disposition: attachment; filename="YB' . strtoupper($post->post_name) .'.zip"');
+  header('Expires: 0');
+  header('Cache-Control: must-revalidate');
+  header('Pragma: public');
+  header('Content-Length: ' . filesize($file));
+  readfile($filename);
+  unlink($filename);
+  exit;
+}
+
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
@@ -224,9 +255,7 @@ get_header(); ?>
               <input type="file" name="images[<?=$index?>]"<?=$editable? '' : ' disabled'?> class="custom-file-input">
               <img src="<?=$image?>?imageView2/1/w/640/h/480">
               <?php if ($editable): ?>
-              <form method="post">
-                <button type="submit" name="delete_image" value="<?=$image?>"><i class="fas fa-trash-alt"></i></button>
-              </form>
+              <button type="submit" name="delete_image" value="<?=$image?>"><i class="fas fa-trash-alt"></i></button>
               <?php endif; ?>
             </div>
           </div>
