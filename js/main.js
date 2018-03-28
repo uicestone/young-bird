@@ -750,6 +750,7 @@ YB.Event = (function($){
     	var self = this;
     	if ($(this).hasClass('far')) {
     		// 添加收藏/大众投票
+    		$(this).removeClass('far').addClass('fas');
         $.post($(this).data('post-link') || window.location.href, {
     			like: true
         }).fail(function (response) {
@@ -758,7 +759,6 @@ YB.Event = (function($){
 					}
         }).done(function (likes) {
         	var likesContainer = $(self).next('.likes');
-					$(self).removeClass('far').addClass('fas');
 					if (likesContainer.length) {
 						likesContainer.text(likes);
 					}
@@ -766,6 +766,7 @@ YB.Event = (function($){
 			}
 			else {
     		// 取消收藏/大众投票
+        $(this).removeClass('fas').addClass('far');
         $.post($(this).data('post-link') || window.location.href, {
           like: false
         }).fail(function (response) {
@@ -774,7 +775,6 @@ YB.Event = (function($){
           }
         }).done(function (likes) {
           var likesContainer = $(self).next('.likes');
-					$(self).removeClass('fas').addClass('far');
           if (likesContainer.length) {
             likesContainer.text(likes);
           }

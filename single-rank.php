@@ -4,12 +4,13 @@ $event_id = get_post_meta(get_the_ID(), 'event', true);
 $event_status = get_post_meta($event_id, 'status', true);
 $works = array_map(function ($work_id) {
   return get_post($work_id);
-}, get_post_meta(get_the_ID(), 'works', true) ?: array());
+}, get_post_meta(get_the_ID(), 'works', true));
 $stage = get_field('stage');
 $public_vote_start = get_field('voting_start_at');
 $public_vote_stop = get_field('voting_stop_at');
 $public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_start) && time() <= strtotime($public_vote_stop) ;
 $ranking_judge = get_field('ranking_judge');
+$vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
 get_header(); ?>
 
@@ -64,7 +65,7 @@ get_header(); ?>
                 <!--<i class="fas fa-eye mr-2"></i>-->
                 <!--<span class="mr-4">921</span>-->
                 <?php if ($public_voting): ?>
-                <i class="<?=in_array($work->ID, get_user_meta(get_current_user_id(), 'vote_works') ?: array()) ? 'fas ' : 'far'?> fa-heart like mr-2" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
+                <i class="<?=in_array($work->ID, $vote_works) ? 'fas ' : 'far'?> fa-heart like mr-2" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
                 <span class="mr-4 likes"><?=get_post_meta($work->ID, 'votes', true) ?: 0?></span>
                 <?php endif; ?>
               </div>

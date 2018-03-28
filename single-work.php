@@ -9,6 +9,7 @@ $event_id = get_post_meta(get_the_ID(), 'event', true);
 $description = get_post_meta(get_the_ID(), 'description', true);
 $images = get_post_meta(get_the_ID(), 'images');
 $editable = $post->post_author == get_current_user_id();
+$vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
 if (isset($_POST['submit'])) {
   $work = get_post();
@@ -127,11 +128,11 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
 if (isset($_POST['like'])) {
   redirect_login();
   $votes = get_post_meta(get_the_ID(), 'votes', true);
-  if (json_decode($_POST['like'])) {
+  if (json_decode($_POST['like']) && !in_array(get_the_ID(), $vote_works)) {
     add_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
     update_post_meta(get_the_ID(), 'votes', ++$votes);
   }
-  else {
+  elseif (in_array(get_the_ID(), $vote_works)) {
     delete_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
     update_post_meta(get_the_ID(), 'votes', --$votes);
   }
