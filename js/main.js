@@ -75,7 +75,7 @@ YB.Util = (function($) {
 				arrowLeft: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left">' +
 					'<i class="fas fa-caret-square-left"></i>' +
 					'</button>',
-				arrowRight: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_right">' +
+				arrowRight: '<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right">' +
 					'<i class="fas fa-caret-square-right"></i>' +
 					'</button>'
 			},
