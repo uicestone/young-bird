@@ -1,5 +1,6 @@
 <?php
 $event_id = $_GET['event_id'];
+$event_status = get_post_meta($event_id, 'status', true);
 get_header(); ?>
     <!-- Banner -->
     <!-- for desktop -->
@@ -45,7 +46,7 @@ get_header(); ?>
               <?php if (isset($_GET['stage']) && $_GET['stage'] === 'rating'): ?>
               <h3 class="mb-0 text-center">
                 <?php if ($score = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true)): ?>
-                <?php if (get_post_meta($event_id, 'status', true) === 'second_judging') { $score = floor($score / 100); } ?>
+                <?php if ($event_status === 'second_judging') { $score = floor($score / 100); } ?>
                 <?=__('分数：', 'young-bird') . $score?>
                 <?php else: ?>
                 <?=__('待处理', 'young-bird')?>
@@ -64,7 +65,12 @@ get_header(); ?>
               <?php endif; ?>
             </div>
           </div>
-          <div class="d-none" data-comments="<?=json_encode(get_post_meta(get_the_ID(), 'comment'), JSON_UNESCAPED_UNICODE)?>">
+          <?php $my_score = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true);
+          if ($event_status === 'second_judging') { $my_score = floor($my_score / 100); } ?>
+          <div class="d-none"
+               data-comments="<?=json_encode(get_post_meta(get_the_ID(), 'comments'), JSON_UNESCAPED_UNICODE)?>"
+               data-my-comment="<?=get_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), true)?>"
+               data-my-score="<?=$my_score?>">
             <a class="w-100" style="padding:10vh 20vw">
               <div class="row mx-auto justify-content-between">
                 <h3><?php the_title(); ?></h3>
