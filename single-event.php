@@ -17,11 +17,11 @@ if (isset($_POST['like'])) {
 if (isset($_POST['remind_event_ending'])) {
   $days_left = ceil((strtotime(get_field('end_date')) - time()) / 86400);
   $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . get_the_ID() . "'");
-  if ($days_left < 3) {
+  if ($days_left <= 10) {
     $template = 'the-deadline-for-submissions';
-  } elseif ($days_left < 7) {
+  } elseif ($days_left <= 30) {
     $template = 'the-competition-is-closing';
-  } elseif ($days_left < 30) {
+  } else {
     $template = 'the-midway-point-of-the-competition';
   }
   foreach ($attended_user_ids as $attended_user_id) {
