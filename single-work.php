@@ -113,7 +113,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   if ($event_status === 'second_judging') {
     $score = $score * 100;
     if ($score_previous) {
-      $score += $score_previous;
+      $score += $score_previous % 100;
     }
   }
 
