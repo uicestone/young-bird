@@ -12,6 +12,18 @@ $images = get_post_meta(get_the_ID(), 'images');
 $editable = $post->post_author == get_current_user_id();
 $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
+if ($event_status === 'second_judging') {
+  $rank = get_posts(array('post_type' => 'rank', 'meta_query' => array(
+    array('key' => 'event', 'value' => $_GET['event_id']),
+    array('key' => 'stage', 'value' => 'second_rating')
+  )))[0];
+  $second_judging_work_ids = get_post_meta($rank->ID, 'works', true);
+
+  if (!in_array(get_the_ID(), $second_judging_work_ids)) {
+    $editable = false;
+  }
+}
+
 if (isset($_POST['submit'])) {
   $work = get_post();
   $work->post_title = $_POST['work_title'];
