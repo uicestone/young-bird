@@ -292,7 +292,7 @@ if (WP_REMOTE_UPLOADS) {
   add_filter( 'pre_option_upload_url_path', function() { return 'http://www.youngbirdplan.com.cn/wp-content/uploads'; } );
 }
 
-add_filter('pre_get_posts', function ($query) {
+add_filter('pre_get_posts', function (WP_Query $query) {
 
   if (is_admin()) return;
 
@@ -304,60 +304,74 @@ add_filter('pre_get_posts', function ($query) {
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id'])) {
     $limit = 20;
-    set_query_var('lang', '');
+    $query->set('lang', '');
+
+    $query->set('meta_value', $_GET['event_id']);
 
     if (isset($_GET['stage']) && $_GET['stage'] === 'rating') {
-      set_query_var('meta_query', array(
+      $query->meta_query[] = array('key' => 'status', 'value' => '1');
+    }
+    
+    $event_status = get_post_meta($_GET['event_id'], 'status', true);
+    
+    if ($event_status === 'second_judging') {
+      $rank = get_posts(array('post_type' => 'rank', 'meta_query' => array(
         array('key' => 'event', 'value' => $_GET['event_id']),
-        array('key' => 'status', 'value' => '1')
-      ));
-    } else {
-      set_query_var('meta_key', 'event');
-      set_query_var('meta_value', $_GET['event_id']);
+        array('key' => 'stage', 'value' => 'second_rating')
+      )))[0];
+      $second_judging_work_ids = get_post_meta($rank->ID, 'works', true);
+      $query->set('post__in', $second_judging_work_ids); 
     }
 
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['status'])) {
-    set_query_var('meta_key', 'status');
-    set_query_var('meta_value', $_GET['status']);
+    $query->set('meta_key', 'status');
+    $query->set('meta_value', $_GET['status']);
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['history'])) {
-    set_query_var('meta_key', 'status');
-    set_query_var('meta_value', 'history');
+    $query->set('meta_key', 'status');
+    $query->set('meta_value', 'history');
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event')) {
-    set_query_var('meta_key', 'status');
-    set_query_var('meta_compare', '!=');
-    set_query_var('meta_value', 'history');
+    $query->set('meta_key', 'status');
+    $query->set('meta_compare', '!=');
+    $query->set('meta_value', 'history');
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'judge') {
     $limit = 12;
   }
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'message') {
-    set_query_var('meta_key', 'to');
-    set_query_var('meta_value', get_current_user_id());
-    set_query_var('lang', '');
+    $query->set('meta_key', 'to');
+    $query->set('meta_value', get_current_user_id());
+    $query->set('lang', '');
   }
 
   if (empty($limit)) {
     $limit = get_option('posts_per_page');
   }
 
-  set_query_var('posts_per_archive_page', $limit);
+  $query->set('posts_per_archive_page', $limit);
 });
 
-add_filter('pre_get_posts', function ($query) {
+add_filter('pre_get_posts', function (WP_Query $query) {
+  if (isset($_GET['post__in'])) {
+    $query->set('post__in', explode(',', $_GET['post__in']));
+  }
   if (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id'])) {
-    set_query_var('meta_key', 'event');
-    set_query_var('meta_value', $_GET['event_id']);
+    $query->set('meta_key', 'event');
+    $query->set('meta_value', $_GET['event_id']);
+  }
+  if (isset($query->query['post_type']) && $query->query['post_type'] === 'rank' && isset($_GET['event_id'])) {
+    $query->set('meta_key', 'event');
+    $query->set('meta_value', $_GET['event_id']);
   }
   if (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && isset($_GET['attend_users'])) {
-    set_query_var('meta_key', 'attend_users');
-    set_query_var('meta_value', $_GET['attend_users']);
+    $query->set('meta_key', 'attend_users');
+    $query->set('meta_value', $_GET['attend_users']);
   }
 });
 
-add_filter('pre_get_users', function ($query) {
+add_filter('pre_get_users', function (WP_User_Query $query) {
   if (isset($_GET['attend_activities'])) {
     $query->set('meta_key', 'attend_activities');
     $query->set('meta_value', $_GET['attend_activities']);
@@ -437,7 +451,10 @@ add_action('manage_message_template_posts_custom_column' , function ($column, $p
 
 // Add the custom columns to the event post type:
 add_filter('manage_event_posts_columns', function ($column) {
-  array_insert($column, 'date', array('works' => __( '作品', 'young-bird')));
+  array_insert($column, 'date', array(
+    'works' => __( '作品', 'young-bird'),
+    'ranks' => __( '轮次', 'young-bird')
+  ));
   return $column;
 });
 
@@ -447,7 +464,32 @@ add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
     case 'works' :
       echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
       break;
+    case 'ranks' :
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
+      break;
+  }
+}, 10, 2 );
 
+// Add the custom columns to the event post type:
+add_filter('manage_rank_posts_columns', function ($column) {
+  array_insert($column, 'date', array(
+    'event' => __( '竞赛', 'young-bird'),
+    'works' => __( '作品', 'young-bird'),
+  ));
+  return $column;
+});
+
+// Add the data to the custom columns for the event post type:
+add_action('manage_rank_posts_custom_column' , function ($column, $post_id) {
+  switch ( $column ) {
+    case 'event' :
+      $event = get_field('event', $post_id);
+      echo '<a href="' . get_admin_url(null, 'post.php?post=' . $event->ID . '&action=edit') . '">' . $event->post_title . '</a>';
+      break;
+    case 'works' :
+      $work_ids = get_post_meta($post_id, 'works', true);
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&post__in=' . implode(',', $work_ids)) . '">' . count($work_ids) . '</a>';
+      break;
   }
 }, 10, 2 );
 
