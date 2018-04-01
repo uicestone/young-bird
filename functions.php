@@ -205,8 +205,11 @@ add_action('init', function () {
   ));
 
   register_post_type('message', array(
-    'public' => false,
+    'label' => __('单条消息', 'young-bird'),
+    'public' => true,
     'publicly_queryable' => true,
+    'show_ui' => false,
+    'show_in_nav_menus' => false,
     'supports' => array('title', 'editor', 'author'),
     'menu_icon' => 'dashicons-email',
     'has_archive' => true
