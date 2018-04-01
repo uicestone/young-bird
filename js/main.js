@@ -793,12 +793,23 @@ YB.Event = (function($){
 		});
 
     $('.remind-event-ending').click(function (event) {
+    	var self = this;
     	event.preventDefault();
     	YB.Util.confirm({title: locale.remind_event_ending, callback: function (val) {
     		if (val) {
 					$.post(window.location.href, {remind_event_ending: true});
 				}
 			}});
+		});
+
+		$('.remind-rank-published').click(function (event) {
+			var self = this;
+			event.preventDefault();
+			YB.Util.confirm({title: locale.remind_rank_published, callback: function (val) {
+					if (val) {
+						$.post(window.location.href, {remind_rank_published: true});
+					}
+				}});
 		});
   }
 

@@ -12,6 +12,30 @@ $public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_st
 $ranking_judge = get_field('ranking_judge');
 $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
+if (isset($_POST['remind_rank_published'])) {
+  $event = get_post($event_id);
+  foreach ($works as $work) {
+    $group_id = get_post_meta($work->ID, 'group', true);
+    if ($group_id) {
+      $user_ids = get_post_meta($group_id, 'members') ?: array();
+    } else {
+      $user_ids = array($work->post_author);
+    }
+
+    foreach ($user_ids as $user_id) {
+      send_message($user_id,
+        $rank_length <= 3 ? 'top-3-finalists' : 'your-ranking-in-the-competition',
+        array(
+          'competition' => $event->post_title,
+          'ranking' => $rank_length,
+          'rank' => $rank_length
+        )
+      );
+    }
+  }
+  exit;
+}
+
 get_header(); ?>
 
     <!-- Banner -->
@@ -33,7 +57,14 @@ get_header(); ?>
     else: ?>
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
-      <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
+      <h1 class="text-center color-dark-yellow">
+        TOP<?=$rank_length?>
+        <?php if (current_user_can('edit_users')): ?>
+        <small>
+          <a href="#" class="remind-rank-published btn btn-outline-primary btn-sm"><?=__('通知选手', 'young-bird')?></a>
+        </small>
+        <?php endif; ?>
+      </h1>
       <?php foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
@@ -54,9 +85,9 @@ get_header(); ?>
                 </div>
                 <div class="color-black">YB<?=strtoupper($work->post_name)?></div>
                 <?php if ($event_status === 'second_judging' && $work->post_author == get_current_user_id()): ?>
-                  <div>
-                    <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改作品', 'young-bird')?></a>
-                  </div>
+                <div>
+                  <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改作品', 'young-bird')?></a>
+                </div>
                 <?php endif; ?>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
