@@ -225,8 +225,12 @@ YB.Work = (function($) {
 
 	function rate(id) {
 		var reviewItem = $('#'+id);
+		var box = reviewItem.next();
 		var score = $('#rateStar').val();
 		var comment = $('.custom-rate-container textarea').val();
+
+		box.data('my-score', score);
+		box.data('my-comment', comment);
 
 		$.post(reviewItem.data('url'), {score: score, comment: comment}, function () {
       var result = locale.score + score;
@@ -322,7 +326,7 @@ YB.Work = (function($) {
 
 			if(qs && qs.stage === 'rating') {
 				// 评分阶段
-				caption = '\
+				caption = $('\
 					<div class="row mb-4 custom-rate-container">\
 						<div class="col-16">\
 							<textarea class="form-control" style="height:120px"></textarea>\
@@ -343,10 +347,17 @@ YB.Work = (function($) {
 							</select>\
 							<button type="button" class="btn btn-lg btn-secondary btn-block bg-cyan mt-3" onclick="YB.Work.rate(\''+id+'\')">'+locale.save+'</button>\
 						</div>\
-					</div>';
+					</div>');
+				if (box.data('my-comment')) {
+					caption.find('textarea').val(box.data('my-comment'));
+				}
+
+				if (box.data('my-score')) {
+					caption.find('#rateStar').val(box.data('my-score'));
+				}
 				// init star rating
 				onInit = function() {
-					$('#rateStar').barrating({
+					var rateStar = $('#rateStar').barrating({
 						theme: 'fontawesome-stars',
 						allowEmpty: true
 					});
