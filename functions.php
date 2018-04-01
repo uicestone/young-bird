@@ -498,10 +498,12 @@ add_filter('manage_work_posts_columns', function ($column) {
   unset($column['tags']);
   unset($column['author']);
   unset($column['title']);
-  array_insert($column, 'date', array('title_link' => __( '名称', 'young-bird')));
-  array_insert($column, 'date', array('slug' => __( '编号', 'young-bird')));
-  array_insert($column, 'date', array('authors' => __( '选手', 'young-bird')));
-  array_insert($column, 'date', array('score' => __( '状态', 'young-bird')));
+  array_insert($column, 'date', array(
+    'title_link' => __( '名称', 'young-bird'),
+    'slug' => __( '编号', 'young-bird'),
+    'authors' => __( '选手', 'young-bird'),
+    'score' => __( '状态', 'young-bird')
+  ));
   // var_export($column); exit;
   return $column;
 });
@@ -517,8 +519,8 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
       break;
     case 'authors' :
       $group_id = get_post_meta($post_id, 'group', true);
-      $group = get_post($group_id);
-      if ($group) {
+      if ($group_id) {
+        $group = get_post($group_id);
         echo $group->post_title . ': ';
         $member_ids = get_post_meta($group->ID, 'members');
         foreach ($member_ids as $member_id) {
