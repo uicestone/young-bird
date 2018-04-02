@@ -668,7 +668,7 @@ function send_message ($to, $template_slug, $params = array()) {
       array('first' => __('您在YoungBirdPlan官网上收到一条新消息，如您已在我们网站申请或报名参加竞赛，此信息可能较为重要，建议及时登录网站查收。', 'young-bird'),
         'keyword1' => '收到一条新消息',
         'keyword2' => '未读',
-        'keyword3' => date('Y年m月d日 H:i'),
+        'keyword3' => date('Y年m月d日 H:i', time() + get_option('gmt_offset') * HOUR_IN_SECONDS),
         'remark' => '点击即可登录网站查看！'
       ));
   }
