@@ -290,7 +290,7 @@ get_header(); ?>
         <div class="row">
           <div class="col-12">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
-            <div class="d-none preview-box" data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comment'), JSON_UNESCAPED_UNICODE)?>'>
+            <div class="d-none preview-box" data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comments', true), JSON_UNESCAPED_UNICODE)?>'>
               <a class="w-100" style="padding:10vh 20vw">
                 <div class="row mx-auto justify-content-between">
                   <h3><?php the_title(); ?></h3>
