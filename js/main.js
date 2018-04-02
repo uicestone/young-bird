@@ -73,10 +73,10 @@ YB.Util = (function($) {
 			],
 			btnTpl: {
 				arrowLeft: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left">' +
-					'<i class="fas fa-caret-square-left"></i>' +
+					'<img src="/images/left.svg">' +
 					'</button>',
 				arrowRight: '<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right">' +
-					'<i class="fas fa-caret-square-right"></i>' +
+					'<img src="/images/right.svg">' +
 					'</button>'
 			},
 			animationEffect   : "fade",
