@@ -15,10 +15,10 @@ add_action('after_switch_theme', function () {
   //   init_page_placeholder($name);
   // }
 
-  foreach (get_users() as $user) {
-    $message_id = wp_insert_post(array('post_type' => 'message', 'post_title' => '欢迎注册', 'post_content' => '亲爱的 ' . $user->display_name . '，Young Bird Plan 欢迎您的加入。', 'post_status' => 'publish'));
-    add_post_meta($message_id, 'to', $user->ID);
-  }
+  // foreach (get_users() as $user) {
+  //   $message_id = wp_insert_post(array('post_type' => 'message', 'post_title' => '欢迎注册', 'post_content' => '亲爱的 ' . $user->display_name . '，Young Bird Plan 欢迎您的加入。', 'post_status' => 'publish'));
+  //   add_post_meta($message_id, 'to', $user->ID);
+  // }
 
   add_role('judge', __('大咖', 'young-bird'), array());
   add_role('attendee', __('选手', 'young-bird'), array());
