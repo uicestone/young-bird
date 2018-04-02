@@ -163,7 +163,7 @@ const syncOpts = {
 };
 
 // watch for file changes
-gulp.task('watch', () => {
+gulp.task('watch', ['build'], () => {
 
   // page changes
   gulp.watch(php.src, ['php'], browsersync ? browsersync.reload : {});
@@ -186,4 +186,4 @@ gulp.task('watch', () => {
 });
 
 // default task
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['watch']);
