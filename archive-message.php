@@ -1,4 +1,9 @@
-<?php redirect_login(); get_header(); ?>
+<?php
+if (isset($_GET['test'])) {
+  send_message(get_current_user_id(), 'successfully-registered', array('username' => get_user_by('ID', get_current_user_id())->display_name));
+  header('Location: ' . pll_home_url() . 'message/'); exit;
+}
+redirect_login(); get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
