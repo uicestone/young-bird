@@ -68,7 +68,7 @@ get_header(); ?>
       <?php foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
-          <div class="col-sm-12 mb-4 mb-md-0">
+          <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb">
             <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
           </div>
           <div class="col-sm-12 order-sm-first card item-top3">

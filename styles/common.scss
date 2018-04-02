@@ -386,6 +386,8 @@ a.link {
       font-size: $font-size-base;
       color: $silver;
       line-height: 1.8;
+      max-height: rem(220);
+      overflow-y: scroll;
     }
     .head {
       border-bottom: 1px solid $grey;
@@ -796,6 +798,14 @@ a.link {
   .item-work {
     cursor: pointer;
   }
+  .item-top3-container {
+    .item-top3-thumb {
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
 }
 
 .custom-rate-container {
@@ -1014,6 +1024,7 @@ a.link {
       p {
         font-size: $font-size-xs;
         line-height: 1.6;
+        max-height: rem(80);
       }
       .head {
         font-size: $font-size-xs;
