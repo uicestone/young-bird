@@ -147,7 +147,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
     $index = array_search($comment_previous, $comments);
     $comments[$index] = $comment;
   }
-  else {
+  elseif($comment) {
     $comments[] = $comment;
   }
 
