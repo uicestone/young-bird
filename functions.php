@@ -541,9 +541,11 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         global $wpdb;
         $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
         $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-        echo '得分: ' . ($score + $vote_score);
+        echo __('得分: ', 'young-bird') . ($score + $vote_score);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
         echo $status;
+      } else {
+        echo __('未入围', 'young-bird');
       }
       break;
   }
