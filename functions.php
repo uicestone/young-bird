@@ -754,3 +754,45 @@ function array_insert(&$array, $position, $insert) {
     );
   }
 }
+
+add_action('admin_footer', function () {
+  $screen = get_current_screen();
+  if ( $screen->id != "users" )   // Only add to users.php page
+    return;
+  ?>
+  <script type="text/javascript">
+		jQuery(document).ready( function($)
+		{
+			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form action="#" method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出', 'young-bird')?>" /></form>');
+		});
+  </script>
+  <?php
+});
+
+add_action('admin_init', function () {
+  if (!empty($_POST['ybp_export_users']) && current_user_can('manage_options')) {
+    // export users in xlsx file
+    exit;
+  }
+});
+
+add_action('admin_footer', function () {
+  $screen = get_current_screen();
+  if ( $screen->id != "edit-work" )   // Only add to users.php page
+    return;
+  ?>
+  <script type="text/javascript">
+		jQuery(document).ready( function($)
+		{
+			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form action="#" method="POST"><input type="hidden" id="ybp_export_works" name="ybp_export_works" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出', 'young-bird')?>" /></form>');
+		});
+  </script>
+  <?php
+});
+
+add_action('admin_init', function () {
+  if (!empty($_POST['ybp_export_works']) && current_user_can('manage_options')) {
+    // export users in xlsx file
+    exit;
+  }
+});
