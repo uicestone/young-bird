@@ -2,6 +2,7 @@
 
 require __DIR__ . '/includes/cmb2.functions.php';
 require __DIR__ . '/includes/aliyun.signature_helper.php';
+require __DIR__ . '/includes/cron.php';
 
 remove_filter('template_redirect','redirect_canonical');
 
@@ -657,6 +658,21 @@ function send_message ($to, $template_slug, $params = array()) {
       aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $params);
     }
   }
+
+  $wx = new WeixinAPI(true);
+  $unionid = get_user_meta(get_current_user_id(), 'wx_unionid', true);
+  if ($unionid && $openid = get_option('wx_unionid_openid_' . $unionid)) {
+    $wx->send_template_message($openid,
+      WECHAT_TEMPLATE_MESSAGE_ID,
+      pll_home_url(),
+      array('first' => __('您在YoungBirdPlan官网上收到一条新消息，如您已在我们网站申请或报名参加竞赛，此信息可能较为重要，建议及时登录网站查收。', 'young-bird'),
+        'keyword1' => '收到一条新消息',
+        'keyword2' => '未读',
+        'keyword3' => date('Y年m月d日 H:i'),
+        'remark' => '点击即可登录网站查看！'
+      ));
+  }
+
 }
 
 function replace_content_params ($template, $params = array()) {
