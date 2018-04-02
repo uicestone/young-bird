@@ -1,4 +1,5 @@
 var YB = window.YB || {};
+var YB_SOURCE_PATH = location.protocol + '//' + location.hostname + '/wp-content/themes/young-bird/';
 
 // Confirm 弹窗
 YB.Util = (function($) {
@@ -73,10 +74,10 @@ YB.Util = (function($) {
 			],
 			btnTpl: {
 				arrowLeft: '<button data-fancybox-prev class="fancybox-button fancybox-button--arrow_left">' +
-					'<img src="/images/left.svg">' +
+					'<img src="' + YB_SOURCE_PATH + 'images/left.svg">' +
 					'</button>',
 				arrowRight: '<button data-fancybox-next class="fancybox-button fancybox-button--arrow_right">' +
-					'<img src="/images/right.svg">' +
+					'<img src="' + YB_SOURCE_PATH + 'images/right.svg">' +
 					'</button>'
 			},
 			animationEffect   : "fade",
@@ -414,7 +415,7 @@ YB.Carousel = (function($) {
 // 通用
 YB.Common = (function($){
 	function init() {
-		var shareIconUrl = location.protocol + '//' + location.hostname + '/wp-content/themes/young-bird/images/share_icon.png';
+		var shareIconUrl = YB_SOURCE_PATH + 'images/share_icon.png';
 		var desc = $('meta[name="description"]').attr('content');
 		bindEvent();
 		if (typeof wx !== 'undefined') {
