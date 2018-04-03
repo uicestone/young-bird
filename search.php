@@ -30,7 +30,9 @@
         <?php foreach ($posts = get_posts(array('category_name' => 'news', 's' => $_GET['s'], 'posts_per_page' => 6)) as $post): ?>
         <div class="col-md-8">
           <a href="<?=get_the_permalink($post->ID)?>" class="card mb-4 item-history item-history-no-action link">
+            <div>
             <?=get_the_post_thumbnail($post->ID, 'vga', array('class' => 'card-img-top'))?>
+            </div>
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <span class="color-cyan hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></span>
@@ -58,7 +60,9 @@
         <?php foreach ($events = get_posts(array('post_type' => 'event', 's' => $_GET['s'], 'posts_per_page' => 6)) as $event): ?>
         <div class="col-md-8">
           <a href="<?=get_the_permalink($event->ID)?>" class="card mb-4 item-history link">
+            <div>
             <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
+            </div>
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
                 <div class="labels">
