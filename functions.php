@@ -672,7 +672,7 @@ function send_message ($to, $template_slug, $params = array()) {
     if ($to_user->user_email) {
       wp_mail($to_user->user_email, $message_title, $message_content, 'Content-Type: text/html');
     }
-    else if ($mobile = get_user_meta($to, 'mobile', true)){
+    if ($mobile = get_user_meta($to, 'mobile', true)){
       aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $params);
     }
   }
