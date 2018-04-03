@@ -779,7 +779,7 @@ add_action('admin_footer', function () {
   <script type="text/javascript">
 		jQuery(document).ready( function($)
 		{
-			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出', 'young-bird')?>" /></form>');
+			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出选手', 'young-bird')?>" /></form>');
 		});
   </script>
   <?php
@@ -788,7 +788,46 @@ add_action('admin_footer', function () {
 add_action('admin_init', function () {
   if (!empty($_POST['ybp_export_users']) && current_user_can('manage_options')) {
     // export users in xlsx file
-    exit;
+    $data = array();
+
+    foreach ($users = get_users(array('role' => 'attendee')) as $user) {
+      $row = array(
+        get_user_meta($user->ID, 'name', true) ?: $user->display_name,
+        get_user_meta($user->ID, 'mobile', true),
+        $user->user_email,
+        get_user_meta($user->ID, 'id_card', true),
+        get_user_meta($user->ID, 'identity', true),
+        get_user_meta($user->ID, 'birthday', true),
+        get_user_meta($user->ID, 'school', true),
+        get_user_meta($user->ID, 'major', true),
+        get_user_meta($user->ID, 'constellation', true),
+        get_user_meta($user->ID, 'hobby', true),
+        get_user_meta($user->ID, 'address', true),
+        get_user_meta($user->ID, 'company', true),
+        get_user_meta($user->ID, 'department', true),
+        get_user_meta($user->ID, 'title', true),
+        date('Y-m-d H:i:s', strtotime($user->user_registered) + get_option('gmt_offset') * HOUR_IN_SECONDS)
+      );
+
+      $data[] = $row;
+    }
+
+    $writer = new XLSXWriter();
+    $writer->writeSheetHeader('选手', array('姓名' => '@', '手机' => '@', '邮箱' => '@', '证件' => '@', '身份' => '@', '生日' => '@', '学校' => '@', '专业' => '@', '星座' => '@', '兴趣' => '@', '地址' => '@', '公司' => '@', '部门' => '@', '职位' => '@', '注册时间' => 'YYYY-MM-DD HH:MM:SS'));
+    foreach ($data as $row) {
+      $writer->writeSheetRow('选手', $row);
+    }
+
+    $filename = __('所有用户', 'young-bird') . '.xlsx';
+    $path = wp_upload_dir()['path']  . '/' . $filename;
+    $writer->writeToFile($path);
+    header('Content-Disposition: attachment; filename=' . $filename );
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Length: ' . filesize($path));
+    header('Content-Transfer-Encoding: binary');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    readfile($path); unlink($path); exit;
   }
 });
 
