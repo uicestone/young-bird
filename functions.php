@@ -296,14 +296,18 @@ if (WP_REMOTE_UPLOADS) {
 
 add_filter('pre_get_posts', function (WP_Query $query) {
 
-  if (is_admin()) return;
+  // effective only in user end main loop
+  if (is_admin() || !is_archive()) return;
 
+  // home-primary(-en) posts
   if (empty($query->query['post_type']) && isset($query->query['category_name']) && preg_match('/^home-primary/', $query->query['category_name'])) {
     $limit = 2;
   }
+  // home-secondary(-en) posts
   elseif (isset($query->query['category_name']) && preg_match('/^home-secondary/', $query->query['category_name'])) {
     $limit = 6;
   }
+  // work review page
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'work' && isset($_GET['event_id'])) {
     $limit = 20;
     $query->set('lang', '');
@@ -326,22 +330,27 @@ add_filter('pre_get_posts', function (WP_Query $query) {
     }
 
   }
+  // event list - filter by status
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['status'])) {
     $query->set('meta_key', 'status');
     $query->set('meta_value', $_GET['status']);
   }
+  // event history list
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event') && isset($_GET['history'])) {
     $query->set('meta_key', 'status');
     $query->set('meta_value', 'history');
   }
+  // event list
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && !get_query_var('event')) {
     $query->set('meta_key', 'status');
     $query->set('meta_compare', '!=');
     $query->set('meta_value', 'history');
   }
+  // judge post list
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'judge') {
     $limit = 12;
   }
+  // user center message list
   elseif (isset($query->query['post_type']) && $query->query['post_type'] === 'message') {
     $query->set('meta_key', 'to');
     $query->set('meta_value', get_current_user_id());
@@ -356,6 +365,9 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 });
 
 add_filter('pre_get_posts', function (WP_Query $query) {
+  // effective only in admin panel
+  if (!is_admin()) return;
+
   if (isset($_GET['post__in'])) {
     $query->set('post__in', explode(',', $_GET['post__in']));
   }
@@ -374,6 +386,9 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 });
 
 add_filter('pre_get_users', function (WP_User_Query $query) {
+  // effective only in admin panel
+  if (!is_admin()) return;
+
   if (isset($_GET['attend_activities'])) {
     $query->set('meta_key', 'attend_activities');
     $query->set('meta_value', $_GET['attend_activities']);

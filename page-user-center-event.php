@@ -30,7 +30,7 @@
       <h3><?=__('（待）评分的项目', 'young-bird')?></h3>
       <div class="row my-3 event-list">
         <?php if ($judge_post): foreach (get_posts(array (
-          'post_type' => 'event', 'post_status' => 'publish,private', 'meta_key' => 'judges',
+          'post_type' => 'event', 'post_status' => 'publish,private', 'meta_key' => 'judges', 'posts_per_page' => -1,
           'meta_compare' => 'LIKE', 'meta_value' => '"' . $judge_post->ID . '"'
         )) as $event):
           if (!in_array($judge_post->ID, array_column(get_field('judges', $event->ID), 'ID'))) {
