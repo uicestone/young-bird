@@ -89,6 +89,10 @@ class Aliyun_SignatureHelper {
  */
 function aliyun_send_sms($mobile, $template = '', $template_params = array()) {
 
+  if (empty($template)) {
+    return false;
+  }
+
   // *** 需用户填写部分 ***
   $params = array();
 
