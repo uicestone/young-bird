@@ -1,5 +1,5 @@
 var YB = window.YB || {};
-var YB_SOURCE_PATH = location.protocol + '//' + location.hostname + '/wp-content/themes/young-bird/';
+var YB_SOURCE_PATH = location.protocol + '//' + location.host + '/wp-content/themes/young-bird/';
 
 // Confirm 弹窗
 YB.Util = (function($) {
