@@ -208,6 +208,7 @@ YB.Work = (function($) {
 	var workDetail = $('.work-detail'),
 			previewBox = $('.preview-box');
 	var reviewList = $('.review-list');
+	var sideBar = $('.sidebar')
 	// var pop = $('.fancypop');
 
 	function init() {
@@ -307,12 +308,17 @@ YB.Work = (function($) {
 			})
 			showWork($(this));
 		})
+		// 查看精彩瞬间
+		sideBar.on('click', '.moment-anchor', function(e) {
+			e.preventDefault();
+			showWork($(this));
+		})
 		// 查看作品详情
 		workList.on('click', '.item-work', function() {
-			showWork($(this))
+			showWork($(this));
 		})
 		eventList.on('click', '.item-work-anchor', function() {
-			showWork($(this))
+			showWork($(this));
 		})
 		// 入围弹层
 		reviewList.on('click', '.item-review', function() {

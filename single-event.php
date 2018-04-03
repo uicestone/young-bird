@@ -396,7 +396,7 @@ else:
           </li>
           <?php if (get_field('status') === 'history' && $gallery = get_post_meta(get_the_ID(), 'gallery', true)): ?>
           <li class="d-none d-lg-block">
-            <a class="text-truncate" href="" title="<?=__('精彩瞬间', 'young-bird')?>"><?=__('精彩瞬间', 'young-bird')?></a>
+            <a class="text-truncate moment-anchor" href="" title="<?=__('精彩瞬间', 'young-bird')?>"><?=__('精彩瞬间', 'young-bird')?></a>
             <div class="d-none">
               <?php foreach ($gallery as $image): ?>
               <a href="<?=$image?>"></a>
