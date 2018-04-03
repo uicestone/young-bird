@@ -16,6 +16,20 @@
  */
 add_action( 'cmb2_admin_init', function () {
 
+  $event_gallery_metabox = new_cmb2_box(array (
+    'id'           => 'event_gallery_metabox',
+    'title'        => esc_html__( '精彩瞬间', 'cmb2' ),
+    'object_types' => array ( 'event' )
+  ));
+
+  $event_gallery_metabox->add_field( array(
+    'name' => '图片',
+    'id'   => 'gallery',
+    'type' => 'file_list',
+    'preview_size' => array( 100, 100 ), // Default: array( 50, 50 )
+    'query_args' => array( 'type' => 'image' ), // Only images attachment
+  ) );
+
   $avatar_meta_box = new_cmb2_box(array (
     'id'           => 'avatar_metabox',
     'title'        => esc_html__( '头像', 'cmb2' ),

@@ -394,6 +394,16 @@ else:
             <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>" title="<?=__('编辑作品', 'young-bird')?>"><?=__('编辑作品', 'young-bird')?></a>
             <?php endif; ?>
           </li>
+          <?php if (get_field('status') === 'history' && $gallery = get_post_meta(get_the_ID(), 'gallery', true)): ?>
+          <li class="d-none d-lg-block">
+            <a class="text-truncate" href="" title="<?=__('精彩瞬间', 'young-bird')?>"><?=__('精彩瞬间', 'young-bird')?></a>
+            <div class="d-none">
+              <?php foreach ($gallery as $image): ?>
+              <a href="<?=$image?>"></a>
+              <?php endforeach; ?>
+            </div>
+          </li>
+          <?php endif; ?>
         </ul>
       </div>
       <div class="content">
