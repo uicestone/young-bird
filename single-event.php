@@ -357,7 +357,7 @@ else:
             <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $length); ?>"><?php printf(__('%s强', 'young-bird'), $length); ?></a>
           </li>
           <?php endforeach; ?>
-          <?php if ($cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true) && $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
+          <?php if (current_user_can('edit_users') && $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true) && $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
           <li class="d-none d-lg-block">
             <a class="text-truncate generate-certs" href="" title="<?=__('生成证书', 'young-bird')?>"><?=__('生成证书', 'young-bird')?></a>
           </li>
