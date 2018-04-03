@@ -53,6 +53,12 @@ add_action( 'admin_notices', function () {
   if( ! class_exists('WeixinAPI') )
     echo '<div class="error"><p>' . __( '需要启用 WeixinAPI 插件' ) . '</p></div>';
 
+  if( ! class_exists('Intervention\Image\ImageManagerStatic') )
+    echo '<div class="error"><p>' . __( '需要启用 WP Intervention 插件' ) . '</p></div>';
+
+  if( ! class_exists('XLSXWriter') )
+    echo '<div class="error"><p>' . __( '需要启用 WP PHP XLSWriter 插件' ) . '</p></div>';
+
 } );
 
 add_action('admin_menu', function () {
