@@ -298,7 +298,7 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 
   if (is_admin()) return;
 
-  if (isset($query->query['category_name']) && preg_match('/^home-primary/', $query->query['category_name'])) {
+  if (empty($query->query['post_type']) && isset($query->query['category_name']) && preg_match('/^home-primary/', $query->query['category_name'])) {
     $limit = 2;
   }
   elseif (isset($query->query['category_name']) && preg_match('/^home-secondary/', $query->query['category_name'])) {
