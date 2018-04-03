@@ -117,6 +117,15 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->align('center');
     })->save(wp_upload_dir()['path'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
     update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
+    
+    if ($group_id) {
+      $member_ids = get_post_meta($group_id, 'members');
+      foreach ($member_ids as $member_id) {
+        send_message($member_id, 'certificate-of-award', array('competition' => $event->post_title));
+      }
+    } else {
+      send_message($work->post_author, 'certificate-of-award', array('competition' => $event->post_title));
+    }
   }
 
   foreach ($participate_works as $participate_work_id) {
@@ -186,6 +195,16 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->align('center');
     })->save(wp_upload_dir()['path'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
     update_post_meta($work->ID, 'cert_participate', wp_upload_dir()['url'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
+
+    if ($group_id) {
+      $member_ids = get_post_meta($group_id, 'members');
+      foreach ($member_ids as $member_id) {
+        send_message($member_id, 'certificate-of-participate', array('competition' => $event->post_title));
+      }
+    } else {
+      send_message($work->post_author, 'certificate-of-participate', array('competition' => $event->post_title));
+    }
+
   }
   exit;
 }
