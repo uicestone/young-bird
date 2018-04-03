@@ -833,7 +833,7 @@ add_action('admin_init', function () {
 
 add_action('admin_footer', function () {
   $screen = get_current_screen();
-  if ( $screen->id != "edit-work" )   // Only add to users.php page
+  if ( $screen->id != "edit-work" || empty($_GET['event_id']))   // Only add to users.php page
     return;
   ?>
   <script type="text/javascript">
@@ -848,6 +848,68 @@ add_action('admin_footer', function () {
 add_action('admin_init', function () {
   if (!empty($_POST['ybp_export_works']) && current_user_can('manage_options')) {
     // export users in xlsx file
+    $event = get_post($_GET['event_id']);
+
+    $data = array();
+
+    $works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => $_GET['event_id']));
+
+    foreach ($works as $work) {
+
+      // compile authors string
+      $group_id = get_post_meta($work->ID, 'group', true);
+      if ($group_id) {
+        $group = get_post($group_id);
+        $authors = $group->post_title . ': ';
+        $member_ids = get_post_meta($group->ID, 'members');
+        foreach ($member_ids as $member_id) {
+          $authors .= get_user_by('ID', $member_id)->display_name;
+        }
+      } else {
+        $authors =  get_user_by('ID', $work->post_author)->display_name;
+      }
+
+      // compile status string
+      if ($score = get_post_meta($work->ID, 'score', true)) {
+        // get votes, votes of same event
+        $event_id = get_post_meta($work->ID, 'event', true);
+        $vote_weight = get_post_meta($event->ID, 'vote_weight', true) ?: 10;
+        $votes = get_post_meta($work->ID, 'votes', true);
+        global $wpdb;
+        $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
+        $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
+        $status = __('得分: ', 'young-bird') . ($score + $vote_score);
+      } elseif (!$status = get_post_meta($work->ID, 'status', true)) {
+        $status = __('未入围', 'young-bird');
+      }
+
+
+      $row = array(
+        $work->post_title,
+        'YB' . strtoupper($work->post_name),
+        $authors,
+        $status,
+        get_the_date('Y-m-d H:i:s', $work->ID)
+      );
+
+      $data[] = $row;
+    }
+
+    $writer = new XLSXWriter();
+    $filename = '作品 - ' . $event->post_title . '.xlsx';
+    $path = wp_upload_dir()['path']  . '/' . $filename;
+    $writer->writeSheetHeader('作品', array('名称' => '@', '编号' => '@', '选手' => '@', '状态' => '@', '日期' => 'YYYY-MM-DD HH:MM:SS'));
+    foreach ($data as $row) {
+      $writer->writeSheetRow('作品', $row);
+    }
+    $writer->writeToFile($path);
+    header('Content-Disposition: attachment; filename=' . $filename );
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Length: ' . filesize($path));
+    header('Content-Transfer-Encoding: binary');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    readfile($path); unlink($path); exit;
     exit;
   }
 });
