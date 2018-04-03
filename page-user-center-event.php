@@ -126,11 +126,11 @@
                     <?php endforeach; ?>
                   </div>
                   <?php   if ($cert_participate = get_post_meta($work->ID, 'cert_participate', true)): ?>
-                  <a href="<?=$cert_participate?>" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('参赛证明', 'young-bird')?></a>
+                  <a href="<?=$cert_participate?>" target="_blank" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('参赛证明', 'young-bird')?></a>
                   <?php   endif; if ($cert_honor = get_post_meta($work->ID, 'cert_honor', true)): ?>
-                  <a href="<?=$cert_participate?>" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('获奖证书', 'young-bird')?></a>
-                  <?php   endif; if ($cert_special = get_post_meta($work->ID, 'cert_special', true)): ?>
-                  <a href="<?=$cert_special?>" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('荣誉证书', 'young-bird')?></a>
+                  <a href="<?=$cert_honor?>" target="_blank" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('获奖证书', 'young-bird')?></a>
+                  <?php   endif; if ($cert_special_object = get_field('cert_special', $work->ID)): ?>
+                  <a href="<?=$cert_special_object['url']?>" target="_blank" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('荣誉证书', 'young-bird')?></a>
                   <?php   endif; ?>
                   <?php endif; ?>
                 </div>
