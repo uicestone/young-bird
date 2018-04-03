@@ -910,6 +910,5 @@ add_action('admin_init', function () {
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
     readfile($path); unlink($path); exit;
-    exit;
   }
 });

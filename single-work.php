@@ -181,7 +181,28 @@ if (isset($_GET['download']) && current_user_can('edit_user')) {
       exit("cannot open <$filename>\n");
   }
 
-  $zip->addFromString("summary.txt", get_the_title() . "\n\n" . get_post_meta(get_the_ID(), 'description', true));
+  $summary = __('作品', 'young-bird') . ': ' . get_the_title();
+  $summary .= "\r\n" . __('作者', 'young-bird') . ': ';
+
+  $group_id = get_post_meta(get_the_ID(), 'group', true);
+
+  if ($group_id) {
+    $group = get_post($group_id);
+    $summary .= $group->post_title . ': ';
+    $member_ids = get_post_meta($group_id, 'members');
+    $member_names = array_map(function ($member_id) {
+      return get_user_by('ID', $member_id)->display_name;
+    }, $member_ids);
+    $summary .= implode(', ', $member_names);
+  }
+  else {
+    $summary .= get_the_author();
+  }
+
+  $summary .= "\r\n编号: YB" . strtoupper($post->post_name);
+  $summary .= "\r\n简介: " . get_post_meta(get_the_ID(), 'description', true);
+
+  $zip->addFromString("summary.txt", $summary);
   $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
   $thumbnail_path = parse_url($thumbnail_url, PHP_URL_PATH);
   $thumbnail_filename = basename($thumbnail_url);
