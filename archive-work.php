@@ -1,4 +1,5 @@
 <?php
+redirect_login();
 $event_id = $_GET['event_id'];
 $event_status = get_post_meta($event_id, 'status', true);
 get_header(); ?>
