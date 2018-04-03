@@ -54,6 +54,7 @@ YB.Util = (function($) {
 	}
 
 	function open(items, caption, cb) {
+		var callbacked = false;
 		$.fancybox.open( items, {
 			idleTime  : false,
 			baseClass : 'fancybox-custom-layout',
@@ -86,7 +87,10 @@ YB.Util = (function($) {
 				instance.$refs.inner.wrap( '<div class="fancybox-outer"></div>' );
 			},
 			afterLoad: function() {
-				cb && cb();
+				if(!callbacked) {
+					cb && cb();
+					callbacked = true;
+				}
 			},
 			caption : function(instance, item) {
 				return caption
