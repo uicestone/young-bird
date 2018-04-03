@@ -823,6 +823,16 @@ YB.Event = (function($){
 					}
 				}});
 		});
+
+		$('.generate-certs').click(function (event) {
+			var self = this;
+			event.preventDefault();
+			YB.Util.confirm({title: locale.generate_certs, callback: function (val) {
+					if (val) {
+						$.post(window.location.href, {generate_certs: true});
+					}
+				}});
+		});
   }
 
   return {

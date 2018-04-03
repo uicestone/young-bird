@@ -1,4 +1,7 @@
 <?php
+use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\AbstractFont as Font;
+
 if (isset($_GET['participate'])) {
   redirect_login();
 }
@@ -26,6 +29,163 @@ if (isset($_POST['remind_event_ending'])) {
   }
   foreach ($attended_user_ids as $attended_user_id) {
     send_message($attended_user_id, $template, array('competition' => get_the_title()));
+  }
+  exit;
+}
+
+if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
+  ignore_user_abort(); set_time_limit(0);
+  $cert_ranks = get_posts(array('post_type' => 'rank', 'meta_query' => array(
+    array('key' => 'event', 'value' => get_the_ID()),
+    array('key' => 'create_cert', 'value' => '1')
+  )));
+  $cert_rank_id = $cert_ranks[0]->ID;
+
+  $event = get_post($event_id);
+  $honor_works = get_field('works', $cert_rank_id);
+  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => get_the_ID()));
+  $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
+  $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
+  $cert_template_honor_path = get_attached_file($cert_template_honor);
+  $cert_template_participation_path = get_attached_file($cert_template_participation);
+
+  foreach ($honor_works as $index => $work_id) {
+    // generate honor cert, TOP N = $index + 1
+    $work = get_post($work_id);
+    $cert_honor = Image::make($cert_template_honor_path);
+
+    $group_id = get_post_meta($work->ID, 'group', true);
+    if ($group_id) {
+      $member_ids = get_post_meta($group_id, 'members');
+      $issue_to = 'TEAM ' . get_post($group_id)->post_title . "\n";
+      foreach ($member_ids as $i => $member_id) {
+        $member = get_user_by('ID', $member_id);
+        $member_name = $member->display_name;
+
+        $lines = explode("\n", $issue_to);
+        $last_line = $lines[count($lines)-1];
+        if (mb_strlen($last_line) + mb_strlen($member_name) > 40) {
+          $issue_to .= "\n";
+        } else if ($i) {
+          $issue_to .= ',  ';
+        }
+        $issue_to .= $member_name;
+      }
+    } else {
+      $author = get_user_by('ID', $work->post_author);
+      $issue_to = $author->display_name;
+    }
+
+    $cert_honor->text(mb_strtoupper($issue_to), 160, 1650, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+    })->text(mb_strtoupper($work->post_title), 1200, 2150, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text('TOP ' . ($index + 1), 350, 2360, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper($event->post_title), 1500, 2360, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper($event->post_title), 1050, 2600, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper($work->post_title), 1200, 2725, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text('TOP ' . ($index + 1), 470, 2850, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text('YB' . strtoupper($work->post_name), 625, 3270, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->save(wp_upload_dir()['path'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
+    update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
+  }
+
+  foreach ($participate_works as $participate_work_id) {
+    $work = get_post($participate_work_id);
+    // generate participate cert
+    $cert_participate = Image::make($cert_template_participation_path);
+    $group_id = get_post_meta($work->ID, 'group', true);
+    if ($group_id) {
+      $member_ids = get_post_meta($group_id, 'members');
+      $issue_to = 'TEAM ' . get_post($group_id)->post_title . "\n";
+      foreach ($member_ids as $i => $member_id) {
+        $member = get_user_by('ID', $member_id);
+        $member_name = $member->display_name;
+
+        $lines = explode("\n", $issue_to);
+        $last_line = $lines[count($lines)-1];
+        if (mb_strlen($last_line) + mb_strlen($member_name) > 40) {
+          $issue_to .= "\n";
+        } else if ($i) {
+          $issue_to .= ',  ';
+        }
+        $issue_to .= $member_name;
+      }
+    } else {
+      $author = get_user_by('ID', $work->post_author);
+      $issue_to = $author->display_name;
+    }
+    $from = mb_strtoupper(get_user_meta($work->post_author, 'school', true) ?: get_user_meta($work->post_author, 'company', true));
+    $cert_participate->text(mb_strtoupper($issue_to), 180, 1550, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+    })->text($from, 1400, 1810, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper($event->post_title), 1240, 2030, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper(get_the_date('Ymd', $work->ID)), 530, 2120, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text($from, 900, 2430, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper(get_the_date('Ymd', $work->ID)), 2080, 2430, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text(mb_strtoupper($event->post_title), 1400, 2550, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->text('YB' . strtoupper($work->post_name), 625, 3270, function(Font $font) {
+      $font->file(FONT_PATH . 'msyh.ttc');
+      $font->size(55);
+      $font->color('#8fc5dd');
+      $font->align('center');
+    })->save(wp_upload_dir()['path'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
+    update_post_meta($work->ID, 'cert_participate', wp_upload_dir()['url'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
   }
   exit;
 }
@@ -197,6 +357,11 @@ else:
             <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $length); ?>"><?php printf(__('%s强', 'young-bird'), $length); ?></a>
           </li>
           <?php endforeach; ?>
+          <?php if ($cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true) && $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
+          <li class="d-none d-lg-block">
+            <a class="text-truncate generate-certs" href="" title="<?=__('生成证书', 'young-bird')?>"><?=__('生成证书', 'young-bird')?></a>
+          </li>
+          <?php endif; ?>
           <li class="active">
             <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
