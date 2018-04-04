@@ -69,7 +69,7 @@ get_header(); ?>
           <?php $my_score = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true);
           if ($event_status === 'second_judging') { $my_score = floor($my_score / 100); } ?>
           <div class="d-none"
-               data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comments'), JSON_UNESCAPED_UNICODE)?>'
+               data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comments', true), JSON_UNESCAPED_UNICODE)?>'
                data-my-comment="<?=get_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), true)?>"
                data-my-score="<?=$my_score?>">
             <a class="w-100" style="padding:10vh 20vw">

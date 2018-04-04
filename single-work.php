@@ -144,18 +144,26 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   }
 
   if ($comment_previous) {
-    $index = array_search($comment_previous, $comments);
-    $comments[$index] = $comment;
+    $index = null;
+    foreach ($comments as &$comment) {
+      if ($comment['judge'] != get_current_user_id()) continue;
+      $comment['content'] = $comment;
+      $comment['avatar'] = get_user_meta(get_current_user_id(), 'avatar', true);
+      $comment['name'] = wp_get_current_user()->display_name;
+    }
   }
   elseif($comment) {
-    $comments[] = $comment;
+    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment);
   }
 
   update_post_meta(get_the_ID(), 'scores', $scores);
   update_post_meta(get_the_ID(), 'score', array_sum($scores));
 
   update_post_meta(get_the_ID(), 'comments', $comments);
-  exit;
+  header('application/json');
+  echo json_encode(array(
+    'comments' => $comments
+  )); exit;
 }
 
 if (isset($_POST['like'])) {
