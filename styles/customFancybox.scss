@@ -68,3 +68,32 @@
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+
+.fancybox-caption {
+  ul.comments {
+    li {
+      list-style-type: none;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: rem(30);
+      > p {
+        margin-right: rem(25);
+        margin-bottom: 0;
+      }
+      div {
+        width: rem(70);
+        text-align: center;
+        img {
+          width: rem(70);
+          height: rem(70);
+          object-fit: cover;
+        }
+        p {
+          margin-top: rem(10);
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

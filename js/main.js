@@ -253,14 +253,17 @@ YB.Work = (function($) {
 		var box = el.next();
 		var items = box.children();
 		var comments = box.data('comments');
-		var caption = '';
+		var caption = '<div class="comments-container">';
 		if (comments && $.isArray(comments)) {
-      caption = '<h3 class="text-white">'+locale.comment+'</h3>';
+      caption += '<h3 class="text-white">'+locale.comment+'</h3>';
+			caption += '<ul class="comments pl-0">';
       comments.forEach(function (comment) {
-      	caption += '<p>' + comment + '</p>';
-				caption += '<p class="text-right">一位大咖</p>';
+      	caption += '<li><p>' + comment.content + '</p>';
+				caption += '<div><img src="'+ comment.avatar +'" /><p class="text-truncate">'+ comment.name +'</p></div></li>';
 			});
+			caption += '</ul>';
 		}
+		caption += '</div>';
 		if(hideCaption) {
 			YB.Util.open(items)
 		} else {
