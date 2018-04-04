@@ -80,7 +80,7 @@ else:
     }
   }
 
-  $user_agreement = get_posts(array('post_name' => 'user-agreement'))[0];
+  $user_agreement = get_posts(array('name' => 'user-agreement'))[0];
 
   get_header();
     if (isset($_GET['success'])) :
