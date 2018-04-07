@@ -429,6 +429,16 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
     }
     $work_ids = array_column($works, 'ID');
     update_post_meta($post_id, 'works', $work_ids);
+
+    global $wpdb;
+    // insert new rank_length, on duplicate ignore
+    $insert_query = "replace into {$wpdb->postmeta} (post_id, meta_key, meta_value) values ";
+    $insert_values = array_map(function ($work_id) use ($post_id) {
+      return "({$work_id}, 'rank', {$post_id})";
+    }, $work_ids);
+
+    $insert_query .= implode(', ', $insert_values);
+    $wpdb->query($insert_query);
   }
   return $value;
 }, 10, 2);

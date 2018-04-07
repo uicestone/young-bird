@@ -39,19 +39,21 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
     array('key' => 'event', 'value' => get_the_ID()),
     array('key' => 'create_cert', 'value' => '1')
   )));
-  $cert_rank_id = $cert_ranks[0]->ID;
-
+  $cert_rank_ids = array_column($cert_ranks, 'ID');
   $event = get_post($event_id);
-  $honor_works = get_field('works', $cert_rank_id);
+  $honor_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
   $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => get_the_ID()));
   $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
   $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
   $cert_template_honor_path = get_attached_file($cert_template_honor);
   $cert_template_participation_path = get_attached_file($cert_template_participation);
 
-  foreach ($honor_works as $index => $work_id) {
-    // generate honor cert, TOP N = $index + 1
-    $work = get_post($work_id);
+  foreach ($honor_works as $work) {
+    // generate honor cert
+    $work_rank_ids = get_post_meta($work->ID, 'rank');
+    $work_final_rank_id = $work_rank_ids[count($work_rank_ids)-1];
+    $rank_length = get_post_meta($work_final_rank_id, 'length', true);
+    
     $cert_honor = Image::make($cert_template_honor_path);
 
     $group_id = get_post_meta($work->ID, 'group', true);
@@ -85,7 +87,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->size(55);
       $font->color('#8fc5dd');
       $font->align('center');
-    })->text('TOP ' . ($index + 1), 350, 2360, function(Font $font) {
+    })->text('TOP ' . $rank_length, 350, 2360, function(Font $font) {
       $font->file(FONT_PATH . 'msyh.ttc');
       $font->size(55);
       $font->color('#8fc5dd');
@@ -105,7 +107,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->size(55);
       $font->color('#8fc5dd');
       $font->align('center');
-    })->text('TOP ' . ($index + 1), 470, 2850, function(Font $font) {
+    })->text('TOP ' . $rank_length, 470, 2850, function(Font $font) {
       $font->file(FONT_PATH . 'msyh.ttc');
       $font->size(55);
       $font->color('#8fc5dd');
@@ -371,9 +373,9 @@ else:
             <a class="text-truncate" href="<?=$document['url']?>" download title="<?=__('下载文件', 'young-bird')?>"><?=__('下载文件', 'young-bird')?></a>
           </li>
           <?php endif; ?>
-          <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): $length =  get_post_meta($rank->ID, 'length', true); ?>
+          <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): $rank_length =  get_post_meta($rank->ID, 'length', true); ?>
           <li>
-            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $length); ?>"><?php printf(__('%s强', 'young-bird'), $length); ?></a>
+            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $rank_length); ?>"><?php printf(__('%s强', 'young-bird'), $rank_length); ?></a>
           </li>
           <?php endforeach; ?>
           <?php if (current_user_can('edit_users') && $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true) && $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
