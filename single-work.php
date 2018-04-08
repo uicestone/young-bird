@@ -117,7 +117,7 @@ if (isset($_POST['status'])) {
 if (isset($_POST['score']) && isset($_POST['comment'])) {
 
   $score = (int) $_POST['score'];
-  $comment = $_POST['comment'];
+  $comment_content = $_POST['comment'];
 
   $score_previous = get_post_meta(get_the_ID(), 'score_' . get_current_user_id(), true);
   $scores = get_post_meta(get_the_ID(), 'scores', true) ?: array();
@@ -133,7 +133,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   $comments = get_post_meta(get_the_ID(), 'comments', true) ?: array();
 
   update_post_meta(get_the_ID(), 'score_' . get_current_user_id(), $score);
-  update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $comment);
+  update_post_meta(get_the_ID(), 'comment_' . get_current_user_id(), $comment_content);
 
   if ($score_previous) {
     $index = array_search($score_previous, $scores);
@@ -147,13 +147,13 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
     $index = null;
     foreach ($comments as &$comment) {
       if ($comment['judge'] != get_current_user_id()) continue;
-      $comment['content'] = $comment;
+      $comment['content'] = $comment_content;
       $comment['avatar'] = get_user_meta(get_current_user_id(), 'avatar', true);
       $comment['name'] = wp_get_current_user()->display_name;
     }
   }
-  elseif($comment) {
-    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment);
+  elseif($comment_content) {
+    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment_content);
   }
 
   update_post_meta(get_the_ID(), 'scores', $scores);
