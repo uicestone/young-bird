@@ -782,9 +782,9 @@ YB.Event = (function($){
   function bindEvent() {
     $('.like').click(function (e) {
     	var self = this;
-    	if ($(this).hasClass('far')) {
+    	if ($(this).data('prefix') === 'far') {
     		// 添加收藏/大众投票
-    		$(this).removeClass('far').addClass('fas');
+    		$(this).data('prefix', 'fas');
         $.post($(this).data('post-link') || window.location.href, {
     			like: true
         }).fail(function (response) {
@@ -800,7 +800,7 @@ YB.Event = (function($){
 			}
 			else {
     		// 取消收藏/大众投票
-        $(this).removeClass('fas').addClass('far');
+        $(this).data('prefix', 'far');
         $.post($(this).data('post-link') || window.location.href, {
           like: false
         }).fail(function (response) {
