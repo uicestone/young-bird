@@ -160,7 +160,7 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
   update_post_meta(get_the_ID(), 'score', array_sum($scores));
 
   update_post_meta(get_the_ID(), 'comments', $comments);
-  header('application/json');
+  header('Content-Type: application/json');
   echo json_encode(array(
     'comments' => $comments
   )); exit;
