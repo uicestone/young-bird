@@ -4,3 +4,7 @@ $fa-font-path: "../font/webfonts";
 @import "../font/scss/fa-brands";
 @import "../font/scss/fa-regular";
 @import "../font/scss/fa-solid";
+
+.svg-inline--fa {
+  transform: scale(1.6);
+}

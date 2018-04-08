@@ -238,6 +238,8 @@ add_action('wp', function() {
   wp_register_script('carousel', get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', array(), false, true);
   wp_register_script('barrating', get_stylesheet_directory_uri() . '/js/jquery.barrating.min.js', array('jquery'), false, true);
   wp_register_script('popper', get_stylesheet_directory_uri() . '/js/popper.min.js', array('jquery'), false, true);
+
+  wp_register_script('fontawesome', get_stylesheet_directory_uri() . '/js/fontawesome-all.js', array(), '5.0.9', true);
   wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel'), '1.0.0', true);
   wp_register_script('wx', 'http://res.wx.qq.com/open/js/jweixin-1.2.0.js', array(), '1.2.0', true);
 
@@ -274,6 +276,10 @@ add_action('wp_enqueue_scripts', function(){
   if (class_exists('WeixinAPI') && WeixinAPI::in_wx()) {
     wp_enqueue_script('wx');
   }
+  if (strpos($_SERVER['HTTP_USER_AGENT'], ' SE 2.X ') !== false) {
+    wp_enqueue_script('fontawesome');
+  }
+
 });
 
 add_filter ('sanitize_user', function ($username, $raw_username, $strict) {
