@@ -318,10 +318,12 @@ add_filter('pre_get_posts', function (WP_Query $query) {
     $limit = 20;
     $query->set('lang', '');
 
-    $query->set('meta_value', $_GET['event_id']);
+    $query->set('meta_query', array(
+      array('key' => 'event', 'value' => $_GET['event_id'])
+    ));
 
     if (isset($_GET['stage']) && $_GET['stage'] === 'rating') {
-      $query->meta_query[] = array('key' => 'status', 'value' => '1');
+      $query->query_vars['meta_query'][] = array('key' => 'status', 'value' => '1');
     }
     
     $event_status = get_post_meta($_GET['event_id'], 'status', true);
