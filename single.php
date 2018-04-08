@@ -52,8 +52,10 @@ get_header(); the_post(); ?>
               <div class="d-flex align-items-center">
                 <i class="fas fa-eye mr-2"></i>
                 <span class="mr-4"><?=$views?></span>
-                <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_posts') ?: array()) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
-                <span class="mr-4 likes"><?=$likes?></span>
+                <span class="like-box">
+                  <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_posts') ?: array()) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
+                  <span class="mr-4 likes"><?=$likes?></span>
+                </span>
               </div>
               <div class="d-none d-md-flex align-items-center share mt-3 mt-md-0">
                 <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->

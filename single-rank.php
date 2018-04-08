@@ -96,8 +96,10 @@ get_header(); ?>
                 <!--<i class="fas fa-eye mr-2"></i>-->
                 <!--<span class="mr-4">921</span>-->
                 <?php if ($public_voting): ?>
-                <i class="<?=in_array($work->ID, $vote_works) ? 'fas ' : 'far'?> fa-heart like mr-2" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
-                <span class="mr-4 likes"><?=get_post_meta($work->ID, 'votes', true) ?: 0?></span>
+                <span class="like-container">
+                  <i class="<?=in_array($work->ID, $vote_works) ? 'fas ' : 'far'?> fa-heart like mr-2" data-post-link="<?=get_the_permalink($work->ID)?>"></i>
+                  <span class="mr-4 likes"><?=get_post_meta($work->ID, 'votes', true) ?: 0?></span>
+                </span>
                 <?php endif; ?>
               </div>
             </div>

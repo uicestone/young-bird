@@ -780,19 +780,21 @@ YB.Event = (function($){
   }
 
   function bindEvent() {
-    $('.like').click(function (e) {
+    $('.like-box').on('click', '.like', function (e) {
+			var box = e.delegateTarget;
     	var self = this;
-    	if ($(this).data('prefix') === 'far') {
+    	if ($(this).attr('data-prefix') === 'far' || $(this).hasClass('far')) {
     		// 添加收藏/大众投票
-    		$(this).data('prefix', 'fas');
+    		$(this).attr('data-prefix', 'fas');
+				$(this).removeClass('far').addClass('fas');
         $.post($(this).data('post-link') || window.location.href, {
     			like: true
         }).fail(function (response) {
 					if (response.status === 401) {
 						window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
 					}
-        }).done(function (likes) {
-        	var likesContainer = $(self).next('.likes');
+        }).done(function (likes, b, c) {
+					var likesContainer = $(box).find('.likes');
 					if (likesContainer.length) {
 						likesContainer.text(likes);
 					}
@@ -800,7 +802,8 @@ YB.Event = (function($){
 			}
 			else {
     		// 取消收藏/大众投票
-        $(this).data('prefix', 'far');
+				$(this).attr('data-prefix', 'far');
+				$(this).removeClass('fas').addClass('far');
         $.post($(this).data('post-link') || window.location.href, {
           like: false
         }).fail(function (response) {
@@ -808,7 +811,7 @@ YB.Event = (function($){
             window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
           }
         }).done(function (likes) {
-          var likesContainer = $(self).next('.likes');
+					var likesContainer = $(box).find('.likes');
           if (likesContainer.length) {
             likesContainer.text(likes);
           }

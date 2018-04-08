@@ -99,8 +99,10 @@ get_header();
                     <p class="color-silver"><?=$post->post_excerpt?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
-                      <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
+                      <span class="like-box">
+                        <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></b>
+                        <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
+                      </span>
                     </div>
                   </div>
                 </a>
