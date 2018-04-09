@@ -113,7 +113,7 @@ get_header(); ?>
                   </div>
                   <div class="col-12">
                     <form method="post">
-                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('忽略', 'young-bird')?></button>
+                      <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('拒绝', 'young-bird')?></button>
                     </form>
                   </div>
                 </div>
