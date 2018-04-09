@@ -774,7 +774,23 @@ function get_event_work ($event_id, $user_id = null) {
     $user_id = get_current_user_id();
   }
 
-  return get_posts(array('post_type' => 'work', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
+  $event_id = pll_get_post($event_id, pll_default_language());
+
+  // find my group in this event
+  $event_group = get_posts(array('post_type' => 'group', 'meta_query' => array(
+    array('key' => 'members', 'value' => $user_id),
+    array('key' => 'event', 'value' => $event_id)
+  )))[0];
+
+  if ($event_group) {
+    // find work of this group
+    $work = get_posts(array('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => $event_group->ID))[0];
+  } else {
+    // find work of this author
+    $work = get_posts(array('post_type' => 'work', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
+  }
+
+  return $work;
 }
 
 function language_slug_suffix () {
