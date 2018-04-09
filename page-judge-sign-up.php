@@ -50,6 +50,8 @@ if (isset($_POST['sign_up_success'])) {
   header('Location: ' . get_the_permalink() . '?success'); exit;
 }
 
+$user_agreement = get_posts(array('name' => 'user-agreement'))[0];
+
 get_header();
     if (isset($_GET['step'])) :
       include(locate_template('page-judge-sign-up-step-' . $_GET['step'] . '.php'));
@@ -93,7 +95,7 @@ get_header();
               </div>
             </div>
             <p class="text-right">
-              <small><?=__('激活即视为同意', 'young-bird')?> <a href="" class="text-underline"><?=__('隐私条款', 'young-bird')?></a> <?=__('和', 'young-bird')?> <a href="" class="text-underline"><?=__('服务条款', 'young-bird')?></a></small>
+              <small><?=__('激活即视为同意', 'young-bird')?> <a href="<?=get_permalink($user_agreement->ID)?>" class="text-underline"><?=__('用户协议', 'young-bird')?></a></small>
             </p>
             <button type="submit" name="sign_up_step" value="2" class="btn btn-secondary btn-block btn-lg"><?=__('下一步', 'young-bird')?></button>
           </form>
