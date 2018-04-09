@@ -385,7 +385,7 @@ else:
           <?php endif; ?>
           <li class="active">
             <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work?event_id=<?=get_the_ID()?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=pll_get_post(get_the_ID(), pll_default_language())?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
             <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('starting', 'started', 'ending', 'ended'))): ?>
             <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
