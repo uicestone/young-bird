@@ -21,11 +21,8 @@
             <p class="font-weight-bold"><?=__('扫码关注', 'young-bird')?><br><?=__('关注', 'young-bird')?> YoungBird <?=__('公众号', 'young-bird')?><br><?=__('接收更多资讯', 'young-bird')?></p>
           </div>
           <div class="row justify-content-between">
-            <div class="col-md-12 mt-2">
+            <div class="col-md-24 mt-2">
               <a href="<?=pll_home_url()?>" class="btn btn-secondary btn-block btn-lg"><?=__('进入网站', 'young-bird')?></a>
-            </div>
-            <div class="col-md-12 mt-2">
-              <button type="button" class="btn btn-secondary btn-block btn-lg"><?=__('返回', 'young-bird')?></button>
             </div>
           </div>
         </div>
