@@ -143,7 +143,15 @@ get_header(); ?>
           <h3 class="color-silver font-weight-bold"><?=__('作品', 'young-bird')?></h3>
         </div>
         <div class="work-list">
-          <?php if (get_current_user_id() == $captain->ID && !$work): ?>
+          <?php if (1): ?>
+          <div class="row mt-6 work-container">
+            <div class="col-sm-12 order-sm-first card item-top3">
+              <div class="card-body pb-5">
+                <h3><?=__('提醒你的队长上传作品', 'young-bird')?></h3>
+              </div>
+            </div>
+          </div>
+          <?php elseif (get_current_user_id() == $captain->ID && !$work): ?>
           <!-- 未上传 -->
           <div class="no-work">
             <div class="row">
