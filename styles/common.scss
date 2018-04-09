@@ -312,6 +312,7 @@ a.link {
       font-weight: bold;
       color: $black;
       min-height: 3rem;
+      font-size: $font-size-base;
     }
     .organizer {
       font-weight: $font-weight-bold;
@@ -868,6 +869,9 @@ a.link {
           color: $black;
         }
       }
+      h1 {
+        font-size: $font-size-xl;
+      }
       .time {
         font-size: $font-size-base;
         color: $silver;
@@ -886,7 +890,7 @@ a.link {
     }
     .context {
       h2 {
-        font-size: 33px;
+        font-size: $font-size-xl;
         color: $silver;
         border-top: 2px solid #7b7b7b;
         padding-top: 34px;
