@@ -12,7 +12,7 @@ if ($accept_member = $_POST['accept_member_request']) {
   delete_post_meta(get_the_ID(), 'members_pending', $accept_member);
   $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
   update_post_meta($event_id, 'attendees', ++$attendees);
-  send_message($accept_member, 'you-are-a-team-member-now');
+  send_message($accept_member, 'you-are-a-team-member-now', array('team' => get_the_ID()));
   header('Location: ' . get_the_permalink()); exit;
 }
 

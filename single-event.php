@@ -283,7 +283,7 @@ if (isset($_POST['join_group'])) {
   }
   update_post_meta($group->ID, 'members_pending', $user->ID);
   add_user_meta($user->ID, 'attend_events_member', get_the_ID());
-  send_message($group->post_author, 'an-application-for-joining-the-team');
+  send_message($group->post_author, 'an-application-for-joining-the-team', array('team' => $group->ID));
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
