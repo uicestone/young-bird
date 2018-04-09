@@ -20,6 +20,10 @@ else:
         throw new Exception(__('短信/邮箱验证码输入错误', 'young-bird'));
       }
 
+      if (strlen($_POST['password']) < 6) {
+        throw new Exception(__('密码应至少由6位数字或字母组成', 'young-bird'));
+      }
+
       $user_data = array(
         'user_pass' => $_POST['password'],
         'user_login' => $_POST['login'],
