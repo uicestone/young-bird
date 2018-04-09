@@ -656,9 +656,13 @@ function send_sms_code($mobile, $scene = 'register'/*or 'reset'*/) {
   aliyun_send_sms($mobile, constant('ALIYUN_SMS_TEMPLATE_VERIFY_' . strtoupper($scene)), array('code' => $code));
 }
 
-function send_email_code ($email) {
+function send_email_code ($email, $scene = 'register'/*or 'reset'*/) {
   $code = generate_code($email);
-  wp_mail($email, '邮件验证码', "[Young Bird Plan 嫩鸟计划] 感谢您的关注，您正在用邮箱注册Young Bird Plan平台，您的注册验证码是${code}\n\nThank you for your attention, you are using your email to register our website, here is your registration verification code ${code}");
+  if ($scene === 'register') {
+    wp_mail($email, '注册 - 邮件验证码', "[Young Bird Plan 嫩鸟计划] 感谢您的关注，您正在用邮箱注册Young Bird Plan平台，您的注册验证码是${code}\n\nThank you for your attention, you are using your email to register our website, here is your registration verification code ${code}");
+  } elseif ($scene === 'reset') {
+    wp_mail($email, '找回密码 - 邮件验证码', "[Young Bird Plan 嫩鸟计划] 您正在用邮箱找回Young Bird Plan平台的密码，您的验证码是${code}\n\nThank you for your attention, you are using your email to reset your password on our website, here is your verification code ${code}");
+  }
 }
 
 function send_message ($to, $template_slug, $params = array()) {

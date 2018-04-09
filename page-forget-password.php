@@ -5,7 +5,7 @@ if ($mobile = $_GET['send_code_to_mobile']) :
 
 elseif ($email = $_GET['send_code_to_email']) :
   // send mobile code to $_GET['send_code_to_mobile'] and save to wp_options
-  send_email_code($email);
+  send_email_code($email, 'reset');
 else:
   if(isset($_POST['login'])){
 
