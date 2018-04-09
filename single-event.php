@@ -6,6 +6,8 @@ if (isset($_GET['participate'])) {
   redirect_login();
 }
 
+try {
+
 if (isset($_POST['like'])) {
   redirect_login();
   if (json_decode($_POST['like'])) {
@@ -255,7 +257,7 @@ if (isset($_POST['create_group'])) {
   ));
 
   if ($groups) {
-    exit('Group name exists.');
+    throw new Exception(__('已经存在同名团队', 'young-bird'));
   }
 
   $group_id = wp_insert_post(array (
@@ -279,7 +281,7 @@ if (isset($_POST['join_group'])) {
     'meta_value' => get_the_ID()
   ))[0];
   if (!$group) {
-    exit('Group not found.');
+    throw new Exception(__('没有找到这个团队', 'young-bird'));
   }
   update_post_meta($group->ID, 'members_pending', $user->ID);
   add_user_meta($user->ID, 'attend_events_member', get_the_ID());
@@ -310,6 +312,9 @@ if (isset($_GET['create-work'])) {
   add_user_meta($user->ID, 'attend_events', get_the_ID());
   add_user_meta($user->ID, 'attend_events_solo', get_the_ID());
   header('Location: ' . get_the_permalink($work_id)); exit;
+}
+} catch (Exception $e) {
+  $form_error = $e->getMessage();
 }
 
 $group = get_posts(array (

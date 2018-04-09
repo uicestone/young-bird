@@ -20,6 +20,9 @@
         <div class="col-md-12 offset-md-2">
           <h1 class="font-weight-bold color-silver text-center mb-4"><?=__('报名信息填写', 'young-bird')?></h1>
           <h3 class="font-weight-normal color-silver text-center"><?=__('请选择您的参赛身份', 'young-bird')?></h3>
+          <?php if (isset($form_error)): ?>
+          <div class="alert alert-danger"><?=$form_error?></div>
+          <?php endif; ?>
           <div class="form-participate-position">
             <form method="post">
               <div class="row options mt-4 mt-md-6 mb-4 mb-md-5">
