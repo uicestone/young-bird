@@ -64,7 +64,7 @@
                   </div>
                   <div>
                     <?php if (in_array(get_post_meta($event->ID, 'status', true), array('judging', 'second_judging'))): ?>
-                    <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . $event->ID . '&stage=rating')?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
+                    <button type="button" onclick="location.href='<?=site_url('/work/?event_id=' . pll_get_post($event->ID, pll_default_language()) . '&stage=rating')?>';return false" class="btn btn-outline-primary ml-2"><?=__('评审作品', 'young-bird')?></button>
                     <?php endif; ?>
                   </div>
                 </div>

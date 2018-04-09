@@ -38,7 +38,7 @@ if (isset($_GET['create-work'])) {
     'post_title' => __('新作品', 'young-bird'),
     'post_name' => $event_id . '-g' . get_the_ID()
   ));
-  add_post_meta($work_id, 'event', $event_id);
+  add_post_meta($work_id, 'event', pll_get_post($event_id, pll_default_language()));
   add_post_meta($work_id, 'group', get_the_ID());
   header('Location: ' . get_the_permalink($work_id)); exit;
 }

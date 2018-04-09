@@ -263,7 +263,7 @@ if (isset($_POST['create_group'])) {
     'post_title' => $_POST['group_name_create'],
     'post_status' => 'publish'
   ));
-  add_post_meta($group_id, 'event', get_the_ID());
+  add_post_meta($group_id, 'event', pll_get_post(get_the_ID(), pll_default_language()));
   add_post_meta($group_id, 'members', $user->ID);
   add_user_meta($user->ID, 'attend_events_captain', get_the_ID());
   $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
@@ -304,7 +304,7 @@ if (isset($_GET['create-work'])) {
     'post_title' => __('新作品', 'young-bird'),
     'post_name' => $event_id . '-s' . $user->ID
   ));
-  add_post_meta($work_id, 'event', $event_id);
+  add_post_meta($work_id, 'event', pll_get_post($event_id, pll_default_language()));
   update_post_meta(get_the_ID(), 'attendees', ++$attendees);
   add_post_meta(get_the_ID(), 'attend_users', $user->ID);
   add_user_meta($user->ID, 'attend_events', get_the_ID());
