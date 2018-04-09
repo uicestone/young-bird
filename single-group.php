@@ -18,6 +18,8 @@ if ($accept_member = $_POST['accept_member_request']) {
 
 if ($ignore_member = $_POST['ignore_member_request']) {
   delete_post_meta(get_the_ID(), 'members_pending', $ignore_member);
+  delete_post_meta($event_id, 'attend_users', $ignore_member);
+  delete_user_meta($ignore_member, 'attend_events', $event_id);
   send_message($ignore_member, 'team-join-declined');
   header('Location: ' . get_the_permalink()); exit;
 }
@@ -26,9 +28,10 @@ if ($remove_member = $_GET['remove_member']) {
   delete_post_meta(get_the_ID(), 'members', $remove_member);
   $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
   update_post_meta($event_id, 'attendees', --$attendees);
+  delete_post_meta($event_id, 'attend_users', $remove_member);
+  delete_user_meta($remove_member, 'attend_events', $event_id);
+  delete_user_meta($remove_member, 'attend_events_member', $event_id);
   header('Location: ' . get_the_permalink()); exit;
-  // TODO handle message send
-  // TODO handle user attend_events_member and attend_events
 }
 
 if (isset($_GET['create-work'])) {
