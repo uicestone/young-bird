@@ -47,7 +47,7 @@
               </div>
               <div class="action row align-items-center justify-content-between">
                 <div class="d-flex align-items-center" style="height:1.2rem">
-                  <?php if ($attendees = get_post_meta($event->ID, 'attendees', true) ?: 0): ?>
+                  <?php if ($attendees = get_post_meta(pll_get_post($event->ID, pll_default_language()), 'attendees', true) ?: 0): ?>
                     <i class="far fa-user mr-2"></i>
                     <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
                   <?php endif; ?>

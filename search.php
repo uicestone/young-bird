@@ -77,7 +77,7 @@
               <p><?=get_the_excerpt($event->ID)?></p>
               <div class="action row align-items-center">
                 <i class="far fa-user mr-2"></i>
-                <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($event->ID, 'attendees', true) ?: 0?></span>
+                <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(pll_get_post($event->ID, pll_default_language()), 'attendees', true) ?: 0?></span>
                 <i class="far fa-heart"></i>
               </div>
             </div>

@@ -9,7 +9,7 @@
       <div class="row">
         <div class="col-md-18">
           <div class="row">
-            <?php while (have_posts()): the_post(); ?>
+            <?php while (have_posts()): the_post(); $id_dl = pll_get_post(get_the_ID(), pll_default_language()); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history">
                 <a href="<?php the_permalink(); ?>">
@@ -28,7 +28,7 @@
                     <p class="color-silver"><?=$post->post_excerpt?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta(get_the_ID(), 'attendees', true) ?: 0?></span>
+                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></span>
                       <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
                     </div>
                   </div>

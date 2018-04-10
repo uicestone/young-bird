@@ -1,5 +1,7 @@
 <?php
 
+$id_dl = pll_get_post(get_the_ID(), pll_default_language());
+
 if (isset($_POST['attend'])) {
 
   redirect_login();
@@ -7,10 +9,10 @@ if (isset($_POST['attend'])) {
   $attend = json_decode($_POST['attend']);
 
   if ($attend) {
-    add_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
+    add_user_meta(get_current_user_id(), 'attend_activities', $id_dl);
     send_message(get_current_user_id(), 'successfully-applied-for-this-activity');
   } else {
-    delete_user_meta(get_current_user_id(), 'attend_activities', get_the_ID());
+    delete_user_meta(get_current_user_id(), 'attend_activities', $id_dl);
   }
 
   exit;
@@ -18,22 +20,22 @@ if (isset($_POST['attend'])) {
 
 if (isset($_POST['like'])) {
   redirect_login();
-  $likes = get_post_meta(get_the_ID(), 'likes', true);
+  $likes = get_post_meta($id_dl, 'likes', true);
   if (json_decode($_POST['like'])) {
-    add_user_meta(get_current_user_id(), 'like_posts', get_the_ID());
-    update_post_meta(get_the_ID(), 'likes', ++$likes);
+    add_user_meta(get_current_user_id(), 'like_posts', $id_dl);
+    update_post_meta($id_dl, 'likes', ++$likes);
   }
   else {
-    delete_user_meta(get_current_user_id(), 'like_posts', get_the_ID());
-    update_post_meta(get_the_ID(), 'likes', --$likes);
+    delete_user_meta(get_current_user_id(), 'like_posts', $id_dl);
+    update_post_meta($id_dl, 'likes', --$likes);
   }
 
   echo $likes; exit;
 }
 
-$views = (get_post_meta(get_the_ID(), 'views', true) ?: 0) + 1;
-update_post_meta(get_the_ID(), 'views', $views);
-$likes = get_post_meta(get_the_ID(), 'likes', true) ?: 0;
+$views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
+update_post_meta($id_dl, 'views', $views);
+$likes = get_post_meta($id_dl, 'likes', true) ?: 0;
 
 get_header(); the_post(); ?>
     <!-- Body -->
@@ -53,7 +55,7 @@ get_header(); the_post(); ?>
                 <i class="fas fa-eye mr-2"></i>
                 <span class="mr-4"><?=$views?></span>
                 <span class="like-box">
-                  <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_posts') ?: array()) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
+                  <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_posts') ?: array()) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
                   <span class="mr-4 likes"><?=$likes?></span>
                 </span>
               </div>
@@ -77,7 +79,7 @@ get_header(); the_post(); ?>
           <?php if ($event = get_field('event') && in_array(get_field('status', $event->ID), array('started', 'ending'))): ?>
           <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; ?>
-          <?php if (get_field('attendable')): if (in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'attend_activities'))): ?>
+          <?php if (get_field('attendable')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_activities'))): ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
           <?php else: ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>

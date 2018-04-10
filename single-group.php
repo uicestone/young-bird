@@ -1,7 +1,7 @@
 <?php
 
 the_post();
-$event_id = get_post_meta(get_the_ID(), 'event', true);
+$event_id_dl = get_post_meta(get_the_ID(), 'event', true);
 $captain = get_user_by('ID', get_post()->post_author);
 $work = get_posts(array ('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 $members = get_post_meta(get_the_ID(), 'members') ?: array();
@@ -10,27 +10,27 @@ $members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
   delete_post_meta(get_the_ID(), 'members_pending', $accept_member);
-  $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
-  update_post_meta($event_id, 'attendees', ++$attendees);
+  $attendees = get_post_meta(pll_get_post($event_id_dl, pll_default_language()), 'attendees', true) ?: 0;
+  update_post_meta(pll_get_post($event_id_dl, pll_default_language()), 'attendees', ++$attendees);
   send_message($accept_member, 'you-are-a-team-member-now', array('team' => get_the_ID()));
   header('Location: ' . get_the_permalink()); exit;
 }
 
 if ($ignore_member = $_POST['ignore_member_request']) {
   delete_post_meta(get_the_ID(), 'members_pending', $ignore_member);
-  delete_post_meta($event_id, 'attend_users', $ignore_member);
-  delete_user_meta($ignore_member, 'attend_events', $event_id);
+  delete_post_meta($event_id_dl, 'attend_users', $ignore_member);
+  delete_user_meta($ignore_member, 'attend_events', $event_id_dl);
   send_message($ignore_member, 'team-join-declined');
   header('Location: ' . get_the_permalink()); exit;
 }
 
 if ($remove_member = $_GET['remove_member']) {
   delete_post_meta(get_the_ID(), 'members', $remove_member);
-  $attendees = get_post_meta($event_id, 'attendees', true) ?: 0;
-  update_post_meta($event_id, 'attendees', --$attendees);
-  delete_post_meta($event_id, 'attend_users', $remove_member);
-  delete_user_meta($remove_member, 'attend_events', $event_id);
-  delete_user_meta($remove_member, 'attend_events_member', $event_id);
+  $attendees = get_post_meta($event_id_dl, 'attendees', true) ?: 0;
+  update_post_meta($event_id_dl, 'attendees', --$attendees);
+  delete_post_meta($event_id_dl, 'attend_users', $remove_member);
+  delete_user_meta($remove_member, 'attend_events', $event_id_dl);
+  delete_user_meta($remove_member, 'attend_events_member', $event_id_dl);
   header('Location: ' . get_the_permalink()); exit;
 }
 
@@ -39,9 +39,9 @@ if (isset($_GET['create-work'])) {
     'post_type' => 'work',
     'post_status' => 'publish',
     'post_title' => __('新作品', 'young-bird'),
-    'post_name' => $event_id . '-g' . get_the_ID()
+    'post_name' => $event_id_dl . '-g' . get_the_ID()
   ));
-  add_post_meta($work_id, 'event', pll_get_post($event_id, pll_default_language()));
+  add_post_meta($work_id, 'event', $event_id_dl);
   add_post_meta($work_id, 'group', get_the_ID());
   header('Location: ' . get_the_permalink($work_id)); exit;
 }
@@ -65,7 +65,9 @@ get_header(); ?>
       <div class="container members mb-5">
         <div class="row justify-content-between header mb-3">
           <h3 class="color-silver font-weight-bold"><?php the_title(); ?>（<?=__('成员', 'young-bird')?>/<?=count($members)?>）</h3>
-          <h3 class="color-silver font-weight-bold"><?=__('参赛编号：', 'young-bird')?>YB<?=$event_id?>-<?=get_the_ID()?></h3>
+          <?php if ($work): ?>
+          <h3 class="color-silver font-weight-bold"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($work->post_name)?></h3>
+          <?php endif; ?>
         </div>
         <div class="member-list">
           <div class="captain avatar-container d-flex align-items-center">

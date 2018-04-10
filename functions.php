@@ -468,7 +468,7 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 
 add_filter('post_row_actions', function ($actions, $post) {
   if ($attendable = get_post_meta($post->ID, 'attendable', true)) {
-    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . $post->ID) . '" target="_blank">' . __('报名用户', 'young-bird') . '</a>';
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '" target="_blank">' . __('报名用户', 'young-bird') . '</a>';
   }
   return $actions;
 }, 10, 2);
@@ -501,12 +501,13 @@ add_filter('manage_event_posts_columns', function ($column) {
 
 // Add the data to the custom columns for the event post type:
 add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
+  $id_dl = pll_get_post($post_id, pll_default_language());
   switch ( $column ) {
     case 'works' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post($post_id, pll_default_language()), 'posts_per_page' => -1))) . '</a>';
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post($post_id, pll_default_language()), 'posts_per_page' => -1))) . '</a>';
       break;
     case 'ranks' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
       break;
   }
 }, 10, 2 );
@@ -524,7 +525,8 @@ add_filter('manage_rank_posts_columns', function ($column) {
 add_action('manage_rank_posts_custom_column' , function ($column, $post_id) {
   switch ( $column ) {
     case 'event' :
-      $event = get_field('event', $post_id);
+      $event_id_dl = get_post_meta($post_id, 'event', true);
+      $event = get_post(pll_get_post($event_id_dl));
       echo '<a href="' . get_admin_url(null, 'post.php?post=' . $event->ID . '&action=edit') . '">' . $event->post_title . '</a>';
       break;
     case 'works' :

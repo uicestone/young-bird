@@ -8,20 +8,22 @@ if (isset($_GET['participate'])) {
 
 try {
 
+$id_dl = pll_get_post(get_the_ID(), pll_default_language());
+
 if (isset($_POST['like'])) {
   redirect_login();
   if (json_decode($_POST['like'])) {
-    add_user_meta(get_current_user_id(), 'like_events', get_the_ID());
+    add_user_meta(get_current_user_id(), 'like_events', $id_dl);
   }
   else {
-    delete_user_meta(get_current_user_id(), 'like_events', get_the_ID());
+    delete_user_meta(get_current_user_id(), 'like_events', $id_dl);
   }
   exit;
 }
 
 if (isset($_POST['remind_event_ending'])) {
   $days_left = ceil((strtotime(get_field('end_date')) - time()) / 86400);
-  $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . get_the_ID() . "'");
+  $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . $id_dl . "'");
   if ($days_left <= 10) {
     $template = 'the-deadline-for-submissions';
   } elseif ($days_left <= 30) {
@@ -44,7 +46,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
   $cert_rank_ids = array_column($cert_ranks, 'ID');
   $event = get_post($event_id);
   $honor_works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
-  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post(get_the_ID(), pll_default_language())));
+  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => $id_dl));
   $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
   $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
   $cert_template_honor_path = get_attached_file($cert_template_honor);
@@ -266,11 +268,11 @@ if (isset($_POST['create_group'])) {
     'post_title' => $_POST['group_name_create'],
     'post_status' => 'publish'
   ));
-  add_post_meta($group_id, 'event', pll_get_post(get_the_ID(), pll_default_language()));
+  add_post_meta($group_id, 'event', $id_dl);
   add_post_meta($group_id, 'members', $user->ID);
-  add_user_meta($user->ID, 'attend_events_captain', get_the_ID());
-  $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
-  update_post_meta(get_the_ID(), 'attendees', ++$attendees);
+  add_user_meta($user->ID, 'attend_events_captain', $id_dl);
+  $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
+  update_post_meta($id_dl, 'attendees', ++$attendees);
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
@@ -280,28 +282,28 @@ if (isset($_POST['join_group'])) {
     'lang' => '',
     'title' => $_POST['group_name_join'],
     'meta_key' => 'event',
-    'meta_value' => pll_get_post(get_the_ID(), pll_default_language())
+    'meta_value' => $id_dl
   ))[0];
   if (!$group) {
     throw new Exception(__('没有找到这个团队', 'young-bird'));
   }
   update_post_meta($group->ID, 'members_pending', $user->ID);
-  add_user_meta($user->ID, 'attend_events_member', get_the_ID());
+  add_user_meta($user->ID, 'attend_events_member', $id_dl);
   send_message($group->post_author, 'an-application-for-joining-the-team', array('team' => $group->ID));
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
 if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   // TODO 重复访问本页会导致重复发送消息和添加meta信息
-  add_post_meta(get_the_ID(), 'attend_users', $user->ID);
-  add_user_meta($user->ID, 'attend_events', get_the_ID());
+  add_post_meta($id_dl, 'attend_users', $user->ID);
+  add_user_meta($user->ID, 'attend_events', $id_dl);
   send_message($user->ID, 'successfully-applied-for-this-competition');
 }
 
 // 以个人名义参赛
 if (isset($_GET['create-work'])) {
   $event_id = get_the_ID();
-  $attendees = get_post_meta(get_the_ID(), 'attendees', true) ?: 0;
+  $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
   $work_id = wp_insert_post(array (
     'post_type' => 'work',
     'post_status' => 'publish',
@@ -309,10 +311,10 @@ if (isset($_GET['create-work'])) {
     'post_name' => $event_id . '-s' . $user->ID
   ));
   add_post_meta($work_id, 'event', pll_get_post($event_id, pll_default_language()));
-  update_post_meta(get_the_ID(), 'attendees', ++$attendees);
-  add_post_meta(get_the_ID(), 'attend_users', $user->ID);
-  add_user_meta($user->ID, 'attend_events', get_the_ID());
-  add_user_meta($user->ID, 'attend_events_solo', get_the_ID());
+  update_post_meta($id_dl, 'attendees', ++$attendees);
+  add_post_meta($id_dl, 'attend_users', $user->ID);
+  add_user_meta($user->ID, 'attend_events', $id_dl);
+  add_user_meta($user->ID, 'attend_events_solo', $id_dl);
   header('Location: ' . get_the_permalink($work_id)); exit;
 }
 } catch (Exception $e) {
@@ -341,7 +343,7 @@ $group = $group ?: $group_pending;
 if ($group) {
   $im_leader = $group->post_author == $user->ID;
 } elseif ($user->ID) {
-  $work = get_posts(array ('post_type' =>'work', 'lang' => '', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => pll_get_post(get_the_ID(), pll_default_language())))[0];
+  $work = get_posts(array ('post_type' =>'work', 'lang' => '', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => $id_dl))[0];
 }
 
 get_header();
@@ -372,7 +374,7 @@ else:
             <a class="text-truncate" href="#section4">Q&A</a>
           </li>
           <?php endif; ?>
-          <?php if ($news_ids = get_post_meta(pll_get_post(get_the_ID(), pll_default_language()), 'news', true)): ?>
+          <?php if ($news_ids = get_post_meta($id_dl, 'news', true)): ?>
           <li class="d-none d-lg-block">
             <a class="text-truncate" href="#section5" title="<?=__('相关新闻', 'young-bird')?>"><?=__('相关新闻', 'young-bird')?></a>
           </li>
@@ -394,12 +396,12 @@ else:
           <?php endif; ?>
           <li class="active">
             <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): ?>
-            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=pll_get_post(get_the_ID(), pll_default_language())?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=$id_dl?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
             <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('starting', 'started', 'ending', 'ended'))): ?>
             <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
-            <?php elseif ($group && $attended_as_member = in_array(get_the_ID(), get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
+            <?php elseif ($group && $attended_as_member = in_array($id_dl, get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>" title="<?=__('查看团队', 'young-bird')?>"><?=__('查看团队', 'young-bird')?></a>
             <?php elseif ($group || $work): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>" title="<?=__('编辑作品', 'young-bird')?>"><?=__('编辑作品', 'young-bird')?></a>
@@ -434,12 +436,12 @@ else:
             <div class="col-md-6 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
               <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <i class="far fa-user mr-2"></i>
-              <?php if ($attendees = get_post_meta(get_the_ID(), 'attendees', true)): ?>
+              <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
               <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
               <?php endif; ?>
               <?php endif; ?>
               <span class="like-box">
-                <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like"></i>
+                <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like"></i>
               </span>
             </div>
           </div>
