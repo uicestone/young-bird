@@ -31,7 +31,7 @@ get_header(); ?>
           <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
           <?php else: ?>
           <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
-            array('key' => 'event', 'value' => $event_id),
+            array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
             array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
           )))) . __('个已评分', 'young-bird')?>
           <?php endif; ?>

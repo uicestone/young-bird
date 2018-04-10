@@ -44,7 +44,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
   $cert_rank_ids = array_column($cert_ranks, 'ID');
   $event = get_post($event_id);
   $honor_works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
-  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => get_the_ID()));
+  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post(get_the_ID(), pll_default_language())));
   $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
   $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
   $cert_template_honor_path = get_attached_file($cert_template_honor);
@@ -280,7 +280,7 @@ if (isset($_POST['join_group'])) {
     'lang' => '',
     'title' => $_POST['group_name_join'],
     'meta_key' => 'event',
-    'meta_value' => get_the_ID()
+    'meta_value' => pll_get_post(get_the_ID(), pll_default_language())
   ))[0];
   if (!$group) {
     throw new Exception(__('没有找到这个团队', 'young-bird'));
@@ -341,7 +341,7 @@ $group = $group ?: $group_pending;
 if ($group) {
   $im_leader = $group->post_author == $user->ID;
 } elseif ($user->ID) {
-  $work = get_posts(array ('post_type' =>'work', 'lang' => '', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => get_the_ID()))[0];
+  $work = get_posts(array ('post_type' =>'work', 'lang' => '', 'author' => $user->ID, 'meta_key' => 'event', 'meta_value' => pll_get_post(get_the_ID(), pll_default_language())))[0];
 }
 
 get_header();
