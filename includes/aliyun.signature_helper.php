@@ -59,7 +59,7 @@ class Aliyun_SignatureHelper {
     }
 
     private function fetchContent($url) {
-        print_r($url);
+        // print_r($url);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 5);
