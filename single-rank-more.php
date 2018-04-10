@@ -1,7 +1,14 @@
 <?php get_header(); ?>
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
-      <h1 class="text-center color-dark-yellow">TOP<?=$rank_length?></h1>
+      <h1 class="text-center color-dark-yellow">
+        TOP<?=$rank_length?>
+        <?php if (current_user_can('edit_users')): ?>
+          <small>
+            <a href="#" class="remind-rank-published btn btn-outline-primary btn-sm"><?=__('通知选手', 'young-bird')?></a>
+          </small>
+        <?php endif; ?>
+      </h1>
       <div class="row mt-4 mt-md-5">
         <?php foreach ($works as $work): ?>
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
