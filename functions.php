@@ -503,7 +503,7 @@ add_filter('manage_event_posts_columns', function ($column) {
 add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
   switch ( $column ) {
     case 'works' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
+      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
       break;
     case 'ranks' :
       echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $post_id) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
@@ -618,7 +618,7 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       // TODO attended_user needs to be filtered in event
       break;
     case 'works' :
-      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'author' => $user_id, 'posts_per_page' => -1))) . '</a>';
+      return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'posts_per_page' => -1))) . '</a>';
       break;
     default:
   }
@@ -763,7 +763,7 @@ function get_event_group ($event_id, $user_id = null) {
     $user_id = get_current_user_id();
   }
 
-  return get_posts(array('post_type' => 'group', 'meta_query' => array(
+  return get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
     array('key' => 'event', 'value' => $event_id),
     array('key' => 'member', 'value' => $user_id),
   )))[0];
@@ -777,17 +777,17 @@ function get_event_work ($event_id, $user_id = null) {
   $event_id = pll_get_post($event_id, pll_default_language());
 
   // find my group in this event
-  $event_group = get_posts(array('post_type' => 'group', 'meta_query' => array(
+  $event_group = get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
     array('key' => 'members', 'value' => $user_id),
     array('key' => 'event', 'value' => $event_id)
   )))[0];
 
   if ($event_group) {
     // find work of this group
-    $work = get_posts(array('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => $event_group->ID))[0];
+    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => $event_group->ID))[0];
   } else {
     // find work of this author
-    $work = get_posts(array('post_type' => 'work', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
+    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id))[0];
   }
 
   return $work;
@@ -896,7 +896,7 @@ add_action('admin_init', function () {
 
     $data = array();
 
-    $works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => $_GET['event_id']));
+    $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => $_GET['event_id']));
 
     foreach ($works as $work) {
 

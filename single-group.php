@@ -3,7 +3,7 @@
 the_post();
 $event_id = get_post_meta(get_the_ID(), 'event', true);
 $captain = get_user_by('ID', get_post()->post_author);
-$work = get_posts(array ('post_type' => 'work', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
+$work = get_posts(array ('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 $members = get_post_meta(get_the_ID(), 'members') ?: array();
 $members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
 
@@ -143,7 +143,7 @@ get_header(); ?>
           <h3 class="color-silver font-weight-bold"><?=__('作品', 'young-bird')?></h3>
         </div>
         <div class="work-list">
-          <?php if (1): ?>
+          <?php if (get_current_user_id() != $captain->ID && !$work): ?>
           <div class="row mt-6 work-container">
             <div class="col-sm-12 order-sm-first card item-top3">
               <div class="card-body pb-5">

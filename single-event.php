@@ -43,7 +43,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
   )));
   $cert_rank_ids = array_column($cert_ranks, 'ID');
   $event = get_post($event_id);
-  $honor_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
+  $honor_works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
   $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => get_the_ID()));
   $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
   $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
@@ -251,6 +251,7 @@ if (isset($_POST['participate'])) {
 if (isset($_POST['create_group'])) {
   $groups = get_posts(array (
     'post_type' => 'group',
+    'lang' => '',
     'title' => $_POST['group_name_create'],
     'meta_key' => 'event',
     'meta_value' => get_the_ID()
@@ -276,6 +277,7 @@ if (isset($_POST['create_group'])) {
 if (isset($_POST['join_group'])) {
   $group = get_posts(array (
     'post_type' => 'group',
+    'lang' => '',
     'title' => $_POST['group_name_join'],
     'meta_key' => 'event',
     'meta_value' => get_the_ID()
@@ -319,6 +321,7 @@ if (isset($_GET['create-work'])) {
 
 $group = get_posts(array (
   'post_type' => 'group',
+  'lang' => '',
   'meta_query' => array (
     array ('key' => 'members', 'value' => $user->ID),
     array ('key' => 'event', 'value' => get_the_ID())
@@ -326,6 +329,7 @@ $group = get_posts(array (
 ))[0];
 $group_pending = get_posts(array (
   'post_type' => 'group',
+  'lang' => '',
   'meta_query' => array (
     array ('key' => 'members_pending', 'value' => $user->ID),
     array ('key' => 'event', 'value' => get_the_ID())
