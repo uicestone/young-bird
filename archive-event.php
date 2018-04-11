@@ -80,7 +80,7 @@ get_header();
       <div class="row pubu">
         <div class="col-md-18">
           <div class="row pubu-list">
-            <?php while (have_posts()): the_post(); ?>
+            <?php while (have_posts()): the_post(); $id_dl = pll_get_post(get_the_ID(), pll_default_language()); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history">
                 <a href="<?php the_permalink(); ?>">
