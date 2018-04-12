@@ -59,6 +59,9 @@ add_action( 'admin_notices', function () {
   if( ! class_exists('XLSXWriter') )
     echo '<div class="error"><p>' . __( '需要启用 WP PHP XLSWriter 插件' ) . '</p></div>';
 
+  if( !function_exists('pll_default_language') )
+    echo '<div class="error"><p>' . __( '需要启用 Polylang 插件，并设置默认语言为 zh' ) . '</p></div>';
+
 } );
 
 add_action('admin_menu', function () {
@@ -744,12 +747,6 @@ function verify_code($login, $input_code) {
   $code = get_option('verify_' . $login);
   delete_option('verify_' . $login);
   return $input_code === $code;
-}
-
-if (!function_exists('pll_home_url')) {
-  function pll_home_url () {
-    return site_url('/');
-  }
 }
 
 add_filter('lostpassword_url', function ($default_url) {
