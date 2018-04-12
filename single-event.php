@@ -326,7 +326,7 @@ $group = get_posts(array (
   'lang' => '',
   'meta_query' => array (
     array ('key' => 'members', 'value' => $user->ID),
-    array ('key' => 'event', 'value' => get_the_ID())
+    array ('key' => 'event', 'value' => $id_dl)
   )
 ))[0];
 $group_pending = get_posts(array (
@@ -334,7 +334,7 @@ $group_pending = get_posts(array (
   'lang' => '',
   'meta_query' => array (
     array ('key' => 'members_pending', 'value' => $user->ID),
-    array ('key' => 'event', 'value' => get_the_ID())
+    array ('key' => 'event', 'value' => $id_dl)
   )
 ))[0];
 
@@ -405,7 +405,7 @@ else:
             <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>" title="<?=__('查看团队', 'young-bird')?>"><?=__('查看团队', 'young-bird')?></a>
             <?php elseif ($group || $work): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>" title="<?=__('编辑作品', 'young-bird')?>"><?=__('编辑作品', 'young-bird')?></a>
-            <?php endif; ?>
+            <?php endif;?>
           </li>
           <?php if (get_field('status') === 'history' && $gallery = get_post_meta(get_the_ID(), 'gallery', true)): ?>
           <li class="d-none d-lg-block">
