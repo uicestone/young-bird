@@ -59,8 +59,8 @@ add_action( 'admin_notices', function () {
   if( ! class_exists('XLSXWriter') )
     echo '<div class="error"><p>' . __( '需要启用 WP PHP XLSWriter 插件' ) . '</p></div>';
 
-  if( !function_exists('pll_default_language') )
-    echo '<div class="error"><p>' . __( '需要启用 Polylang 插件，并设置默认语言为 zh' ) . '</p></div>';
+  if( !function_exists('pll_default_language') || pll_default_language() !== 'zh')
+    echo '<div class="error"><p>' . __( '需要启用 Polylang 插件，并设置默认语言为 “zh”' ) . '</p></div>';
 
 } );
 
