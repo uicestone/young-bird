@@ -40,15 +40,16 @@ if (isset($_POST['remind_event_ending'])) {
 if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
   ignore_user_abort(); set_time_limit(0);
   $cert_ranks = get_posts(array('post_type' => 'rank', 'meta_query' => array(
-    array('key' => 'event', 'value' => get_the_ID()),
+    array('key' => 'event', 'value' => $id_dl),
     array('key' => 'create_cert', 'value' => '1')
   )));
   $cert_rank_ids = array_column($cert_ranks, 'ID');
-  $event = get_post($event_id);
+  $event = get_post($id_dl);
+  $event_en = get_post(pll_get_post($id_dl, 'en'));
   $honor_works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
   $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => $id_dl));
-  $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true);
-  $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true);
+  $cert_template_honor = get_post_meta($id_dl, 'cert_template_honor', true);
+  $cert_template_participation = get_post_meta($id_dl, 'cert_template_participation', true);
   $cert_template_honor_path = get_attached_file($cert_template_honor);
   $cert_template_participation_path = get_attached_file($cert_template_participation);
 
@@ -96,7 +97,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->size(55);
       $font->color('#8fc5dd');
       $font->align('center');
-    })->text(mb_strtoupper($event->post_title), 1500, 2360, function(Font $font) {
+    })->text(mb_strtoupper($event_en->post_title), 1500, 2360, function(Font $font) {
       $font->file(FONT_PATH . 'msyh.ttc');
       $font->size(55);
       $font->color('#8fc5dd');
@@ -169,7 +170,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->size(55);
       $font->color('#8fc5dd');
       $font->align('center');
-    })->text(mb_strtoupper($event->post_title), 1240, 2030, function(Font $font) {
+    })->text(mb_strtoupper($event_en->post_title), 1240, 2030, function(Font $font) {
       $font->file(FONT_PATH . 'msyh.ttc');
       $font->size(55);
       $font->color('#8fc5dd');
@@ -256,7 +257,7 @@ if (isset($_POST['create_group'])) {
     'lang' => '',
     'title' => $_POST['group_name_create'],
     'meta_key' => 'event',
-    'meta_value' => get_the_ID()
+    'meta_value' => $id_dl
   ));
 
   if ($groups) {
@@ -302,15 +303,14 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
 
 // 以个人名义参赛
 if (isset($_GET['create-work'])) {
-  $event_id = get_the_ID();
   $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
   $work_id = wp_insert_post(array (
     'post_type' => 'work',
     'post_status' => 'publish',
     'post_title' => __('新作品', 'young-bird'),
-    'post_name' => $event_id . '-s' . $user->ID
+    'post_name' => $id_dl . '-s' . $user->ID
   ));
-  add_post_meta($work_id, 'event', pll_get_post($event_id, pll_default_language()));
+  add_post_meta($work_id, 'event', $id_dl);
   update_post_meta($id_dl, 'attendees', ++$attendees);
   add_post_meta($id_dl, 'attend_users', $user->ID);
   add_user_meta($user->ID, 'attend_events', $id_dl);
@@ -389,7 +389,7 @@ else:
             <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $rank_length); ?>"><?php printf(__('%s强', 'young-bird'), $rank_length); ?></a>
           </li>
           <?php endforeach; ?>
-          <?php if (current_user_can('edit_users') && $cert_template_participation = get_post_meta(get_the_ID(), 'cert_template_participation', true) && $cert_template_honor = get_post_meta(get_the_ID(), 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
+          <?php if (current_user_can('edit_users') && $cert_template_participation = get_post_meta($id_dl, 'cert_template_participation', true) && $cert_template_honor = get_post_meta($id_dl, 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
           <li class="d-none d-lg-block">
             <a class="text-truncate generate-certs" href="" title="<?=__('生成证书', 'young-bird')?>"><?=__('生成证书', 'young-bird')?></a>
           </li>
