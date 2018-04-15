@@ -13,8 +13,8 @@
         <?php foreach ($works as $work): ?>
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
           <div class="card mb-4 item-history item-top50 item-work">
-            <div>
-            <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top'))?>
+            <div style="height:165px">
+            <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top', 'style' => 'height: 100%; object-fit: cover;'))?>
             </div>
             <div class="card-body mt-4">
               <div class="row head justify-content-between align-items-center">
