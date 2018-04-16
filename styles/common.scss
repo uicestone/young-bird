@@ -558,6 +558,10 @@ a.link {
       .card-body {
         border-top: none;
         padding-top: 0;
+        p {
+          max-height: 26.4rem;
+          margin-bottom: 0;
+        }
       }
     }
   }

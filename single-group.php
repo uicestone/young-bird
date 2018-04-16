@@ -174,7 +174,7 @@ get_header(); ?>
               <?=get_the_post_thumbnail($work->ID, 'vga')?>
             </div>
             <div class="col-sm-12 order-sm-first card item-top3">
-              <div class="card-body pb-5">
+              <div class="card-body pb-0">
                 <h3><?=get_the_title($work->ID)?></h3>
                 <?=wpautop(get_post_meta($work->ID, 'description', true))?>
               </div>
