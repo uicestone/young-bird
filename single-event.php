@@ -124,7 +124,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $font->align('center');
     })->save(wp_upload_dir()['path'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
     update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
-    
+
     if ($group_id) {
       $member_ids = get_post_meta($group_id, 'members');
       foreach ($member_ids as $member_id) {
@@ -525,7 +525,9 @@ else:
           <?php if ($news_ids): $newses = get_posts(array('post__in' => $news_ids)); foreach ($newses as $news): $news = get_post($news->ID) ?>
           <div class="item">
             <a href="<?=get_permalink($news->ID)?>" class="card mb-3 item-sub-history">
+              <div>
               <?=get_the_post_thumbnail($news->ID, '8-7', array ('class' => 'card-img-top'))?>
+              </div>
               <div class="card-label">
                 <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $news->ID))?></span>
                 <div>

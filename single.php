@@ -88,7 +88,9 @@ get_header(); the_post(); ?>
         <div class="col-md-6 news-detail-ad">
           <?php foreach (get_posts(array ('category_name' => 'news-detail-ad')) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
-            <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
+            <div>
+              <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
+            </div>
             <div class="card-label">
               <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $ad->ID))?></span>
               <div>
