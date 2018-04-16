@@ -74,7 +74,9 @@ get_header(); ?>
     </div>
 <?php get_footer(); elseif (preg_match('/^home-/', $wp_query->query['category_name'])): while (have_posts()): the_post(); ?>
 <a href="<?php the_permalink()?>" class="card link">
-  <?php the_post_thumbnail($_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
+  <div>
+    <?php the_post_thumbnail($_GET['partial'] === 'primary' ? '5-4' : 'vga' , array('class' => 'card-img-top'))?>
+  </div>
   <div class="card-body">
     <div class="title text-truncate">
       <?php the_title()?>
