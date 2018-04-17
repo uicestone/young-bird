@@ -372,7 +372,7 @@ YB.Work = (function($) {
 				// init star rating
 				onInit = function() {
 					var rateStar = $('#rateStar').barrating({
-						theme: 'fontawesome-stars',
+						theme: 'fontawesome-stars-o',
 						allowEmpty: true
 					});
 				}

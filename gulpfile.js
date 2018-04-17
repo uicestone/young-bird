@@ -73,7 +73,7 @@ gulp.task('images', () => {
 
 // CSS settings
 var css = {
-  src         : [dir.src + 'styles/main.scss', dir.src + 'styles/fontawesome.scss', dir.src + 'styles/*.css'],
+  src         : [dir.src + 'styles/main.scss', dir.src + 'styles/*.css'],
   watch       : dir.src + 'styles/**/*',
   build       : dir.build + 'css/',
   sassOpts: {
