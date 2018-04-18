@@ -499,7 +499,7 @@ YB.Home = (function($) {
 			right = container.find('.column-right');
 	var btn = container.find('.btn-loadmore');
 	var page = 1;
-	var totalPrimary = 2, totalSecondary = 2;
+	var totalPrimary = undefined, totalSecondary = undefined;
 	var is_sm = YB.Util.is_sm();
 
 	function init() {
