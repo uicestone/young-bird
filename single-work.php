@@ -14,7 +14,7 @@ $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
 if ($event_status === 'second_judging') {
   $rank = get_posts(array('post_type' => 'rank', 'meta_query' => array(
-    array('key' => 'event', 'value' => $_GET['event_id']),
+    array('key' => 'event', 'value' => $event_id),
     array('key' => 'stage', 'value' => 'second_rating')
   )))[0];
   $second_judging_work_ids = get_post_meta($rank->ID, 'works', true);
