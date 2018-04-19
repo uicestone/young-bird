@@ -820,6 +820,10 @@ add_action('admin_footer', function () {
   $screen = get_current_screen();
   if ( $screen->id != "users" )   // Only add to users.php page
     return;
+
+  if (count($_GET))
+    return;
+
   ?>
   <script type="text/javascript">
 		jQuery(document).ready( function($)
