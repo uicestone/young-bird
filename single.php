@@ -59,7 +59,7 @@ get_header(); the_post(); ?>
                   <span class="mr-4 likes"><?=$likes?></span>
                 </span>
               </div>
-              <div class="d-md-flex align-items-center share mt-3 mt-md-0" style="line-height:0">
+              <div class="d-none d-md-flex align-items-center share mt-3 mt-md-0" style="line-height:0">
                 <?=__('分享至：', 'young-bird')?>
                 <div class="share-container"></div>
               </div>
