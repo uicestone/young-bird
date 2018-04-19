@@ -453,17 +453,9 @@ else:
               <i class="tag tag-grey" style="padding:5px 10px; background: <?=get_field('color', $term)?>"><?=$term->name?></i>
               <?php endforeach; endif; ?>
             </div>
-            <div class="d-none d-md-flex align-items-center share">
-              <?=__('分享至：', 'young-bird')?><!-- JiaThis Button BEGIN -->
-              <div class="jiathis_style_32x32">
-              	<a class="jiathis_button_tsina"></a>
-              	<a class="jiathis_button_weixin"></a>
-              	<a class="jiathis_button_qzone"></a>
-              	<a class="jiathis_button_fb"></a>
-              	<a class="jiathis_button_twitter"></a>
-              </div>
-              <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
-              <!-- JiaThis Button END -->
+            <div class="d-none d-md-flex align-items-center share" style="line-height:0">
+              <?=__('分享至：', 'young-bird')?>
+              <div class="share-container"></div>
             </div>
           </div>
         </section>

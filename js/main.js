@@ -430,6 +430,17 @@ YB.Common = (function($){
 	function init() {
 		var shareIconUrl = YB_SOURCE_PATH + 'images/share_icon.png';
 		var desc = $('meta[name="description"]').attr('content');
+		$('.share-container').hshare({
+			size: 'large',
+			platforms: [
+				{name: 'sinaweibo'},
+				{name: 'qzone'},
+				{name: 'wechat'},
+				{name: 'facebook'},
+				{name: 'twitter'}
+			],
+			more: true
+		});
 		bindEvent();
 		if (typeof wx !== 'undefined') {
 			$.get('/wx-js-config/', function (data) {
