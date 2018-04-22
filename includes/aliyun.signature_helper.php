@@ -51,6 +51,9 @@ class Aliyun_SignatureHelper {
 
     private function encode($str)
     {
+        if (!is_string($str)) {
+            error_log('non-string variable found: ' . var_export($str, true));
+        }
         $res = urlencode($str);
         $res = preg_replace("/\+/", "%20", $res);
         $res = preg_replace("/\*/", "%2A", $res);

@@ -44,7 +44,7 @@
               <p class="mt-3"><?=get_post_meta($work->ID, 'description', true)?></p>
             </a>
             <!-- 图集 -->
-            <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
+            <?php foreach (get_post_meta($work->ID, 'images') ?: array() as $image_url): ?>
             <a href="<?=$image_url?>">
               <img src="" alt="" />
             </a>
