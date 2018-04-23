@@ -6,7 +6,7 @@
   "scripts": {
     "start": "gulp"
   },
-  "repository": "http://sprite.tech:3000/rainkolwa/young-bird.git",
+  "repository": "https://github.com/uicestone/young-bird",
   "devDependencies": {
     "autoprefixer": "^7.2.5",
     "browser-sync": "^2.23.6",

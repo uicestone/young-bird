@@ -308,7 +308,7 @@ add_filter ('sanitize_user', function ($username, $raw_username, $strict) {
 }, 10, 3);
 
 if (defined('WP_REMOTE_UPLOADS') && WP_REMOTE_UPLOADS) {
-  add_filter( 'pre_option_upload_url_path', function() { return 'http://www.youngbirdplan.com.cn/wp-content/uploads'; } );
+  add_filter( 'pre_option_upload_url_path', function() { return 'https://www.youngbirdplan.com.cn/wp-content/uploads'; } );
 }
 
 add_filter('pre_get_posts', function (WP_Query $query) {
