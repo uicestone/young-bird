@@ -246,7 +246,7 @@ add_action('wp', function() {
 
   wp_register_script('fontawesome', get_stylesheet_directory_uri() . '/js/fontawesome-all.js', array(), '5.0.9', true);
   wp_register_script('wx', 'https://res.wx.qq.com/open/js/jweixin-1.2.0.js', array(), '1.2.0', true);
-  wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel', 'hshare', 'wx'), '1.0.0', true);
+  wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel', 'hshare'), '1.0.0', true);
 
   // Localize the script with new data
   $translation_array = array(
