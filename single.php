@@ -71,7 +71,7 @@ get_header(); the_post(); ?>
           <?php if ($event = get_field('event') && in_array(get_field('status', $event->ID), array('started', 'ending'))): ?>
           <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; ?>
-          <?php if (get_field('attendable')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_activities'))): ?>
+          <?php if (get_field('attendable')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_activities') ?: array())): ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
           <?php else: ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>
