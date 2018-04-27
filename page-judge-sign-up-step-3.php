@@ -7,7 +7,7 @@
     <!-- Body -->
     <div class="container mt-7 pb-7 judge-sign-in">
       <p class="mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
-      <form method="post" enctype="multipart/form-data" class="row step-3">
+      <form method="post" enctype="multipart/form-data" accept-charset="UTF-8" class="row step-3">
         <div class="col-md-6 mb-3">
           <div class="custom-file-container avatar border bg-light-grey d-flex justify-content-center align-items-center flex-column">
             <i class="fas fa-plus"></i>

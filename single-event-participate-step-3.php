@@ -24,7 +24,7 @@
           <div class="alert alert-danger"><?=$form_error?></div>
           <?php endif; ?>
           <div class="form-participate-position">
-            <form method="post">
+            <form method="post" accept-charset="UTF-8">
               <div class="row options mt-4 mt-md-6 mb-4 mb-md-5">
                 <div class="col d-flex justify-content-center align-items-center">
                   <i class="far fa-square"></i>

@@ -9,7 +9,7 @@
       <div class="row align-items-center">
         <div class="col-md-12">
           <p class="mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <?php if ($identities): foreach ($identities as $identity): ?>

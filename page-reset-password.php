@@ -12,7 +12,7 @@
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12">
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="password" name="password" autocomplete="new-password" class="form-control" placeholder="<?=__('新密码', 'young-bird')?>">

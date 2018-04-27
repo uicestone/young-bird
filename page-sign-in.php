@@ -69,7 +69,7 @@ get_header(); ?>
           <?php if (isset($form_error)): ?>
           <div class="alert alert-danger"><?=$form_error?></div>
           <?php endif; ?>
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <?php if (pll_current_language() === 'zh'): ?>
             <div class="d-none d-lg-flex justify-content-end align-items-end third-party">
               <span>第三方登录</span>

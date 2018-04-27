@@ -112,12 +112,12 @@ get_header(); ?>
               </div>
                 <div class="row">
                   <div class="col-12">
-                    <form method="post">
+                    <form method="post" accept-charset="UTF-8">
                       <button type="submit" name="accept_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('同意', 'young-bird')?></button>
                     </form>
                   </div>
                   <div class="col-12">
-                    <form method="post">
+                    <form method="post" accept-charset="UTF-8">
                       <button type="submit" name="ignore_member_request" value="<?=$member_id?>" class="btn btn-outline-primary btn-block"><?=__('拒绝', 'young-bird')?></button>
                     </form>
                   </div>

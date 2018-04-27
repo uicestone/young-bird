@@ -80,7 +80,7 @@ else: ?>
     </div>
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body judge-sign-in">
-      <form method="post" enctype="multipart/form-data">
+      <form method="post" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="row">
           <div class="col-12">
             <div class="row mx-auto info-container">

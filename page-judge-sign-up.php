@@ -73,7 +73,7 @@ get_header();
         <div class="col-md-12">
           <h3 class="text-center"><?=__('登录成功', 'young-bird')?></h3>
           <p class="text-center mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">

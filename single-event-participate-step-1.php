@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-12 offset-md-2">
           <h1 class="font-weight-bold color-silver text-center mb-4"><?=__('报名信息填写', 'young-bird')?></h1>
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" required name="name" value="<?=$name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">

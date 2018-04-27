@@ -50,7 +50,7 @@ get_header(); ?>
           <img src="<?=get_stylesheet_directory_uri()?>/images/bird.jpg" alt="">
         </div>
         <div class="col-md-12">
-          <form method="post">
+          <form method="post" accept-charset="UTF-8">
             <div class="form-group">
               <div class="input-group input-group-lg">
                 <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?> / <?=__('手机', 'young-bird')?>">

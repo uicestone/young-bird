@@ -254,7 +254,7 @@ get_header(); ?>
         <h1 class="font-weight-bold color-silver"><?=$editable ? __('请上传作品简介', 'young-bird') : __('作品简介', 'young-bird')?></h1>
         <h2 class="font-weight-bold color-silver"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($post->post_name)?></h2>
       </div>
-      <form method="post" enctype="multipart/form-data">
+      <form method="post" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="row mt-3 work-desc">
           <div class="col-md-12">
             <div class="form-group">
