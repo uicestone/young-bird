@@ -550,6 +550,7 @@ add_filter('manage_work_posts_columns', function ($column) {
     'title_link' => __( '名称', 'young-bird'),
     'slug' => __( '编号', 'young-bird'),
     'authors' => __( '选手', 'young-bird'),
+    'author' => __( '编辑', 'young-bird'),
     'score' => __( '状态', 'young-bird')
   ));
   // var_export($column); exit;
@@ -578,6 +579,10 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         $work = get_post($post_id);
         echo '<a href="' . get_admin_url(null, 'user-edit.php?user_id=' . $work->post_author) . '">' . get_user_by('ID', $work->post_author)->display_name . '</a>';
       }
+      break;
+    case 'author' :
+      $work = get_post($post_id);
+      echo '<a href="' . get_admin_url(null, 'user-edit.php?user_id=' . $work->post_author) . '">' . get_user_by('ID', $work->post_author)->display_name . '</a>';
       break;
     case 'score' :
       if ($score = get_post_meta($post_id, 'score', true)) {
