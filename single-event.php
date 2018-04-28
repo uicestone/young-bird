@@ -22,6 +22,7 @@ if (isset($_POST['like'])) {
 }
 
 if (isset($_POST['remind_event_ending'])) {
+  redirect_login();
   $days_left = ceil((strtotime(get_field('end_date')) - time()) / 86400);
   $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . $id_dl . "'");
   if ($days_left <= 10) {
@@ -38,6 +39,7 @@ if (isset($_POST['remind_event_ending'])) {
 }
 
 if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
+  redirect_login();
   ignore_user_abort(); set_time_limit(0);
   $cert_ranks = get_posts(array('post_type' => 'rank', 'meta_query' => array(
     array('key' => 'event', 'value' => $id_dl),
@@ -226,6 +228,7 @@ foreach ($participate_fields as $field) {
 }
 
 if (isset($_POST['participate'])) {
+  redirect_login();
   foreach ($participate_fields as $field) {
     if (isset($_POST[$field])) {
       update_user_meta($user->ID, $field, $_POST[$field]);
@@ -252,6 +255,7 @@ if (isset($_POST['participate'])) {
 }
 
 if (isset($_POST['create_group'])) {
+  redirect_login();
   $groups = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
@@ -278,6 +282,7 @@ if (isset($_POST['create_group'])) {
 }
 
 if (isset($_POST['join_group'])) {
+  redirect_login();
   $group = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
@@ -295,6 +300,7 @@ if (isset($_POST['join_group'])) {
 }
 
 if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
+  redirect_login();
   try {
     add_post_meta($id_dl, 'attend_users', $user->ID);
     add_user_meta($user->ID, 'attend_events', $id_dl);
@@ -306,6 +312,7 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
 
 // 以个人名义参赛
 if (isset($_GET['create-work'])) {
+  redirect_login();
   $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
   $work = get_event_work($id_dl, null, null, true);
   update_post_meta($id_dl, 'attendees', ++$attendees);

@@ -1,4 +1,5 @@
 <?php
+redirect_login();
 
 the_post();
 $event_id_dl = get_post_meta(get_the_ID(), 'event', true);
