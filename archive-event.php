@@ -19,11 +19,13 @@ if (isset($_GET['partial'])):
           <p class="color-black mb-4 organizer"><?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
           <p class="color-silver"><?=$post->post_excerpt?></p>
           <div class="action row align-items-center">
-            <i class="far fa-user mr-2"></i>
-            <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
-            <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></b>
-            <?php endif; ?>
-            <i class="far fa-heart"></i>
+            <span class="like-box">
+              <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
+                <i class="far fa-user mr-2"></i>
+                <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></b>
+              <?php endif; ?>
+              <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
+            </span>
           </div>
         </div>
       </a>
@@ -98,9 +100,11 @@ get_header();
                     <p class="color-black mb-4 organizer"><?=get_post_meta(get_the_ID(), 'organizer', true)?></p>
                     <p class="color-silver"><?=$post->post_excerpt?></p>
                     <div class="action row align-items-center">
-                      <i class="far fa-user mr-2"></i>
                       <span class="like-box">
+                        <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
+                        <i class="far fa-user mr-2"></i>
                         <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></b>
+                        <?php endif; ?>
                         <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
                       </span>
                     </div>
