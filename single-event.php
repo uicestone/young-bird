@@ -295,9 +295,12 @@ if (isset($_POST['join_group'])) {
 }
 
 if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
-  // TODO 重复访问本页会导致重复发送消息和添加meta信息
-  add_post_meta($id_dl, 'attend_users', $user->ID);
-  add_user_meta($user->ID, 'attend_events', $id_dl);
+  try {
+    add_post_meta($id_dl, 'attend_users', $user->ID);
+    add_user_meta($user->ID, 'attend_events', $id_dl);
+  } catch (Exception $e) {
+    // 对于重复添加meta造成的数据库错误保持静默
+  }
   send_message($user->ID, 'successfully-applied-for-this-competition');
 }
 
