@@ -35,15 +35,8 @@ if ($remove_member = $_GET['remove_member']) {
 }
 
 if (isset($_GET['create-work'])) {
-  $work_id = wp_insert_post(array (
-    'post_type' => 'work',
-    'post_status' => 'publish',
-    'post_title' => __('新作品', 'young-bird'),
-    'post_name' => $event_id_dl . '-g' . get_the_ID()
-  ));
-  add_post_meta($work_id, 'event', $event_id_dl);
-  add_post_meta($work_id, 'group', get_the_ID());
-  header('Location: ' . get_the_permalink($work_id)); exit;
+  $work = get_event_work($event_id_dl, null, get_the_ID(), true);
+  header('Location: ' . get_the_permalink($work->ID)); exit;
 }
 
 get_header(); ?>

@@ -775,17 +775,17 @@ function get_event_group ($event_id, $user_id = null) {
   )))[0];
 }
 
-function get_event_work ($event_id, $user_id = null) {
+function get_event_work ($event_id, $user_id = null, $group_id = null, $create = false) {
   if (!$user_id) {
     $user_id = get_current_user_id();
   }
 
-  $event_id = pll_get_post($event_id, pll_default_language());
+  $event_id_dl = pll_get_post($event_id, pll_default_language());
 
   // find my group in this event
   $event_group = get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
     array('key' => 'members', 'value' => $user_id),
-    array('key' => 'event', 'value' => $event_id)
+    array('key' => 'event', 'value' => $event_id_dl)
   )))[0];
 
   if ($event_group) {
@@ -793,7 +793,24 @@ function get_event_work ($event_id, $user_id = null) {
     $work = get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => $event_group->ID))[0];
   } else {
     // find work of this author
-    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => pll_get_post($event_id, pll_default_language())))[0];
+    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id_dl))[0];
+  }
+
+  if (!$work && $create) {
+    $work_id = wp_insert_post(array (
+      'post_type' => 'work',
+      'post_status' => 'publish',
+      'post_title' => __('新作品', 'young-bird'),
+      'post_name' => $group_id ? $event_id_dl . '-g' . $group_id : $event_id_dl . '-s' . $user_id
+    ));
+
+    add_post_meta($work_id, 'event', $event_id_dl);
+
+    if ($group_id) {
+      add_post_meta($work_id, 'group', get_the_ID());
+    }
+
+    $work = get_post($work_id);
   }
 
   return $work;

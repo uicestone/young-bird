@@ -304,18 +304,12 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
 // 以个人名义参赛
 if (isset($_GET['create-work'])) {
   $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
-  $work_id = wp_insert_post(array (
-    'post_type' => 'work',
-    'post_status' => 'publish',
-    'post_title' => __('新作品', 'young-bird'),
-    'post_name' => $id_dl . '-s' . $user->ID
-  ));
-  add_post_meta($work_id, 'event', $id_dl);
+  $work = get_event_work($id_dl, null, null, true);
   update_post_meta($id_dl, 'attendees', ++$attendees);
   add_post_meta($id_dl, 'attend_users', $user->ID);
   add_user_meta($user->ID, 'attend_events', $id_dl);
   add_user_meta($user->ID, 'attend_events_solo', $id_dl);
-  header('Location: ' . get_the_permalink($work_id)); exit;
+  header('Location: ' . get_the_permalink($work->ID)); exit;
 }
 } catch (Exception $e) {
   $form_error = $e->getMessage();
