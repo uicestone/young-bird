@@ -42,7 +42,7 @@
 @include media-breakpoint-down(md) {
   .news-detail {
     h1 {
-      font-size: $font-size-base * 1.4;
+      font-size: $font-size-base;
       line-height: 1.6;
     }
   }
