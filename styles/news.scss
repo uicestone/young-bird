@@ -24,7 +24,7 @@
   }
 }
 
-@include media-breakpoint-down(sm) {
+@include media-breakpoint-up(xs) {
   .news-detail {
     h1 {
       font-weight: bold;
@@ -42,7 +42,7 @@
   }
 }
 
-@include media-breakpoint-down(md) {
+@include media-breakpoint-up(md) {
   .news-detail {
     h1 {
       font-size: $font-size-xl;
