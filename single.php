@@ -45,11 +45,13 @@ get_header(); the_post(); ?>
           <section class="header">
             <!-- poster -->
             <div class="text-center">
-            <img src="<?=get_field('news_kv')['sizes']['5-3']?>">
+              <img src="<?=get_field('news_kv')['sizes']['5-3']?>">
             </div>
             <!-- title -->
-            <h1 class="color-black"><?php the_title(); ?></h1>
-            <span class="published-at"><?=__('发布时间', 'young-bird')?> <?php the_date(); ?></span>
+            <div class="title mt-3">
+              <h1 class="color-black"><?php the_title(); ?></h1>
+              <span class="published-at"><?=__('发布时间', 'young-bird')?> <?php the_date(); ?></span>
+            </div>
             <div class="row justify-content-between align-items-center mt-2 mt-md-4 infos">
               <div class="d-flex align-items-center">
                 <i class="fas fa-eye mr-2"></i>
