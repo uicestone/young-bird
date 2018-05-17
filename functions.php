@@ -314,7 +314,7 @@ if (defined('WP_REMOTE_UPLOADS') && WP_REMOTE_UPLOADS) {
 add_filter('pre_get_posts', function (WP_Query $query) {
 
   // effective only in user end main loop
-  if (is_admin() || !is_archive()) return;
+  if (is_admin() || !is_archive() || $query->query['posts_per_page'] === -1) return;
 
   // home-primary(-en) posts
   if (empty($query->query['post_type']) && isset($query->query['category_name']) && preg_match('/^home-primary/', $query->query['category_name'])) {
