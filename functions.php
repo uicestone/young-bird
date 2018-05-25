@@ -710,10 +710,12 @@ function send_message ($to, $template_slug, $params = array()) {
   if (get_field('external', $template->ID)) {
     $to_user = get_user_by('ID', $to);
     if ($to_user->user_email) {
-      wp_mail($to_user->user_email, $message_title, $message_content, 'Content-Type: text/html');
+      $result = wp_mail($to_user->user_email, $message_title, $message_content, 'Content-Type: text/html');
+      error_log('发送邮件 ' . $template_slug . ' ' . $to_user->user_email . '. result: ' . var_export($result, true));
     }
-    if ($mobile = get_user_meta($to, 'mobile', true)){
-      aliyun_send_sms($mobile, get_field('aliyun_sms_code', $template->ID), $params);
+    if ($sms_template = get_field('aliyun_sms_code', $template->ID) && $mobile = get_user_meta($to, 'mobile', true)){
+      aliyun_send_sms($mobile, $sms_template, $params);
+      error_log('发送短信 ' . $template_slug . ' ' . $mobile);
     }
   }
 

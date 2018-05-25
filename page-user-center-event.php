@@ -82,7 +82,7 @@
             <div class="card-head row mx-0">
               <div class="tag tag-red col-3 text-center"><?=get_event_status($event->ID)?></div>
               <div class="bg-black color-white col-21 d-flex align-items-center justify-content-end">
-                <?php foreach (get_the_terms($event->ID, 'event_category') as $term): ?>
+                <?php foreach (get_the_terms($event->ID, 'event_category') ?: array() as $term): ?>
                 <span><?=$term->name?></span>
                 <?php endforeach; ?>
               </div>
