@@ -97,9 +97,9 @@ if (isset($_POST['delete_image'])) {
 
   $path_to_delete = parse_url($_POST['delete_image'], PHP_URL_PATH);
 
-  $url_to_delete = array_filter($images, function ($image_url) use ($path_to_delete) {
+  $url_to_delete = array_values(array_filter($images, function ($image_url) use ($path_to_delete) {
     return preg_match('/' . preg_quote($path_to_delete, '/') . '$/', $image_url);
-  })[0];
+  }))[0];
 
   if ($url_to_delete) {
     delete_post_meta(get_the_ID(), 'images', $url_to_delete);
