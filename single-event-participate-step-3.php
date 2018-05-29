@@ -37,7 +37,7 @@
               </div>
               <div class="check-0 d-none">
                 <div class="row mx-auto">
-                  <a href="<?php get_the_permalink() ?>?participate=step-4&single=true" class="btn btn-lg btn-secondary btn-block px-5"><?=__('参赛', 'young-bird')?></a>
+                  <a href="<?=get_the_permalink()?>?participate=step-4&single=true" class="btn btn-lg btn-secondary btn-block px-5"><?=__('参赛', 'young-bird')?></a>
                 </div>
               </div>
               <div class="check-1 d-none">

@@ -109,7 +109,7 @@
                   <div class="d-none" data-comments='<?=json_encode(get_post_meta($work->ID, 'comments', true), JSON_UNESCAPED_UNICODE)?>'>
                     <a class="w-100" style="padding:10vh 20vw">
                       <div class="row mx-auto justify-content-between">
-                        <h3><?php get_the_title($work->ID); ?></h3>
+                        <h3><?=get_the_title($work->ID)?></h3>
                         <h4>YB<?=strtoupper($work->post_name)?></h4>
                       </div>
                       <p class="mt-3">
@@ -117,7 +117,7 @@
                       </p>
                     </a>
                     <a href="<?=get_the_post_thumbnail_url($work->ID)?>">
-                      <?php get_the_post_thumbnail($work->ID, 'full'); ?>
+                      <?=get_the_post_thumbnail($work->ID, 'full')?>
                     </a>
                     <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
                     <a href="<?=$image_url?>">
