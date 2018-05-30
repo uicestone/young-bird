@@ -663,7 +663,7 @@ function get_event_status ($event_id) {
     'starting' => __('即将开始', 'young-bird'),
     'started' => __('进行中', 'young-bird'),
     'ending' => __('即将结束', 'young-bird'),
-    'endied' => __('已经结束', 'young-bird'),
+    'ended' => __('已经结束', 'young-bird'),
     'judging' => __('评审开始', 'young-bird'),
     'judged' => __('评审完成', 'young-bird'),
     'history' => __('历史竞赛', 'young-bird')
