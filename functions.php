@@ -412,6 +412,11 @@ add_filter('pre_get_users', function (WP_User_Query $query) {
     $query->set('meta_key', 'attend_activities');
     $query->set('meta_value', $_GET['attend_activities']);
   }
+
+  if (isset($_GET['attend_events'])) {
+    $query->set('meta_key', 'attend_events');
+    $query->set('meta_value', $_GET['attend_events']);
+  }
 });
 
 // update event status to 'second_judging' after rank save to 'second_rating'
@@ -473,7 +478,10 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 
 add_filter('post_row_actions', function ($actions, $post) {
   if ($attendable = get_post_meta($post->ID, 'attendable', true)) {
-    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '" target="_blank">' . __('报名用户', 'young-bird') . '</a>';
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+  }
+  if ($post->post_type === 'event') {
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
   return $actions;
 }, 10, 2);
@@ -773,7 +781,7 @@ function get_event_group ($event_id, $user_id = null) {
 
   return get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
     array('key' => 'event', 'value' => $event_id),
-    array('key' => 'member', 'value' => $user_id),
+    array('key' => 'members', 'value' => $user_id),
   )))[0];
 }
 
@@ -845,9 +853,6 @@ add_action('admin_footer', function () {
   if ( $screen->id != "users" )   // Only add to users.php page
     return;
 
-  if (count($_GET))
-    return;
-
   ?>
   <script type="text/javascript">
 		jQuery(document).ready( function($)
@@ -871,6 +876,8 @@ add_action('admin_init', function () {
         get_user_meta($user->ID, 'id_card', true),
         get_user_meta($user->ID, 'identity', true),
         get_user_meta($user->ID, 'birthday', true),
+        get_user_meta($user->ID, 'country', true),
+        get_user_meta($user->ID, 'city', true),
         get_user_meta($user->ID, 'school', true),
         get_user_meta($user->ID, 'major', true),
         get_user_meta($user->ID, 'constellation', true),
@@ -882,16 +889,28 @@ add_action('admin_init', function () {
         date('Y-m-d H:i:s', strtotime($user->user_registered) + get_option('gmt_offset') * HOUR_IN_SECONDS)
       );
 
+      if (isset($_GET['attend_events'])) {
+        $event = get_post($_GET['attend_events']);
+        $group = get_event_group($event->ID, $user->ID);
+        $work = get_event_work($event->ID, $user->ID);
+        $row[] = $group->post_title;
+        $row[] = 'YB' . strtoupper($work->post_name);
+      }
+
       $data[] = $row;
     }
 
     $writer = new XLSXWriter();
-    $writer->writeSheetHeader('选手', array('姓名' => '@', '手机' => '@', '邮箱' => '@', '证件' => '@', '身份' => '@', '生日' => '@', '学校' => '@', '专业' => '@', '星座' => '@', '兴趣' => '@', '地址' => '@', '公司' => '@', '部门' => '@', '职位' => '@', '注册时间' => 'YYYY-MM-DD HH:MM:SS'));
+    $head = array('姓名' => '@', '手机' => '@', '邮箱' => '@', '证件' => '@', '身份' => '@', '生日' => '@', '国家' => '@', '城市' => '@', '学校' => '@', '专业' => '@', '星座' => '@', '兴趣' => '@', '地址' => '@', '公司' => '@', '部门' => '@', '职位' => '@', '注册时间' => 'YYYY-MM-DD HH:MM:SS');
+    if (isset($event)) {
+      $head = array_merge($head, array('团队名称' => '@', '作品编号' => '@'));
+    }
+    $writer->writeSheetHeader('选手', $head);
     foreach ($data as $row) {
       $writer->writeSheetRow('选手', $row);
     }
 
-    $filename = __('所有用户', 'young-bird') . '.xlsx';
+    $filename = __(isset($event) ? ('选手 ' . $event->post_title) : '所有用户', 'young-bird') . '.xlsx';
     $path = wp_upload_dir()['path']  . '/' . $filename;
     $writer->writeToFile($path);
     header('Content-Disposition: attachment; filename=' . $filename );
