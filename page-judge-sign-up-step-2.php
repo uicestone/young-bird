@@ -10,47 +10,79 @@
         <div class="col-md-12">
           <p class="mb-4"><strong><?=__('请填写下列信息来激活您的账号', 'young-bird')?></strong></p>
           <form method="post" accept-charset="UTF-8">
+            <?php if ($identities): foreach ($identities as $index => $identity): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if ($identities): foreach ($identities as $identity): ?>
                 <input type="text" name="identities[]" value="<?=$identity?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
-                <?php endforeach; else: ?>
-                <input type="text" name="identities[]" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
-                <?php endif; ?>
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <?php if($index === count($identities) - 1): ?>
+                  <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                  <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
               </div>
             </div>
+            <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if ($titles): foreach ($titles as $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1]; ?>
+                <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-plus-circle"></i>
+              </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($titles): foreach ($titles as $index => $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="institutions[]" value="<?=$institution?>" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
                 <input type="text" name="titles[]" value="<?=$title?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
-                <?php endforeach; else: ?>
-                <input type="text" name="institutions[]" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
-                <input type="text" name="titles[]" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
-                <?php endif; ?>
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <?php if($index === count($titles) - 1): ?>
+                  <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                  <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
               </div>
             </div>
+            <?php endforeach; else: ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
-                <?php if($awards): foreach ($awards as $award): ?>
-                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="<?=__('曾获奖项', 'young-bird')?>">
-                <?php endforeach; else: ?>
-                <input type="text" name="awards[]" class="form-control" placeholder="<?=__('曾获奖项', 'young-bird')?>">
-                <?php endif; ?>
+                <input type="text" name="institutions[]" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
+                <input type="text" name="titles[]" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <i class="fas fa-plus-circle"></i>
               </div>
             </div>
+            <?php endif; ?>
+
+            <?php if ($awards): foreach ($awards as $index => $award): ?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
+                <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
+              </div>
+              <div class="col-md-4">
+                <?php if($index === count($awards) - 1): ?>
+                  <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                  <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
+              </div>
+            </div>
+            <?php endforeach; else: ?>
+            <div class="form-group row align-items-center">
+              <div class="input-group input-group-lg col-md-20">
+                <input type="text" name="awards[]" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
+              </div>
+              <div class="col-md-4">
+                <i class="fas fa-plus-circle"></i>
+              </div>
+            </div>
+            <?php endif; ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('毕业院校', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
