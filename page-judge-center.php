@@ -74,7 +74,11 @@ else: ?>
           <li class="active"><a href="<?=pll_home_url()?>judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?php the_permalink(); ?>?like"><?=__('我的收藏', 'young-bird')?></a></li>
-          <li><a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?><i></i></a></li>
+          <li>
+            <a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?>
+              <?php if ($has_unread_message = get_user_meta(get_current_user_id(), 'has_unread_message', true)): ?><i></i><?php endif; ?>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -124,14 +128,17 @@ else: ?>
         </div>
         <div class="row">
           <div class="col-12">
-            <?php if ($identities): foreach ($identities as $identity): ?>
+            <?php if ($identities): foreach ($identities as $index => $identity): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="identities[]" value="<?=$identity?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <?php if($index === count($identities) - 1): ?>
+                <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
               </div>
             </div>
             <?php endforeach; else: ?>
@@ -140,21 +147,23 @@ else: ?>
                 <input type="text" name="identities[]" value="<?=$title?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <i class="fas fa-plus-circle"></i>
               </div>
             </div>
             <?php endif; ?>
 
-            <?php if ($titles): foreach ($titles as $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
+            <?php if ($titles): foreach ($titles as $index => $title): $institution = explode('/', $title)[0]; $title = explode('/', $title)[1];?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="institutions[]" value="<?=$institution?>" class="form-control" placeholder="<?=__('机构', 'young-bird')?>">
                 <input type="text" name="titles[]" value="<?=$title?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <?php if($index === count($titles) - 1): ?>
+                <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
               </div>
             </div>
             <?php endforeach; else: ?>
@@ -164,20 +173,22 @@ else: ?>
                 <input type="text" name="titles[]" class="form-control" placeholder="<?=__('部门', 'young-bird')?>/<?=__('头衔', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <i class="fas fa-plus-circle"></i>
               </div>
             </div>
             <?php endif; ?>
 
-            <?php if ($awards): foreach ($awards as $award): ?>
+            <?php if ($awards): foreach ($awards as $index => $award): ?>
             <div class="form-group row align-items-center">
               <div class="input-group input-group-lg col-md-20">
                 <input type="text" name="awards[]" value="<?=$award?>" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <?php if($index === count($awards) - 1): ?>
+                <i class="fas fa-plus-circle"></i>
+                <?php else: ?>
+                <i class="fas fa-minus-circle"></i>
+                <?php endif; ?>
               </div>
             </div>
             <?php endforeach; else: ?>
@@ -186,8 +197,7 @@ else: ?>
                 <input type="text" name="awards[]" class="form-control" placeholder="<?=__('奖项', 'young-bird')?>">
               </div>
               <div class="col-md-4">
-                <i class="fas fa-plus-circle mr-2"></i>
-                <i class="fas fa-trash-alt d-none"></i>
+                <i class="fas fa-plus-circle"></i>
               </div>
             </div>
             <?php endif; ?>

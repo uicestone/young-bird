@@ -689,12 +689,15 @@ YB.Judge = (function($){
 			var parent = $(this).parents('.form-group');
 			var copy = parent.clone();
 			var name = parent.find('input').eq(0).attr('name');
+
+			$(this).after('<i class="fa fa-minus-circle"></i>');
+			$(this).remove();
 			$(copy).find('input').val('');
 			$(copy).insertAfter(parent);
 			checkDelete(name);
 		})
 		// 删除表单项
-		page.on('click', '.form-group .fa-trash-alt', function(e) {
+		page.on('click', '.form-group .fa-trash-alt, .form-group .fa-minus-circle', function(e) {
 			e.preventDefault();
 			var parent = $(this).parents('.form-group');
 			var name = parent.find('input').eq(0).attr('name');
