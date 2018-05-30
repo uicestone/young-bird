@@ -481,7 +481,7 @@ add_filter('post_row_actions', function ($actions, $post) {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
   if ($post->post_type === 'event') {
-    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
   return $actions;
 }, 10, 2);
@@ -601,7 +601,7 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         global $wpdb;
         $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
         $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-        echo __('得分: ', 'young-bird') . ($score + $vote_score);
+        echo __('总分: ', 'young-bird') . round($score + $vote_score, 2);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
         echo $status;
       } else {
@@ -961,26 +961,27 @@ add_action('admin_init', function () {
         $authors =  get_user_by('ID', $work->post_author)->display_name;
       }
 
-      // compile status string
-      if ($score = get_post_meta($work->ID, 'score', true)) {
-        // get votes, votes of same event
-        $event_id = get_post_meta($work->ID, 'event', true);
-        $vote_weight = get_post_meta($event->ID, 'vote_weight', true) ?: 10;
-        $votes = get_post_meta($work->ID, 'votes', true);
-        global $wpdb;
-        $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
-        $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-        $status = __('得分: ', 'young-bird') . ($score + $vote_score);
-      } elseif (!$status = get_post_meta($work->ID, 'status', true)) {
-        $status = __('未入围', 'young-bird');
-      }
+      $score_judge = get_post_meta($work->ID, 'score', true);
+      $votes = get_post_meta($work->ID, 'votes', true);
 
+      // get votes, votes of same event
+      $event_id = get_post_meta($work->ID, 'event', true);
+      $vote_weight = get_post_meta($event->ID, 'vote_weight', true) ?: 10;
+
+      global $wpdb;
+      $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
+      $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
+      $score = $score_judge + $vote_score;
+      $pass_status = get_post_meta($work->ID, 'status', true) ? __('入围', 'young-bird') : __('未入围', 'young-bird');
 
       $row = array(
         $work->post_title,
         'YB' . strtoupper($work->post_name),
         $authors,
-        $status,
+        $pass_status,
+        $score_judge,
+        $votes,
+        $score,
         get_the_date('Y-m-d H:i:s', $work->ID)
       );
 
@@ -990,7 +991,7 @@ add_action('admin_init', function () {
     $writer = new XLSXWriter();
     $filename = '作品 - ' . $event->post_title . '.xlsx';
     $path = wp_upload_dir()['path']  . '/' . $filename;
-    $writer->writeSheetHeader('作品', array('名称' => '@', '编号' => '@', '选手' => '@', '状态' => '@', '日期' => 'YYYY-MM-DD HH:MM:SS'));
+    $writer->writeSheetHeader('作品', array('名称' => '@', '编号' => '@', '选手' => '@', '状态' => '@', '大咖评分' => '@', '大众投票' => '@', '总分' => '@', '日期' => 'YYYY-MM-DD HH:MM:SS'));
     foreach ($data as $row) {
       $writer->writeSheetRow('作品', $row);
     }
