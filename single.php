@@ -106,4 +106,5 @@ get_header(); the_post(); ?>
         </div>
       </div>
     </div>
+    <a class="scroll-to-top-btn" href="#" style="display: none"><i class="fa fa-chevron-up"></i><br>TOP</a>
 <?php get_footer(); ?>

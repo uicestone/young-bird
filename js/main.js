@@ -441,7 +441,10 @@ YB.Common = (function($){
 			],
 			more: true
 		});
-		bindEvent();
+		var windowHeight = $(window).height();
+		var scrollToTopButton = $('.scroll-to-top-btn');
+
+		bindEvent(windowHeight, scrollToTopButton);
 		if (typeof wx !== 'undefined') {
 			$.get('/wx-js-config/', function (data) {
 				// data.debug = true;
@@ -479,7 +482,8 @@ YB.Common = (function($){
 		}
 	}
 
-	function bindEvent() {
+	function bindEvent(windowHeight, scrollToTopButton) {
+		var scrollToTopButtonVisible = false;
 		// smooth hash
 		$('a[href*=#]:not([href=#])').click(function() {
 	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
@@ -493,6 +497,24 @@ YB.Common = (function($){
           return false;
         }
 	    }
+		});
+
+		$(window).scroll(function () {
+			if ($(window).scrollTop() > windowHeight && !scrollToTopButtonVisible) {
+				scrollToTopButton.fadeIn();
+				scrollToTopButtonVisible = true;
+			} else if ($(window).scrollTop() < windowHeight && scrollToTopButtonVisible) {
+				scrollToTopButton.fadeOut();
+				scrollToTopButtonVisible = false;
+			}
+		});
+
+		scrollToTopButton.click(function (e) {
+			e.preventDefault();
+			scrollToTopButton.fadeOut();
+			$('html,body').animate({
+				scrollTop: 0
+			}, 500);
 		});
 	}
 
