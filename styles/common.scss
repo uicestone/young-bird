@@ -154,6 +154,23 @@ a.link {
   text-indent: 0.3rem;
 }
 
+.scroll-to-top-btn {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  color: white;
+  background: black;
+  width: 2.4rem;
+  height: 2rem;
+  text-align: center;
+  padding: .3rem 0;
+  border-radius: 4px;
+  font-size: 12px;
+  box-sizing: content-box;
+  transform: scale(.8);
+  box-shadow: 0 0 5px grey;
+}
+
 .icon {
   width: 18px;
   height: 18px;
