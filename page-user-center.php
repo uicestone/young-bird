@@ -82,6 +82,7 @@ if (isset($_POST['submit'])) {
       array('Content-Type: text/html; charset=UTF-8')
     );
 
+    add_user_meta($user->ID, 'apply_jobs', $_GET['recruitment']);
     header('Location: ' . get_the_permalink($_GET['recruitment'])); exit;
   }
 
