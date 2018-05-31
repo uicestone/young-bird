@@ -556,6 +556,7 @@ add_filter('manage_work_posts_columns', function ($column) {
   array_insert($column, 'date', array(
     'title_link' => __( '名称', 'young-bird'),
     'slug' => __( '编号', 'young-bird'),
+    'image_count' => __( '图片', 'young-bird'),
     'authors' => __( '选手', 'young-bird'),
     'author' => __( '编辑', 'young-bird'),
     'score' => __( '状态', 'young-bird')
@@ -572,6 +573,9 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
       break;
     case 'slug' :
       echo 'YB' . strtoupper(get_post($post_id)->post_name);
+      break;
+    case 'image_count' :
+      echo count(get_post_meta($post_id, 'images'));
       break;
     case 'authors' :
       $group_id = get_post_meta($post_id, 'group', true);
@@ -976,6 +980,7 @@ add_action('admin_init', function () {
       $row = array(
         $work->post_title,
         'YB' . strtoupper($work->post_name),
+        count(get_post_meta($work->ID, 'images')),
         $authors,
         $pass_status,
         $score_judge,
@@ -990,7 +995,7 @@ add_action('admin_init', function () {
     $writer = new XLSXWriter();
     $filename = '作品 - ' . $event->post_title . '.xlsx';
     $path = wp_upload_dir()['path']  . '/' . $filename;
-    $writer->writeSheetHeader('作品', array('名称' => '@', '编号' => '@', '选手' => '@', '状态' => '@', '大咖评分' => '@', '大众投票' => '@', '总分' => '@', '日期' => 'YYYY-MM-DD HH:MM:SS'));
+    $writer->writeSheetHeader('作品', array('名称' => '@', '编号' => '@', '图片' => '@', '选手' => '@', '状态' => '@', '大咖评分' => '@', '大众投票' => '@', '总分' => '@', '日期' => 'YYYY-MM-DD HH:MM:SS'));
     foreach ($data as $row) {
       $writer->writeSheetRow('作品', $row);
     }
