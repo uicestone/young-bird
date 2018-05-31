@@ -84,11 +84,11 @@ get_header(); ?>
               </p>
             </a>
             <a href="<?=get_the_post_thumbnail_url(get_the_ID(), 'full')?>">
-              <?php the_post_thumbnail('full'); ?>
+              <img src="" alt="" />
             </a>
             <?php foreach (get_post_meta(get_the_ID(), 'images') as $image): ?>
             <a href="<?=$image?>">
-              <img src="<?=$image?>" alt="" />
+              <img src="" alt="" />
             </a>
             <?php endforeach; ?>
           </div>
@@ -96,7 +96,7 @@ get_header(); ?>
         <?php endwhile; ?>
       </div>
       <nav class="mt-5">
-        <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>', 'before_page_number' => '0'))?>
+        <?=paginate_links(array ('type' => 'list', 'prev_text' => '<i class="fas fa-angle-left"></i>', 'next_text' => '<i class="fas fa-angle-right"></i>'))?>
       </nav>
     </div>
 <?php get_footer(); ?>
