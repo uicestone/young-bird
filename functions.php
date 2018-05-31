@@ -161,7 +161,6 @@ add_action('init', function () {
       'not_found' => __('未找到团队', 'young-bird')
     ),
     'public' => true,
-    'show_ui' => false,
     'supports' => array('title', 'excerpt', 'thumbnail', 'author'),
     'taxonomies' => array('post_tag'),
     'menu_icon' => 'dashicons-groups',
