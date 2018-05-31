@@ -3,6 +3,20 @@ redirect_login();
 $user = wp_get_current_user();
 
 $sign_up_fields = array ('mobile', 'identity', 'birthday', 'constellation', 'hobby', 'address', 'company', 'department', 'title', 'id_card', 'school', 'major');
+$sign_up_fields_label = array (
+  'mobile' => __('手机', 'young-bird'),
+  'identity' => __('身份', 'young-bird'),
+  'birthday' => __('生日', 'young-bird'),
+  'constellation' => __('星座', 'young-bird'),
+  'hobby' => __('爱好', 'young-bird'),
+  'address' => __('地址', 'young-bird'),
+  'company' => __('公司', 'young-bird'),
+  'department' => __('部门', 'young-bird'),
+  'title' => __('职位', 'young-bird'),
+  'id_card' => __('身份证号', 'young-bird'),
+  'school' => __('学校', 'young-bird'),
+  'major' => __('专业', 'young-bird')
+);
 foreach ($sign_up_fields as $field) {
   $$field =  get_user_meta($user->ID, $field, true);
 }
@@ -39,19 +53,35 @@ if (isset($_POST['submit'])) {
     update_user_meta($user->ID, 'avatar', $avatar['url']);
   }
 
-  IF (isset($resume) && $resume['url']) {
+  if (isset($resume) && $resume['url']) {
     update_user_meta($user->ID, 'resume', $resume['url']);
   }
 
   $user = wp_get_current_user();
 
-  wp_mail(get_field('recruitment_email', $_GET['recruitment']),
-    '简历投递 - ' . $user->display_name,
-    '<a href="' . get_user_meta($user->ID, 'resume', true) . '">简历下载</a>',
-    array('Content-Type: text/html; charset=UTF-8')
-  );
-
   if (isset($_GET['recruitment'])) {
+
+    $message = '<p>' . sprintf(__('您在 Young Bird Plan 的招聘文章《%s》收到了一封简历投递：', 'young-bird'), get_the_title($_GET['recruitment'])) . '</p>';
+    $message .= '<ul><li>' . __('姓名', 'young-bird') . "\t" . (get_user_meta($user->ID, 'name', true) ?: $user->display_name) . '</li><li>' . __('邮箱', 'young-bird') . "\t" . $user->user_email . '</li>';
+
+    foreach ($sign_up_fields_label as $field => $label) {
+      if ($field_value = get_user_meta($user->ID, $field, true)) {
+        $message .= '<li>' . $label . "\t" . $field_value . '</li>';
+      }
+    }
+
+    $message .= '</ul>';
+
+    if ($resume = get_user_meta($user->ID, 'resume', true)) {
+      $message .= '<p>' . __('附件：', 'young-bird') . '<a href="' . get_user_meta($user->ID, 'resume', true) . '">' . __('简历下载', 'young-bird') . '</a></p>';
+    }
+
+    wp_mail(get_field('recruitment_email', $_GET['recruitment']),
+      __('简历投递', 'young-bird') . ' - ' . (get_user_meta($user->ID, 'name', true) ?: $user->display_name),
+      $message,
+      array('Content-Type: text/html; charset=UTF-8')
+    );
+
     header('Location: ' . get_the_permalink($_GET['recruitment'])); exit;
   }
 
@@ -90,6 +120,7 @@ else: ?>
       </div>
     </div>
     <!-- Menu -->
+    <?php if (empty($_GET['recruitment'])): ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
@@ -105,6 +136,7 @@ else: ?>
         </ul>
       </div>
     </div>
+    <?php endif; ?>
     <!-- Body -->
     <div class="container mt-5 pb-7 user-center-body">
       <form method="post" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -130,41 +162,41 @@ else: ?>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=__('手机', 'young-bird')?>">
+                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
                   </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="identity" value="<?=$identity?>" class="form-control" placeholder="<?=__('身份', 'young-bird')?>">
+                <input type="text" name="identity" value="<?=$identity?>" class="form-control" placeholder="<?=$sign_up_fields_label['identity']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=__('学校', 'young-bird')?>">
+                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="<?=__('星座', 'young-bird')?>">
+                <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="<?=$sign_up_fields_label['constellation']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="<?=__('地址', 'young-bird')?>">
+                <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="<?=$sign_up_fields_label['address']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=__('部门', 'young-bird')?>">
+                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=$sign_up_fields_label['department']?>">
               </div>
             </div>
           </div>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=__('身份证号', 'young-bird')?>/<?=__('护照号', 'young-bird')?>">
+                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=$sign_up_fields_label['identity']?>/<?=__('护照号', 'young-bird')?>">
               </div>
             </div>
             <div class="form-group">
@@ -174,27 +206,27 @@ else: ?>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日', 'young-bird')?>">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=$sign_up_fields_label['birthday']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=__('专业', 'young-bird')?>">
+                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="<?=__('兴趣', 'young-bird')?>">
+                <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="<?=$sign_up_fields_label['hobby']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=__('公司', 'young-bird')?>">
+                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
+                <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="<?=$sign_up_fields_label['title']?>">
               </div>
             </div>
           </div>
