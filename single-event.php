@@ -458,7 +458,6 @@ else:
               <?php endforeach; endif; ?>
             </div>
             <div class="d-none d-md-flex align-items-center share" style="line-height:0">
-              <?=__('分享至：', 'young-bird')?>
               <div class="share-container"></div>
             </div>
           </div>

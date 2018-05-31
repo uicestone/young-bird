@@ -62,7 +62,6 @@ get_header(); the_post(); ?>
                 </span>
               </div>
               <div class="d-none d-md-flex align-items-center share mt-3 mt-md-0" style="line-height:0">
-                <?=__('分享至：', 'young-bird')?>
                 <div class="share-container"></div>
               </div>
             </div>
@@ -77,6 +76,11 @@ get_header(); the_post(); ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
           <?php else: ?>
           <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>
+          <?php endif; endif; ?>
+          <?php if (get_field('recruitment')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'apply_jobs') ?: array())): ?>
+          <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已投递简历', 'young-bird')?></button>
+          <?php else: ?>
+          <a href="<?=site_url()?>/user-center/?recruitment=<?=$id_dl?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 apply-joy"><?=__('投递简历', 'young-bird')?></a>
           <?php endif; endif; ?>
         </div>
         <div class="col-md-6 news-detail-ad">

@@ -31,8 +31,28 @@ if (isset($_POST['submit'])) {
 
   $avatar = wp_handle_upload($_FILES['avatar'], array ('test_form' => false));
 
+  if (isset($_FILES['resume'])) {
+    $resume = wp_handle_upload($_FILES['resume'], array ('test_form' => false));
+  }
+
   if ($avatar['url']) {
     update_user_meta($user->ID, 'avatar', $avatar['url']);
+  }
+
+  IF (isset($resume) && $resume['url']) {
+    update_user_meta($user->ID, 'resume', $resume['url']);
+  }
+
+  $user = wp_get_current_user();
+
+  wp_mail(get_field('recruitment_email', $_GET['recruitment']),
+    '简历投递 - ' . $user->display_name,
+    '<a href="' . get_user_meta($user->ID, 'resume', true) . '">简历下载</a>',
+    array('Content-Type: text/html; charset=UTF-8')
+  );
+
+  if (isset($_GET['recruitment'])) {
+    header('Location: ' . get_the_permalink($_GET['recruitment'])); exit;
   }
 
   header('Location: ' . get_the_permalink()); exit;
@@ -62,7 +82,11 @@ else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-help-center.jpg) center center / cover no-repeat">
       <div class="container">
+        <?php if (isset($_GET['recruitment'])): ?>
+        <h1>_投递简历 <br>JOB APPLICATION</h1>
+        <?php else: ?>
         <h1>_用户中心 <br>USER CENTER</h1>
+        <?php endif; ?>
       </div>
     </div>
     <!-- Menu -->
@@ -175,6 +199,23 @@ else: ?>
             </div>
           </div>
         </div>
+        <?php if (isset($_GET['recruitment'])): ?>
+        <div class="row mx-auto">
+          <div class="input-group input-group-lg mb-3">
+            <div class="custom-file">
+              <!-- En版请使用lang="en" -->
+              <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
+              <label class="custom-file-label" for="resume"><?=__('点击上传详细简历', 'young-bird')?></label>
+            </div>
+            <!-- 显示下载链接 -->
+            <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
+              <div class="input-group-append">
+                <a class="btn btn-outline-secondary" href="<?=$resume?>" style="height: 4rem; font-size: 1rem; line-height: 2rem;"><?=__('查看', 'young-bird')?>/<?=__('下载', 'young-bird')?></a>
+              </div>
+            <?php endif; ?>
+          </div>
+        </div>
+        <?php endif; ?>
         <div class="row mx-auto justify-content-between">
           <div class="d-flex justify-content-end align-items-end third-party">
             <?php if(!get_user_meta($user->ID, 'wx_unionid', true) && pll_current_language() === 'zh'): ?>
@@ -184,7 +225,11 @@ else: ?>
             </div>
             <?php endif; ?>
           </div>
+          <?php if (isset($_GET['recruitment'])): ?>
+          <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('投递', 'young-bird')?></button>
+          <?php else: ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>
+          <?php endif; ?>
         </div>
       </form>
     </div>
