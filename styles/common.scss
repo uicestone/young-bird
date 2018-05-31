@@ -726,6 +726,9 @@ a.link {
   .item-review {
     border: none;
     cursor: pointer;
+    .card-img-container {
+      height: 220px;
+    }
     .card-img-top {
       border-radius: 0;
     }
@@ -1128,6 +1131,13 @@ a.link {
       padding: rem(15);
     }
   }
+  .review-list {
+    .item-review {
+      .card-img-container {
+        height: 250px;
+      }
+    }
+  }
 }
 
 @include media-breakpoint-down(sm) {
@@ -1337,6 +1347,13 @@ a.link {
     .card-body {
       font-size: $font-size-xs;
       padding: rem(15);
+    }
+  }
+  .review-list {
+    .item-review {
+      .card-img-container {
+        height: auto;
+      }
     }
   }
 }

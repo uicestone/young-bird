@@ -41,8 +41,8 @@ get_header(); ?>
         <?php while (have_posts()): the_post(); ?>
         <div class="col-sm-12 col-md-8 col-lg-2-4 mb-4">
           <div class="card mb-4 item-review" id="yb<?=$post->post_name?>" data-url="<?=get_the_permalink($post->ID)?>">
-            <div>
-            <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
+            <div class="card-img-container">
+              <?php the_post_thumbnail('medium-sq', array ('class' => 'card-img-top')); ?>
             </div>
             <div class="card-body mt-4">
               <h5 class="color-black text-center">YB<?=strtoupper($post->post_name)?></h5>
