@@ -1,5 +1,8 @@
 <?php
 redirect_login();
+if (!current_user_can('judge_works') && !current_user_can('edit_post')) {
+  header('HTTP/1.0 403 Forbidden'); echo 'Only judges and administrators are permitted.'; exit;
+}
 $event_id = $_GET['event_id'];
 $event_status = get_post_meta($event_id, 'status', true);
 get_header(); ?>
