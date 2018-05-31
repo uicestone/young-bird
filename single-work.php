@@ -9,7 +9,7 @@ $event_id = get_post_meta(get_the_ID(), 'event', true);
 $event_status = get_post_meta($event_id, 'status', true);
 $description = get_post_meta(get_the_ID(), 'description', true);
 $images = get_post_meta(get_the_ID(), 'images');
-$editable = $post->post_author == get_current_user_id();
+$editable = ($post->post_author == get_current_user_id() && in_array($event_status, array('started', 'ending'))) || current_user_can('edit_user');
 $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
 if ($event_status === 'second_judging') {
@@ -19,8 +19,8 @@ if ($event_status === 'second_judging') {
   )))[0];
   $second_judging_work_ids = get_post_meta($rank->ID, 'works', true);
 
-  if (!in_array(get_the_ID(), $second_judging_work_ids)) {
-    $editable = false;
+  if (in_array(get_the_ID(), $second_judging_work_ids) && $post->post_author == get_current_user_id()) {
+    $editable = true;
   }
 }
 
