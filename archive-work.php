@@ -25,14 +25,16 @@ get_header(); ?>
         <?=__('作品列表', 'young-bird')?> /
         <small>
           <?=$wp_query->found_posts . ' ' . __('个作品', 'young-bird')?> /
-          <?php if (current_user_can('edit_user') && $_GET['stage'] === 'rating'):
-            $meta_db_result_score = $wpdb->get_results("select meta_value from wp_postmeta where meta_key = 'score'");
-            $works_scores = array_map('unserialize', array_column($meta_db_result_score, 'meta_value'));
-            $works_score_count = array_map('count', array_column($meta_db_result_score, 'meta_value'));
-            $total_score_count = array_sum($works_score_count);
-            $judge_count = count(get_field('judges', $event_id)); ?>
+          <?php if (current_user_can('edit_user')): // administrators
+            if ($_GET['stage'] === 'rating'):
+              $total_score_count = $wpdb->get_var("select count(*) from {$wpdb->postmeta} where meta_key like 'score_%' and post_id in (select ID from {$wpdb->posts} where post_type = 'work' and ID in (select post_id from {$wpdb->postmeta} where meta_key = 'event' and meta_value = '{$event_id}'));");
+              $judge_count = count(get_field('judges', $event_id)); ?>
           <?=__('评委评分进度：', 'young-bird')?><?=round($total_score_count/($judge_count * $wp_query->found_posts) * 100, 1)?>%
-          <?php else: ?>
+          <?php else:
+              $total_pass_count = $wpdb->get_var("select count(*) from {$wpdb->postmeta} where meta_key = 'status' and meta_value = '1' and post_id in (select ID from {$wpdb->posts} where post_type = 'work' and ID in (select post_id from {$wpdb->postmeta} where meta_key = 'event' and meta_value = '{$event_id}'))");
+              ?>
+          <?=$total_pass_count . __('个入围', 'young-bird')?>
+          <?php endif; else: // judges ?>
           <?=count(get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
             array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
             array('key' => 'score_' . get_current_user_id(), 'compare' => 'EXISTS')
