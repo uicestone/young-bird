@@ -2,22 +2,6 @@
 
 $id_dl = pll_get_post(get_the_ID(), pll_default_language());
 
-if (isset($_POST['attend'])) {
-
-  redirect_login();
-
-  $attend = json_decode($_POST['attend']);
-
-  if ($attend) {
-    add_user_meta(get_current_user_id(), 'attend_activities', $id_dl);
-    send_message(get_current_user_id(), 'successfully-applied-for-this-activity');
-  } else {
-    delete_user_meta(get_current_user_id(), 'attend_activities', $id_dl);
-  }
-
-  exit;
-}
-
 if (isset($_POST['like'])) {
   redirect_login();
   $likes = get_post_meta($id_dl, 'likes', true);
@@ -75,7 +59,7 @@ get_header(); the_post(); ?>
           <?php if (get_field('attendable')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_activities') ?: array())): ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
           <?php else: ?>
-          <button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></button>
+          <a href="<?=site_url()?>/user-center/?attend-activity=<?=$id_dl?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('立即报名', 'young-bird')?></a>
           <?php endif; endif; ?>
           <?php if (get_field('recruitment')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'apply_jobs') ?: array())): ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已投递简历', 'young-bird')?></button>

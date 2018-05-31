@@ -165,23 +165,6 @@ YB.Participate = (function($) {
 				form.find('.team').eq(_index).removeClass('d-none').siblings('.team').addClass('d-none');
 			}
 		})
-
-		// 活动报名（非竞赛）
-		$('.attend-activity').on('click', function () {
-			YB.Util.confirm({
-        title     : locale.confirm_participate,
-        callback  : function (confirm) {
-        	if (!confirm) return;
-					$.post(window.location.href, {attend:true}).done(function () {
-						window.location.reload();
-					}).fail(function (response) {
-            if (response.status === 401) {
-              window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
-            }
-          });
-        }
-      });
-    });
 	}
 
 	return {

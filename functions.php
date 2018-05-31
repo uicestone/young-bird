@@ -940,7 +940,7 @@ add_action('admin_init', function () {
       $writer->writeSheetRow('选手', $row);
     }
 
-    $filename = __(isset($event) ? ('选手 ' . $event->post_title) : '所有用户', 'young-bird') . '.xlsx';
+    $filename = __(isset($event) ? ('选手 ' . $event->post_title) : '所有选手', 'young-bird') . '.xlsx';
     $path = wp_upload_dir()['path']  . '/' . $filename;
     $writer->writeToFile($path);
     header('Content-Disposition: attachment; filename=' . $filename );

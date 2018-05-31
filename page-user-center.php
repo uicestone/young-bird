@@ -60,8 +60,10 @@ if (isset($_POST['submit'])) {
   $user = wp_get_current_user();
 
   if (isset($_GET['recruitment'])) {
+    $recruitment_id = $_GET['recruitment'];
+    $recruitment_id_dl = pll_get_post($recruitment_id, pll_default_language());
 
-    $message = '<p>' . sprintf(__('您在 Young Bird Plan 的招聘文章《%s》收到了一封简历投递：', 'young-bird'), get_the_title($_GET['recruitment'])) . '</p>';
+    $message = '<p>' . sprintf(__('您在 Young Bird Plan 的招聘文章《%s》收到了一封简历投递：', 'young-bird'), get_the_title($recruitment_id)) . '</p>';
     $message .= '<ul><li>' . __('姓名', 'young-bird') . "\t" . (get_user_meta($user->ID, 'name', true) ?: $user->display_name) . '</li><li>' . __('邮箱', 'young-bird') . "\t" . $user->user_email . '</li>';
 
     foreach ($sign_up_fields_label as $field => $label) {
@@ -76,14 +78,22 @@ if (isset($_POST['submit'])) {
       $message .= '<p>' . __('附件：', 'young-bird') . '<a href="' . get_user_meta($user->ID, 'resume', true) . '">' . __('简历下载', 'young-bird') . '</a></p>';
     }
 
-    wp_mail(get_field('recruitment_email', $_GET['recruitment']),
+    wp_mail(get_field('recruitment_email', $recruitment_id_dl),
       __('简历投递', 'young-bird') . ' - ' . (get_user_meta($user->ID, 'name', true) ?: $user->display_name),
       $message,
       array('Content-Type: text/html; charset=UTF-8')
     );
 
-    add_user_meta($user->ID, 'apply_jobs', $_GET['recruitment']);
-    header('Location: ' . get_the_permalink($_GET['recruitment'])); exit;
+    add_user_meta($user->ID, 'apply_jobs', $recruitment_id_dl);
+    header('Location: ' . get_the_permalink($recruitment_id)); exit;
+  }
+
+  elseif (isset($_GET['attend-activity'])) {
+    $activity_id = $_GET['attend-activity'];
+    $activity_id_dl = pll_get_post($activity_id, pll_default_language());
+    add_user_meta($user->ID, 'attend_activities', $activity_id_dl);
+    send_message($user->ID, 'successfully-applied-for-this-activity');
+    header('Location: ' . get_the_permalink($activity_id)); exit;
   }
 
   header('Location: ' . get_the_permalink()); exit;
@@ -115,13 +125,15 @@ else: ?>
       <div class="container">
         <?php if (isset($_GET['recruitment'])): ?>
         <h1>_投递简历 <br>JOB APPLICATION</h1>
+        <?php elseif (isset($_GET['attend-activity'])): ?>
+        <h1>_活动报名 <br>ACTIVITY REGISTER</h1>
         <?php else: ?>
         <h1>_用户中心 <br>USER CENTER</h1>
         <?php endif; ?>
       </div>
     </div>
     <!-- Menu -->
-    <?php if (empty($_GET['recruitment'])): ?>
+    <?php if (empty($_GET['recruitment']) && empty($_GET['attend-activity'])): ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
@@ -253,13 +265,15 @@ else: ?>
           <div class="d-flex justify-content-end align-items-end third-party">
             <?php if(!get_user_meta($user->ID, 'wx_unionid', true) && pll_current_language() === 'zh'): ?>
             <div class="d-lg-flex align-items-end d-none">
-              <span>链接到：</span>
+              <span><?=__('链接到：', 'young-bird')?></span>
               <a href="<?=$wx->generate_web_qr_oauth_url(pll_home_url() . 'user-center/')?>" class="button-share-item button-weixin"></a>
             </div>
             <?php endif; ?>
           </div>
           <?php if (isset($_GET['recruitment'])): ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('投递', 'young-bird')?></button>
+          <?php elseif (isset($_GET['attend-activity'])): ?>
+          <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('报名', 'young-bird')?></button>
           <?php else: ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>
           <?php endif; ?>
