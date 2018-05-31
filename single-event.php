@@ -325,24 +325,7 @@ if (isset($_GET['create-work'])) {
   $form_error = $e->getMessage();
 }
 
-$group = get_posts(array (
-  'post_type' => 'group',
-  'lang' => '',
-  'meta_query' => array (
-    array ('key' => 'members', 'value' => $user->ID),
-    array ('key' => 'event', 'value' => $id_dl)
-  )
-))[0];
-$group_pending = get_posts(array (
-  'post_type' => 'group',
-  'lang' => '',
-  'meta_query' => array (
-    array ('key' => 'members_pending', 'value' => $user->ID),
-    array ('key' => 'event', 'value' => $id_dl)
-  )
-))[0];
-
-$group = $group ?: $group_pending;
+$group = get_event_group($id_dl, $user->ID);
 
 if ($group) {
   $im_leader = $group->post_author == $user->ID;
@@ -399,9 +382,9 @@ else:
           </li>
           <?php endif; ?>
           <li class="active">
-            <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): ?>
+            <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): // 管理员查看已结束竞赛=入围评审 ?>
             <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=$id_dl?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
-            <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('starting', 'started', 'ending', 'ended'))): ?>
+            <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('started', 'ending', 'ended'))): // 管理员查看正在进行行竞赛=催稿 ?>
             <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array($id_dl, get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>

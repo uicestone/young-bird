@@ -777,17 +777,44 @@ add_filter('lostpassword_url', function ($default_url) {
   }
 });
 
+/**
+ * @param $event_id string Event ID of any language version
+ * @param null $user_id
+ * @return mixed
+ */
 function get_event_group ($event_id, $user_id = null) {
   if (!$user_id) {
     $user_id = get_current_user_id();
   }
 
-  return get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
-    array('key' => 'event', 'value' => $event_id),
+  $event_id_dl = pll_get_post($event_id, pll_default_language());
+
+  $group = get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
+    array('key' => 'event', 'value' => $event_id_dl),
     array('key' => 'members', 'value' => $user_id),
   )))[0];
+
+  if (!$group) {
+    $group = get_posts(array (
+      'post_type' => 'group',
+      'lang' => '',
+      'meta_query' => array (
+        array ('key' => 'event', 'value' => $event_id_dl),
+        array ('key' => 'members_pending', 'value' => $user_id)
+      )
+    ))[0];
+  }
+
+  return $group;
 }
 
+/**
+ * @param $event_id string Event id of any language version
+ * @param null $user_id string search work of user (single or group)
+ * @param null $group_id string  search work of group
+ * @param bool $create create work before return
+ * @return null|WP_Post group
+ */
 function get_event_work ($event_id, $user_id = null, $group_id = null, $create = false) {
   if (!$user_id) {
     $user_id = get_current_user_id();
@@ -795,15 +822,15 @@ function get_event_work ($event_id, $user_id = null, $group_id = null, $create =
 
   $event_id_dl = pll_get_post($event_id, pll_default_language());
 
-  // find my group in this event
-  $event_group = get_posts(array('post_type' => 'group', 'lang' => '', 'meta_query' => array(
-    array('key' => 'members', 'value' => $user_id),
-    array('key' => 'event', 'value' => $event_id_dl)
-  )))[0];
+  if ($user_id) {
+    // find my group in this event
+    $group = get_event_group($event_id, $user_id);
+    $group_id = $group->ID;
+  }
 
-  if ($event_group) {
+  if ($group_id) {
     // find work of this group
-    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => $event_group->ID))[0];
+    $work = get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => $group_id))[0];
   } else {
     // find work of this author
     $work = get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'meta_key' => 'event', 'meta_value' => $event_id_dl))[0];
