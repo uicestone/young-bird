@@ -2,20 +2,22 @@
 redirect_login();
 $user = wp_get_current_user();
 
-$sign_up_fields = array ('mobile', 'identity', 'birthday', 'constellation', 'hobby', 'address', 'company', 'department', 'title', 'id_card', 'school', 'major');
+$sign_up_fields = array ('mobile', 'identity', 'country', 'city', 'school', 'major', 'company', 'department', 'title', 'id_card', 'birthday', 'constellation', 'hobby', 'address');
 $sign_up_fields_label = array (
   'mobile' => __('手机', 'young-bird'),
   'identity' => __('身份', 'young-bird'),
-  'birthday' => __('生日', 'young-bird'),
-  'constellation' => __('星座', 'young-bird'),
-  'hobby' => __('爱好', 'young-bird'),
-  'address' => __('地址', 'young-bird'),
+  'country' => __('国家', 'young-bird'),
+  'city' => __('城市', 'young-bird'),
+  'school' => __('学校', 'young-bird'),
+  'major' => __('专业', 'young-bird'),
   'company' => __('公司', 'young-bird'),
   'department' => __('部门', 'young-bird'),
   'title' => __('职位', 'young-bird'),
   'id_card' => __('身份证号', 'young-bird'),
-  'school' => __('学校', 'young-bird'),
-  'major' => __('专业', 'young-bird')
+  'birthday' => __('生日', 'young-bird'),
+  'constellation' => __('星座', 'young-bird'),
+  'address' => __('地址', 'young-bird'),
+  'hobby' => __('爱好', 'young-bird'),
 );
 foreach ($sign_up_fields as $field) {
   $$field =  get_user_meta($user->ID, $field, true);
@@ -175,72 +177,94 @@ else: ?>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
+                    <select name="identity" required class="form-control custom-select">
+                      <option<?=!$identity ? ' selected' : ''?> disabled><?=__('状态', 'young-bird')?></option>
+                      <option<?='studying' === $identity ? ' selected' : ''?> value="studying"><?=__('学生', 'young-bird')?></option>
+                      <option<?='working' === $identity ? ' selected' : ''?> value="working"><?=__('在职', 'young-bird')?></option>
+                    </select>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="identity" value="<?=$identity?>" class="form-control" placeholder="<?=$sign_up_fields_label['identity']?>">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="<?=$sign_up_fields_label['constellation']?>">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="<?=$sign_up_fields_label['address']?>">
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=$sign_up_fields_label['department']?>">
               </div>
             </div>
           </div>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=$sign_up_fields_label['identity']?>/<?=__('护照号', 'young-bird')?>">
+                <input type="tel" name="mobile" value="<?=$mobile?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
+                <input type="email" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=$sign_up_fields_label['birthday']?>">
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="form-group col-12">
+                <div class="input-group input-group-lg">
+                  <input type="text" name="country" value="<?=$country?>" class="form-control" placeholder="<?=$sign_up_fields_label['country']?>">
+                </div>
+              </div>
+              <div class="form-group col-12">
+                <div class="input-group input-group-lg">
+                  <input type="text" name="city" value="<?=$city?>" class="form-control" placeholder="<?=$sign_up_fields_label['city']?>">
+                </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
+          </div>
+          <div class="form-group col-12" data-hide-on="working">
+            <div class="input-group input-group-lg">
+              <input type="text" name="school" value="<?=$school?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
+            </div>
+          </div>
+          <div class="form-group col-12" data-hide-on="working">
+            <div class="input-group input-group-lg">
+              <input type="text" name="major" value="<?=$major?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
+            </div>
+          </div>
+          <div class="form-group col-12" data-hide-on="studying">
+            <div class="input-group input-group-lg">
+              <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
+            </div>
+          </div>
+          <div class="col-12" data-hide-on="studying">
+            <div class="row">
+              <div class="form-group col-12">
+                <div class="input-group input-group-lg">
+                  <input type="text" name="department" value="<?=$department?>" class="form-control" placeholder="<?=$sign_up_fields_label['department']?>">
+                </div>
+              </div>
+              <div class="form-group col-12">
+                <div class="input-group input-group-lg">
+                  <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="<?=$sign_up_fields_label['title']?>">
+                </div>
               </div>
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="<?=$sign_up_fields_label['hobby']?>">
-              </div>
+          </div>
+          <div class="form-group col-12">
+            <div class="input-group input-group-lg">
+              <input type="text" name="id_card" value="<?=$id_card?>" class="form-control" placeholder="<?=$sign_up_fields_label['id_card']?>/<?=__('护照号', 'young-bird')?>">
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" name="company" value="<?=$company?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
-              </div>
+          </div>
+          <div class="form-group col-12">
+            <div class="input-group input-group-lg">
+              <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=$sign_up_fields_label['birthday']?>">
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-lg">
-                <input type="text" title="title" value="<?=$title?>" class="form-control" placeholder="<?=$sign_up_fields_label['title']?>">
-              </div>
+          </div>
+          <div class="form-group col-12">
+            <div class="input-group input-group-lg">
+              <input type="text" name="constellation" value="<?=$constellation?>" class="form-control" placeholder="<?=$sign_up_fields_label['constellation']?>">
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <div class="input-group input-group-lg">
+              <input type="text" name="hobby" value="<?=$hobby?>" class="form-control" placeholder="<?=$sign_up_fields_label['hobby']?>">
+            </div>
+          </div>
+          <div class="form-group col-12">
+            <div class="input-group input-group-lg">
+              <input type="text" name="address" value="<?=$address?>" class="form-control" placeholder="<?=$sign_up_fields_label['address']?>">
             </div>
           </div>
         </div>
