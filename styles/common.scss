@@ -670,7 +670,7 @@ a.link {
 }
 
 .user-center-body {
-  >form >.row >.col-12 {
+  >form .row >.col-12 {
     &:nth-child(odd) {
       padding-right: $form-group-margin-bottom/2;
     }
