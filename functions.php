@@ -243,7 +243,6 @@ add_action('wp', function() {
   wp_register_script('barrating', get_stylesheet_directory_uri() . '/js/jquery.barrating.min.js', array('jquery'), false, true);
   wp_register_script('popper', get_stylesheet_directory_uri() . '/js/popper.min.js', array('jquery'), false, true);
   wp_register_script('hshare', get_stylesheet_directory_uri() . '/js/hshare.min.js', array('jquery'), false, true);
-
   wp_register_script('fontawesome', get_stylesheet_directory_uri() . '/js/fontawesome-all.js', array(), '5.0.9', true);
   wp_register_script('wx', 'https://res.wx.qq.com/open/js/jweixin-1.2.0.js', array(), '1.2.0', true);
   wp_register_script('main', get_stylesheet_directory_uri() . '/js/main.js', array('jquery', 'fancybox', 'html.sortable', 'barrating', 'carousel', 'hshare'), '1.0.0', true);
@@ -280,7 +279,9 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('typeahead');
   wp_enqueue_script('popper');
-  // wp_enqueue_script('fontawesome');
+  if (strpos($_SERVER['HTTP_USER_AGENT'], ' SE 2.X ') !== false) {
+    wp_enqueue_script('fontawesome');
+  }
   wp_enqueue_script('hshare');
   if (class_exists('WeixinAPI') && WeixinAPI::in_wx()) {
     wp_enqueue_script('wx');
