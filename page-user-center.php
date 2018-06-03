@@ -5,6 +5,7 @@ $user = wp_get_current_user();
 $sign_up_fields_label = array (
   'mobile' => __('手机', 'young-bird'),
   'identity' => __('身份', 'young-bird'),
+  'sex' => __('性别', 'young-bird'),
   'country' => __('国家', 'young-bird'),
   'city' => __('城市', 'young-bird'),
   'school' => __('学校', 'young-bird'),
@@ -194,13 +195,28 @@ else: ?>
                     <input type="text" name="user_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-lg">
-                    <select name="identity" required class="form-control custom-select">
-                      <option<?=!$form_values['identity'] ? ' selected' : ''?> disabled><?=__('状态', 'young-bird')?></option>
-                      <option<?='studying' === $form_values['identity'] ? ' selected' : ''?> value="studying"><?=__('学生', 'young-bird')?></option>
-                      <option<?='working' === $form_values['identity'] ? ' selected' : ''?> value="working"><?=__('在职', 'young-bird')?></option>
-                    </select>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-lg">
+                        <select name="identity" required class="form-control custom-select">
+                          <option<?=!$form_values['identity'] ? ' selected' : ''?> disabled><?=__('状态', 'young-bird')?></option>
+                          <option<?='studying' === $form_values['identity'] ? ' selected' : ''?> value="studying"><?=__('学生', 'young-bird')?></option>
+                          <option<?='working' === $form_values['identity'] ? ' selected' : ''?> value="working"><?=__('在职', 'young-bird')?></option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <div class="input-group input-group-lg">
+                        <select name="sex" required class="form-control custom-select">
+                          <option<?=!$form_values['sex'] ? ' selected' : ''?> disabled><?=__('性别', 'young-bird')?></option>
+                          <option<?='studying' === $form_values['sex'] ? ' selected' : ''?> value="male"><?=__('男', 'young-bird')?></option>
+                          <option<?='working' === $form_values['sex'] ? ' selected' : ''?> value="female"><?=__('女', 'young-bird')?></option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
