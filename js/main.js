@@ -860,10 +860,16 @@ YB.User = (function($){
 			}
 		});
 
-		// page.on('change', ':input[name="identity"]', function () {
-		// 	var value = $(this).val();
-		//
-		// });
+		page.on('change', ':input[name="identity"]', function () {
+			var identity = $(this).val();
+			var otherIdentity = identity === 'studying' ? 'working' : 'studying';
+			page.find('.hide-on-' + identity).hide();
+			page.find('.hide-on-' + otherIdentity).show();
+		});
+
+		if (identityContainer.val()) {
+			identityContainer.trigger('change');
+		}
 
 		page.on('change', ':input[name="id_card"]', function () {
 			var idNumber = $(this).val();
