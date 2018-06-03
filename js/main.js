@@ -785,6 +785,32 @@ YB.User = (function($){
         $.get(urlPath + '?send_code_to_email=' + $(this).data('email'));
 			}
 		});
+
+		page.on('change', ':input[name="id_card"]', function () {
+			var idNumber = $(this).val();
+			if (idNumber.length === 18) {
+				var birthYearMonthDay = [idNumber.substring(6, 10), idNumber.substring(10, 12), idNumber.substring(12, 14)];
+				var birthday = birthYearMonthDay.join('-');
+				page.find(':input[name="birthday"]').val(birthday).trigger('change');
+			}
+		});
+
+		page.on('change', ':input[name="birthday"]', function () {
+			var firstDays = page.find(':input[name="constellation"]').data('first-days');
+			var birthMonthDay = $(':input[name="birthday"]').val().substring(5, 10);
+			var constellation;
+			for (var day in firstDays) {
+				if (birthMonthDay >= day) {
+					constellation = firstDays[day];
+				}
+			}
+
+			if (!constellation) {
+				constellation = firstDays[day];
+			}
+
+			page.find(':input[name="constellation"]').val(constellation);
+		});
 	}
 
 	return {
