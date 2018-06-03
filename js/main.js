@@ -918,6 +918,7 @@ YB.User = (function($){
 			},
 			{
 				name: 'countries',
+				limit: 20,
 				source: countryMatcher(locationsData)
 			})
 			.data('locations-data', locationsData);
@@ -937,6 +938,7 @@ YB.User = (function($){
 			},
 			{
 				name: 'cities',
+				limit: 20,
 				source: cityMatcher(locationsData, currentCountry)
 			});
 	}
