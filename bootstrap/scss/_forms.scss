@@ -39,6 +39,7 @@
   // Placeholder
   &::placeholder {
     color: $input-placeholder-color;
+    font-weight: $font-weight-light;
     // Override Firefox's unusual default opacity; see https://github.com/twbs/bootstrap/pull/11526.
     opacity: 1;
   }
