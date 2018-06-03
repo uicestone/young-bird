@@ -413,6 +413,16 @@ YB.Common = (function($){
 	function init() {
 		var shareIconUrl = YB_SOURCE_PATH + 'images/share_icon.png';
 		var desc = $('meta[name="description"]').attr('content');
+		var datepicker = $(':input.datepicker');
+		var windowHeight = $(window).height();
+		var scrollToTopButton = $('.scroll-to-top-btn');
+		datepicker.datepicker({
+			format: 'yyyy-mm-dd',
+			autoclose: true,
+			defaultViewDate: { year: 1990 },
+			language: locale.__ === 'zh' ? 'zh-CN' : 'en'
+		});
+
 		$('.share-container').hshare({
 			size: 'large',
 			platforms: [
@@ -424,9 +434,6 @@ YB.Common = (function($){
 			],
 			// more: true
 		});
-		var windowHeight = $(window).height();
-		var scrollToTopButton = $('.scroll-to-top-btn');
-
 		bindEvent(windowHeight, scrollToTopButton);
 		if (typeof wx !== 'undefined') {
 			$.get('/wx-js-config/', function (data) {
@@ -725,6 +732,7 @@ YB.User = (function($){
 	var mobileCodeContainer = $('.verify-code.login-is-mobile');
 	var emailCodeContainer = $('.verify-code.login-is-email');
 	var countryContainer = $(':input[name="country"]');
+	var identityContainer = page.find(':input[name="identity"]');
 
 	var countryMatcher = function(data) {
 		return function findMatches(q, cb) {
@@ -870,6 +878,11 @@ YB.User = (function($){
 			var firstDays = page.find(':input[name="constellation"]').data('first-days');
 			var birthMonthDay = $(':input[name="birthday"]').val().substring(5, 10);
 			var constellation;
+
+			if (!birthMonthDay) {
+				return;
+			}
+
 			for (var day in firstDays) {
 				if (birthMonthDay >= day) {
 					constellation = firstDays[day];

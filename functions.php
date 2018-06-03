@@ -233,9 +233,12 @@ add_action('wp', function() {
   wp_register_style('fancybox', get_stylesheet_directory_uri() . '/css/jquery.fancybox.min.css', array(), '5.0.4');
   wp_register_style('carousel', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css', array(), '2.2.0');
   wp_register_style('hshare', get_stylesheet_directory_uri() . '/css/hshare.min.css');
+  wp_register_style('bootstrap-datepicker', get_stylesheet_directory_uri() . '/css/bootstrap-datepicker.min.css');
 
   wp_register_script('jquery', get_stylesheet_directory_uri() . '/js/jquery-3.2.1.slim.min.js', array(), '3.2.1', true);
   wp_register_script('bootstrap', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.0.0-beta.3', true);
+  wp_register_script('bootstrap-datepicker', get_stylesheet_directory_uri() . '/js/bootstrap-datepicker.min.js', array('bootstrap'), '1.8.0', true);
+  wp_register_script('bootstrap-datepicker.zh-CN', get_stylesheet_directory_uri() . '/js/bootstrap-datepicker.zh-CN.min.js', array('bootstrap-datepicker'), '1.8.0', true);
   wp_register_script('typeahead', get_stylesheet_directory_uri() . '/js/typeahead.jquery.min.js', array('jquery'), '0.11.1', true);
   wp_register_script('html.sortable', get_stylesheet_directory_uri() . '/js/html.sortable.min.js', array(), false, true);
   wp_register_script('fancybox', get_stylesheet_directory_uri() . '/js/jquery.fancybox.min.js', array(), false, true);
@@ -250,6 +253,7 @@ add_action('wp', function() {
 
   // Localize the script with new data
   $translation_array = array(
+    '__' => pll_current_language(),
     'ok' => __('确定', 'young-bird'),
     'cancel' => __('取消', 'young-bird'),
     'confirm_role' => __('是否确认您的参赛身份，确认后将不能变更', 'young-bird'),
@@ -275,8 +279,11 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_style('fancybox');
   wp_enqueue_style('carousel');
   wp_enqueue_style('hshare');
+  wp_enqueue_style('bootstrap-datepicker');
 
   wp_enqueue_script('bootstrap');
+  wp_enqueue_script('bootstrap-datepicker');
+  wp_enqueue_script('bootstrap-datepicker.zh-CN');
   wp_enqueue_script('typeahead');
   wp_enqueue_script('popper');
   if (strpos($_SERVER['HTTP_USER_AGENT'], ' SE 2.X ') !== false) {

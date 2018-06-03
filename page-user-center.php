@@ -218,22 +218,22 @@ else: ?>
               </div>
             </div>
           </div>
-          <div class="form-group col-12" data-hide-on="working">
+          <div class="form-group col-12 hide-on-working">
             <div class="input-group input-group-lg">
               <input type="text" name="school" value="<?=$form_values['school']?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
             </div>
           </div>
-          <div class="form-group col-12" data-hide-on="working">
+          <div class="form-group col-12 hide-on-working">
             <div class="input-group input-group-lg">
               <input type="text" name="major" value="<?=$form_values['major']?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
             </div>
           </div>
-          <div class="form-group col-12" data-hide-on="studying">
+          <div class="form-group col-12 hide-on-studying">
             <div class="input-group input-group-lg">
               <input type="text" name="company" value="<?=$form_values['company']?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
             </div>
           </div>
-          <div class="col-12" data-hide-on="studying">
+          <div class="col-12 hide-on-studying">
             <div class="row">
               <div class="form-group col-12">
                 <div class="input-group input-group-lg">
@@ -254,7 +254,7 @@ else: ?>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="birthday" value="<?=$form_values['birthday']?>" class="form-control" placeholder="<?=$sign_up_fields_label['birthday']?>">
+              <input type="text" name="birthday" value="<?=$form_values['birthday']?>" class="form-control datepicker" placeholder="<?=$sign_up_fields_label['birthday']?>" autocomplete="off">
             </div>
           </div>
           <div class="form-group col-12">

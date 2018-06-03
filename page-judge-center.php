@@ -116,7 +116,7 @@ else: ?>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日', 'young-bird')?>">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control datepicker" placeholder="<?=__('生日', 'young-bird')?>" autocomplete="off">
               </div>
             </div>
             <div class="form-group">

@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" required name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('出生日期', 'young-bird')?>">
+                <input type="text" required name="birthday" value="<?=$birthday?>" class="form-control datepicker" placeholder="<?=__('出生日期', 'young-bird')?>" autocomplete="off">
               </div>
             </div>
             <div class="form-group">

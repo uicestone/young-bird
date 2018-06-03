@@ -91,7 +91,7 @@ get_header();
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control" placeholder="<?=__('生日信息', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="text" name="birthday" value="<?=$birthday?>" class="form-control datepicker" placeholder="<?=__('生日信息', 'young-bird')?>（<?=__('选填', 'young-bird')?>）" autocomplete="off">
               </div>
             </div>
             <p class="text-right">
