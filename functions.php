@@ -916,6 +916,7 @@ add_action('admin_init', function () {
         $user->user_email,
         get_user_meta($user->ID, 'id_card', true),
         get_user_meta($user->ID, 'identity', true),
+        get_user_meta($user->ID, 'sex', true),
         get_user_meta($user->ID, 'birthday', true),
         get_user_meta($user->ID, 'country', true),
         get_user_meta($user->ID, 'city', true),
