@@ -422,7 +422,7 @@ YB.Common = (function($){
 				{name: 'facebook'},
 				{name: 'twitter'}
 			],
-			more: true
+			// more: true
 		});
 		var windowHeight = $(window).height();
 		var scrollToTopButton = $('.scroll-to-top-btn');
