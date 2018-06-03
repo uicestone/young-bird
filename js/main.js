@@ -724,6 +724,72 @@ YB.User = (function($){
 	var page = $('.user-center-body');
 	var mobileCodeContainer = $('.verify-code.login-is-mobile');
 	var emailCodeContainer = $('.verify-code.login-is-email');
+	var countryContainer = page.find(':input[name="country"]');
+
+	var countryMatcher = function(data) {
+		return function findMatches(q, cb) {
+			var matches, substringRegex;
+
+			matches = [];
+
+			substringRegex = new RegExp(q, 'i');
+
+			$.each(data, function(i, country) {
+				if (substringRegex.test(country.n)) {
+					matches.push(country.n);
+				}
+			});
+
+			cb(matches);
+		};
+	};
+
+	var cityMatcher = function(data, currentCountryName) {
+
+		var country;
+
+		for (var key in data) {
+			if (data[key].n === currentCountryName) {
+				country = data[key];
+				break;
+			}
+		}
+
+		if (!country) {
+			return;
+		}
+
+		return function findMatches(q, cb) {
+			var matches, substringRegex;
+
+			matches = [];
+
+			substringRegex = new RegExp(q, 'i');
+
+			$.each(country, function(i, state) {
+				if (typeof state !== 'object') return;
+
+				// 直辖市名称
+				if (['11', '12', '31', '50'].indexOf(i) > -1 && substringRegex.test(state.n)) {
+					matches.push(state.n);
+					return;
+				}
+
+				$.each(state, function(i, city) {
+					if (substringRegex.test(city.n)) {
+						matches.push(city.n);
+					}
+				});
+			});
+
+			cb(matches);
+		};
+	};
+
+	window.initLocation = function (data) {
+		enableCountryAutoComplete(data);
+	};
+
 	function init() {
 		bindEvent();
 	}
@@ -811,6 +877,44 @@ YB.User = (function($){
 
 			page.find(':input[name="constellation"]').val(constellation);
 		});
+
+		page.on('typeahead:select', ':input[name="country"]', function () {
+			$(':input[name="city"]').val('');
+			enableCityAutoComplete($(this).data('locations-data'), $(this).val())
+		});
+	}
+
+	function enableCountryAutoComplete(locationsData) {
+		countryContainer
+			.typeahead('destroy')
+			.typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 0
+			},
+			{
+				name: 'countries',
+				source: countryMatcher(locationsData)
+			})
+			.data('locations-data', locationsData);
+
+		if (countryContainer.val()) {
+			enableCityAutoComplete(locationsData, countryContainer.val());
+		}
+	}
+
+	function enableCityAutoComplete(locationsData, currentCountry) {
+		$(':input[name="city"]')
+			.typeahead('destroy')
+			.typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 0
+			},
+			{
+				name: 'cities',
+				source: cityMatcher(locationsData, currentCountry)
+			});
 	}
 
 	return {
