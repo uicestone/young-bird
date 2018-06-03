@@ -115,8 +115,8 @@ gulp.task('theme', () => {
 });
 
 const fonts = {
-  src        : dir.src + 'font/**/*',
-  build      : dir.build + 'font'
+  src        : dir.src + 'webfonts/*',
+  build      : dir.build + 'webfonts'
 };
 
 gulp.task('fonts', () => {

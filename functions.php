@@ -228,8 +228,8 @@ add_action('init', function () {
 add_action('wp', function() {
 
   wp_register_style('main', get_stylesheet_directory_uri() . '/css/main.css', array(), '1.0.0');
-  wp_register_style('fontawesome', get_stylesheet_directory_uri() . '/css/fontawesome.css', array(), '4.7.0');
-  wp_register_style('fontawesome.stars', get_stylesheet_directory_uri() . '/css/fontawesome-stars.css', array('fontawesome'), '4.7.0');
+  wp_register_style('fontawesome', get_stylesheet_directory_uri() . '/css/fontawesome-all.min.css', array(), '5.0.13');
+  wp_register_style('fontawesome.stars', get_stylesheet_directory_uri() . '/css/fontawesome-stars.css', array('fontawesome'), false);
   wp_register_style('fancybox', get_stylesheet_directory_uri() . '/css/jquery.fancybox.min.css', array(), '5.0.4');
   wp_register_style('carousel', get_stylesheet_directory_uri() . '/css/owl.carousel.min.css', array(), '2.2.0');
   wp_register_style('hshare', get_stylesheet_directory_uri() . '/css/hshare.min.css');
@@ -280,7 +280,7 @@ add_action('wp_enqueue_scripts', function(){
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('typeahead');
   wp_enqueue_script('popper');
-  wp_enqueue_script('fontawesome');
+  // wp_enqueue_script('fontawesome');
   wp_enqueue_script('hshare');
   if (class_exists('WeixinAPI') && WeixinAPI::in_wx()) {
     wp_enqueue_script('wx');

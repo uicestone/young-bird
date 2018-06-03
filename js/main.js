@@ -852,6 +852,11 @@ YB.User = (function($){
 			}
 		});
 
+		// page.on('change', ':input[name="identity"]', function () {
+		// 	var value = $(this).val();
+		//
+		// });
+
 		page.on('change', ':input[name="id_card"]', function () {
 			var idNumber = $(this).val();
 			if (idNumber.length === 18) {
