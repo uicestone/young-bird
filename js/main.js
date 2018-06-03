@@ -743,7 +743,7 @@ YB.User = (function($){
 			substringRegex = new RegExp(q, 'i');
 
 			$.each(data, function(i, country) {
-				if (substringRegex.test(country.n)) {
+				if (substringRegex.test(country.n) || substringRegex.test(i)) {
 					matches.push(country.n);
 				}
 			});
@@ -778,13 +778,13 @@ YB.User = (function($){
 				if (typeof state !== 'object') return;
 
 				// 直辖市名称
-				if (['11', '12', '31', '50'].indexOf(i) > -1 && substringRegex.test(state.n)) {
+				if (['11', '12', '31', '50'].indexOf(i) > -1 && (substringRegex.test(state.n) || substringRegex.test(i))) {
 					matches.push(state.n);
 					return;
 				}
 
 				$.each(state, function(i, city) {
-					if (substringRegex.test(city.n)) {
+					if (substringRegex.test(city.n) || substringRegex.test(i)) {
 						matches.push(city.n);
 					}
 				});
