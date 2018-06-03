@@ -724,7 +724,7 @@ YB.User = (function($){
 	var page = $('.user-center-body');
 	var mobileCodeContainer = $('.verify-code.login-is-mobile');
 	var emailCodeContainer = $('.verify-code.login-is-email');
-	var countryContainer = page.find(':input[name="country"]');
+	var countryContainer = $(':input[name="country"]');
 
 	var countryMatcher = function(data) {
 		return function findMatches(q, cb) {
@@ -756,7 +756,7 @@ YB.User = (function($){
 		}
 
 		if (!country) {
-			return;
+			return [];
 		}
 
 		return function findMatches(q, cb) {
@@ -878,7 +878,7 @@ YB.User = (function($){
 			page.find(':input[name="constellation"]').val(constellation);
 		});
 
-		page.on('typeahead:select', ':input[name="country"]', function () {
+		countryContainer.on('typeahead:select', function () {
 			$(':input[name="city"]').val('');
 			enableCityAutoComplete($(this).data('locations-data'), $(this).val())
 		});
