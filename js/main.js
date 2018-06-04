@@ -702,7 +702,7 @@ YB.Judge = (function($){
 			var copy = parent.clone();
 			var name = parent.find('input').eq(0).attr('name');
 
-			$(this).after('<i class="fa fa-minus-circle"></i>');
+			$(this).after('<i class="fas fa-minus-circle"></i>');
 			$(this).remove();
 			$(copy).find('input').val('');
 			$(copy).insertAfter(parent);
