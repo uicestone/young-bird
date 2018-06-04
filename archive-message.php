@@ -10,7 +10,7 @@ redirect_login(); get_header(); ?>
         <?php if (current_user_can('judge_works')): ?>
         <h1>_大咖中心 <br>JUDGE CENTER</h1>
         <?php else: ?>
-        <h1>_用户中心 <br>USER CENTER</h1>
+        <h1>_个人中心 <br>USER CENTER</h1>
         <?php endif; ?>
       </div>
     </div>
