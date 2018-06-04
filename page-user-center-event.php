@@ -92,7 +92,7 @@
             </a>
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
-                <h3><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
+                <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
                 <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
@@ -105,26 +105,11 @@
                 <div>
                   <?php $work = get_event_work($event->ID); ?>
                   <?php if ($work): ?>
-                  <button type="button" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('我的作品', 'young-bird')?></button>
-                  <div class="d-none" data-comments='<?=json_encode(get_post_meta($work->ID, 'comments', true), JSON_UNESCAPED_UNICODE)?>'>
-                    <a class="w-100" style="padding:10vh 20vw">
-                      <div class="row mx-auto justify-content-between">
-                        <h3><?=get_the_title($work->ID)?></h3>
-                        <h4>YB<?=strtoupper($work->post_name)?></h4>
-                      </div>
-                      <p class="mt-3">
-                        <?=get_post_meta($work->ID, 'description', true)?>
-                      </p>
-                    </a>
-                    <a href="<?=get_the_post_thumbnail_url($work->ID)?>">
-                      <?=get_the_post_thumbnail($work->ID, 'full')?>
-                    </a>
-                    <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
-                    <a href="<?=$image_url?>">
-                      <img src="" alt="" />
-                    </a>
-                    <?php endforeach; ?>
-                  </div>
+                  <?php   if ($group = get_event_group($event->ID, $user->ID)): ?>
+                  <a href="<?=get_permalink($group->ID)?>" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('组队中心', 'young-bird')?></a>
+                  <?php   elseif($work): ?>
+                  <a href="<?=get_permalink($work->ID)?>" class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('我的作品', 'young-bird')?></a>
+                  <?php   endif; ?>
                   <?php   if ($cert_participate = get_post_meta($work->ID, 'cert_participate', true)): ?>
                   <a href="<?=$cert_participate?>" target="_blank" download class="btn btn-outline-primary btn-preview ml-2 item-work-anchor"><?=__('参赛证明', 'young-bird')?></a>
                   <?php   endif; if ($cert_honor = get_post_meta($work->ID, 'cert_honor', true)): ?>

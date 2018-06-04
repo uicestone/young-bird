@@ -42,7 +42,7 @@
             <?=get_the_post_thumbnail($event->ID, 'vga', array('class' => 'card-img-top'))?>
             <div class="card-body mt-3">
               <div class="row justify-content-between mx-auto pt-3 mb-3">
-                <h3 style="height:3rem"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
+                <h3 style="height:3rem; width:100%"><?=get_the_title($event->ID)?><br><?=get_the_subtitle($event->ID)?></h3>
                 <strong><?=__('竞赛时间', 'young-bird')?>/<?=get_post_meta($event->ID, 'start_date', true)?> ~ <?=get_post_meta($event->ID, 'end_date', true)?></strong>
               </div>
               <div class="action row align-items-center justify-content-between">
