@@ -307,7 +307,8 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   } catch (Exception $e) {
     // 对于重复添加meta造成的数据库错误保持静默
   }
-  send_message($user->ID, 'successfully-applied-for-this-competition');
+  $work = get_event_work($id_dl, $user->ID, null, true);
+  send_message($user->ID, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
 }
 
 // 以个人名义参赛

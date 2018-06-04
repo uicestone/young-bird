@@ -858,7 +858,7 @@ function get_event_work ($event_id, $user_id = null, $group_id = null, $create =
     add_post_meta($work_id, 'event', $event_id_dl);
 
     if ($group_id) {
-      add_post_meta($work_id, 'group', get_the_ID());
+      add_post_meta($work_id, 'group', $group_id);
     }
 
     $work = get_post($work_id);
