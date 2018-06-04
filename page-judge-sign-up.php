@@ -76,7 +76,7 @@ get_header();
           <form method="post" accept-charset="UTF-8">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
+                <input type="text" name="judge_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>" required>
               </div>
             </div>
             <div class="form-group">
@@ -86,7 +86,7 @@ get_header();
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="text" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
+                <input type="email" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>（<?=__('选填', 'young-bird')?>）">
               </div>
             </div>
             <div class="form-group">
