@@ -876,7 +876,7 @@ function language_slug_suffix () {
   }
 }
 
-function array_insert(&$array, $position, $insert) {
+function array_insert (&$array, $position, $insert) {
   if (is_int($position)) {
     array_splice($array, $position, 0, $insert);
   } else {
@@ -887,6 +887,20 @@ function array_insert(&$array, $position, $insert) {
       array_slice($array, $pos)
     );
   }
+}
+
+function array_collect (array $input) {
+  $output = array();
+  foreach ($input as $key => $values) {
+    foreach ($values as $index => $value) {
+      if (!array_key_exists($index, $output)) {
+        $output[$index] = array();
+      }
+
+      $output[$index][$key] = $value;
+    }
+  }
+  return $output;
 }
 
 add_action('admin_footer', function () {

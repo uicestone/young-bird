@@ -733,6 +733,7 @@ YB.User = (function($){
 	var emailCodeContainer = $('.verify-code.login-is-email');
 	var countryContainer = $(':input[name="country"]');
 	var identityContainer = page.find(':input[name="identity"]');
+	var resumeInput = page.find(':input[name="resume[]"]');
 
 	var countryMatcher = function(data) {
 		return function findMatches(q, cb) {
@@ -905,6 +906,12 @@ YB.User = (function($){
 		countryContainer.on('typeahead:select', function () {
 			$(':input[name="city"]').val('');
 			enableCityAutoComplete($(this).data('locations-data'), $(this).val())
+		});
+
+		resumeInput.on('change', function () {
+			$(this).siblings('.custom-file-label').children('.filenames').text($.map(this.files, function (file) {
+				return file.name;
+			}).join(', ')).siblings('.placeholder').hide();
 		});
 	}
 

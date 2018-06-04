@@ -67,16 +67,27 @@ if (isset($_POST['submit'])) {
 
   $avatar = wp_handle_upload($_FILES['avatar'], array ('test_form' => false));
 
-  if (isset($_FILES['resume'])) {
-    $resume = wp_handle_upload($_FILES['resume'], array ('test_form' => false));
-  }
-
   if ($avatar['url']) {
     update_user_meta($user->ID, 'avatar', $avatar['url']);
   }
 
-  if (isset($resume) && $resume['url']) {
-    update_user_meta($user->ID, 'resume', $resume['url']);
+  if (isset($_FILES['resume']) && array_sum($_FILES['resume']['error']) === 0) {
+    $resumes = array_map(function ($file) {
+      return wp_handle_upload($file, array ('test_form' => false));
+    }, array_collect($_FILES['resume']));
+  }
+
+  if (isset($resumes)) {
+    $existing_resumes = get_user_meta($user->ID, 'resume');
+    foreach ($existing_resumes as $existing_resume) {
+      $existing_resume_path_relative = parse_url($existing_resume, PHP_URL_PATH);
+      $existing_resume_path = get_home_path() . substr($existing_resume_path_relative, 1);
+      unlink($existing_resume_path);
+    }
+    delete_user_meta($user->ID, 'resume');
+    foreach ($resumes as $resume) {
+      add_user_meta($user->ID, 'resume', $resume['url']);
+    }
   }
 
   $user = wp_get_current_user();
@@ -96,14 +107,18 @@ if (isset($_POST['submit'])) {
 
     $message .= '</ul>';
 
-    if ($resume = get_user_meta($user->ID, 'resume', true)) {
-      $message .= '<p>' . __('附件：', 'young-bird') . '<a href="' . get_user_meta($user->ID, 'resume', true) . '">' . __('简历下载', 'young-bird') . '</a></p>';
+    if ($resumes = get_user_meta($user->ID, 'resume')) {
+      $message .= '<p>' . __('附件：', 'young-bird');
+      foreach ($resumes as $resume) {
+        $message .= ' <a href="' . $resume . '">' . basename($resume) . '</a> ';
+      }
+      $message .= '</p>';
     }
 
     wp_mail(get_field('recruitment_email', $recruitment_id_dl),
       __('简历投递', 'young-bird') . ' - ' . (get_user_meta($user->ID, 'name', true) ?: $user->display_name),
       $message,
-      array('Content-Type: text/html; charset=UTF-8')
+      array('Content-Type: text/html; charset=UTF-8', 'Cc: ' . get_option('recruitment_cc_email'))
     );
 
     add_user_meta($user->ID, 'apply_jobs', $recruitment_id_dl);
@@ -150,7 +165,7 @@ else: ?>
         <?php elseif (isset($_GET['attend-activity'])): ?>
         <h1>_活动报名 <br>ACTIVITY REGISTER</h1>
         <?php else: ?>
-        <h1>_用户中心 <br>USER CENTER</h1>
+        <h1>_个人中心 <br>USER CENTER</h1>
         <?php endif; ?>
       </div>
     </div>
@@ -307,17 +322,22 @@ else: ?>
         <div class="row mx-auto">
           <div class="input-group input-group-lg mb-3">
             <div class="custom-file">
-              <!-- En版请使用lang="en" -->
-              <input type="file" name="resume" class="custom-file-input" id="resume" lang="zh">
-              <label class="custom-file-label" for="resume"><?=__('点击上传详细简历', 'young-bird')?></label>
+              <input type="file" multiple="multiple" name="resume[]" class="custom-file-input" id="resume" lang="<?=pll_current_language()?>" accept=".jpg,.png,.pdf,docx">
+              <label class="custom-file-label" for="resume">
+                <span class="placeholder"><?=__('点击上传详细简历和作品', 'young-bird')?> <?=__('（支持文件格式为.jpg、.png、.pdf和.docx，总大小不超过20MB）', 'young-bird')?></span>
+                <span class="filenames"></span>
+              </label>
             </div>
-            <!-- 显示下载链接 -->
-            <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
-              <div class="input-group-append">
-                <a class="btn btn-outline-secondary" href="<?=$resume?>" style="height: 4rem; font-size: 1rem; line-height: 2rem;"><?=__('查看', 'young-bird')?>/<?=__('下载', 'young-bird')?></a>
-              </div>
-            <?php endif; ?>
           </div>
+          <!-- 显示下载链接 -->
+          <?php if ($resumes = get_user_meta($user->ID, 'resume')): ?>
+            <div>
+              <?php foreach ($resumes as $resume): ?>
+              <a class="btn btn-outline-primary" href="<?=$resume?>" target="_blank"><?=basename($resume)?></a>
+              <?php endforeach; ?>
+            </div>
+            <div style="font-weight:lighter;line-height:2.25rem;margin-left:1rem"><?=__('您可以上传新简历和作品，或者使用已有简历和作品直接投递', 'young-bird')?></div>
+          <?php endif; ?>
         </div>
         <?php endif; ?>
         <div class="row mx-auto justify-content-between">
