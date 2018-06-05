@@ -642,6 +642,7 @@ add_filter('manage_users_columns', function ( $column ) {
   array_insert($column, 'role', array('events' => __( '竞赛', 'young-bird')));
   array_insert($column, 'role', array('country' => __( '国家', 'young-bird')));
   if (isset($_GET['attend_event_review'])) {
+    array_insert($column, 'role', array('resume' => __( '简历和作品', 'young-bird')));
     array_insert($column, 'role', array('review' => __( '审核', 'young-bird')));
     unset($column['role']);
     unset($column['registered']);
@@ -665,6 +666,9 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       break;
     case 'works' :
       return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'posts_per_page' => -1))) . '</a>';
+      break;
+    case 'resume' :
+      return implode('<br>', array_map(function ($resume) { return '<a href="' . $resume . '" target="_blank">' . basename($resume) . '</a>'; }, get_user_meta($user_id, 'resume')));
       break;
     case 'review' :
       return '<input type="hidden" name="attended" value="' . in_array(get_post_meta($_GET['attend_event_review'], 'event', true), get_user_meta($user_id, 'attend_events') ?: array()) . '">';
@@ -1007,7 +1011,8 @@ add_action('admin_init', function () {
   }
 
   if (!empty($_POST['ybp_attend_event_agree']) || !empty($_POST['ybp_attend_event_disagree'])) {
-    $event_id = get_post_meta($_GET['attend_event_review'], 'event', true);
+    $attend_post_id = $_GET['attend_event_review'];
+    $event_id = get_post_meta($attend_post_id, 'event', true);
     $user_id = $_POST['user_id'];
     if (isset($_POST['ybp_attend_event_agree'])) {
       try {
@@ -1019,7 +1024,7 @@ add_action('admin_init', function () {
       $work = get_event_work($event_id, $user_id, null, true);
       send_message($user_id, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
     } else {
-      delete_user_meta($user_id, 'attend_event_review', $event_id);
+      delete_user_meta($user_id, 'attend_event_review', $attend_post_id);
     }
   }
 });

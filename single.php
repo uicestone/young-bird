@@ -17,10 +17,6 @@ if (isset($_POST['like'])) {
   echo $likes; exit;
 }
 
-if (isset($_POST['attend_event_review'])) {
-  add_user_meta(get_current_user_id(), 'attend_event_review', $id_dl);
-}
-
 $views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
 update_post_meta($id_dl, 'views', $views);
 $likes = get_post_meta($id_dl, 'likes', true) ?: 0;
@@ -65,7 +61,7 @@ get_header(); the_post(); ?>
           ):
             if (get_field('attend_event_review')):
               if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_event_review') ?: array())): ?>
-            <button type="button" class="attend-event-review btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('申请报名', 'young-bird')?></button>
+            <a href="<?=get_permalink(get_page_by_path('user-center')->ID)?>?attend-event-review=<?=$id_dl?>" class="attend-event-review btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('申请报名', 'young-bird')?></a>
           <?php
               endif;
             else: ?>

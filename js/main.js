@@ -167,23 +167,6 @@ YB.Participate = (function($) {
 		})
 	}
 
-	// 文章申请报名私密竞赛
-	$('.attend-event-review').on('click', function () {
-		YB.Util.confirm({
-			title     : locale.confirm_attend_event_review,
-			callback  : function (confirm) {
-				if (!confirm) return;
-				$.post(window.location.href, {attend_event_review:true}).done(function () {
-					window.location.reload();
-				}).fail(function (response) {
-					if (response.status === 401) {
-						window.location.href = window.location.protocol + '//' + window.location.host + '/sign-in/?intend=' + encodeURIComponent(window.location.href);
-					}
-				});
-			}
-		});
-	});
-
 	return {
 		init: init
 	}
