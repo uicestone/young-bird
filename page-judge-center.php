@@ -226,7 +226,7 @@ else: ?>
             <!-- 显示下载链接 -->
             <?php if ($resume = get_user_meta($user->ID, 'resume', true)): ?>
             <div class="input-group-append">
-              <a class="btn btn-outline-secondary" href="<?=$resume?>"><?=__('查看', 'young-bird')?>/<?=__('下载', 'young-bird')?></a>
+              <a class="btn btn-outline-secondary" href="<?=$resume?>" style="height: 4rem; font-size: 1rem; line-height: 2rem;"><?=__('下载', 'young-bird')?></a>
             </div>
             <?php endif; ?>
           </div>

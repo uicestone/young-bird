@@ -17,6 +17,10 @@ if (isset($_POST['like'])) {
   echo $likes; exit;
 }
 
+if (isset($_POST['attend_event_review'])) {
+  add_user_meta(get_current_user_id(), 'attend_event_review', $id_dl);
+}
+
 $views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
 update_post_meta($id_dl, 'views', $views);
 $likes = get_post_meta($id_dl, 'likes', true) ?: 0;
@@ -53,9 +57,22 @@ get_header(); the_post(); ?>
           <div class="editor my-3 my-md-5">
             <?php the_content(); ?>
           </div>
-          <?php if ($event = get_field('event') && in_array(get_field('status', $event->ID), array('started', 'ending'))): ?>
-          <a href="<?=get_the_permalink($event->ID)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
-          <?php endif; ?>
+          <?php
+          $event_id = get_post_meta($id_dl, 'event', true);
+          if ($event_id
+            && in_array(get_post_meta($event_id, 'status', true), array('started', 'ending'))
+            && !in_array($event_id, get_user_meta(get_current_user_id(), 'attend_events') ?: array())
+          ):
+            if (get_field('attend_event_review')):
+              if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_event_review') ?: array())): ?>
+            <button type="button" class="attend-event-review btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('申请报名', 'young-bird')?></button>
+          <?php
+              endif;
+            else: ?>
+          <a href="<?=get_the_permalink($event_id)?>" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('立即报名', 'young-bird')?></a>
+          <?php
+            endif;
+          endif; ?>
           <?php if (get_field('attendable')): if (in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_activities') ?: array())): ?>
           <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已报名', 'young-bird')?></button>
           <?php else: ?>

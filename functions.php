@@ -257,7 +257,7 @@ add_action('wp', function() {
     'ok' => __('确定', 'young-bird'),
     'cancel' => __('取消', 'young-bird'),
     'confirm_role' => __('是否确认您的参赛身份，确认后将不能变更', 'young-bird'),
-    'confirm_participate' => __('确定报名此活动吗？', 'young-bird'),
+    'confirm_attend_event_review' => __('确定申请报名此竞赛吗？', 'young-bird'),
     'pass' => __('入围', 'young-bird'),
     'reject' => __('不入围', 'young-bird'),
     'score' => __('分数：', 'young-bird'),
@@ -423,6 +423,11 @@ add_filter('pre_get_users', function (WP_User_Query $query) {
     $query->set('meta_value', $_GET['attend_activities']);
   }
 
+  if (isset($_GET['attend_event_review'])) {
+    $query->set('meta_key', 'attend_event_review');
+    $query->set('meta_value', $_GET['attend_event_review']);
+  }
+
   if (isset($_GET['attend_events'])) {
     $query->set('meta_key', 'attend_events');
     $query->set('meta_value', $_GET['attend_events']);
@@ -487,8 +492,11 @@ if (function_exists('mailusers_register_group_custom_meta_key_filter')) {
 }
 
 add_filter('post_row_actions', function ($actions, $post) {
-  if ($attendable = get_post_meta($post->ID, 'attendable', true)) {
+  if ($post->post_type === 'post' && $attendable = get_post_meta($post->ID, 'attendable', true)) {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+  }
+  if ($post->post_type === 'post' && $attend_event_review = get_post_meta($post->ID, 'attend_event_review', true)) {
+    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_event_review=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
   if ($post->post_type === 'event') {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
@@ -633,6 +641,11 @@ add_filter('manage_users_columns', function ( $column ) {
   array_insert($column, 'role', array('works' => __( '作品', 'young-bird')));
   array_insert($column, 'role', array('events' => __( '竞赛', 'young-bird')));
   array_insert($column, 'role', array('country' => __( '国家', 'young-bird')));
+  if (isset($_GET['attend_event_review'])) {
+    array_insert($column, 'role', array('review' => __( '审核', 'young-bird')));
+    unset($column['role']);
+    unset($column['registered']);
+  }
   return $column;
 });
 
@@ -649,10 +662,12 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       break;
     case 'events' :
       return '<a href="' . get_admin_url(null, 'edit.php?post_type=event&attend_users=' . $user_id) . '">' . count(get_user_meta($user_id, 'attend_events')) . '</a>';
-      // TODO attended_user needs to be filtered in event
       break;
     case 'works' :
       return '<a href="' . get_admin_url(null, 'edit.php?post_type=work&author=' . $user_id) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'author' => $user_id, 'posts_per_page' => -1))) . '</a>';
+      break;
+    case 'review' :
+      return '<input type="hidden" name="attended" value="' . in_array(get_post_meta($_GET['attend_event_review'], 'event', true), get_user_meta($user_id, 'attend_events') ?: array()) . '">';
       break;
     default:
   }
@@ -915,7 +930,20 @@ add_action('admin_footer', function () {
 			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出选手', 'young-bird')?>" /></form>');
 		});
   </script>
-  <?php
+  <?php if (isset($_GET['attend_event_review'])): ?>
+  <script type="text/javascript">
+    jQuery(document).ready( function($) {
+			$('.review.column-review').each(function () {
+				var userId = $(this).parent().attr('id').replace('user-', '');
+				if ($(this).find('[name="attended"]').val()) {
+					$(this).append('<span>已通过</span>');
+        } else {
+					$(this).append('<form method="POST"><input type="hidden" name="user_id" value="' + userId + '"><input class="button" name="ybp_attend_event_agree" type="submit" value="通过"> <input class="button" type="submit" name="ybp_attend_event_disagree" value="否决"></form>');
+        }
+			});
+    });
+  </script>
+  <?php endif;
 });
 
 add_action('admin_init', function () {
@@ -976,6 +1004,23 @@ add_action('admin_init', function () {
     header('Cache-Control: must-revalidate');
     header('Pragma: public');
     readfile($path); unlink($path); exit;
+  }
+
+  if (!empty($_POST['ybp_attend_event_agree']) || !empty($_POST['ybp_attend_event_disagree'])) {
+    $event_id = get_post_meta($_GET['attend_event_review'], 'event', true);
+    $user_id = $_POST['user_id'];
+    if (isset($_POST['ybp_attend_event_agree'])) {
+      try {
+        add_post_meta($event_id, 'attend_users', $user_id);
+        add_user_meta($user_id, 'attend_events', $event_id);
+      } catch (Exception $e) {
+        // 对于重复添加meta造成的数据库错误保持静默
+      }
+      $work = get_event_work($event_id, $user_id, null, true);
+      send_message($user_id, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
+    } else {
+      delete_user_meta($user_id, 'attend_event_review', $event_id);
+    }
   }
 });
 
