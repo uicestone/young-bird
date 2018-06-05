@@ -7,6 +7,7 @@ $captain = get_user_by('ID', get_post()->post_author);
 $work = get_posts(array ('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 $members = get_post_meta(get_the_ID(), 'members') ?: array();
 $members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
+$editable = ($captain->ID == get_current_user_id() && in_array($event_status, array('started', 'ending'))) || current_user_can('edit_user');
 
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
@@ -87,14 +88,14 @@ get_header(); ?>
                 <div class="role color-silver">/<?=__('组员', 'young-bird')?></div>
                 <div class="name color-silver text-truncate"><?=get_user_by('ID', $member_id)->display_name?></div>
               </div>
-              <?php if ($captain->ID == get_current_user_id()): ?>
+              <?php if ($editable): ?>
               <a href="<?php the_permalink(); ?>?remove_member=<?=$member_id?>">
                 <i class="fas fa-times"></i>
               </a>
               <?php endif; ?>
             </div>
             <?php endforeach; ?>
-            <?php if ($captain->ID == get_current_user_id()): foreach ($members_pending as $member_id): ?>
+            <?php if ($editable): foreach ($members_pending as $member_id): ?>
             <div class="avatar-container d-flex flex-column align-items-center">
               <div class="d-flex align-items-center">
                 <?php if ($avatar_url = get_user_meta($member_id, 'avatar', true)): ?>
