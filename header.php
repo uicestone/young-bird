@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="<?=pll_current_language('locale')?>">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +21,7 @@
     <title><?php echo preg_replace('/^  – /', '', strip_tags(html_entity_decode(wp_title('-', false, 'right')))); bloginfo('sitename'); ?></title>
     <?php wp_head(); ?>
   </head>
-  <body>
+  <body <?php body_class('lang-' . pll_current_language()); ?>>
     <!-- Header -->
     <div class="container">
       <nav class="navbar navbar-light navbar-expand-lg">
