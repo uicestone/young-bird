@@ -59,9 +59,11 @@ get_header(); the_post(); ?>
             && in_array(get_post_meta($event_id, 'status', true), array('started', 'ending'))
             && !in_array($event_id, get_user_meta(get_current_user_id(), 'attend_events') ?: array())
           ):
-            if (get_field('attend_event_review')):
+            if (get_field('attend_event_review', $id_dl)):
               if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_event_review') ?: array())): ?>
             <a href="<?=get_permalink(get_page_by_path('user-center')->ID)?>?attend-event-review=<?=$id_dl?>" class="attend-event-review btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('申请报名', 'young-bird')?></a>
+            <?php else: ?>
+            <button type="button" disabled class="btn btn-outline-primary mx-auto d-block btn-common mb-4 attend-activity"><?=__('已申请报名', 'young-bird')?></button>
           <?php
               endif;
             else: ?>
