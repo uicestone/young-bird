@@ -3,23 +3,25 @@
   white-space: nowrap;
 }
 .br-theme-fontawesome-stars-o .br-widget a {
-  font: normal normal normal 30px/1 FontAwesome;
+  font: normal normal normal 30px/1 "Font Awesome\ 5 Free";
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   text-decoration: none;
   margin-right: 8px;
 }
 .br-theme-fontawesome-stars-o .br-widget a:after {
-  content: '\f006';
+  content: '\f005';
   color: #d2d2d2;
 }
 .br-theme-fontawesome-stars-o .br-widget a.br-active:after {
   content: '\f005';
   color: #0000ff;
+  font-weight: bold;
 }
 .br-theme-fontawesome-stars-o .br-widget a.br-selected:after {
   content: '\f005';
   color: #0000ff;
+  font-weight: bold;
 }
 .br-theme-fontawesome-stars-o .br-widget a.br-fractional:after {
   content: '\f123';
