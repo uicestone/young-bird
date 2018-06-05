@@ -443,11 +443,11 @@ YB.Common = (function($){
 		$('.share-container').hshare({
 			size: 'large',
 			platforms: [
-				{name: 'sinaweibo'},
-				{name: 'qzone'},
-				{name: 'wechat'},
-				{name: 'facebook'},
-				{name: 'twitter'}
+				{name: 'sinaweibo', params: {css:'hshare weibo',apiLink:"http://v.t.sina.com.cn/share/share.php",icon:'',text:"新浪微博",hint:"分享到新浪微博"}},
+				{name: 'qzone', params: {css:'hshare qzone', apiLink:"http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey",icon:"https://heavenduke.github.io/hshare/icons/qzone.png",text:"QQ空间",hint:"分享到QQ空间"}},
+				{name: 'wechat', params: {css:'hshare wechat', apiLink:"https://cli.im/api/qrcode",icon:"https://heavenduke.github.io/hshare/icons/wechat.png",text:"微信",hint:"分享到微信"}},
+				{name: 'facebook', params: {css:'hshare facebook', apiLink:"http://www.facebook.com/sharer.php",icon:"https://heavenduke.github.io/hshare/icons/facebook.png",text:"Facebook",hint:"分享到Facebook"}},
+				{name: 'twitter', params: {css:'hshare twitter', apiLink:"https://twitter.com/intent/tweet",icon:"https://heavenduke.github.io/hshare/icons/twitter.png",text:"Twitter",hint:"分享到Twitter"}}
 			],
 			// more: true
 		});
