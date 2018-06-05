@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
 
     foreach ($sign_up_fields_label as $field => $label) {
       if ($field_value = get_user_meta($user->ID, $field, true)) {
-        $message .= '<li>' . $label . "\t" . $field_value . '</li>';
+        $message .= '<li>' . $label . ": \t" . $field_value . '</li>';
       }
     }
 
