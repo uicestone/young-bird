@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
     $recruitment_id = $_GET['recruitment'];
     $recruitment_id_dl = pll_get_post($recruitment_id, pll_default_language());
 
-    $message = '<p>' . sprintf(__('您在 Young Bird Plan 的招聘文章《%s》收到了一封简历投递：', 'young-bird'), get_the_title($recruitment_id)) . '</p>';
+    $message = '<p>' . sprintf(__('贵公司在 Young Bird Plan 发布的招聘《%s》收到了一封简历投递：', 'young-bird'), get_the_title($recruitment_id)) . '</p>';
     $message .= '<ul><li>' . __('姓名', 'young-bird') . "\t" . (get_user_meta($user->ID, 'name', true) ?: $user->display_name) . '</li><li>' . __('邮箱', 'young-bird') . "\t" . $user->user_email . '</li>';
 
     foreach ($sign_up_fields_label as $field => $label) {
@@ -115,8 +115,11 @@ if (isset($_POST['submit'])) {
       $message .= '</p>';
     }
 
+    $job_title = get_user_meta($user->ID, 'title', true);
+    $user_name = get_user_meta($user->ID, 'name', true) ?: $user->display_name;
+
     wp_mail(get_field('recruitment_email', $recruitment_id_dl),
-      __('简历投递', 'young-bird') . ' - ' . (get_user_meta($user->ID, 'name', true) ?: $user->display_name),
+      __('Young Bird Plan', 'young-bird') . ' ' . ($job_title ? $job_title . ' ' : '') . $user_name,
       $message,
       array('Content-Type: text/html; charset=UTF-8', 'Cc: ' . get_option('recruitment_cc_email'))
     );
@@ -182,7 +185,11 @@ else: ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
-          <li class="active"><a href="<?php the_permalink(); ?>"><?=__('个人信息', 'young-bird')?></a></li>
+          <?php if (current_user_can('judge_works')): ?>
+          <li class="active"><a href="<?=pll_home_url()?>judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <?php else: ?>
+          <li class="active"><a href="<?=pll_home_url()?>user-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <?php endif; ?>
           <li><a href="<?=pll_home_url()?>user-center/?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?=pll_home_url()?>user-center/?activity"><?=__('我的活动', 'young-bird')?></a></li>
           <li><a href="<?=pll_home_url()?>user-center/?like"><?=__('我的收藏', 'young-bird')?></a></li>

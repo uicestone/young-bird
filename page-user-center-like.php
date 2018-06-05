@@ -12,7 +12,11 @@
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
+          <?php if (current_user_can('judge_works')): ?>
+          <li><a href="<?=pll_home_url()?>judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <?php else: ?>
           <li><a href="<?=pll_home_url()?>user-center/"><?=__('个人信息', 'young-bird')?></a></li>
+          <?php endif; ?>
           <li><a href="<?=pll_home_url()?>user-center/?event"><?=__('我的竞赛', 'young-bird')?></a></li>
           <li><a href="<?=pll_home_url()?>user-center/?activity"><?=__('我的活动', 'young-bird')?></a></li>
           <li class="active"><a href="<?=pll_home_url()?>user-center/?like"><?=__('我的收藏', 'young-bird')?></a></li>
