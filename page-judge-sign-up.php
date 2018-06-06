@@ -61,7 +61,7 @@ get_header();
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-partners.jpg) center center / cover no-repeat">
       <div class="container">
-        <h1>_大 咖 <br>PARTNERS</h1>
+        <h1>_大 咖 <br>JUDGE CENTER</h1>
       </div>
     </div>
     <!-- Body -->
