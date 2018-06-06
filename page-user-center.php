@@ -264,12 +264,12 @@ else: ?>
               </div>
             </div>
           </div>
-          <div class="form-group col-12 hide-on-working">
+          <div class="form-group col-12">
             <div class="input-group input-group-lg">
               <input type="text" name="school" value="<?=$form_values['school']?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
             </div>
           </div>
-          <div class="form-group col-12 hide-on-working">
+          <div class="form-group col-12">
             <div class="input-group input-group-lg">
               <input type="text" name="major" value="<?=$form_values['major']?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
             </div>
