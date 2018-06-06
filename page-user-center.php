@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
     $recruitment_id_dl = pll_get_post($recruitment_id, pll_default_language());
 
     $message = '<p>' . sprintf(__('贵公司在 Young Bird Plan 发布的招聘《%s》收到了一封简历投递：', 'young-bird'), get_the_title($recruitment_id)) . '</p>';
-    $message .= '<ul><li>' . __('姓名', 'young-bird') . "\t" . (get_user_meta($user->ID, 'name', true) ?: $user->display_name) . '</li><li>' . __('邮箱', 'young-bird') . "\t" . $user->user_email . '</li>';
+    $message .= '<ul><li>' . __('姓名', 'young-bird') . ": \t" . (get_user_meta($user->ID, 'name', true) ?: $user->display_name) . '</li><li>' . __('邮箱', 'young-bird') . ": \t" . $user->user_email . '</li>';
 
     foreach ($sign_up_fields_label as $field => $label) {
       if ($field_value = get_user_meta($user->ID, $field, true)) {
@@ -109,9 +109,9 @@ if (isset($_POST['submit'])) {
 
     if ($resumes = get_user_meta($user->ID, 'resume')) {
       $message .= '<p>' . __('附件：', 'young-bird');
-      foreach ($resumes as $resume) {
-        $message .= ' <a href="' . $resume . '">' . basename($resume) . '</a> ';
-      }
+      $message .= implode('; ', array_map(function ($resume) {
+        return '<a href="' . $resume . '">' . basename($resume) . '</a>';
+      }, $resumes));
       $message .= '</p>';
     }
 
@@ -119,7 +119,7 @@ if (isset($_POST['submit'])) {
     $user_name = get_user_meta($user->ID, 'name', true) ?: $user->display_name;
 
     wp_mail(get_field('recruitment_email', $recruitment_id_dl),
-      __('Young Bird Plan', 'young-bird') . ' ' . ($job_title ? $job_title . ' ' : '') . $user_name,
+      __('Young Bird Plan', 'young-bird') . ' ' . $user_name,
       $message,
       array('Content-Type: text/html; charset=UTF-8', 'Cc: ' . get_option('recruitment_cc_email'))
     );
