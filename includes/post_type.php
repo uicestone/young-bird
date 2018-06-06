@@ -228,3 +228,22 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 
   $query->set('posts_per_archive_page', $limit);
 });
+
+add_filter('the_title', function ($title, $post_id) {
+
+  $post_type = get_post_type($post_id);
+
+  if ($post_type === 'event') {
+    $findthese = array(
+      '#' . sprintf(__('Private: %s'), '') . '#'
+    );
+
+    $replacewith = array(
+      __('微竞赛：', 'young-bird') // What to replace "Private:" with
+    );
+
+    $title = preg_replace($findthese, $replacewith, $title);
+  }
+
+  return $title;
+}, 10, 2);
