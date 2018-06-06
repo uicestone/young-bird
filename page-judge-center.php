@@ -60,6 +60,14 @@ get_header(); the_post(); if (isset($_GET['event'])):
 
   include(locate_template('page-user-center-event.php'));
 
+elseif (isset($_GET['like'])):
+
+  include(locate_template('page-user-center-like.php'));
+
+elseif (isset($_GET['activity'])):
+
+  include(locate_template('page-user-center-activity.php'));
+
 else: ?>
     <!-- Banner -->
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-partners.jpg) center center / cover no-repeat">
@@ -72,9 +80,9 @@ else: ?>
       <div class="container">
         <ul>
           <li class="active"><a href="<?=pll_home_url()?>judge-center/"><?=__('个人信息', 'young-bird')?></a></li>
-          <li><a href="<?=pll_home_url()?>user-center/?event"><?=__('我的竞赛', 'young-bird')?></a></li>
-          <li><a href="<?=pll_home_url()?>user-center/?activity"><?=__('我的活动', 'young-bird')?></a></li>
-          <li><a href="<?=pll_home_url()?>user-center/?like"><?=__('我的收藏', 'young-bird')?></a></li>
+          <li><a href="<?=pll_home_url()?>judge-center/?event"><?=__('我的竞赛', 'young-bird')?></a></li>
+          <li><a href="<?=pll_home_url()?>judge-center/?activity"><?=__('我的活动', 'young-bird')?></a></li>
+          <li><a href="<?=pll_home_url()?>judge-center/?like"><?=__('我的收藏', 'young-bird')?></a></li>
           <li>
             <a href="<?=pll_home_url()?>message/"><?=__('消息', 'young-bird')?>
               <?php if ($has_unread_message = get_user_meta(get_current_user_id(), 'has_unread_message', true)): ?><i></i><?php endif; ?>
