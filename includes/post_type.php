@@ -234,7 +234,7 @@ add_filter('pre_get_posts', function (WP_Query $query) {
   // effective only in user end single post
   if (is_admin() || !is_single()) return;
 
-  if (isset($query->query['post_type']) && $query->query['post_type'] === 'event' && isset($_GET['private'])) {
+  if (isset($query->query['post_type']) && $query->query['post_type'] === 'event') {
     $attended_events = get_user_meta(get_current_user_id(), 'attend_events');
     $event = get_page_by_path($query->query['name'], OBJECT, 'event');
     $event_id_dl = pll_get_post($event->ID, pll_default_language());

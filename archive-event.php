@@ -34,6 +34,11 @@ if (isset($_GET['partial'])):
 <?php endwhile; else:
 get_header();
     if (isset($_GET['history'])):
+      if (is_user_logged_in() && $attended_event_ids = get_user_meta(get_current_user_id(), 'attend_events')) {
+        $private_events = get_posts(array('post_type' => 'event', 'post_status' => 'private', 'post__in' => $attended_event_ids, 'posts_per_page' => -1, 'meta_key' => 'status', 'meta_value' => 'history'));
+        $wp_query->posts = array_merge($private_events, $wp_query->posts);
+        $wp_query->post_count += count($private_events);
+      }
       get_template_part('archive-event-history');
     else: ?>
     <!-- Banner -->
