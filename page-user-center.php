@@ -255,57 +255,57 @@ else: ?>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="tel" name="mobile" value="<?=$form_values['mobile']?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
+                <input type="tel" name="mobile" required value="<?=$form_values['mobile']?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="email" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
+                <input type="email" name="email" required value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="school" value="<?=$form_values['school']?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
+              <input type="text" name="school" required value="<?=$form_values['school']?>" class="form-control" placeholder="<?=$sign_up_fields_label['school']?>">
             </div>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="major" value="<?=$form_values['major']?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
+              <input type="text" name="major" required value="<?=$form_values['major']?>" class="form-control" placeholder="<?=$sign_up_fields_label['major']?>">
             </div>
           </div>
           <div class="form-group col-12 hide-on-studying">
             <div class="input-group input-group-lg">
-              <input type="text" name="company" value="<?=$form_values['company']?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
+              <input type="text" name="company" required value="<?=$form_values['company']?>" class="form-control" placeholder="<?=$sign_up_fields_label['company']?>">
             </div>
           </div>
           <div class="col-12 hide-on-studying">
             <div class="row">
               <div class="form-group col-12">
                 <div class="input-group input-group-lg">
-                  <input type="text" name="department" value="<?=$form_values['department']?>" class="form-control" placeholder="<?=$sign_up_fields_label['department']?>">
+                  <input type="text" name="department" required value="<?=$form_values['department']?>" class="form-control" placeholder="<?=$sign_up_fields_label['department']?>">
                 </div>
               </div>
               <div class="form-group col-12">
                 <div class="input-group input-group-lg">
-                  <input type="text" name="title" value="<?=$form_values['title']?>" class="form-control" placeholder="<?=$sign_up_fields_label['title']?>">
+                  <input type="text" name="title" required value="<?=$form_values['title']?>" class="form-control" placeholder="<?=$sign_up_fields_label['title']?>">
                 </div>
               </div>
             </div>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="id_card" value="<?=$form_values['id_card']?>" class="form-control" placeholder="<?=$sign_up_fields_label['id_card']?>/<?=__('护照号', 'young-bird')?>">
+              <input type="text" name="id_card" required value="<?=$form_values['id_card']?>" class="form-control" placeholder="<?=$sign_up_fields_label['id_card']?>/<?=__('护照号', 'young-bird')?>">
             </div>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="birthday" value="<?=$form_values['birthday']?>" class="form-control datepicker" placeholder="<?=$sign_up_fields_label['birthday']?>" autocomplete="off">
+              <input type="text" name="birthday" required value="<?=$form_values['birthday']?>" class="form-control datepicker" placeholder="<?=$sign_up_fields_label['birthday']?>" autocomplete="off">
             </div>
           </div>
           <div class="form-group col-12">
             <div class="input-group input-group-lg">
-              <input type="text" name="constellation" value="<?=$form_values['constellation']?>" class="form-control" placeholder="<?=$sign_up_fields_label['constellation']?>" data-first-days='<?=json_encode($constellation_first_days, JSON_UNESCAPED_UNICODE)?>'>
+              <input type="text" name="constellation" required value="<?=$form_values['constellation']?>" class="form-control" placeholder="<?=$sign_up_fields_label['constellation']?>" data-first-days='<?=json_encode($constellation_first_days, JSON_UNESCAPED_UNICODE)?>'>
             </div>
           </div>
           <div class="form-group col-12">
@@ -317,12 +317,12 @@ else: ?>
             <div class="row">
               <div class="form-group col-12">
                 <div class="input-group input-group-lg">
-                  <input type="text" name="country" value="<?=$form_values['country']?>" class="form-control" placeholder="<?=$sign_up_fields_label['country']?>">
+                  <input type="text" name="country" required value="<?=$form_values['country']?>" class="form-control" placeholder="<?=$sign_up_fields_label['country']?>">
                 </div>
               </div>
               <div class="form-group col-12">
                 <div class="input-group input-group-lg">
-                  <input type="text" name="city" value="<?=$form_values['city']?>" class="form-control" placeholder="<?=$sign_up_fields_label['city']?>" autocomplete="new-address" autofill="off">
+                  <input type="text" name="city" required value="<?=$form_values['city']?>" class="form-control" placeholder="<?=$sign_up_fields_label['city']?>" autocomplete="new-address" autofill="off">
                 </div>
               </div>
             </div>

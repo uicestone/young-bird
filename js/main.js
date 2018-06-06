@@ -864,8 +864,8 @@ YB.User = (function($){
 		page.on('change', ':input[name="identity"]', function () {
 			var identity = $(this).val();
 			var otherIdentity = identity === 'studying' ? 'working' : 'studying';
-			page.find('.hide-on-' + identity).hide();
-			page.find('.hide-on-' + otherIdentity).show();
+			page.find('.hide-on-' + identity).hide().find(':input').prop('required', false);
+			page.find('.hide-on-' + otherIdentity).show().find(':input').prop('required', true);
 		});
 
 		if (identityContainer.val()) {
