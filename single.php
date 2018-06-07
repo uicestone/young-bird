@@ -54,7 +54,6 @@ get_header(); the_post(); ?>
           <div class="editor my-3 my-md-5">
             <?php the_content(); ?>
           </div>
-          <?php include(locate_template('single-action-button.php')); ?>
         </div>
         <div class="col-md-6 news-detail-ad">
           <?php foreach (get_posts(array ('category_name' => 'news-detail-ad')) as $ad): ?>
