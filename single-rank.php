@@ -8,7 +8,8 @@ $works = array_map(function ($work_id) {
 $stage = get_field('stage');
 $public_vote_start = get_field('voting_start_at');
 $public_vote_stop = get_field('voting_stop_at');
-$public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_start) && time() <= strtotime($public_vote_stop) ;
+
+$public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_start) + get_option('gmt_offset') * HOUR_IN_SECONDS && time() <= strtotime($public_vote_stop) + get_option('gmt_offset') * HOUR_IN_SECONDS;
 $ranking_judge = get_field('ranking_judge');
 $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 

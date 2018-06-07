@@ -23,7 +23,7 @@ if (isset($_POST['like'])) {
 
 if (isset($_POST['remind_event_ending'])) {
   redirect_login();
-  $days_left = ceil((strtotime(get_field('end_date')) - time()) / 86400);
+  $days_left = ceil((strtotime(get_field('end_date')) + get_option('gmt_offset') * HOUR_IN_SECONDS - time()) / 86400);
   $attended_user_ids = $wpdb->get_col("select user_id from {$wpdb->usermeta} where meta_key = 'attend_events' and meta_value = '" . $id_dl . "'");
   if ($days_left <= 10) {
     $template = 'the-deadline-for-submissions';
@@ -386,7 +386,7 @@ else:
             <?php if (current_user_can('edit_user') && get_field('status') === 'ended'): // 管理员查看已结束竞赛=入围评审 ?>
             <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=$id_dl?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
             <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('started', 'ending', 'ended'))): // 管理员查看正在进行行竞赛=催稿 ?>
-            <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
+            <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) + get_option('gmt_offset') * HOUR_IN_SECONDS - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
             <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array($id_dl, get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($group && $attended_as_member = in_array($id_dl, get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
