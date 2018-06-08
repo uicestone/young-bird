@@ -136,10 +136,10 @@ if (isset($_POST['submit'])) {
     header('Location: ' . get_the_permalink($activity_id)); exit;
   }
 
-  elseif (isset($_GET['attend-event-review'])) {
-    $attend_post_id = $_GET['attend-event-review'];
-    add_user_meta(get_current_user_id(), 'attend_event_review', $attend_post_id);
-    header('Location: ' . get_the_permalink($attend_post_id)); exit;
+  elseif (isset($_GET['attend-review'])) {
+    $event_id = $_GET['attend-review'];
+    add_user_meta(get_current_user_id(), 'attend_event_review', $event_id);
+    header('Location: ' . get_the_permalink($event_id)); exit;
   }
 
   header('Location: ' . get_the_permalink()); exit;
@@ -173,7 +173,7 @@ else: ?>
         <h1>_投递简历 <br>JOB APPLICATION</h1>
         <?php elseif (isset($_GET['attend-activity'])): ?>
         <h1>_活动报名 <br>ACTIVITY REGISTER</h1>
-        <?php elseif (isset($_GET['attend-event-review'])): ?>
+        <?php elseif (isset($_GET['attend-review'])): ?>
         <h1>_竞赛报名申请 <br>APPLY FOR EVENT</h1>
         <?php else: ?>
         <h1>_个人中心 <br>USER CENTER</h1>
@@ -181,7 +181,7 @@ else: ?>
       </div>
     </div>
     <!-- Menu -->
-    <?php if (empty($_GET['recruitment']) && empty($_GET['attend-activity']) && empty($_GET['attend_event_review'])): ?>
+    <?php if (empty($_GET['recruitment']) && empty($_GET['attend-activity']) && empty($_GET['attend-review'])): ?>
     <div class="container-fluid user-center-menu">
       <div class="container">
         <ul>
@@ -333,7 +333,7 @@ else: ?>
             </div>
           </div>
         </div>
-        <?php if (isset($_GET['recruitment']) || isset($_GET['attend-event-review'])): ?>
+        <?php if (isset($_GET['recruitment']) || isset($_GET['attend-review'])): ?>
         <div class="row mx-auto">
           <div class="input-group input-group-lg mb-3">
             <div class="custom-file">
@@ -368,7 +368,7 @@ else: ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('投递', 'young-bird')?></button>
           <?php elseif (isset($_GET['attend-activity'])): ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('报名', 'young-bird')?></button>
-          <?php elseif (isset($_GET['attend-event-review'])): ?>
+          <?php elseif (isset($_GET['attend-review'])): ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('申请', 'young-bird')?></button>
           <?php else: ?>
           <button type="submit" name="submit" class="btn btn-lg btn-secondary btn-common"><?=__('保存', 'young-bird')?></button>

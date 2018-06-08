@@ -222,6 +222,8 @@ the_post();
 
 $user = wp_get_current_user();
 
+$attended = in_array($id_dl, get_user_meta($user->ID, 'attend_events') ?: array ());
+
 $participate_fields = ['name', 'identity', 'id_card', 'birthday', 'school', 'major', 'country', 'city', 'company', 'department', 'title'];
 foreach ($participate_fields as $field) {
   $$field =  get_user_meta($user->ID, $field, true);
@@ -349,6 +351,21 @@ else:
           <li class="d-none d-lg-block">
             <a class="text-truncate" href="#section1" title="<?=__('竞赛介绍', 'young-bird')?>"><?=__('竞赛介绍', 'young-bird')?></a>
           </li>
+          <?php if (get_field('attend_review') && !$attended): ?>
+          <?php if (in_array(get_post_meta($id_dl, 'status', true), array('started', 'ending'))):
+              if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_review') ?: array())): ?>
+              <li class="d-lg-block">
+                <a class="text-truncate" href="<?=pll_home_url()?>user-center/?attend-review=<?=$id_dl?>"><?=__('申请报名', 'young-bird')?></a>
+              </li>
+              <?php else: ?>
+              <li class="d-lg-block">
+                <a href="javascript:return false" class="disabled"><?=__('已申请报名', 'young-bird')?></a>
+              </li>
+              <?php
+              endif;
+            endif; ?>
+
+          <?php else: ?>
           <li class="d-none d-lg-block">
             <a class="text-truncate" href="#section2" title="<?=__('奖项设置', 'young-bird')?>"><?=__('奖项设置', 'young-bird')?></a>
           </li>
@@ -387,7 +404,7 @@ else:
             <a class="text-truncate d-none d-lg-block" href="<?=pll_home_url()?>work/?event_id=<?=$id_dl?>" title="<?=__('入围评审', 'young-bird')?>"><?=__('入围评审', 'young-bird')?></a>
             <?php elseif (current_user_can('edit_user') && in_array(get_field('status'), array('started', 'ending', 'ended'))): // 管理员查看正在进行行竞赛=催稿 ?>
             <a class="text-truncate d-none d-lg-block remind-event-ending" href="#" data-days-before-end="<?=ceil((strtotime(get_field('end_date')) + get_option('gmt_offset') * HOUR_IN_SECONDS - time()) / 86400)?>" title="<?=__('催稿', 'young-bird')?>"><?=__('催稿', 'young-bird')?></a>
-            <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended = in_array($id_dl, get_user_meta($user->ID, 'attend_events') ?: array ())): ?>
+            <?php elseif ($attendable = in_array(get_field('status'), array('started', 'ending')) && !$attended): ?>
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($group && $attended_as_member = in_array($id_dl, get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>" title="<?=__('查看团队', 'young-bird')?>"><?=__('查看团队', 'young-bird')?></a>
@@ -406,6 +423,7 @@ else:
               <?php endforeach; ?>
             </div>
           </li>
+          <?php endif; ?>
           <?php endif; ?>
         </ul>
       </div>
@@ -452,8 +470,13 @@ else:
             <span><?=__('竞赛介绍', 'young-bird')?></span>
           </h2>
           <div class="editor">
+            <?php if (!get_field('attend_review') || $attended): ?>
             <?php the_content(); ?>
+            <?php else: ?>
+            <?=wpautop(get_field('brief'))?>
+            <?php endif; ?>
           </div>
+          <?php if (!get_field('attend_review') || $attended): ?>
           <h2 class="row align-items-center mx-auto" id="section2">
             <!-- <img src="<?=get_stylesheet_directory_uri()?>/images/sample/icon-shade-scope.png" alt=""> -->
             <span><?=__('奖项设置', 'young-bird')?></span>
@@ -494,6 +517,7 @@ else:
           <div class="editor">
             <?=$qa?>
           </div>
+          <?php endif; ?>
           <?php endif; ?>
         </div>
       </div>

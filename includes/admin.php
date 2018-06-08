@@ -132,11 +132,11 @@ add_filter('post_row_actions', function ($actions, $post) {
   if ($post->post_type === 'post' && $attendable = get_post_meta($post->ID, 'attendable', true)) {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
-  if ($post->post_type === 'post' && $attend_event_review = get_post_meta($post->ID, 'attend_event_review', true)) {
-    $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_event_review=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
-  }
   if ($post->post_type === 'event') {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+    if (get_field('attend_review', $post->ID)) {
+      $actions['attend_review_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_event_review=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('申请报名用户', 'young-bird') . '</a>';
+    }
   }
   return $actions;
 }, 10, 2);
@@ -307,7 +307,7 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
       return implode('<br>', array_map(function ($resume) { return '<a href="' . $resume . '" target="_blank">' . basename($resume) . '</a>'; }, get_user_meta($user_id, 'resume')));
       break;
     case 'review' :
-      return '<input type="hidden" name="attended" value="' . in_array(get_post_meta($_GET['attend_event_review'], 'event', true), get_user_meta($user_id, 'attend_events') ?: array()) . '">';
+      return '<input type="hidden" name="attended" value="' . in_array($_GET['attend_event_review'], get_user_meta($user_id, 'attend_events') ?: array()) . '">';
       break;
     default:
   }
@@ -403,8 +403,7 @@ add_action('admin_init', function () {
   }
 
   if (!empty($_POST['ybp_attend_event_agree']) || !empty($_POST['ybp_attend_event_disagree'])) {
-    $attend_post_id = $_GET['attend_event_review'];
-    $event_id = get_post_meta($attend_post_id, 'event', true);
+    $event_id = $_GET['attend_event_review'];
     $user_id = $_POST['user_id'];
     if (isset($_POST['ybp_attend_event_agree'])) {
       try {
@@ -416,7 +415,7 @@ add_action('admin_init', function () {
       $work = get_event_work($event_id, $user_id, null, true);
       send_message($user_id, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
     } else {
-      delete_user_meta($user_id, 'attend_event_review', $attend_post_id);
+      delete_user_meta($user_id, 'attend_event_review', $event_id);
     }
   }
 });
