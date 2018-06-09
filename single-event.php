@@ -353,13 +353,13 @@ else:
           </li>
           <?php if (get_field('attend_review') && !$attended): ?>
           <?php if (in_array(get_post_meta($id_dl, 'status', true), array('started', 'ending'))):
-              if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_review') ?: array())): ?>
+              if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_event_review') ?: array())): ?>
               <li class="d-lg-block">
                 <a class="text-truncate" href="<?=pll_home_url()?>user-center/?attend-review=<?=$id_dl?>"><?=__('申请报名', 'young-bird')?></a>
               </li>
               <?php else: ?>
               <li class="d-lg-block">
-                <a href="javascript:return false" class="disabled"><?=__('已申请报名', 'young-bird')?></a>
+                <a href="javascript:return false" class="disabled"><?=__('报名审核中', 'young-bird')?></a>
               </li>
               <?php
               endif;
