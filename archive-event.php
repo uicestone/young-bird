@@ -73,7 +73,7 @@ get_header();
                 <div class="col-19 col-md-18 col-lg-19">
                   <select name="event_category" class="form-control" id="exampleFormControlSelect1" onchange="this.form.submit()">
                     <option value=""<?=empty($_GET['event_category']) ? ' selected' : ''?>><?=__('全部类别', 'young-bird')?></option>
-                    <?php foreach (get_terms(array('taxonomy' => 'event_category')) as $term): ?>
+                    <?php foreach (get_terms(array('taxonomy' => 'event_category', 'orderby' => 'ID', 'order' => 'asc')) as $term): ?>
                     <option value="<?=$term->slug?>"<?=$_GET['event_category']==$term->slug ? ' selected' : ''?>><?=$term->name?></option>
                     <?php endforeach; ?>
                   </select>
