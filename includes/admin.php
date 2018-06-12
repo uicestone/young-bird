@@ -405,6 +405,7 @@ add_action('admin_init', function () {
   if (!empty($_POST['ybp_attend_event_agree']) || !empty($_POST['ybp_attend_event_disagree'])) {
     $event_id = $_GET['attend_event_review'];
     $user_id = $_POST['user_id'];
+    $event_name = get_post(pll_get_post($event_id))->post_title;
     if (isset($_POST['ybp_attend_event_agree'])) {
       try {
         add_post_meta($event_id, 'attend_users', $user_id);
@@ -413,9 +414,10 @@ add_action('admin_init', function () {
         // 对于重复添加meta造成的数据库错误保持静默
       }
       $work = get_event_work($event_id, $user_id, null, true);
-      send_message($user_id, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
+      send_message($user_id, 'event-review-agreed', array('event' => $event_name, 'no' => 'YB' . strtoupper($work->post_name)));
     } else {
       delete_user_meta($user_id, 'attend_event_review', $event_id);
+      send_message($user_id, 'event-review-disagreed', array('event' => $event_name));
     }
   }
 });
