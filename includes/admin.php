@@ -89,6 +89,7 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
     $rank_length = get_field('length', $post_id);
     $event_id = get_post_meta($post_id, 'event', true);
     $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
+      array('key' => 'status', 'value' => '1'),
       array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
       array('key' => 'score', 'compare' => 'EXISTS')
     ), 'orderby' => 'meta_value_num', 'meta_key' => 'score', 'order' => 'DESC'));
