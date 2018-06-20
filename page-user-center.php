@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 
   if ($_POST['user_name']) {
     $user->display_name = $_POST['user_name'];
-    update_user_meta($user->ID, 'name', $_POST['name']);
+    update_user_meta($user->ID, 'name', $_POST['user_name']);
   }
   if ($_POST['email']) {
     $user->user_email = $_POST['email'];
