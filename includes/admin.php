@@ -258,7 +258,7 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         $vote_weight = get_post_meta($event_id, 'vote_weight', true) ?: 10;
         $votes = get_post_meta($post_id, 'votes', true);
         global $wpdb;
-        $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
+        $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
         $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
         echo __('总分: ', 'young-bird') . round($score + $vote_score, 2);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
@@ -469,7 +469,7 @@ add_action('admin_init', function () {
       $vote_weight = get_post_meta($event->ID, 'vote_weight', true) ?: 10;
 
       global $wpdb;
-      $max_votes = $wpdb->get_var("select max(meta_value) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
+      $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
       $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
       $score = $score_judge + $vote_score;
       $pass_status = get_post_meta($work->ID, 'status', true) ? __('入围', 'young-bird') : __('未入围', 'young-bird');
