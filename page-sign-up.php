@@ -115,7 +115,7 @@ else:
             <?php endif; ?>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="email" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?><?php if (pll_current_language()=='zh'){ ?> / <?=__('手机', 'young-bird')?><?php } ?>">
+                <input type="text" name="login" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?><?php if (pll_current_language()=='zh'){ ?> / <?=__('手机', 'young-bird')?><?php } ?>">
               </div>
             </div>
             <!--<div class="form-group">

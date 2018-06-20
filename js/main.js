@@ -822,14 +822,14 @@ YB.User = (function($){
 			var login = $(this).val();
       $('.verify-code').hide()
         .find('[name="code"]').prop('disabled', true);
-			if (isMobile($(this).val())) {
+			if (!isEmail($(this).val())) {
         mobileCodeContainer.show()
 					.find('.send-verify-code').data('mobile', login).end()
 					.find('[name="code"]').prop('disabled', false);
         emailCodeContainer
 					.find('.send-verify-code').removeData('email');
       }
-      else if (isEmail($(this).val())) {
+      else {
         emailCodeContainer.show()
 					.find('.send-verify-code').data('email', login).end()
           .find('[name="code"]').prop('disabled', false);
