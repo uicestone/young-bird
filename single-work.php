@@ -168,12 +168,13 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
 
 if (isset($_POST['like'])) {
   redirect_login();
+  $like = json_decode($_POST['like']);
   $votes = get_post_meta(get_the_ID(), 'votes', true);
-  if (json_decode($_POST['like']) && !in_array(get_the_ID(), $vote_works)) {
+  if ($like && !in_array(get_the_ID(), $vote_works)) {
     add_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
     update_post_meta(get_the_ID(), 'votes', ++$votes);
   }
-  elseif (in_array(get_the_ID(), $vote_works)) {
+  elseif (!$like && in_array(get_the_ID(), $vote_works)) {
     delete_user_meta(get_current_user_id(), 'vote_works', get_the_ID());
     update_post_meta(get_the_ID(), 'votes', --$votes);
   }

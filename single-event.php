@@ -9,13 +9,15 @@ if (isset($_GET['participate'])) {
 try {
 
 $id_dl = pll_get_post(get_the_ID(), pll_default_language());
+$like_events = get_user_meta(get_current_user_id(), 'like_events') ?: array();
 
 if (isset($_POST['like'])) {
   redirect_login();
-  if (json_decode($_POST['like'])) {
+  $like = json_decode($_POST['like']);
+  if ($like && !in_array($id_dl, $like_events)) {
     add_user_meta(get_current_user_id(), 'like_events', $id_dl);
   }
-  else {
+  elseif (!$like && in_array($id_dl, $like_events)) {
     delete_user_meta(get_current_user_id(), 'like_events', $id_dl);
   }
   exit;
@@ -449,7 +451,7 @@ else:
               <?php endif; ?>
               <?php endif; ?>
               <span class="like-box">
-                <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like"></i>
+                <i class="<?=in_array($id_dl, $like_events) ? 'fas ' : 'far'?> fa-heart like"></i>
               </span>
             </div>
           </div>

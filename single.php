@@ -1,15 +1,17 @@
 <?php
 
 $id_dl = pll_get_post(get_the_ID(), pll_default_language());
+$like_posts = get_user_meta(get_current_user_id(), 'like_posts') ?: array();
 
 if (isset($_POST['like'])) {
   redirect_login();
+  $like = json_decode($_POST['like']);
   $likes = get_post_meta($id_dl, 'likes', true);
-  if (json_decode($_POST['like'])) {
+  if ($like && !in_array($id_dl, $like_posts)) {
     add_user_meta(get_current_user_id(), 'like_posts', $id_dl);
     update_post_meta($id_dl, 'likes', ++$likes);
   }
-  else {
+  elseif (!$like && in_array($id_dl, $like_posts)) {
     delete_user_meta(get_current_user_id(), 'like_posts', $id_dl);
     update_post_meta($id_dl, 'likes', --$likes);
   }
@@ -41,7 +43,7 @@ get_header(); the_post(); ?>
                 <i class="fas fa-eye mr-2"></i>
                 <span class="mr-4"><?=$views?></span>
                 <span class="like-box">
-                  <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_posts') ?: array()) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
+                  <i class="<?=in_array($id_dl, $like_posts) ? 'fas ' : 'far'?> fa-heart mr-2 like"></i>
                   <span class="mr-4 likes"><?=$likes?></span>
                 </span>
               </div>
