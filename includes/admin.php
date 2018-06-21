@@ -88,16 +88,30 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
   if (get_post_type($post_id) === 'rank') {
     $rank_length = get_field('length', $post_id);
     $event_id = get_post_meta($post_id, 'event', true);
-    $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => $rank_length, 'meta_query' => array(
-      array('key' => 'status', 'value' => '1'),
-      array('key' => 'event', 'value' => pll_get_post($event_id, pll_default_language())),
-      array('key' => 'score', 'compare' => 'EXISTS')
-    ), 'orderby' => 'meta_value_num', 'meta_key' => 'score', 'order' => 'DESC'));
+    $event_id_dl = pll_get_post($event_id, pll_default_language());
+
+    // get all work in this event
+    $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => $event_id_dl));
+
+    // calculate total score
+    $works = array_map(function ($work) {
+      $total_score = get_work_total_score($work->ID);
+      $work->total_score = $total_score;
+      return $work;
+    }, $works);
+
+    usort($works, function ($work_a, $work_b) {
+      return round(($work_b->total_score - $work_a->total_score) * 10000);
+    });
+
+    $works = array_slice($works, 0, $rank_length);
+
     if (!$value) {
       usort($works, function ($work_a, $work_b) {
-        return $work_a->ID < $work_b;
+        return $work_a->ID - $work_b->ID;
       });
     }
+
     $work_ids = array_column($works, 'ID');
     update_post_meta($post_id, 'works', $work_ids);
 
@@ -253,14 +267,8 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
       break;
     case 'score' :
       if ($score = get_post_meta($post_id, 'score', true)) {
-        // get votes, votes of same event
-        $event_id = get_post_meta($post_id, 'event', true);
-        $vote_weight = get_post_meta($event_id, 'vote_weight', true) ?: 10;
-        $votes = get_post_meta($post_id, 'votes', true) ?: 0;
-        global $wpdb;
-        $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
-        $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-        echo __('总分: ', 'young-bird') . round($score + $vote_score, 2);
+        $total_score = get_work_total_score($post_id);
+        echo __('总分: ', 'young-bird') . round($total_score, 2);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
         echo $status;
       } else {
