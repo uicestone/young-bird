@@ -256,7 +256,7 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         // get votes, votes of same event
         $event_id = get_post_meta($post_id, 'event', true);
         $vote_weight = get_post_meta($event_id, 'vote_weight', true) ?: 10;
-        $votes = get_post_meta($post_id, 'votes', true);
+        $votes = get_post_meta($post_id, 'votes', true) ?: 0;
         global $wpdb;
         $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
         $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
@@ -461,8 +461,8 @@ add_action('admin_init', function () {
         $authors =  get_user_by('ID', $work->post_author)->display_name;
       }
 
-      $score_judge = get_post_meta($work->ID, 'score', true);
-      $votes = get_post_meta($work->ID, 'votes', true);
+      $score_judge = get_post_meta($work->ID, 'score', true) ?: 0;
+      $votes = get_post_meta($work->ID, 'votes', true) ?: 0;
 
       // get votes, votes of same event
       $event_id = get_post_meta($work->ID, 'event', true);
