@@ -31,6 +31,7 @@ function get_event_status ($event_id) {
     'ended' => __('已经结束', 'young-bird'),
     'judging' => __('评审开始', 'young-bird'),
     'judged' => __('评审完成', 'young-bird'),
+    'second_judging' => __('二次评审', 'young-bird'),
     'history' => __('历史竞赛', 'young-bird')
   );
   return $statuses[$status];
