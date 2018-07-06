@@ -7,7 +7,7 @@ $captain = get_user_by('ID', get_post()->post_author);
 $work = get_posts(array ('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 $members = get_post_meta(get_the_ID(), 'members') ?: array();
 $members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
-$editable = ($captain->ID == get_current_user_id() && in_array($event_status, array('started', 'ending'))) || current_user_can('edit_user');
+$editable = ($captain->ID == get_current_user_id() || current_user_can('edit_user')) && in_array($event_status, array('started', 'ending'));
 
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);

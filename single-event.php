@@ -410,9 +410,9 @@ else:
             <a class="text-truncate" href="<?=get_post_meta(get_the_ID(), 'ext_attend_link', true) ?: (get_the_permalink() . '?participate')?>" title="<?=__('参赛', 'young-bird')?>"><?=__('参赛', 'young-bird')?></a>
             <?php elseif ($group && $attended_as_member = in_array($id_dl, get_user_meta($user->ID, 'attend_events_member') ?: array())): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink($group->ID)?>" title="<?=__('查看团队', 'young-bird')?>"><?=__('查看团队', 'young-bird')?></a>
-            <?php elseif ($attended && ($group || $work)): ?>
+            <?php elseif ($attended && ($group || $work) && in_array(get_field('status'), array('started', 'ending', 'ended'))): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=$group ? get_the_permalink($group->ID) : get_the_permalink($work->ID)?>" title="<?=__('编辑作品', 'young-bird')?>"><?=__('编辑作品', 'young-bird')?></a>
-            <?php elseif ($attended): ?>
+            <?php elseif ($attended && in_array(get_field('status'), array('started', 'ending', 'ended'))): ?>
             <a class="text-truncate d-none d-lg-block" href="<?=get_the_permalink()?>?create-work" title="<?=__('上传作品', 'young-bird')?>"><?=__('上传作品', 'young-bird')?></a>
             <?php endif;?>
           </li>
