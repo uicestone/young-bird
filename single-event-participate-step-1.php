@@ -25,6 +25,15 @@
                 <input type="text" required name="name" value="<?=$name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
               </div>
             </div>
+            <div class="form-group">
+              <div class="input-group input-group-lg">
+                <select name="sex" required class="form-control custom-select">
+                  <option<?=!$sex ? ' selected' : ''?> value="" disabled><?=__('性别', 'young-bird')?></option>
+                  <option<?='studying' === $sex ? ' selected' : ''?> value="male"><?=__('男', 'young-bird')?></option>
+                  <option<?='working' === $sex ? ' selected' : ''?> value="female"><?=__('女', 'young-bird')?></option>
+                </select>
+              </div>
+            </div>
             <?php if (!$user->user_email): ?>
             <div class="form-group">
               <div class="input-group input-group-lg">

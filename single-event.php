@@ -226,7 +226,7 @@ $user = wp_get_current_user();
 
 $attended = in_array($id_dl, get_user_meta($user->ID, 'attend_events') ?: array ());
 
-$participate_fields = ['name', 'identity', 'id_card', 'birthday', 'school', 'major', 'country', 'city', 'company', 'department', 'title'];
+$participate_fields = ['name', 'sex', 'identity', 'id_card', 'birthday', 'school', 'major', 'country', 'city', 'company', 'department', 'title'];
 foreach ($participate_fields as $field) {
   $$field =  get_user_meta($user->ID, $field, true);
 }
