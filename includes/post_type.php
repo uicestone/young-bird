@@ -244,7 +244,7 @@ add_filter('pre_get_posts', function (WP_Query $query) {
   }
 });
 
-add_filter('the_title', function ($title, $post_id) {
+/*add_filter('the_title', function ($title, $post_id) {
 
   $post_type = get_post_type($post_id);
 
@@ -261,4 +261,4 @@ add_filter('the_title', function ($title, $post_id) {
   }
 
   return $title;
-}, 10, 2);
+}, 10, 2);*/
