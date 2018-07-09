@@ -92,7 +92,9 @@ get_header(); ?>
                 <?php endif; ?>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
-              <?=wpautop(get_post_meta($work->ID, 'description', true))?>
+              <div class="excerpt">
+                <?=wpautop(get_post_meta($work->ID, 'description', true))?>
+              </div>
               <div class="action row align-items-center">
                 <!--<i class="fas fa-eye mr-2"></i>-->
                 <!--<span class="mr-4">921</span>-->
