@@ -308,6 +308,14 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   try {
     add_post_meta($id_dl, 'attend_users', $user->ID);
     add_user_meta($user->ID, 'attend_events', $id_dl);
+
+    // 以个人名义参赛
+    if (isset($_GET['single'])) {
+      add_user_meta($user->ID, 'attend_events_solo', $id_dl);
+      $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
+      update_post_meta($id_dl, 'attendees', ++$attendees);
+    }
+
   } catch (Exception $e) {
     // 对于重复添加meta造成的数据库错误保持静默
   }
@@ -315,17 +323,6 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   send_message($user->ID, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
 }
 
-// 以个人名义参赛
-if (isset($_GET['create-work'])) {
-  redirect_login();
-  $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
-  $work = get_event_work($id_dl, null, null, true);
-  update_post_meta($id_dl, 'attendees', ++$attendees);
-  add_post_meta($id_dl, 'attend_users', $user->ID);
-  add_user_meta($user->ID, 'attend_events', $id_dl);
-  add_user_meta($user->ID, 'attend_events_solo', $id_dl);
-  header('Location: ' . get_the_permalink($work->ID)); exit;
-}
 } catch (Exception $e) {
   $form_error = $e->getMessage();
 }

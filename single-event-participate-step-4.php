@@ -24,7 +24,7 @@
             <a href="#" class="d-sm-block d-lg-none"><?=__('请至PC端上传您的作品', 'young-bird')?></a>
           </div>
           <?php if (isset($_GET['single'])): ?>
-          <a href="<?=get_the_permalink(get_the_ID())?>?create-work" class="btn btn-lg btn-secondary btn-block mt-5 mt-md-6"><?=__('上传作品', 'young-bird')?></a>
+          <a href="<?=get_the_permalink(get_event_work(get_the_ID(), get_current_user_id()))?>?create-work" class="btn btn-lg btn-secondary btn-block mt-5 mt-md-6"><?=__('上传作品', 'young-bird')?></a>
           <?php else: ?>
           <a href="<?=get_the_permalink($group->ID)?>" class="btn btn-lg btn-secondary btn-block mt-5 mt-md-6"><?=$im_leader ? __('上传作品', 'young-bird') : __('查看团队', 'young-bird')?></a>
           <?php endif; ?>
