@@ -3,11 +3,12 @@ redirect_login();
 
 the_post();
 $event_id_dl = get_post_meta(get_the_ID(), 'event', true);
+$event_status = get_post_meta($event_id_dl, 'status', true);
 $captain = get_user_by('ID', get_post()->post_author);
 $work = get_posts(array ('post_type' => 'work', 'lang' => '', 'meta_key' => 'group', 'meta_value' => get_the_ID()))[0];
 $members = get_post_meta(get_the_ID(), 'members') ?: array();
 $members_pending = get_post_meta(get_the_ID(), 'members_pending') ?: array();
-$editable = ($captain->ID == get_current_user_id() || current_user_can('edit_user')) && in_array($event_status, array('started', 'ending'));
+$editable = ($captain->ID == get_current_user_id() || current_user_can('edit_user')) && in_array($event_status, array('starting', 'started', 'ending'));
 
 if ($accept_member = $_POST['accept_member_request']) {
   add_post_meta(get_the_ID(), 'members', $accept_member);
