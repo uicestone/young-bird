@@ -242,8 +242,8 @@ else: ?>
                       <div class="input-group input-group-lg">
                         <select name="sex" required class="form-control custom-select">
                           <option<?=!$form_values['sex'] ? ' selected' : ''?> value="" disabled><?=__('性别', 'young-bird')?></option>
-                          <option<?='studying' === $form_values['sex'] ? ' selected' : ''?> value="male"><?=__('男', 'young-bird')?></option>
-                          <option<?='working' === $form_values['sex'] ? ' selected' : ''?> value="female"><?=__('女', 'young-bird')?></option>
+                          <option<?='male' === $form_values['sex'] ? ' selected' : ''?> value="male"><?=__('男', 'young-bird')?></option>
+                          <option<?='female' === $form_values['sex'] ? ' selected' : ''?> value="female"><?=__('女', 'young-bird')?></option>
                         </select>
                       </div>
                     </div>
