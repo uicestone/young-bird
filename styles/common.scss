@@ -615,6 +615,8 @@ a.link {
     &.flex-column {
       img {
         width: 5rem;
+        object-fit: cover;
+        object-position: center 25%;
       }
       .row {
         width: 100%;
@@ -623,6 +625,8 @@ a.link {
     }
     img {
       width: 8rem;
+      object-fit: cover;
+      object-position: center 25%;
     }
     .role, .name {
       font-weight: bold;
