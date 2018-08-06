@@ -124,6 +124,10 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
 
     $insert_query .= implode(', ', $insert_values);
     $wpdb->query($insert_query);
+
+    $work_ids_string = implode(',', $work_ids);
+    $delete_query = "delete from {$wpdb->postmeta} where meta_key = 'rank' and post_id not in ({$work_ids_string}) and meta_value = {$post_id}";
+    $wpdb->query($delete_query);
   }
   return $value;
 }, 10, 2);
