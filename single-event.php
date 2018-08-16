@@ -263,7 +263,7 @@ if (isset($_POST['create_group'])) {
   $groups = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
-    'title' => $_POST['group_name_create'],
+    'title' => htmlspecialchars_decode($_POST['group_name_create']),
     'meta_key' => 'event',
     'meta_value' => $id_dl
   ));
@@ -290,7 +290,7 @@ if (isset($_POST['join_group'])) {
   $group = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
-    'title' => $_POST['group_name_join'],
+    'title' => htmlspecialchars_decode($_POST['group_name_join']),
     'meta_key' => 'event',
     'meta_value' => $id_dl
   ))[0];
