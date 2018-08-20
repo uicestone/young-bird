@@ -441,21 +441,22 @@ else:
                 <?php the_title(); ?>
               </h1>
               <span class="time"><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
-            </div>
-            <div class="col-md-6 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
-              <?php if ($views = get_post_meta($id_dl, 'views', true)): ?>
-              <i class="far fa-user mr-2"></i>
-              <span class="mr-4"><?=__('查看次数', 'young-bird')?> / <?=$views?></span>
-              <?php endif; ?>
-              <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
-              <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
-              <i class="far fa-user mr-2"></i>
-              <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
-              <?php endif; ?>
-              <?php endif; ?>
-              <span class="like-box">
-                <i class="<?=in_array($id_dl, $like_events) ? 'fas ' : 'far'?> fa-heart like"></i>
-              </span>
+              <div class="time mt-2">
+                <?php if ($views = get_post_meta($id_dl, 'views', true)): ?>
+                <i class="far fa-eye mr-1"></i>
+                <span class="mr-3"><?=__('查看次数', 'young-bird')?> / <?=$views?></span>
+                <?php endif; ?>
+                <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
+                <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
+                <i class="far fa-user mr-1"></i>
+                <span class="mr-3"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                <?php endif; ?>
+                <?php endif; ?>
+                <span class="like-box mr-1">
+                  <i class="<?=in_array($id_dl, $like_events) ? 'fas ' : 'far'?> fa-heart like"></i>
+                  <span><?=__('收藏', 'young-bird')?></span>
+                </span>
+              </div>
             </div>
           </div>
           <div class="row mx-auto justify-content-between align-items-center mt-3">
