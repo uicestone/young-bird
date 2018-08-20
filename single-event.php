@@ -10,6 +10,8 @@ try {
 
 $id_dl = pll_get_post(get_the_ID(), pll_default_language());
 $like_events = get_user_meta(get_current_user_id(), 'like_events') ?: array();
+$views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
+update_post_meta($id_dl, 'views', $views);
 
 if (isset($_POST['like'])) {
   redirect_login();
@@ -441,9 +443,13 @@ else:
               <span class="time"><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>
             </div>
             <div class="col-md-6 action d-flex align-items-center justify-content-end mt-2 mt-md-0">
-              <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
+              <?php if ($views = get_post_meta($id_dl, 'views', true)): ?>
               <i class="far fa-user mr-2"></i>
+              <span class="mr-4"><?=__('查看次数', 'young-bird')?> / <?=$views?></span>
+              <?php endif; ?>
+              <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
               <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
+              <i class="far fa-user mr-2"></i>
               <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
               <?php endif; ?>
               <?php endif; ?>
