@@ -437,7 +437,7 @@ else:
           <!-- title -->
           <div class="title row justify-content-between flex-nowrap align-items-start">
             <div class="col-md-18">
-              <h1 class="color-black font-weight-bold">
+              <h1 class="color-black">
                 <?php the_title(); ?>
               </h1>
               <span class="time"><?=get_post_meta(get_the_ID(), 'start_date', true)?> ~ <?=get_post_meta(get_the_ID(), 'end_date', true)?></span>

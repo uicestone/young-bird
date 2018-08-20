@@ -27,7 +27,7 @@
 @include media-breakpoint-up(xs) {
   .news-detail {
     h1 {
-      font-weight: bold;
+      font-weight: $font-weight-normal;
       font-size: $font-size-base;
       line-height: 1.6;
       margin-bottom: 0;
@@ -45,7 +45,7 @@
 @include media-breakpoint-up(md) {
   .news-detail {
     h1 {
-      font-size: $font-size-xl;
+      font-size: $font-size-lg;
       line-height: 1.6;
     }
   }

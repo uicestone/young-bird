@@ -215,7 +215,7 @@ a.link {
 .htitle {
   position: relative;
   h1 {
-    font-size: 2.6rem;
+    font-size: 2rem;
     font-weight: $font-weight-bold;
     padding: 20px 0 15px;
   }
@@ -263,7 +263,7 @@ a.link {
         padding-bottom: 2.5rem;
         font-size: $font-size-xs;
         .title {
-          font-size: $font-size-lg;
+          font-size: $font-size-base;
         }
         .label {
           margin-top: 2rem;
@@ -471,7 +471,9 @@ a.link {
     color: $white;
   }
   h4 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-base;
   }
   .card-label {
     transition: $transition-base;
@@ -919,7 +921,8 @@ a.link {
         }
       }
       h1 {
-        font-size: $font-size-xl;
+        font-size: $font-size-lg;
+        font-weight: $font-weight-normal;
       }
       .time {
         font-size: $font-size-base;
