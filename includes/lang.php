@@ -22,7 +22,8 @@ add_action('wp', function() {
     'save' => __('保存', 'young-bird'),
     'remind_event_ending' => __('竞赛报名即将截止通知', 'young-bird'),
     'remind_rank_published' => __('竞赛轮次发布通知', 'young-bird'),
-    'generate_certs' => __('生成证书并发送通知', 'young-bird')
+    'generate_certs' => __('生成证书并发送通知', 'young-bird'),
+    'image_upload_too_big' => __('上传的文件超过大小限制', 'young-bird')
   );
   wp_localize_script( 'main', 'locale', $translation_array );
 });

@@ -269,14 +269,14 @@ get_header(); ?>
           </div>
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
-              <input type="file" name="poster"<?=$editable? '' : ' disabled'?> class="custom-file-input">
+              <input type="file" name="poster"<?=$editable? '' : ' disabled'?> accept="image/jpeg,image/png" data-size-limit="500" class="custom-file-input">
               <?php if (has_post_thumbnail()): ?>
               <?php the_post_thumbnail('vga'); ?>
               <?php else: ?>
               <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
               <p class="mb-1 color-silver"><?=__('点击上传封面', 'young-bird')?></p>
-              <p class="mb-0 color-silver"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
+              <p class="mb-0 color-silver" style="position:absolute;bottom:-2rem"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
               <?php endif; ?>
             </div>
           </div>
@@ -286,7 +286,7 @@ get_header(); ?>
           <h1 class="font-weight-bold color-silver"><?=$editable ? __('上传作品', 'young-bird') : __('作品', 'young-bird')?></h1>
         </div>
         <?php if ($editable): ?>
-        <p class="font-weight-normal color-silver"><?=__('您可以上传最多五张图片，支持的文件类型为：JPG/PNG，图片最大不超过20M。', 'young-bird')?></p>
+        <p class="font-weight-normal color-silver"><?=get_post_meta(pll_get_post($event_id), 'work_image_hint', true) ?: sprintf(__('您可以上传最多%s张图片，支持的文件类型为：%s，图片最大不超过%s。', 'young-bird'), $work_images_limit = (get_post_meta($event_id, 'work_images_limit', true) ?: 5), 'JPG/PNG', '20MB')?></p>
         <?php endif; ?>
         <div class="row work-upload mb-3">
           <?php foreach ($images as $index => $image): ?>
@@ -294,7 +294,7 @@ get_header(); ?>
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
-              <input type="file" name="images[<?=$index?>]"<?=$editable? '' : ' disabled'?> class="custom-file-input">
+              <input type="file" accept="image/jpeg,image/png" name="images[<?=$index?>]"<?=$editable? '' : ' disabled'?> data-size-limit="20480" class="custom-file-input">
               <img src="<?=$image?>?imageView2/1/w/640/h/480">
               <?php if ($editable): ?>
               <button type="submit" name="delete_image" value="<?=$image?>"><i class="fas fa-trash-alt"></i></button>
@@ -302,12 +302,12 @@ get_header(); ?>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php if ($editable): for ($i=0; $i<5-count($images); $i++): ?>
+          <?php if ($editable): for ($i=0; $i<$work_images_limit-count($images); $i++): ?>
           <div class="col-lg-2-4">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
-              <input type="file" name="images[]" class="custom-file-input">
+              <input type="file" accept="image/jpeg,image/png" name="images[]" data-size-limit="20480" class="custom-file-input">
               <img src="" class="d-none" alt="">
               <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
             </div>
