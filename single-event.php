@@ -53,7 +53,10 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
   $event = get_post($id_dl);
   $event_en = get_post(pll_get_post($id_dl, 'en'));
   $honor_works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'rank', 'meta_compare' => 'IN', 'meta_value' => $cert_rank_ids));
-  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_key' => 'event', 'meta_value' => $id_dl));
+  $participate_works = get_posts(array('post_type' => 'work', 'posts_per_page' => -1, 'lang' => '', 'meta_query' => array(
+    array('key' => 'event', 'value' => $id_dl),
+    array('key' => 'status', 'value' => '1')
+  )));
   $cert_template_honor = get_post_meta($id_dl, 'cert_template_honor', true);
   $cert_template_participation = get_post_meta($id_dl, 'cert_template_participation', true);
   $cert_template_honor_path = get_attached_file($cert_template_honor);
@@ -64,7 +67,8 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
     $work_rank_ids = get_post_meta($work->ID, 'rank');
     $work_final_rank_id = $work_rank_ids[count($work_rank_ids)-1];
     $rank_length = get_post_meta($work_final_rank_id, 'length', true);
-    
+    $rank_is_participate_round = get_field('is_participate_round', $work_final_rank_id);
+
     $cert_honor = Image::make($cert_template_honor_path);
 
     $group_id = get_post_meta($work->ID, 'group', true);
@@ -89,136 +93,26 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $issue_to = $author->display_name;
     }
 
-    $cert_honor->text(mb_strtoupper($issue_to), 160, 1650, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-    })->text(mb_strtoupper($work->post_title), 1200, 2150, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text('TOP ' . $rank_length, 350, 2360, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper($event_en->post_title), 1500, 2360, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper($event->post_title), 1050, 2600, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper($work->post_title), 1200, 2725, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text('TOP ' . $rank_length, 470, 2850, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text('YB' . strtoupper($work->post_name), 625, 3270, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->save(wp_upload_dir()['path'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
-    update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/CERTIFICATE-HONOR-YB' . strtoupper($work->post_name) . '.jpg');
+    $honor_type = $rank_is_participate_round ? 'participate' : 'award';
+
+    if ($honor_type === 'award') {
+      $cert_honor_filename = generate_certificate_honor($issue_to, 'YB' . strtoupper($work->post_name), $work->post_title, $rank_length, $event->post_title, $event_en->post_title, $cert_template_honor_path);
+    } else {
+      $from = mb_strtoupper(get_user_meta($work->post_author, 'school', true) ?: get_user_meta($work->post_author, 'company', true));
+      $cert_honor_filename = generate_certificate_participate($issue_to, 'YB' . strtoupper($work->post_name), $from, get_the_date('Ymd', $work->ID), $event_en->post_title, $cert_template_participation_path);
+    }
+    update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/' . $cert_honor_filename);
 
     if ($group_id) {
       $member_ids = get_post_meta($group_id, 'members');
       foreach ($member_ids as $member_id) {
-        send_message($member_id, 'certificate-of-award', array('competition' => $event->post_title));
+        send_message($member_id, 'certificate-of-' . $honor_type, array('competition' => $event->post_title));
       }
     } else {
-      send_message($work->post_author, 'certificate-of-award', array('competition' => $event->post_title));
+      send_message($work->post_author, 'certificate-of-' . $honor_type, array('competition' => $event->post_title));
     }
   }
 
-  foreach ($participate_works as $participate_work_id) {
-    $work = get_post($participate_work_id);
-    // generate participate cert
-    $cert_participate = Image::make($cert_template_participation_path);
-    $group_id = get_post_meta($work->ID, 'group', true);
-    if ($group_id) {
-      $member_ids = get_post_meta($group_id, 'members');
-      $issue_to = 'TEAM ' . get_post($group_id)->post_title . "\n";
-      foreach ($member_ids as $i => $member_id) {
-        $member = get_user_by('ID', $member_id);
-        $member_name = $member->display_name;
-
-        $lines = explode("\n", $issue_to);
-        $last_line = $lines[count($lines)-1];
-        if (mb_strlen($last_line) + mb_strlen($member_name) > 40) {
-          $issue_to .= "\n";
-        } else if ($i) {
-          $issue_to .= ',  ';
-        }
-        $issue_to .= $member_name;
-      }
-    } else {
-      $author = get_user_by('ID', $work->post_author);
-      $issue_to = $author->display_name;
-    }
-    $from = mb_strtoupper(get_user_meta($work->post_author, 'school', true) ?: get_user_meta($work->post_author, 'company', true));
-    $cert_participate->text(mb_strtoupper($issue_to), 180, 1550, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-    })->text($from, 1400, 1810, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper($event_en->post_title), 1240, 2030, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper(get_the_date('Ymd', $work->ID)), 530, 2120, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text($from, 900, 2430, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper(get_the_date('Ymd', $work->ID)), 2080, 2430, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text(mb_strtoupper($event->post_title), 1400, 2550, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->text('YB' . strtoupper($work->post_name), 625, 3270, function(Font $font) {
-      $font->file(FONT_PATH . 'msyh.ttc');
-      $font->size(55);
-      $font->color('#8fc5dd');
-      $font->align('center');
-    })->save(wp_upload_dir()['path'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
-    update_post_meta($work->ID, 'cert_participate', wp_upload_dir()['url'] . '/CERTIFICATE-PARTICIPATE-YB' . strtoupper($work->post_name) . '.jpg');
-
-    if ($group_id) {
-      $member_ids = get_post_meta($group_id, 'members');
-      foreach ($member_ids as $member_id) {
-        send_message($member_id, 'certificate-of-participate', array('competition' => $event->post_title));
-      }
-    } else {
-      send_message($work->post_author, 'certificate-of-participate', array('competition' => $event->post_title));
-    }
-
-  }
   exit;
 }
 
