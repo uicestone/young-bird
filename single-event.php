@@ -289,17 +289,21 @@ if (isset($_POST['create_group'])) {
 
 if (isset($_POST['join_group'])) {
   redirect_login();
-  $group = get_posts(array (
+  $groups = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
     'title' => htmlspecialchars_decode($_POST['group_name_join']),
     'meta_key' => 'event',
     'meta_value' => $id_dl
-  ))[0];
-  if (!$group) {
+  ));
+  
+  if (!$groups || count($groups) > 1) {
     throw new Exception(__('没有找到这个团队', 'young-bird'));
   }
-  update_post_meta($group->ID, 'members_pending', $user->ID);
+
+  $group = $groups[0];
+
+  add_post_meta($group->ID, 'members_pending', $user->ID);
   add_user_meta($user->ID, 'attend_events_member', $id_dl);
   send_message($group->post_author, 'an-application-for-joining-the-team', array('team' => $group->ID));
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
