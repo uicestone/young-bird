@@ -1,7 +1,4 @@
 <?php
-use Intervention\Image\ImageManagerStatic as Image;
-use Intervention\Image\AbstractFont as Font;
-
 if (isset($_GET['participate'])) {
   redirect_login();
 }
@@ -68,8 +65,6 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
     $work_final_rank_id = $work_rank_ids[count($work_rank_ids)-1];
     $rank_length = get_post_meta($work_final_rank_id, 'length', true);
     $rank_is_participate_round = get_field('is_participate_round', $work_final_rank_id);
-
-    $cert_honor = Image::make($cert_template_honor_path);
 
     $group_id = get_post_meta($work->ID, 'group', true);
     if ($group_id) {
