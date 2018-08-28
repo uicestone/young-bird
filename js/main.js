@@ -6,6 +6,10 @@ YB.Util = (function($) {
 	function preview(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
+			if ($(input).data('size-limit') && input.files[0].size > $(input).data('size-limit') * 1024) {
+				alert(locale.image_upload_too_big);
+				return;
+			}
 			reader.onload = function(e) {
 				$(input).next('img').attr('src', e.target.result).removeClass('d-none');
 			}

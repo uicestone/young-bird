@@ -296,6 +296,14 @@ add_filter('manage_users_columns', function ( $column ) {
     unset($column['role']);
     unset($column['registered']);
   }
+  if (isset($_GET['attend_events'])) {
+    array_insert($column, 'registered', array('attend_event_date' => __( '参赛时间', 'young-bird')));
+    unset($column['registered']);
+  }
+  if (isset($_GET['attend_activities'])) {
+    array_insert($column, 'registered', array('attend_activity_date' => __( '报名时间', 'young-bird')));
+    unset($column['registered']);
+  }
   return $column;
 });
 
@@ -322,6 +330,11 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
     case 'review' :
       return '<input type="hidden" name="attended" value="' . in_array($_GET['attend_event_review'], get_user_meta($user_id, 'attend_events') ?: array()) . '">';
       break;
+    case 'attend_event_date':
+      $work = get_event_work($_GET['attend_events'], $user_id);
+      return $work->post_date;
+    case 'attend_activity_date':
+      return get_user_meta($user_id, 'attend_activity_date_' . $_GET['attend_activities'], true);
     default:
   }
   return $val;

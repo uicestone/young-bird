@@ -132,6 +132,7 @@ if (isset($_POST['submit'])) {
     $activity_id = $_GET['attend-activity'];
     $activity_id_dl = pll_get_post($activity_id, pll_default_language());
     add_user_meta($user->ID, 'attend_activities', $activity_id_dl);
+    add_user_meta($user->ID, 'attend_activity_date_' . $activity_id_dl, date('Y-m-d H:i:s'));
     send_message($user->ID, 'successfully-applied-for-this-activity');
     header('Location: ' . get_the_permalink($activity_id)); exit;
   }

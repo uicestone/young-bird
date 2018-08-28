@@ -1,4 +1,6 @@
 <?php
+use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\AbstractFont as Font;
 
 add_theme_support('post-thumbnails');
 
@@ -262,3 +264,95 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 
   return $title;
 }, 10, 2);*/
+
+function generate_certificate_honor($issue_to, $work_num, $work_title, $rank_length, $event_title, $event_title_en, $template_path) {
+  $filename = 'CERTIFICATE-HONOR-' . $work_num . '.jpg';
+  $cert_honor = Image::make($template_path);
+  $cert_honor->text(mb_strtoupper($issue_to), 160, 1650, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+  })->text(mb_strtoupper($work_title), 1200, 2150, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text('TOP ' . $rank_length, 350, 2360, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($work_title), 1500, 2360, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($event_title_en), 1050, 2600, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($event_title), 1200, 2725, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text('TOP ' . $rank_length, 470, 2850, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text($work_num, 625, 3270, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->save(wp_upload_dir()['path'] . '/' . $filename);
+  return $filename;
+}
+
+function generate_certificate_participate($issue_to, $work_num, $from, $date, $event_title_en, $template_path) {
+  $filename = 'CERTIFICATE-PARTICIPATE-' . $work_num . '.jpg';
+  $cert_participate = Image::make($template_path);
+  $cert_participate->text(mb_strtoupper($issue_to), 180, 1550, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+  })->text($from, 1400, 1810, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($event_title_en), 1240, 2030, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($date), 530, 2120, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text($from, 900, 2430, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($date), 2080, 2430, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text(mb_strtoupper($event_title_en), 1400, 2550, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->text($work_num, 625, 3270, function(Font $font) {
+    $font->file(FONT_PATH . 'msyh.ttc');
+    $font->size(55);
+    $font->color('#8fc5dd');
+    $font->align('center');
+  })->save(wp_upload_dir()['path'] . '/' . $filename);
+  return $filename;
+}

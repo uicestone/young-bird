@@ -196,7 +196,7 @@ function get_event_work ($event_id, $user_id = null, $group_id = null, $create =
       'post_type' => 'work',
       'post_status' => 'publish',
       'post_title' => __('新作品', 'young-bird'),
-      'post_name' => $group_id ? $event_id_dl . '-g' . $group_id : $event_id_dl . '-s' . $user_id,
+      'post_name' => $group_id ? (get_post_meta($event_id_dl, 'work_num_prefix', true) ?: $event_id_dl) . '-g' . $group_id : $event_id_dl . '-s' . $user_id,
       'post_author' => $user_id
     ));
 
