@@ -423,7 +423,7 @@ else:
     <div class="container-fluid bg-bg-light-grey" id="section5">
       <div class="container">
         <div class="owl-carousel related-news owl-theme">
-          <?php if ($news_ids): $newses = get_posts(array('post__in' => $news_ids)); foreach ($newses as $news): $news = get_post($news->ID) ?>
+          <?php if ($news_ids): $newses = get_posts(array('post__in' => $news_ids, 'posts_per_page' => -1)); foreach ($newses as $news): $news = get_post($news->ID) ?>
           <div class="item">
             <a href="<?=get_permalink($news->ID)?>" class="card mb-3 item-sub-history">
               <div>
