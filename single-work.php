@@ -79,6 +79,10 @@ if (isset($_POST['submit'])) {
 
   $group_id = get_post_meta($work->ID, 'group', true);
 
+  header('Location: ' . get_the_permalink() . '#upload_finished_hint');
+}
+
+if (isset($_GET['upload_finished'])) {
   if ($group_id) {
     $group = get_post($group_id);
     $captain_id = $group->post_author;
