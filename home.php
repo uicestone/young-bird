@@ -28,19 +28,19 @@
       <div class="category home-event-status mb-4">
         <div class="row justify-content-center">
           <div class="d-flex align-items-center mx-5 mx-md-4 mb-2">
-            <i class="icon icon-yellow mr-3"></i>
+            <i class="icon starting mr-3"></i>
             <span><?=__('即将开始', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-5 mx-md-4 mb-2">
-            <i class="icon icon-pink mr-3"></i>
+            <i class="icon started mr-3"></i>
             <span><?=__('开始报名', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-5 mx-md-4 mb-2">
-            <i class="icon icon-rose mr-3"></i>
+            <i class="icon ending mr-3"></i>
             <span><?=__('即将截止', 'young-bird')?></span>
           </div>
           <div class="d-flex align-items-center mx-5 mx-md-4 mb-2">
-            <i class="icon icon-red mr-3"></i>
+            <i class="icon ended mr-3"></i>
             <span><?=__('报名截止', 'young-bird')?></span>
           </div>
         </div>

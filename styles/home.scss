@@ -1,5 +1,17 @@
 .home-event-status {
   font-weight: bold;
+  .starting {
+    background: #f6c150;
+  }
+  .started {
+    background: #63c854;
+  }
+  .ending {
+    background: #5460f2;
+  }
+  .ended {
+    background: #ea6c5d;
+  }
 }
 
 .list-competiton {
