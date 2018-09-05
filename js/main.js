@@ -89,6 +89,14 @@ YB.Util = (function($) {
 			animationDuration : 300,
 			onInit : function( instance ) {
 				instance.$refs.inner.wrap( '<div class="fancybox-outer"></div>' );
+				$(instance.$refs.inner).find('.fancybox-caption-wrap').on('scroll', function(){
+					var throttle = window.innerHeight / 3 - 50;
+					if(this.scrollTop > throttle) {
+						$(this).addClass('full-height');
+					} else {
+						$(this).removeClass('full-height');
+					}
+				})
 			},
 			afterLoad: function() {
 				if(!callbacked) {
@@ -242,11 +250,11 @@ YB.Work = (function($) {
 		var comments = box.data('comments');
 		var caption = '<div class="comments-container">';
 		if (comments && $.isArray(comments)) {
-      caption += '<h3 class="text-white">'+locale.comment+'</h3>';
+      caption += '<h3>'+locale.comment+'</h3>';
 			caption += '<ul class="comments pl-0">';
       comments.forEach(function (comment) {
-      	caption += '<li><p>' + comment.content + '</p>';
-				caption += '<div><img src="'+ comment.avatar +'" /><p class="text-truncate">'+ comment.name +'</p></div></li>';
+				caption += '<li><div><img src="'+ comment.avatar +'" /><p class="text-truncate">'+ comment.name +'</p></div>';
+      	caption += '<p>' + comment.content + '</p></li>';
 			});
 			caption += '</ul>';
 		}

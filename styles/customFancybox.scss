@@ -6,9 +6,22 @@
 }
 
 .fancybox-caption-wrap {
-  pointer-events: all!important;
+  pointer-events: all;
   max-height: 33vh;
   overflow-y: auto;
+  z-index: 99999;
+  padding: calc(33vh - 3.5rem) 0 0;
+  background: none;
+  &.full-height {
+    max-height: 100vh;
+    padding: calc(100vh - 3.5rem) 0 0;
+  }
+}
+
+.fancybox-caption {
+  background: $white;
+  padding: 1rem 15%;
+  color: $black;
 }
 
 .fancybox-navigation {
@@ -78,7 +91,7 @@
       justify-content: space-between;
       margin-bottom: rem(30);
       > p {
-        margin-right: rem(25);
+        margin-left: rem(25);
         margin-bottom: 0;
       }
       div {

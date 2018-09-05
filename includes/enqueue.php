@@ -29,13 +29,13 @@ add_action('wp', function() {
 });
 
 add_action('wp_enqueue_scripts', function(){
-  wp_enqueue_style('main');
   wp_enqueue_style('fontawesome');
   wp_enqueue_style('fontawesome.stars');
   wp_enqueue_style('fancybox');
   wp_enqueue_style('carousel');
   wp_enqueue_style('hshare');
   wp_enqueue_style('bootstrap-datepicker');
+  wp_enqueue_style('main');
 
   wp_enqueue_script('bootstrap');
   wp_enqueue_script('bootstrap-datepicker');
