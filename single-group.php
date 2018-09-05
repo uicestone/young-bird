@@ -179,7 +179,7 @@ get_header(); ?>
           <?php   if (in_array(get_current_user_id(), $members)): ?>
           <div class="row mt-4">
             <div class="col d-flex justify-content-end">
-              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__(($captain->ID == get_current_user_id() ? __('修改', 'young-bird') : __('查看', 'young-bird')), 'young-bird')?></a>
+              <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=$captain->ID == get_current_user_id() ? __('修改', 'young-bird') : __('查看', 'young-bird')?></a>
             </div>
           </div>
           <?php   endif; ?>
