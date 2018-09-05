@@ -347,7 +347,6 @@ else:
                 <?php endif; ?>
                 <span class="like-box mr-1">
                   <i class="<?=in_array($id_dl, $like_events) ? 'fas ' : 'far'?> fa-heart like"></i>
-                  <span><?=__('收藏', 'young-bird')?></span>
                 </span>
               </div>
             </div>
