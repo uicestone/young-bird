@@ -267,6 +267,8 @@ get_header(); ?>
               <textarea class="form-control" name="description"<?=$editable? '' : ' disabled'?> placeholder="<?=__('描述', 'young-bird')?>"><?=$description?></textarea>
             </div>
           </div>
+        </div>
+        <div class="row mt-3 work-desc">
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
               <input type="file" name="poster"<?=$editable? '' : ' disabled'?> accept="image/jpeg,image/png" data-size-limit="500" class="custom-file-input">
@@ -290,7 +292,7 @@ get_header(); ?>
         <?php endif; ?>
         <div class="row work-upload mb-3">
           <?php foreach ($images as $index => $image): ?>
-          <div class="col-lg-2-4">
+          <div class="col-lg-2-4 col-sm-12">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
@@ -303,7 +305,7 @@ get_header(); ?>
           </div>
           <?php endforeach; ?>
           <?php if ($editable): for ($i=0; $i<$work_images_limit-count($images); $i++): ?>
-          <div class="col-lg-2-4">
+          <div class="col-lg-2-4 col-sm-12">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
               <i class="fas fa-plus color-silver"></i>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
