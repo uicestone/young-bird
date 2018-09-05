@@ -66,7 +66,17 @@ get_header(); ?>
         </small>
         <?php endif; ?>
       </h1>
-      <?php foreach ($works as $index => $work): ?>
+      <?php
+      foreach ($works as $index => $work) {
+        $furthest_rank_length = (int) get_post_meta($work->ID, 'furthest_rank_length', true);
+        if ($furthest_rank_length === 1) {
+          $champions = array_splice($works, $index, 1);
+          $champions[0]->furthest_rank_length = 1;
+          $works = array_merge($champions, $works);
+          break;
+        }
+      }
+      foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
           <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb">
@@ -76,7 +86,7 @@ get_header(); ?>
             <div class="card-body pb-5">
               <div class="row head justify-content-between align-items-center">
                 <div class="label color-dark-yellow font-weight-bold col-12">
-                  <?php if ($ranking_judge && $index === 0): ?>
+                  <?php if (($ranking_judge && $index === 0) || (isset($work->furthest_rank_length) && $work->furthest_rank_length === 1)): ?>
                   <span>CHAMPION</span>
                   <?php elseif ($ranking_judge): ?>
                   <span>TOP <?=$index+1?></span>

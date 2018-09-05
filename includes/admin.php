@@ -115,6 +115,10 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
     $work_ids = array_column($works, 'ID');
     update_post_meta($post_id, 'works', $work_ids);
 
+    foreach ($work_ids as $work_id) {
+      update_post_meta($work_id, 'furthest_rank_length', $rank_length);
+    }
+
     global $wpdb;
     // insert new rank_length, on duplicate ignore
     $insert_query = "replace into {$wpdb->postmeta} (post_id, meta_key, meta_value) values ";
