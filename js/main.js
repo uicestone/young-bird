@@ -174,7 +174,10 @@ YB.Participate = (function($) {
 				var _index = $(this).parent().index();
 				$(this).removeClass('bg-light-grey')
 					.parent().siblings().children('.btn').addClass('bg-light-grey');
-				form.find('.team').eq(_index).removeClass('d-none').siblings('.team').addClass('d-none');
+				form.find('.team').eq(_index).removeClass('d-none')
+						.find(':input').prop('disabled', false).end()
+					.siblings('.team').addClass('d-none')
+						.find(':input').prop('disabled', true).end();
 			}
 		})
 	}

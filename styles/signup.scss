@@ -71,6 +71,12 @@
   .bg-light-grey {
     border-color: $light-grey;
   }
+  .agree-checkbox {
+    transform: scale(1.125);
+  }
+  .agree-checkbox-label {
+    font-size: $h4-font-size;
+  }
 }
 
 @include media-breakpoint-down(md) {
