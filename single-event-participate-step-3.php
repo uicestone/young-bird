@@ -35,7 +35,7 @@
                   <span class="mx-4"><?=__('团队参赛', 'young-bird')?></span>
                 </div>
               </div>
-              <?php $event_agreement = get_posts(array('name' => 'event-agreement'))[0]; ?>
+              <?php $event_agreement = get_field('event_agreement'); ?>
               <div class="check-0 d-none">
                 <div class="form-check my-3">
                   <input class="form-check-input agree-checkbox" type="checkbox" name="agree" value="1" id="agree-single">
@@ -56,7 +56,7 @@
                     <button type="button" class="btn btn-lg btn-secondary btn-block bg-light-grey"><?=__('加入', 'young-bird')?></button>
                   </div>
                 </div>
-                <h4 class="font-weight-normal color-silver my-3"><?=__('你可以创建一个团队，或者去寻找一个团队加入', 'young-bird')?></h4>
+                <h4 class="font-weight-normal color-silver my-3"><?=__('请先选择“创建”或“加入”团队', 'young-bird')?></h4>
                 <div class="form-group team">
                   <div class="input-group input-group-lg">
                     <input type="text" name="group_name_create" class="form-control" placeholder="<?=__('团队名称', 'young-bird')?>" required>
