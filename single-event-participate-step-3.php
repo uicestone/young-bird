@@ -40,7 +40,7 @@
                 <div class="form-check my-3">
                   <input class="form-check-input agree-checkbox" type="checkbox" name="agree" value="1" id="agree-single">
                   <label class="form-check-label agree-checkbox-label font-weight-normal color-silver" for="agree-single">
-                    <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>'), get_permalink($event_agreement->ID))?>
+                    <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>', 'young-bird'), get_permalink($event_agreement->ID))?>
                   </label>
                 </div>
                 <div class="row mx-auto">
@@ -64,7 +64,7 @@
                   <div class="form-check my-3">
                     <input class="form-check-input agree-checkbox" type="checkbox" name="agree" value="1" id="agree-create-group" required>
                     <label class="form-check-label agree-checkbox-label font-weight-normal color-silver" for="agree-create-group">
-                      <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>'), get_permalink($event_agreement->ID))?>
+                      <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>', 'young-bird'), get_permalink($event_agreement->ID))?>
                     </label>
                   </div>
                   <button type="submit" name="create_group" class="mt-2 btn btn-lg btn-secondary btn-block px-5"><?=__('创建', 'young-bird')?></button>
@@ -76,7 +76,7 @@
                   <div class="form-check my-3">
                     <input disabled class="form-check-input agree-checkbox" type="checkbox" name="agree" value="1" id="agree-join-group" required>
                     <label class="form-check-label agree-checkbox-label font-weight-normal color-silver" for="agree-join-group">
-                      <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>'), get_permalink($event_agreement->ID))?>
+                      <?=sprintf(__('我已阅读并同意此次竞赛的<a href="%s">官方规则</a>', 'young-bird'), get_permalink($event_agreement->ID))?>
                     </label>
                   </div>
                   <button disabled type="submit" name="join_group" class="mt-2 btn btn-lg btn-secondary btn-block px-5"><?=__('加入', 'young-bird')?></button>
