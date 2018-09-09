@@ -58,14 +58,8 @@
               <h5 class="text-truncate"><?=get_the_subtitle($event->ID)?></h5>
               <span class="end-date"><?=__('截止日期', 'young-bird')?>/<?=get_post_meta($event->ID, 'end_date', true)?></span>
               <?php $status = get_post_meta($event->ID, 'status', true); ?>
-              <?php if ($status === 'starting'): ?>
-              <i class="icon icon-yellow"></i>
-              <?php elseif ($status === 'started'): ?>
-              <i class="icon icon-pink"></i>
-              <?php elseif ($status === 'ending'): ?>
-              <i class="icon icon-rose"></i>
-              <?php elseif ($status === 'ended'): ?>
-              <i class="icon icon-red"></i>
+              <?php if (in_array($status, array('starting', 'started', 'ending', 'ended'))): ?>
+              <i class="icon <?=$status?>"></i>
               <?php else: ?>
               <i class="icon icon-grey"></i>
               <?php endif; ?>
