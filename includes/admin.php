@@ -405,6 +405,7 @@ add_action('admin_init', function () {
         $work = get_event_work($event->ID, $user->ID);
         $row[] = $group->post_title;
         $row[] = 'YB' . strtoupper($work->post_name);
+        $row[] = $work->post_date;
       }
 
       $data[] = $row;
@@ -413,7 +414,7 @@ add_action('admin_init', function () {
     $writer = new XLSXWriter();
     $head = array('姓名' => '@', '手机' => '@', '邮箱' => '@', '证件' => '@', '身份' => '@', '性别' => '@', '生日' => '@', '国家' => '@', '城市' => '@', '学校' => '@', '专业' => '@', '星座' => '@', '兴趣' => '@', '地址' => '@', '公司' => '@', '部门' => '@', '职位' => '@', '注册时间' => 'YYYY-MM-DD HH:MM:SS');
     if (isset($event)) {
-      $head = array_merge($head, array('团队名称' => '@', '作品编号' => '@'));
+      $head = array_merge($head, array('团队名称' => '@', '作品编号' => '@', '参赛时间' => '@'));
     }
     $writer->writeSheetHeader('选手', $head);
     foreach ($data as $row) {
