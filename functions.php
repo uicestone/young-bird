@@ -212,17 +212,19 @@ function get_event_work ($event_id, $user_id = null, $group_id = null, $create =
   return $work;
 }
 
-function get_work_total_score ($work_id) {
+function get_work_total_score ($work_id, $event_id = null) {
 
-  if ($score = get_post_meta($work_id, 'score', true)) {
+  if ($judge_score = get_post_meta($work_id, 'score', true)) {
     // get votes, votes of same event
-    $event_id = get_post_meta($work_id, 'event', true);
+    if (!$event_id) {
+      $event_id = get_post_meta($work_id, 'event', true);
+    }
     $vote_weight = get_post_meta($event_id, 'vote_weight', true) ?: 10;
     $votes = get_post_meta($work_id, 'votes', true) ?: 0;
     global $wpdb;
     $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
     $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-    return $score + $vote_score;
+    return $judge_score + $vote_score;
   }
   else {
     return 0;

@@ -67,14 +67,17 @@ get_header(); ?>
         <?php endif; ?>
       </h1>
       <?php
-      foreach ($works as $index => $work) {
-        $furthest_rank_length = (int) get_post_meta($work->ID, 'furthest_rank_length', true);
-        if ($furthest_rank_length === 1) {
-          $champions = array_splice($works, $index, 1);
-          $champions[0]->furthest_rank_length = 1;
-          $works = array_merge($champions, $works);
-          break;
+      if ($champion_to_top = get_field('champion_to_top')) {
+        $champion_work_index = null; $champion_score = 0;
+        foreach ($works as $index => $work) {
+          $work->score = get_work_total_score($work->ID, $event_id);
+          if ($work->score > $champion_score) {
+            $champion_score = $work->score;
+            $champion_work_index = $index;
+          }
         }
+        $champions = array_splice($works, $champion_work_index, 1);
+        $works = array_merge($champions, $works);
       }
       foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
@@ -82,11 +85,11 @@ get_header(); ?>
           <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb">
             <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
           </div>
-          <div class="col-sm-12 order-sm-first card item-top3">
-            <div class="card-body pb-5">
-              <div class="row head justify-content-between align-items-center">
-                <div class="label color-dark-yellow font-weight-bold col-12">
-                  <?php if (($ranking_judge && $index === 0) || (isset($work->furthest_rank_length) && $work->furthest_rank_length === 1)): ?>
+          <div class="col-sm-12 card item-top3">
+            <div class="card-body pb-5 pt-0">
+              <div class="row head justify-content-between align-items-end pb-0">
+                <div class="label color-dark-yellow font-weight-bold col-12 pl-0">
+                  <?php if (($ranking_judge || $champion_to_top) && $index === 0): ?>
                   <span>CHAMPION</span>
                   <?php elseif ($ranking_judge): ?>
                   <span>TOP <?=$index+1?></span>
@@ -94,7 +97,7 @@ get_header(); ?>
                   <span>TOP<?=$rank_length?></span>
                   <?php endif; ?>
                 </div>
-                <div class="color-black">YB<?=strtoupper($work->post_name)?></div>
+                <div class="work-num color-black">YB<?=strtoupper($work->post_name)?></div>
                 <?php if ($event_status === 'second_judging' && $work->post_author == get_current_user_id()): ?>
                 <div>
                   <a href="<?=get_the_permalink($work->ID)?>" class="btn btn-outline-primary btn-common"><?=__('修改作品', 'young-bird')?></a>
@@ -102,6 +105,20 @@ get_header(); ?>
                 <?php endif; ?>
               </div>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
+              <?php if ($group_id = get_post_meta($work->ID, 'group', true)): ?>
+              <h4 class="mt-3">
+                [<?=__('队名：')?><?=get_the_title($group_id)?>]
+                <?=implode(', ', array_map(function($member_id){
+                  return get_user_by('ID', $member_id)->display_name;
+                }, get_post_meta($group_id, 'members')))?>
+              </h4>
+              <h4><?=implode(', ', array_map(function($member_id){
+                  return get_user_meta($member_id, 'school', true);
+                }, get_post_meta($group_id, 'members')))?></h4>
+              <?php else: ?>
+              <h4><?=get_user_by('ID', $work->post_author)->display_name?></h4>
+              <h4><?=get_user_meta($work->post_author, 'school', true)?></h4>
+              <?php endif; ?>
               <div class="excerpt">
                 <?=wpautop(get_post_meta($work->ID, 'description', true))?>
               </div>

@@ -419,7 +419,7 @@ a.link {
   @extend .item-history;
   padding-bottom: 0;
   .card-body {
-    border-top: 1px solid $black;
+    border-top: none;
     border-bottom: 1px solid $black;
     position: relative;
     h3 {
@@ -435,10 +435,14 @@ a.link {
       line-height: 1.8;
     }
     .head {
-      border-bottom: 1px solid $grey;
+      border-bottom: 1px solid $dark-yellow;
       font-size: $font-size-base;
+      height: 1.75rem;
       .label {
-        font-size: rem(34);
+        font-size: $font-size-lg;
+      }
+      .work-num {
+        font-size: $h3-font-size;
       }
     }
     .action {
@@ -1083,7 +1087,7 @@ a.link {
     .card-body {
       h3 {
         font-size: rem(18);
-        min-height: rem(30);
+        //min-height: rem(30);
       }
       p {
         font-size: $font-size-xs;

@@ -491,7 +491,7 @@ add_action('admin_init', function () {
         $authors =  get_user_by('ID', $work->post_author)->display_name;
       }
 
-      $score_judge = get_post_meta($work->ID, 'score', true) ?: 0;
+      $judge_score = get_post_meta($work->ID, 'score', true) ?: 0;
       $votes = get_post_meta($work->ID, 'votes', true) ?: 0;
 
       // get votes, votes of same event
@@ -501,7 +501,7 @@ add_action('admin_init', function () {
       global $wpdb;
       $max_votes = $wpdb->get_var("select max(cast(meta_value as unsigned)) from {$wpdb->postmeta} where meta_key = 'votes' and post_id in (select post_id from {$wpdb->postmeta} where meta_value = '{$event_id}' and meta_key = 'event')");
       $vote_score = $max_votes ? ($votes / $max_votes * $vote_weight) : 0;
-      $score = $score_judge + $vote_score;
+      $score = $judge_score + $vote_score;
       $pass_status = get_post_meta($work->ID, 'status', true) ? __('入围', 'young-bird') : __('未入围', 'young-bird');
 
       $row = array(
@@ -510,7 +510,7 @@ add_action('admin_init', function () {
         count(get_post_meta($work->ID, 'images')),
         $authors,
         $pass_status,
-        $score_judge,
+        $judge_score,
         $votes,
         $score,
         get_the_date('Y-m-d H:i:s', $work->ID)
