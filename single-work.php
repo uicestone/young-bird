@@ -256,8 +256,8 @@ get_header(); ?>
     <div class="container mt-5 pb-6 work-detail">
       <!-- 简介 -->
       <div class="row mx-auto justify-content-between align-items-end">
-        <h1 class="font-weight-bold color-silver"><?=$editable ? __('请上传作品简介', 'young-bird') : __('作品简介', 'young-bird')?></h1>
-        <h2 class="font-weight-bold color-silver"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($post->post_name)?></h2>
+        <h2 class="font-weight-bold color-silver col-24 mb-4 pl-0"><?=__('参赛编号：', 'young-bird')?>YB<?=strtoupper($post->post_name)?></h2>
+        <h2 class="font-weight-bold color-silver"><?=$editable ? __('请上传作品简介', 'young-bird') : __('作品简介', 'young-bird')?></h2>
       </div>
       <form method="post" enctype="multipart/form-data" accept-charset="UTF-8">
         <div class="row mt-3 work-desc">
@@ -272,6 +272,9 @@ get_header(); ?>
             </div>
           </div>
         </div>
+        <div class="row mx-auto justify-content-between align-items-end mt-4">
+          <h2 class="font-weight-bold color-silver"><?=$editable ? __('上传作品封面', 'young-bird') : __('作品封面', 'young-bird')?></h2>
+        </div>
         <div class="row mt-3 work-desc">
           <div class="col-md-12">
             <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
@@ -282,19 +285,16 @@ get_header(); ?>
               <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
               <p class="mb-1 color-silver"><?=__('点击上传封面', 'young-bird')?></p>
-              <p class="mb-0 color-silver" style="position:absolute;bottom:-2rem"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
               <?php endif; ?>
+              <p class="mb-0 color-silver" style="position:absolute;bottom:-2rem;left:0"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
             </div>
           </div>
         </div>
         <!-- 作品 -->
         <div class="row mx-auto mt-4">
-          <h1 class="font-weight-bold color-silver"><?=$editable ? __('上传作品', 'young-bird') : __('作品', 'young-bird')?></h1>
+          <h2 class="font-weight-bold color-silver"><?=$editable ? __('上传作品', 'young-bird') : __('作品', 'young-bird')?></h2>
         </div>
-        <?php if ($editable): ?>
-        <p class="font-weight-normal color-silver"><?=get_post_meta(pll_get_post($event_id), 'work_image_hint', true) ?: sprintf(__('您可以上传最多%s张图片，支持的文件类型为：%s，图片最大不超过%s。', 'young-bird'), $work_images_limit = (get_post_meta($event_id, 'work_images_limit', true) ?: 5), 'JPG/PNG', '20MB')?></p>
-        <?php endif; ?>
-        <div class="row work-upload mb-3">
+        <div class="row work-upload mt-3 mb-2">
           <?php foreach ($images as $index => $image): ?>
           <div class="col-lg-2-4 col-sm-12">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
@@ -308,6 +308,7 @@ get_header(); ?>
             </div>
           </div>
           <?php endforeach; ?>
+          <?php $work_images_limit = get_post_meta($event_id, 'work_images_limit', true); ?>
           <?php if ($editable): for ($i=0; $i<$work_images_limit-count($images); $i++): ?>
           <div class="col-lg-2-4 col-sm-12">
             <div class="upload-container custom-file-container d-flex justify-content-center align-items-center flex-column">
@@ -321,10 +322,13 @@ get_header(); ?>
           <?php endfor; endif; ?>
         </div>
         <?php if ($editable): ?>
-        <p class="mb-5 color-silver"><?=__('拖动图片来改变顺序', 'young-bird')?></p>
+        <p class="mb-5 color-silver">
+          <?=get_post_meta(pll_get_post($event_id), 'work_image_hint', true) ?: sprintf(__('您可以上传最多%s张图片，支持的文件类型为：%s，图片最大不超过%s。', 'young-bird'), $work_images_limit ?: 5, 'JPG/PNG', '20MB')?>
+          <?=__('拖动图片来改变顺序', 'young-bird')?>
+        </p>
         <?php endif; ?>
         <div class="row">
-          <div class="col-12">
+          <div class="col-12 mb-3">
             <button type="button" class="btn btn-secondary btn-block btn-lg btn-preview"><?=__('预览', 'young-bird')?></button>
             <div class="d-none preview-box" data-comments='<?=json_encode(get_post_meta(get_the_ID(), 'comments', true), JSON_UNESCAPED_UNICODE)?>'>
               <a class="w-100" style="padding:10vh 20vw">
@@ -347,12 +351,12 @@ get_header(); ?>
             </div>
           </div>
           <?php if ($editable): ?>
-          <div class="col-12">
+          <div class="col-12 mb-3">
             <button type="submit" name="submit" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('上传', 'young-bird')?></button>
           </div>
           <?php endif; ?>
           <?php if (current_user_can('edit_users')): ?>
-          <div class="col-12">
+          <div class="col-12 mb-3">
             <a href="<?php the_permalink(); ?>?download" class="btn btn-secondary btn-block btn-lg bg-body-grey"><?=__('下载', 'young-bird')?></a>
           </div>
           <?php endif; ?>
