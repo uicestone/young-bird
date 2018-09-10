@@ -39,6 +39,14 @@
   }
 }
 
+.fancybox-stage {
+  bottom: 3.5rem;
+}
+
+.fancybox-navigation button {
+  top: calc(50% - 1.75rem);
+}
+
 // confirm
 
 .fc-container .fancybox-bg {
