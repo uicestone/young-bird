@@ -82,11 +82,11 @@ get_header(); ?>
       foreach ($works as $index => $work): ?>
       <div class="mt-4 mt-md-5">
         <div class="row item-work item-top3-container">
-          <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb">
+          <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb px-4">
             <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
           </div>
-          <div class="col-sm-12 card item-top3">
-            <div class="card-body pb-5 pt-0">
+          <div class="col-sm-12 card item-top3 px-4">
+            <div class="card-body pb-1 pt-0">
               <div class="row head justify-content-between align-items-end pb-0">
                 <div class="label color-dark-yellow font-weight-bold col-12 pl-0">
                   <?php if (($ranking_judge || $champion_to_top) && $index === 0): ?>
@@ -107,7 +107,7 @@ get_header(); ?>
               <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
               <?php if ($group_id = get_post_meta($work->ID, 'group', true)): ?>
               <h4 class="mt-3">
-                [<?=__('队名：')?><?=get_the_title($group_id)?>]
+                [ <?=__('队名：')?><?=get_the_title($group_id)?> ]
                 <?=implode(', ', array_map(function($member_id){
                   return get_user_by('ID', $member_id)->display_name;
                 }, get_post_meta($group_id, 'members')))?>
