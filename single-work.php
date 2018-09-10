@@ -303,7 +303,7 @@ get_header(); ?>
               <input type="file" accept="image/jpeg,image/png" name="images[<?=$index?>]"<?=$editable? '' : ' disabled'?> data-size-limit="20480" class="custom-file-input">
               <img src="<?=$image?>?imageView2/1/w/640/h/480">
               <?php if ($editable): ?>
-              <button type="submit" name="delete_image" value="<?=$image?>"><i class="fas fa-trash-alt"></i></button>
+              <button class="delete-image" type="submit" name="delete_image" value="<?=$image?>"><i class="fas fa-trash-alt"></i></button>
               <?php endif; ?>
             </div>
           </div>
@@ -315,7 +315,7 @@ get_header(); ?>
               <p class="mt-2 color-silver"><?=__('点击上传图片', 'young-bird')?></p>
               <input type="file" accept="image/jpeg,image/png" name="images[]" data-size-limit="20480" class="custom-file-input">
               <img src="" class="d-none" alt="">
-              <a href="#" class="delete d-none"><i class="fas fa-trash-alt"></i></a>
+              <a href="#" class="delete delete-image d-none"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>
           <?php endfor; endif; ?>

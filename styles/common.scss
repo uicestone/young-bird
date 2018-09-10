@@ -784,12 +784,14 @@ a.link {
     .fa-plus {
       font-size: 1.3rem;
     }
-    .fa-trash-alt {
+    .delete-image {
       position: absolute;
       font-size: 1.3rem;
       right: .8rem;
       bottom: .8rem;
       z-index: 4;
+      background: none;
+      border: none;
       &:hover {
         cursor: pointer;
       }
