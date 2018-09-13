@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__ . '/includes/admin.php';
+require __DIR__ . '/includes/apis.php';
 require __DIR__ . '/includes/aliyun.signature_helper.php';
 require __DIR__ . '/includes/cap.php';
 require __DIR__ . '/includes/cmb2.functions.php';

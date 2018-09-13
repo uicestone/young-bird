@@ -14,7 +14,7 @@ add_action('wp', function() {
   wp_register_script('bootstrap', get_stylesheet_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '4.0.0-beta.3', true);
   wp_register_script('bootstrap-datepicker', get_stylesheet_directory_uri() . '/js/bootstrap-datepicker.min.js', array('bootstrap'), '1.8.0', true);
   wp_register_script('bootstrap-datepicker.zh-CN', get_stylesheet_directory_uri() . '/js/bootstrap-datepicker.zh-CN.min.js', array('bootstrap-datepicker'), '1.8.0', true);
-  wp_register_script('typeahead', get_stylesheet_directory_uri() . '/js/typeahead.jquery.min.js', array('jquery'), '0.11.1', true);
+  wp_register_script('typeahead', get_stylesheet_directory_uri() . '/js/typeahead.bundle.min.js', array('jquery'), '0.11.1', true);
   wp_register_script('html.sortable', get_stylesheet_directory_uri() . '/js/html.sortable.min.js', array(), false, true);
   wp_register_script('fancybox', get_stylesheet_directory_uri() . '/js/jquery.fancybox.min.js', array(), false, true);
   wp_register_script('carousel', get_stylesheet_directory_uri() . '/js/owl.carousel.min.js', array(), false, true);

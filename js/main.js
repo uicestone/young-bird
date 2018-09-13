@@ -755,6 +755,8 @@ YB.User = (function($){
 	var emailCodeContainer = $('.verify-code.login-is-email');
 	var countryContainer = $(':input[name="country"]');
 	var identityContainer = page.find(':input[name="identity"]');
+	var schoolInput = $(':input[name="school"]');
+	var majorInput = $(':input[name="major"]');
 	var resumeInput = page.find(':input[name="resume[]"]');
 
 	var countryMatcher = function(data) {
@@ -930,6 +932,9 @@ YB.User = (function($){
 			enableCityAutoComplete($(this).data('locations-data'), $(this).val())
 		});
 
+		enableSchoolAutoComplete();
+		enableMajorAutoComplete();
+
 		resumeInput.on('change', function () {
 			$(this).siblings('.custom-file-label').children('.filenames').text($.map(this.files, function (file) {
 				return file.name;
@@ -969,6 +974,53 @@ YB.User = (function($){
 				name: 'cities',
 				limit: 20,
 				source: cityMatcher(locationsData, currentCountry)
+			});
+	}
+
+	function enableSchoolAutoComplete() {
+
+		var schools = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			// prefetch: '/api/school',
+			remote: {
+				url: '/wp-json/yb/school/%QUERY',
+				wildcard: '%QUERY'
+			}
+		});
+		schoolInput
+			.typeahead('destroy')
+			.typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}, {
+				name: 'schools',
+				source: schools,
+				limit: 10
+			});
+	}
+
+	function enableMajorAutoComplete() {
+
+		var majors = new Bloodhound({
+			datumTokenizer: Bloodhound.tokenizers.obj.whitespace,
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			// prefetch: '/api/school',
+			remote: {
+				url: '/wp-json/yb/major/%QUERY?lang=' + locale.__,
+				wildcard: '%QUERY'
+			}
+		});
+		majorInput
+			.typeahead('destroy')
+			.typeahead({
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}, {
+				name: 'majors',
+				source: majors
 			});
 	}
 
