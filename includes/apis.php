@@ -27,7 +27,7 @@ class YB_REST_Profile_Controller extends WP_REST_Controller {
    * @return WP_Error|WP_REST_Response
    */
   public static function search_schools( $request ) {
-    $keyword = $request->get_param('keyword');
+    $keyword = urldecode($request->get_param('keyword'));
 
     if (!$keyword) {
       return rest_ensure_response(array());
@@ -53,7 +53,7 @@ class YB_REST_Profile_Controller extends WP_REST_Controller {
    * @return WP_Error|WP_REST_Response
    */
   public static function search_majors( $request ) {
-    $keyword = $request->get_param('keyword');
+    $keyword = urldecode($request->get_param('keyword'));
 
     if (!$keyword) {
       return rest_ensure_response(array());
