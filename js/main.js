@@ -996,8 +996,7 @@ YB.User = (function($){
 				minLength: 1
 			}, {
 				name: 'schools',
-				source: schools,
-				limit: 10
+				source: schools
 			});
 	}
 
