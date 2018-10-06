@@ -104,10 +104,10 @@ get_header(); ?>
                 </div>
                 <?php endif; ?>
               </div>
-              <h3 class="mt-3"><?=get_the_title($work->ID)?></h3>
+              <h3 class="mt-3 mb-0"><?=get_the_title($work->ID)?></h3>
               <?php if ($group_id = get_post_meta($work->ID, 'group', true)): ?>
-              <h4 class="mt-3">
-                [ <?=__('队名：')?><?=get_the_title($group_id)?> ]
+              <h4 class="mt-2">
+                [ <?=__('队名：', 'young-bird')?><?=get_the_title($group_id)?> ]
                 <?=implode(', ', array_map(function($member_id){
                   return get_user_by('ID', $member_id)->display_name;
                 }, get_post_meta($group_id, 'members')))?>
