@@ -796,6 +796,7 @@ a.link {
       z-index: 4;
       background: none;
       border: none;
+      text-shadow: 0 0 5px $white;
       &:hover {
         cursor: pointer;
       }

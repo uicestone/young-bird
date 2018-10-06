@@ -258,3 +258,16 @@ function array_collect (array $input) {
   }
   return $output;
 }
+
+function is_same_resource($urla, $urlb) {
+  $urla = str_replace('//cdn.', '//www.', $urla);
+  $urlb = str_replace('//cdn.', '//www.', $urlb);
+  return $urla === $urlb;
+}
+
+function url_path($url) {
+  preg_match('/.*?:\/\/.*?(\/.*)$/', $url, $matches);
+  if ($matches) {
+    return $matches[1];
+  }
+}
