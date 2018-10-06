@@ -25,7 +25,8 @@ add_action('wp', function() {
     'generate_certs' => __('生成证书并发送通知', 'young-bird'),
     'image_upload_too_big' => __('上传的文件超过大小限制', 'young-bird'),
     'work_upload_finished' => __('作品上传成功', 'young-bird'),
-    'return' => __('返回', 'young-bird'),
+    'return_edit' => __('继续编辑', 'young-bird'),
+    'save_back_event' => __('返回竞赛', 'young-bird')
   );
   wp_localize_script( 'main', 'locale', $translation_array );
 });

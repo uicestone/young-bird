@@ -216,7 +216,7 @@ YB.Work = (function($) {
 	function init() {
     bindEvent();
     if(window.location.hash === '#upload_finished_hint') {
-    	YB.Util.confirm({title: locale.work_upload_finished, noButton: locale.return, callback: function(val){
+    	YB.Util.confirm({title: locale.work_upload_finished, noButton: locale.return_edit, okButton: locale.save_back_event, callback: function(val){
     		if (val) {
 					window.location.href = window.location.href.split('#')[0] + '?upload_finished';
 				}
