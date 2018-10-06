@@ -76,6 +76,9 @@
   }
   .agree-checkbox-label {
     font-size: $h4-font-size;
+    a {
+      text-decoration: underline;
+    }
   }
 }
 
