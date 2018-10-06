@@ -99,13 +99,18 @@ if (isset($_GET['upload_finished'])) {
 
 if (isset($_POST['delete_image'])) {
 
-  $url_to_delete = array_values(array_filter($images, function ($image_url) {
-    return is_same_resource($image_url, $_POST['delete_image']);
-  }))[0];
+  if($_POST['delete_image'] === 'poster') {
+    wp_delete_post(get_post_thumbnail_id());
+    delete_post_meta(get_the_ID(), 'poster');
+  } else {
+    $url_to_delete = array_values(array_filter($images, function ($image_url) {
+      return is_same_resource($image_url, $_POST['delete_image']);
+    }))[0];
 
-  if ($url_to_delete) {
-    delete_post_meta(get_the_ID(), 'images', $url_to_delete);
-    unlink(get_home_path() . substr(url_path($_POST['delete_image']), 1));
+    if ($url_to_delete) {
+      delete_post_meta(get_the_ID(), 'images', $url_to_delete);
+      unlink(get_home_path() . substr(url_path($_POST['delete_image']), 1));
+    }
   }
 
   header('Location: ' . get_the_permalink()); exit;
@@ -274,11 +279,14 @@ get_header(); ?>
           <h2 class="font-weight-bold color-silver"><?=$editable ? __('上传作品封面', 'young-bird') : __('作品封面', 'young-bird')?></h2>
         </div>
         <div class="row mt-3 work-desc">
-          <div class="col-md-12">
-            <div class="poster custom-file-container d-flex justify-content-center align-items-center flex-column">
+          <div class="col-md-12 work-upload">
+            <div class="poster custom-file-container upload-container d-flex justify-content-center align-items-center flex-column">
               <input type="file" name="poster"<?=$editable? '' : ' disabled'?> accept="image/jpeg,image/png" data-size-limit="500" class="custom-file-input">
               <?php if (has_post_thumbnail()): ?>
               <?php the_post_thumbnail('vga'); ?>
+              <?php if ($editable): ?>
+              <button class="delete-image" type="submit" name="delete_image" value="poster"><i class="fas fa-trash-alt"></i></button>
+              <?php endif; ?>
               <?php else: ?>
               <img src="" alt="" class="d-none">
               <i class="fas fa-plus mb-3 color-silver"></i>
