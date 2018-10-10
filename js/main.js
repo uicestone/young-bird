@@ -219,6 +219,8 @@ YB.Work = (function($) {
     	YB.Util.confirm({title: locale.work_upload_finished, noButton: locale.return_edit, okButton: locale.save_back_event, callback: function(val){
     		if (val) {
 					window.location.href = window.location.href.split('#')[0] + '?upload_finished';
+				} else {
+    			window.location.hash = '';
 				}
     	}});
 		}

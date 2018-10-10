@@ -116,7 +116,7 @@ get_header(); ?>
                   return get_user_meta($member_id, 'school', true);
                 }, get_post_meta($group_id, 'members')))?></h4>
               <?php else: ?>
-              <h4><?=get_user_by('ID', $work->post_author)->display_name?></h4>
+              <h4 class="mt-2"><?=get_user_by('ID', $work->post_author)->display_name?></h4>
               <h4><?=get_user_meta($work->post_author, 'school', true)?></h4>
               <?php endif; ?>
               <div class="excerpt">

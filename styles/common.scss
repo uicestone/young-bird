@@ -809,6 +809,18 @@ a.link {
   }
 }
 
+.work-detail {
+  h2 {
+    font-size: $font-size-lg;
+  }
+  .input-group-lg > .form-control {
+    font-size: $h3-font-size;
+  }
+  .color-blue {
+    color: #0a24fa;
+  }
+}
+
 .work-desc {
   textarea {
     height: 23rem;

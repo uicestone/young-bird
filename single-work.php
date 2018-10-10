@@ -292,7 +292,7 @@ get_header(); ?>
               <i class="fas fa-plus mb-3 color-silver"></i>
               <p class="mb-1 color-silver"><?=__('点击上传封面', 'young-bird')?></p>
               <?php endif; ?>
-              <p class="mb-0 color-silver" style="position:absolute;bottom:-2rem;left:0"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
+              <p class="mb-0 color-blue" style="position:absolute;bottom:-2rem;left:0"><?=__('图片最大不超过', 'young-bird')?>500KB</p>
             </div>
           </div>
         </div>
@@ -328,7 +328,7 @@ get_header(); ?>
           <?php endfor; endif; ?>
         </div>
         <?php if ($editable): ?>
-        <p class="mb-5 color-silver">
+        <p class="mb-5 color-blue">
           <?=get_post_meta(pll_get_post($event_id), 'work_image_hint', true) ?: sprintf(__('您可以上传最多%s张图片，支持的文件类型为：%s，图片最大不超过%s。', 'young-bird'), $work_images_limit ?: 5, 'JPG/PNG', '20MB')?>
           <?=__('拖动图片来改变顺序', 'young-bird')?>
         </p>
