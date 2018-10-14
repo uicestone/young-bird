@@ -171,8 +171,6 @@ if (isset($_POST['create_group'])) {
   add_post_meta($group_id, 'event', $id_dl);
   add_post_meta($group_id, 'members', $user->ID);
   add_user_meta($user->ID, 'attend_events_captain', $id_dl);
-  $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
-  update_post_meta($id_dl, 'attendees', ++$attendees);
   header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
 }
 
@@ -200,22 +198,20 @@ if (isset($_POST['join_group'])) {
 
 if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
   redirect_login();
-  try {
+  $attend_events = get_user_meta($user->ID, 'attend_events');
+  $work = get_event_work($id_dl, $user->ID, null, true);
+  if (!in_array($id_dl, $attend_events)) {
+    $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
+    update_post_meta($id_dl, 'attendees', ++$attendees);
     add_post_meta($id_dl, 'attend_users', $user->ID);
     add_user_meta($user->ID, 'attend_events', $id_dl);
 
     // 以个人名义参赛
     if (isset($_GET['single'])) {
       add_user_meta($user->ID, 'attend_events_solo', $id_dl);
-      $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
-      update_post_meta($id_dl, 'attendees', ++$attendees);
     }
-
-  } catch (Exception $e) {
-    // 对于重复添加meta造成的数据库错误保持静默
+    send_message($user->ID, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
   }
-  $work = get_event_work($id_dl, $user->ID, null, true);
-  send_message($user->ID, 'successfully-applied-for-this-competition', array('no' => 'YB' . strtoupper($work->post_name)));
 }
 
 } catch (Exception $e) {
@@ -235,6 +231,11 @@ get_header();
 if (isset($_GET['participate'])):
   redirect_login();
   $step = $_GET['participate'] ?: 'step-1';
+  $user = wp_get_current_user();
+  $attend_events = get_user_meta($user->ID, 'attend_events');
+  if (in_array($id_dl, $attend_events) && $step !== 'step-4') {
+    header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
+  }
   include(locate_template('single-event-participate-' . $step . '.php'));
 else:
 ?>
