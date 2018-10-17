@@ -165,7 +165,7 @@ if (isset($_POST['create_group'])) {
 
   $group_id = wp_insert_post(array (
     'post_type' => 'group',
-    'post_title' => $_POST['group_name_create'],
+    'post_title' => htmlspecialchars_decode($_POST['group_name_create']),
     'post_status' => 'publish'
   ));
   add_post_meta($group_id, 'event', $id_dl);

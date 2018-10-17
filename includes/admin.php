@@ -91,7 +91,15 @@ add_action('acf/update_value/name=ranking_judge', function ($value, $post_id) {
     $event_id_dl = pll_get_post($event_id, pll_default_language());
 
     // get all work in this event
-    $works = get_posts(array('post_type' => 'work', 'lang' => '', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => $event_id_dl));
+    $works = get_posts(array(
+      'post_type' => 'work',
+      'lang' => '',
+      'posts_per_page' => -1,
+      'meta_query' => array(
+        array('key' => 'event', 'value' => $event_id_dl),
+        array('key' => 'status', 'value' => '1')
+      )
+    ));
 
     // calculate total score
     $works = array_map(function ($work) {
@@ -278,7 +286,7 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
         $total_score = get_work_total_score($post_id);
         echo __('总分: ', 'young-bird') . round($total_score, 2);
       } elseif ($status = get_post_meta($post_id, 'status', true)) {
-        echo $status;
+        echo __('入围', 'young-bird');;
       } else {
         echo __('未入围', 'young-bird');
       }
