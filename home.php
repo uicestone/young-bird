@@ -1,7 +1,7 @@
 <?php get_header(); ?>
     <!-- Banner -->
     <div class="container-fluid px-0 banner-home owl-carousel owl-theme">
-      <?php foreach (get_posts(array('category_name' => 'home-banner', 'post_type' => 'any')) as $banner): ?>
+      <?php foreach (get_posts(array('category_name' => 'home-banner', 'post_type' => 'any', 'posts_per_page' => -1)) as $banner): ?>
       <a<?=get_field('has_content', $banner) ? ' href="' . get_the_permalink($banner->ID) . '"' : ''?>>
         <!-- for desktop -->
         <div class="container-fluid px-0 d-none d-lg-block">
