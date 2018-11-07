@@ -40,6 +40,9 @@
             if (empty($comment['avatar'])) {
               $comment['avatar'] = get_user_meta($comment['judge'], 'avatar', true);
             }
+            if (empty($comment['time'])) {
+              $comment['time'] = '';
+            }
           }
           ?>
           <div class="d-none" data-comments='<?=json_encode($comments, JSON_UNESCAPED_UNICODE)?>'>

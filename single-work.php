@@ -150,6 +150,8 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
     $scores[] = $score;
   }
 
+  $now_string = date('Y-m-d H:i', time() + get_option('gmt_offset') * HOUR_IN_SECONDS);
+
   if ($comment_previous) {
     $index = null;
     foreach ($comments as &$comment) {
@@ -157,11 +159,11 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
       $comment['content'] = $comment_content;
       $comment['avatar'] = get_user_meta(get_current_user_id(), 'avatar', true);
       $comment['name'] = wp_get_current_user()->display_name;
-      $comment['time'] = date('Y-m-d H:i');
+      $comment['time'] = $now_string;
     }
   }
   elseif($comment_content) {
-    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment_content, 'time' => date('Y-m-d H:i'));
+    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment_content, 'time' => $now_string);
   }
 
   update_post_meta(get_the_ID(), 'scores', $scores);
