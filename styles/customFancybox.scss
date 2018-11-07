@@ -22,6 +22,7 @@
   background: $white;
   padding: 1rem 15%;
   color: $black;
+  box-shadow: 0 -1px 10px #d8d8d8;
 }
 
 .fancybox-navigation {
@@ -102,9 +103,9 @@
         margin-left: rem(25);
         margin-bottom: 0;
       }
-      div {
-        width: rem(70);
-        text-align: center;
+      .avatar {
+        width: rem(100);
+        text-align: left;
         img {
           width: rem(70);
           height: rem(70);
@@ -113,6 +114,13 @@
         p {
           margin-top: rem(10);
           margin-bottom: 0;
+        }
+      }
+      .content {
+        position: relative;
+        .time {
+          position: absolute;
+          bottom: 0;
         }
       }
     }

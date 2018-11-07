@@ -157,10 +157,11 @@ if (isset($_POST['score']) && isset($_POST['comment'])) {
       $comment['content'] = $comment_content;
       $comment['avatar'] = get_user_meta(get_current_user_id(), 'avatar', true);
       $comment['name'] = wp_get_current_user()->display_name;
+      $comment['time'] = date('Y-m-d H:i');
     }
   }
   elseif($comment_content) {
-    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment_content);
+    $comments[] = array('judge' => get_current_user_id(), 'name' => wp_get_current_user()->display_name, 'avatar' => get_user_meta(get_current_user_id(), 'avatar', true), 'content' => $comment_content, 'time' => date('Y-m-d H:i'));
   }
 
   update_post_meta(get_the_ID(), 'scores', $scores);

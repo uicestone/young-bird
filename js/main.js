@@ -265,8 +265,8 @@ YB.Work = (function($) {
       caption += '<h3>'+locale.comment+'</h3>';
 			caption += '<ul class="comments pl-0">';
       comments.forEach(function (comment) {
-				caption += '<li><div><img src="'+ comment.avatar +'" /><p class="text-truncate">'+ comment.name +'</p></div>';
-      	caption += '<p>' + comment.content + '</p></li>';
+				caption += '<li><div class="avatar"><img src="'+ comment.avatar +'" /><p class="text-truncate" title="' + comment.name + '">'+ comment.name +'</p></div>';
+      	caption += '<div class="content"><p>' + comment.content + '</p><span class="time">' + comment.time + '</span></div></li>';
 			});
 			caption += '</ul>';
 		}
