@@ -135,7 +135,15 @@ get_header(); ?>
             </div>
           </div>
         </div>
-        <div class="d-none" data-comments='<?=json_encode(get_post_meta($work->ID, 'comments', true), JSON_UNESCAPED_UNICODE)?>'>
+        <?php
+        $comments = get_post_meta($work->ID, 'comments', true);
+        foreach($comments as &$comment) {
+          if (empty($comment['avatar'])) {
+            $comment['avatar'] = get_user_meta($comment['judge'], 'avatar', true);
+          }
+        }
+        ?>
+        <div class="d-none" data-comments='<?=json_encode($comments, JSON_UNESCAPED_UNICODE)?>'>
           <a class="w-100" style="padding:10vh 20vw">
             <div class="row mx-auto justify-content-between">
               <h3><?=get_the_title($work->ID)?></h3>
