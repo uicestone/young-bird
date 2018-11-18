@@ -35,7 +35,7 @@
             </div>
           </div>
           <?php
-          $comments = get_post_meta($work->ID, 'comments', true);
+          $comments = get_post_meta($work->ID, 'comments', true) ?: array();
           foreach($comments as &$comment) {
             if (empty($comment['avatar'])) {
               $comment['avatar'] = get_user_meta($comment['judge'], 'avatar', true);
