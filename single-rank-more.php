@@ -2,7 +2,11 @@
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
       <h1 class="text-center color-dark-yellow">
+        <?php if($is_participate_round = get_post_meta(get_the_ID(), 'is_participate_round', true)): ?>
+        入围
+        <?php else: ?>
         TOP<?=$rank_length?>
+        <?php endif; ?>
         <?php if (current_user_can('edit_users')): ?>
           <small>
             <a href="#" class="remind-rank-published btn btn-outline-primary btn-sm"><?=__('通知选手', 'young-bird')?></a>
