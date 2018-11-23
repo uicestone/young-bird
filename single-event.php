@@ -286,7 +286,8 @@ else:
           <?php endif; ?>
           <?php foreach (get_posts(array('post_type' => 'rank', 'posts_per_page' => -1, 'meta_key' => 'event', 'meta_value' => get_the_ID())) as $rank): $rank_length =  get_post_meta($rank->ID, 'length', true); ?>
           <li>
-            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?php printf(__('%s强', 'young-bird'), $rank_length); ?>"><?php printf(__('%s强', 'young-bird'), $rank_length); ?></a>
+            <?php $rank_is_participate_round = get_post_meta($rank->ID, 'is_participate_round', true); $rank_label = $rank_is_participate_round ? __('入围', 'young-bird') : sprintf(__('%s强', 'young-bird'), $rank_length); ?>
+            <a class="text-truncate" href="<?=get_the_permalink($rank->ID)?>" title="<?=$rank_label?>"><?=$rank_label?></a>
           </li>
           <?php endforeach; ?>
           <?php if (current_user_can('edit_users') && $cert_template_participation = get_post_meta($id_dl, 'cert_template_participation', true) && $cert_template_honor = get_post_meta($id_dl, 'cert_template_honor', true) && get_field('status') === 'judged'): ?>
