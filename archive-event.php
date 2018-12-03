@@ -124,7 +124,7 @@ get_header();
           <?php endif; ?>
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'event-list-ad')) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'event-list-ad','posts_per_page' => 100)) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <div>
               <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
