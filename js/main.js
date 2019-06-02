@@ -265,9 +265,13 @@ YB.Work = (function($) {
       caption += '<h3>'+locale.comment+'</h3>';
 			caption += '<ul class="comments pl-0">';
       comments.forEach(function (comment) {
+      	if(comment.content!='')
+		{
 				caption += '<li><div class="avatar"><img src="'+ comment.avatar +'" /><p class="text-truncate" title="' + comment.name + '">'+ comment.name +'</p></div>';
       	caption += '<div class="content"><p>' + comment.content + '</p><span class="time">' + comment.time + '</span></div></li>';
+        }
 			});
+
 			caption += '</ul>';
 		}
 		caption += '</div>';
@@ -435,7 +439,13 @@ YB.Carousel = (function($) {
 // 通用
 YB.Common = (function($){
 	function init() {
-		var shareIconUrl = YB_SOURCE_PATH + 'images/share_icon.png';
+		if($('meta[name="shareimg"]').attr('content'))
+            var shareIconUrl=$('meta[name="shareimg"]').attr('content');
+		else
+       		 var shareIconUrl = YB_SOURCE_PATH + 'images/share_icon.png';
+		var title='';
+        if($('meta[name="sharetitle"]').attr('content'))
+            var title=$('meta[name="sharetitle"]').attr('content');
 		var desc = $('meta[name="description"]').attr('content');
 		var datepicker = $(':input.datepicker');
 		var windowHeight = $(window).height();
@@ -461,13 +471,14 @@ YB.Common = (function($){
 		bindEvent(windowHeight, scrollToTopButton);
 		if (typeof wx !== 'undefined') {
 			$.get('/wx-js-config/', function (data) {
-				// data.debug = true;
+				//data.debug = true;
 				data.jsApiList = ['onMenuShareTimeline', 'onMenuShareAppMessage'];
 				// alert(desc);
 				wx.config(data);
+				console.log(data);
 				wx.ready(function () {
 					wx.onMenuShareTimeline({
-						title: '', // 分享标题
+						title: title, // 分享标题
 						link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: shareIconUrl, // 分享图标
 						success: function () {
@@ -478,7 +489,7 @@ YB.Common = (function($){
 						}
 					});
 					wx.onMenuShareAppMessage({
-						title: '', // 分享标题
+						title: title, // 分享标题
 						desc: desc, // 分享描述
 						link: '', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 						imgUrl: shareIconUrl, // 分享图标

@@ -4,19 +4,22 @@ $id_dl = pll_get_post(get_the_ID(), pll_default_language());
 $like_posts = get_user_meta(get_current_user_id(), 'like_posts') ?: array();
 
 if (isset($_POST['like'])) {
-  redirect_login();
-  $like = json_decode($_POST['like']);
-  $likes = get_post_meta($id_dl, 'likes', true);
-  if ($like && !in_array($id_dl, $like_posts)) {
-    add_user_meta(get_current_user_id(), 'like_posts', $id_dl);
-    update_post_meta($id_dl, 'likes', ++$likes);
-  }
-  elseif (!$like && in_array($id_dl, $like_posts)) {
-    delete_user_meta(get_current_user_id(), 'like_posts', $id_dl);
-    update_post_meta($id_dl, 'likes', --$likes);
-  }
+     redirect_login();
+    $like = json_decode($_POST['like']);
+    if ($like && !in_array($id_dl, $like_posts)) {
+        add_user_meta(get_current_user_id(), 'like_posts', $id_dl);
+        $likes = (get_post_meta($id_dl, 'likes', true) ?: 0) + 1;
+        update_post_meta($id_dl, 'likes', $likes);
+    }
+    elseif (!$like && in_array($id_dl, $like_posts)) {
 
-  echo $likes; exit;
+        delete_user_meta(get_current_user_id(), 'like_posts', $id_dl);
+        $likes = (get_post_meta($id_dl, 'like', true) ?: 0) -1;
+        update_post_meta($id_dl, 'likes', $likes);
+    }
+    if(!$likes)
+        $likes=0;
+    echo $likes; exit;
 }
 
 $views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
@@ -58,7 +61,7 @@ get_header(); the_post(); ?>
           </div>
         </div>
         <div class="col-md-6 news-detail-ad">
-          <?php foreach (get_posts(array ('category_name' => 'news-detail-ad','posts_per_page' => 100)) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'news-detail-ad', 'posts_per_page' => 100)) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <div>
               <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">

@@ -11,6 +11,8 @@
     <div class="container-fluid px-0 d-md-none">
       <img src="<?=get_field('banner_phone')['url']?>" width="100%" alt="">
     </div>
+
+    
     <!-- Body -->
     <div class="container mt-32 mt-md-7 pb-48 pb-md-7 sign-up page-participate">
       <div class="row align-items-center">
@@ -80,6 +82,7 @@
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <input type="text" required name="city" value="<?=$city?>" class="form-control" placeholder="<?=__('城市', 'young-bird')?>">
+
                   </div>
                 </div>
               </div>
@@ -89,3 +92,4 @@
         </div>
       </div>
     </div>
+

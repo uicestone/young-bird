@@ -34,6 +34,16 @@ redirect_login(); get_header(); ?>
               <?php if ($has_unread_message = get_user_meta(get_current_user_id(), 'has_unread_message', true)): ?><i></i><?php endif; ?>
             </a>
           </li>
+          <?php $user_applyed=get_posts(array(
+              'post_type'=>'campus_apply',
+              'author'=>get_current_user_id(),
+              'meta_key'=>'status',
+              'meta_value'=>'pass',
+          ));
+
+          if($user_applyed):?>
+            <li><a href="<?=pll_home_url()?>user-center/?campus">站长中心 </a></li>
+          <?php endif;?>
         </ul>
       </div>
     </div>

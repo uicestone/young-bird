@@ -41,6 +41,21 @@ add_filter('pre_get_posts', function (WP_Query $query) {
     $query->set('meta_key', 'event');
     $query->set('meta_value', $_GET['event_id']);
   }
+    if (isset($query->query['post_type']) && $query->query['post_type'] === 'campus_apply' && isset($_GET['campus_id'])) {
+        $query->set('meta_key', 'campus_id');
+        $query->set('meta_value', $_GET['campus_id']);
+    }
+
+
+    if (isset($query->query['post_type']) && $query->query['post_type'] === 'qaa' && isset($_GET['event_id'])) {
+        $query->set('meta_key', 'event_id');
+        $query->set('meta_value', $_GET['event_id']);
+    }
+
+    if (isset($query->query['post_type']) && $query->query['post_type'] === 'campus_apply' && isset($_GET['uid'])) {
+        $query->set('author', $_GET['uid']);
+    }
+
   if (isset($query->query['post_type']) && $query->query['post_type'] === 'rank' && isset($_GET['event_id'])) {
     $query->set('meta_key', 'event');
     $query->set('meta_value', $_GET['event_id']);
@@ -51,25 +66,29 @@ add_filter('pre_get_posts', function (WP_Query $query) {
   }
 });
 
+
 add_filter('pre_get_users', function (WP_User_Query $query) {
-  // effective only in admin panel
-  if (!is_admin()) return;
+    // effective only in admin panel
+    if (!is_admin()) return;
 
-  if (isset($_GET['attend_activities'])) {
-    $query->set('meta_key', 'attend_activities');
-    $query->set('meta_value', $_GET['attend_activities']);
-  }
+    if (isset($_GET['attend_activities'])) {
+        $query->set('meta_key', 'attend_activities');
+        $query->set('meta_value', $_GET['attend_activities']);
+    }
 
-  if (isset($_GET['attend_event_review'])) {
-    $query->set('meta_key', 'attend_event_review');
-    $query->set('meta_value', $_GET['attend_event_review']);
-  }
+    if (isset($_GET['attend_event_review'])) {
+        $query->set('meta_key', 'attend_event_review');
+        $query->set('meta_value', $_GET['attend_event_review']);
+    }
 
-  if (isset($_GET['attend_events'])) {
-    $query->set('meta_key', 'attend_events');
-    $query->set('meta_value', $_GET['attend_events']);
-  }
+    if (isset($_GET['attend_events'])) {
+        $query->set('meta_key', 'attend_events');
+        $query->set('meta_value', $_GET['attend_events']);
+    }
 });
+
+
+
 
 // update event status to 'second_judging' after rank save to 'second_rating'
 add_action('acf/update_value/name=stage', function ($value, $post_id) {
@@ -163,8 +182,14 @@ add_filter('post_row_actions', function ($actions, $post) {
   if ($post->post_type === 'post' && $attendable = get_post_meta($post->ID, 'attendable', true)) {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
   }
+    if ($post->post_type === 'campus') {
+     //   $actions['attend_users'] = '<a href="' . admin_url('users.php?attend_activities=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+        $actions['campus_applys'] = '<a href="' . admin_url('edit.php?post_type=campus_apply&campus_id=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+
+    }
   if ($post->post_type === 'event') {
     $actions['attend_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_events=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('报名用户', 'young-bird') . '</a>';
+    $actions['event_qa'] = '<a href="' . admin_url('edit.php?post_type=qa&event_id=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('答疑', 'young-bird') . '</a>';
     if (get_field('attend_review', $post->ID)) {
       $actions['attend_review_users'] = '<a href="' . admin_url('users.php?role=attendee&attend_event_review=' . pll_get_post($post->ID, pll_default_language())) . '">' . __('申请报名用户', 'young-bird') . '</a>';
     }
@@ -197,18 +222,65 @@ add_filter('manage_event_posts_columns', function ($column) {
   return $column;
 });
 
-// Add the data to the custom columns for the event post type:
 add_action('manage_event_posts_custom_column' , function ($column, $post_id) {
-  $id_dl = pll_get_post($post_id, pll_default_language());
-  switch ( $column ) {
-    case 'works' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post($post_id, pll_default_language()), 'posts_per_page' => -1))) . '</a>';
-      break;
-    case 'ranks' :
-      echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
-      break;
-  }
+    $id_dl = pll_get_post($post_id, pll_default_language());
+    switch ( $column ) {
+        case 'works' :
+            echo '<a href="' . get_admin_url(null, 'edit.php?post_type=work&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'work', 'lang' => '', 'meta_key' => 'event', 'meta_value' => pll_get_post($post_id, pll_default_language()), 'posts_per_page' => -1))) . '</a>';
+            break;
+        case 'ranks' :
+            echo '<a href="' . get_admin_url(null, 'edit.php?post_type=rank&event_id=' . $id_dl) . '">' . count(get_posts(array('post_type' => 'rank', 'meta_key' => 'event', 'meta_value' => $post_id, 'posts_per_page' => -1))) . '</a>';
+            break;
+    }
 }, 10, 2 );
+add_filter('manage_qaa_posts_columns', function ($column) {
+    array_insert($column, 'date', array(
+
+        'answer' => __( '回答', 'young-bird'),
+        'event' => __( '所属竞赛', 'young-bird'),
+        'customer_publish'=>'发布'
+    ));
+    return $column;
+});
+
+
+
+
+add_action('manage_qaa_posts_custom_column' , function ($column, $post_id) {
+    $id_dl = pll_get_post($post_id, pll_default_language());
+    switch ( $column ) {
+        case 'answer' :
+            $answer=get_post_meta($post_id,'answer_user',true);
+            if($answer) {
+
+
+                echo '回答者：'.get_user_meta($answer,'name',true);
+                }
+                else {
+                    echo '<a href="/answer?id=' . $post_id . '">回答</a>';
+                }
+            break;
+        case 'event' :
+            $answer=get_post_meta($post_id,'event_id',true);
+            echo get_post($answer)->post_title;
+            break;
+        case 'customer_publish' :
+
+            $status=get_post_meta($post_id,'customer_publish',true);
+            if($status==true)
+            {
+                echo '<a href="/publish_qa/?qa_id=' . ($post_id) . '&fail='.$post_id.'&destination='. home_url(add_query_arg(array())).'" target="_blank">改为不发布</a>';
+            }
+            else {
+                echo '<a href="/publish_qa/?qa_id=' . ($post_id) . '&pass=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank"> 发布</a>&nbsp;';
+            }
+            break;
+    }
+}, 10, 2 );
+
+
+// Add the data to the custom columns for the event post type:
+
 
 // Add the custom columns to the event post type:
 add_filter('manage_rank_posts_columns', function ($column) {
@@ -222,6 +294,8 @@ add_filter('manage_rank_posts_columns', function ($column) {
 // Add the data to the custom columns for the event post type:
 add_action('manage_rank_posts_custom_column' , function ($column, $post_id) {
   switch ( $column ) {
+
+
     case 'event' :
       $event_id_dl = get_post_meta($post_id, 'event', true);
       $event = get_post(pll_get_post($event_id_dl));
@@ -294,6 +368,126 @@ add_action('manage_work_posts_custom_column' , function ($column, $post_id) {
   }
 }, 10, 2 );
 
+
+
+
+
+
+add_filter('manage_campus_apply_posts_columns', function ($column) {
+
+    array_insert($column, 'date', array(
+         'apply_school'=>__( '申请学校', 'young-bird'),
+        'event'=>__( '所属站长', 'young-bird'),
+        'author' => __( '申请人', 'young-bird'),
+        'apply_count'=>__( '申请次数', 'young-bird'),
+
+        'apply_score'=>__( '平均分', 'young-bird'),
+        'status'=> __( '状态', 'young-bird'),
+
+        'auditing'=>__( '审核', 'young-bird'),
+        'campus_image_status'=>'图片状态',
+        'campus_image_exam'=>'审核图片',
+        'download'=>__( '下载', 'young-bird'),
+
+    ));
+
+    // var_export($column); exit;
+
+    return $column;
+});
+
+// Add the data to the custom columns for the work post type:
+add_action('manage_campus_apply_posts_custom_column' , function ($column, $post_id) {
+    switch ( $column ) {
+        case 'apply_school':
+            $schools=get_post_meta($post_id,'school_id',true);
+            foreach($schools as $school1){
+
+                echo get_post($school1)->post_title.',';
+            }
+            break;
+        case 'event':
+            $campus_id=get_post_meta($post_id,'campus_id',true);
+            echo get_post($campus_id)->post_title;
+            break;
+        case 'author':
+          $work = get_post($post_id);
+          echo '<a href="' . get_admin_url(null, 'user-edit.php?user_id=' . $work->post_author) . '">' . get_user_by('ID', $work->post_author)->display_name . '</a>';
+          break;
+        case 'campus_image_exam' :
+            $campus_id=get_post_meta($post_id,'campus_id',true);
+            $status=get_post_meta($post_id,'picture_exam',true);
+            if($status=='pass')
+            {
+                echo '<a href="/campus_image_exam/?campus_id=' . ($post_id) . '&fail='.$post_id.'&destination='. home_url(add_query_arg(array())).'" target="_blank">改为不通过</a>';
+            }
+            else if($status=='failed')
+            {
+                echo '<a href="/campus_image_exam/?campus_id=' . ($post_id) . '&pass=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank">改为通过</a>';
+            }
+            else {
+                echo '<a href="/campus_image_exam/?campus_id=' . ($post_id) . '&pass=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank"> 通过</a>&nbsp;';
+                echo '<a href="/campus_image_exam/?campus_id=' . ($post_id) . '&fail=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank">不通过</a>';
+            }
+            break;
+        case 'auditing' :
+            $campus_id=get_post_meta($post_id,'campus_id',true);
+            $status=get_post_meta($post_id,'status',true);
+            if($status=='pass')
+            {
+                echo '<a href="/campus-auditing/?campus_id=' . ($post_id) . '&fail='.$post_id.'&destination='. home_url(add_query_arg(array())).'" target="_blank">改为不通过</a>';
+            }
+            else if($status=='failed')
+            {
+                echo '<a href="/campus-auditing/?campus_id=' . ($post_id) . '&pass=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank">改为通过</a>';
+            }
+            else {
+                echo '<a href="/campus-auditing/?campus_id=' . ($post_id) . '&pass=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank"> 通过</a>';
+                echo '<a href="/campus-auditing/?campus_id=' . ($post_id) . '&fail=' . $post_id . '&destination=' . home_url(add_query_arg(array())) . '" target="_blank">不通过</a>';
+            }
+            break;
+        case 'apply_count':
+            $uid=get_post($post_id)->post_author;
+            $applyed=get_posts(array(
+                    'post_type'=>'campus_apply',
+                    'author'=>$uid,
+                'numberposts'=>'100000'
+            ));
+            echo '<a href="edit.php?post_type=campus_apply&uid='.$uid.'">'.count($applyed).'</a>';
+            break;
+        case 'apply_score':
+            $score=0;
+            $times=0;
+            $uid=get_post($post_id)->post_author;
+            $applyed=get_posts(array(
+                'post_type'=>'campus_apply',
+                'author'=>$uid,
+                'numberposts'=>'100000'
+            ));
+            foreach ($applyed as $v){
+                if($vscore=get_post_meta($v->ID,'score',true)){
+                    $score+=$vscore;
+                    $times++;
+                }
+            }
+            $score/=$times;
+            echo $score;
+            break;
+        case 'status' :
+
+            echo get_post_meta($post_id,'status',true);
+            break;
+        case 'campus_image_status' :
+
+            echo get_post_meta($post_id,'picture_exam',true);
+            break;
+        case 'download':
+
+            if(get_post_meta($post_id,'picture_exam',true))
+                 echo  '<a href="'.get_the_permalink($post_id).'?download=true">下载</a>';
+            break;
+    }
+}, 10, 2 );
 add_filter('manage_users_columns', function ( $column ) {
   unset($column['nickname']);
   unset($column['posts']);
@@ -352,35 +546,224 @@ add_filter( 'manage_users_custom_column', function ($val, $column_name, $user_id
   return $val;
 }, 10, 3 );
 
-add_action('admin_footer', function () {
-  $screen = get_current_screen();
-  if ( $screen->id != "users" )   // Only add to users.php page
-    return;
 
-  ?>
-  <script type="text/javascript">
-		jQuery(document).ready( function($)
-		{
-			$('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出选手', 'young-bird')?>" /></form>');
-		});
-  </script>
-  <?php if (isset($_GET['attend_event_review'])): ?>
+add_action('admin_footer', function () {
+    $screen = get_current_screen();
+
+
+    if ( $screen->id != "edit-campus_apply" )   // Only add to users.php page
+        return;
+
+    ?>
     <script type="text/javascript">
-			jQuery(document).ready( function($) {
-				$('.review.column-review').each(function () {
-					var userId = $(this).parent().attr('id').replace('user-', '');
-					if ($(this).find('[name="attended"]').val()) {
-						$(this).append('<span>已通过</span>');
-					} else {
-						$(this).append('<form method="POST"><input type="hidden" name="user_id" value="' + userId + '"><input class="button" name="ybp_attend_event_agree" type="submit" value="通过"> <input class="button" type="submit" name="ybp_attend_event_disagree" value="否决"></form>');
-					}
-				});
-			});
+        jQuery(document).ready( function($)
+        {
+            $('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_campus" name="ybp_export_campus" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出站长', 'young-bird')?>" /></form>');
+        });
     </script>
-  <?php endif;
+    <?php if (isset($_GET['attend_event_review'])): ?>
+        <script type="text/javascript">
+            jQuery(document).ready( function($) {
+                $('.review.column-review').each(function () {
+                    var userId = $(this).parent().attr('id').replace('user-', '');
+                    if ($(this).find('[name="attended"]').val()) {
+                        $(this).append('<span>已通过</span>');
+                    } else {
+                        $(this).append('<form method="POST"><input type="hidden" name="user_id" value="' + userId + '"><input class="button" name="ybp_attend_event_agree" type="submit" value="通过"> <input class="button" type="submit" name="ybp_attend_event_disagree" value="否决"></form>');
+                    }
+                });
+            });
+        </script>
+    <?php endif;
+});
+
+
+add_action('admin_footer', function () {
+    $screen = get_current_screen();
+
+
+    if ( $screen->id != "edit-qa" )   // Only add to users.php page
+        return;
+
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready( function($)
+        {
+            $('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_qa" name="ybp_export_qa" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出答疑', 'young-bird')?>" /></form>');
+        });
+    </script>
+    <?php if (isset($_GET['attend_event_review'])): ?>
+        <script type="text/javascript">
+            jQuery(document).ready( function($) {
+                $('.review.column-review').each(function () {
+                    var userId = $(this).parent().attr('id').replace('user-', '');
+                    if ($(this).find('[name="attended"]').val()) {
+                        $(this).append('<span>已通过</span>');
+                    } else {
+                        $(this).append('<form method="POST"><input type="hidden" name="user_id" value="' + userId + '"><input class="button" name="ybp_attend_event_agree" type="submit" value="通过"> <input class="button" type="submit" name="ybp_attend_event_disagree" value="否决"></form>');
+                    }
+                });
+            });
+        </script>
+    <?php endif;
+});
+
+add_action('admin_footer', function () {
+    $screen = get_current_screen();
+
+
+    if ( $screen->id != "users" )   // Only add to users.php page
+        return;
+
+    ?>
+    <script type="text/javascript">
+        jQuery(document).ready( function($)
+        {
+            $('.tablenav.top .clear, .tablenav.bottom .clear').before('<form method="POST"><input type="hidden" id="ybp_export_users" name="ybp_export_users" value="1" /><input class="button user_export_button" style="margin-top:3px;" type="submit" value="<?=__('导出选手', 'young-bird')?>" /></form>');
+        });
+    </script>
+    <?php if (isset($_GET['attend_event_review'])): ?>
+        <script type="text/javascript">
+            jQuery(document).ready( function($) {
+                $('.review.column-review').each(function () {
+                    var userId = $(this).parent().attr('id').replace('user-', '');
+                    if ($(this).find('[name="attended"]').val()) {
+                        $(this).append('<span>已通过</span>');
+                    } else {
+                        $(this).append('<form method="POST"><input type="hidden" name="user_id" value="' + userId + '"><input class="button" name="ybp_attend_event_agree" type="submit" value="通过"> <input class="button" type="submit" name="ybp_attend_event_disagree" value="否决"></form>');
+                    }
+                });
+            });
+        </script>
+    <?php endif;
 });
 
 add_action('admin_init', function () {
+
+    if (!empty($_POST['ybp_export_campus']) && current_user_can('manage_options')) {
+        // export users in xlsx file
+        $data = array();
+
+        foreach ($posts = get_posts(array('post_type' => 'campus_apply','numberposts'=>'100000')) as $post) {
+            $user=get_user_by('ID',$post->post_author);
+            $schools=get_post_meta($post->ID,'school_id')[0];
+
+            $string='';
+            foreach($schools as $v)
+            {
+
+                    $school=get_post($v);
+
+                    $string.=$school->post_title.',';
+            }
+
+            $string=mb_substr($string,0,mb_strlen($string)-1);
+            $campus=get_post_meta($post->ID,'campus_id',true);
+            $campus=get_post($campus)->post_title;
+
+            $row = array(
+                get_user_meta($user->ID, 'name', true) ?: $user->display_name,
+                get_user_meta($user->ID, 'phone', true),
+                $user->user_email,
+                get_user_meta($user->ID, 'id_card', true),
+                get_user_meta($user->ID, 'identity', true),
+
+                get_user_meta($user->ID, 'country', true),
+                get_user_meta($user->ID, 'city', true),
+                get_user_meta($user->ID, 'school', true),
+                get_user_meta($user->ID, 'major', true),
+
+                get_user_meta($user->ID, 'address', true),
+                get_user_meta($user->ID, 'company', true),
+                get_user_meta($user->ID, 'department', true),
+                get_user_meta($user->ID, 'title', true),
+                get_user_meta($user->ID,'bank',true),
+                get_user_meta($user->ID,'bankcard',true),
+                get_post_meta($post->ID,'status',true),
+                $string,
+                $campus
+
+            );
+
+
+            $data[] = $row;
+        }
+
+        $writer = new XLSXWriter();
+        $head = array('姓名' => '@', '手机' => '@', '邮箱' => '@', '证件' => '@', '身份' => '@',  '国家' => '@', '城市' => '@', '学校' => '@', '专业' => '@','地址' => '@', '公司' => '@', '部门' => '@', '职位' => '@', '银行' => '@', '银行卡号' => '@','状态'=>'@','报名学校'=>'@','报名竞赛'=>'@');
+        if (isset($event)) {
+            $head = array_merge($head, array('团队名称' => '@', '作品编号' => '@', '参赛时间' => '@'));
+        }
+        $writer->writeSheetHeader('选手', $head);
+        foreach ($data as $row) {
+            $writer->writeSheetRow('选手', $row);
+        }
+
+        $filename = __(isset($event) ? ('站长' . $event->post_title) : '所有站长', 'young-bird') . '.xlsx';
+        $path = wp_upload_dir()['path']  . '/' . $filename;
+        $writer->writeToFile($path);
+        header('Content-Disposition: attachment; filename=' . $filename );
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Length: ' . filesize($path));
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        readfile($path); unlink($path); exit;
+    }
+
+
+
+    if (!empty($_POST['ybp_export_qa']) && current_user_can('manage_options')) {
+        // export users in xlsx file
+        $data = array();
+        $arg=array('post_type' => 'qa', 'posts_per_page' => -1);
+        if(isset($_GET['event_id'])){
+            $event=get_post($_GET['event_id']);
+            $arg['meta_key']='event_id';
+            $arg['meta_value']=$event->ID;
+
+        }
+        $arg['post_status'] ='pending';
+        $posts = get_posts($arg);
+
+
+        foreach ( $posts as $post) {
+
+
+            $row = array(
+                get_post_meta($post->ID,'name',true),
+
+                get_post_meta($post->ID,'phone',true),
+                get_post_meta($post->ID,'mail',true),
+                get_post_meta($post->ID,'question',true),
+                get_post_meta($post->ID,'answer',true),
+                get_post(get_post_meta($post->ID,'event_id',true))->post_title,
+
+            );
+
+
+            $data[] = $row;
+        }
+
+        $writer = new XLSXWriter();
+        $head = array('姓名' => '@', '手机' => '@', '邮箱' => '@', '问题'=>'@','回答'=>'@','竞赛'=>'@');
+
+        $writer->writeSheetHeader('qa', $head);
+        foreach ($data as $row) {
+            $writer->writeSheetRow('qa', $row);
+        }
+
+        $filename = __(isset($event) ? ('qa' . $event->post_title) : 'qa', 'young-bird') . '.xlsx';
+        $path = wp_upload_dir()['path']  . '/' . $filename;
+        $writer->writeToFile($path);
+        header('Content-Disposition: attachment; filename=' . $filename );
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Length: ' . filesize($path));
+        header('Content-Transfer-Encoding: binary');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        readfile($path); unlink($path); exit;
+    }
   if (!empty($_POST['ybp_export_users']) && current_user_can('manage_options')) {
     // export users in xlsx file
     $data = array();
@@ -544,3 +927,20 @@ add_action('admin_init', function () {
     readfile($path); unlink($path); exit;
   }
 });
+
+
+function publish_qaa( $post_id ) {
+
+    // If this is just a revision, don't send the email.
+   $post=get_post($post_id);
+   if($post->post_type!='qaa')
+   {
+       return;
+   }
+    $post->post_status='post_status';
+   // wp_update_post($post);
+
+    // Send email to admin.
+
+}
+add_action( 'save_post', 'publish_qaa' );

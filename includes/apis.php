@@ -34,6 +34,7 @@ class YB_REST_Profile_Controller extends WP_REST_Controller {
     }
 
     $schools = json_decode(get_option('schools'));
+
     $schools = array_slice(array_values(array_map(function($school_array) {
       return $school_array[0];
     }, array_filter($schools, function($school_array) use($keyword) {
@@ -41,7 +42,7 @@ class YB_REST_Profile_Controller extends WP_REST_Controller {
       $school_abbr = $school_array[1] ?: null;
       return stripos($school_name, $keyword) !== false
         || stripos($school_abbr, $keyword) !== false;
-    }))), 0, 10);
+    }))), 0, 20);
 
     return rest_ensure_response($schools);
   }
@@ -63,7 +64,7 @@ class YB_REST_Profile_Controller extends WP_REST_Controller {
     $majors = json_decode(get_option('majors_' . $lang));
     $majors = array_slice(array_values(array_filter($majors, function($major) use($keyword) {
       return stripos($major, $keyword) !== false;
-    })), 0, 10);
+    })), 0, 20);
     return rest_ensure_response($majors);
   }
 

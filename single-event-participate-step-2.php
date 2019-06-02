@@ -35,7 +35,7 @@
                 <input type="text" required name="title" value="<?=$title?>" class="form-control" placeholder="<?=__('职位', 'young-bird')?>">
               </div>
             </div>
-            <button type="submit" name="participate" value="step-3" class="btn btn-lg btn-secondary btn-block"><?=__('下一步', 'young-bird')?></button>
+            <button type="submit" name="participate" value="step-25" class="btn btn-lg btn-secondary btn-block"><?=__('下一步', 'young-bird')?></button>
           </form>
         </div>
       </div>

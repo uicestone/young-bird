@@ -1,0 +1,665 @@
+
+
+.FAQ-container {
+  width: 960px;
+  margin-top: 88px;
+}
+
+.FAQ_subtit h2 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.FAQ_subtit br {
+  display: none;
+}
+
+.FAQ-innder-container {
+  margin-bottom: 60px;
+}
+
+.FAQ_body {
+  margin-top: 32px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.FAQ_body .FAQ_item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 0.7rem;
+  left: 175px;
+  position: relative;
+  border: 0;
+  background-color: transparent;
+}
+
+.FAQ_body .FAQ_item p {
+  font-size: 0.7rem;
+  color: white;
+  background: blue;
+  padding: 3px;
+  line-height: 1;
+  margin: 0;
+}
+
+.FAQ_body .FAQ_item h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-weight: normal;
+}
+
+.FAQ_body .FAQ_item h3 span {
+  padding: 0 9px;
+}
+
+.FAQ_body .FAQ_item h3:after {
+  content: url(/img/icon/red_arror.png);
+  margin-left: 1rem;
+}
+
+.FAQ_body .collapse,
+.FAQ_body .collapsing {
+  width: 100%;
+  padding-left: 215px;
+}
+
+.FAQ_body .collapse .card.card-body,
+.FAQ_body .collapsing .card.card-body {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.FAQ_body .collapse.show .card.card-body,
+.FAQ_body .collapsing.show .card.card-body {
+  padding: 10px;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.FAQ_form label {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  flex-grow: 1;
+  text-align: right;
+  font-weight: bold;
+  display: none;
+}
+
+.FAQ_form label span {
+  padding: 0 15px;
+}
+
+.FAQ_form .input-group,
+.FAQ_form .dropdown {
+  width: 100%;
+  padding-left: 174px;
+}
+
+.FAQ_form textarea {
+  height: 300px;
+  overflow: hidden;
+  resize: none;
+  background-color: #f7f7f7;
+  border: solid 1px #908888;
+  font-size: 1rem;
+}
+
+.FAQ_form input {
+  background-color: #f7f7f7;
+  border: solid 1px #908888;
+  height: 68px;
+  font-size: 1rem;
+}
+
+.FAQ_form .custom_dropdown .dropdown-toggle {
+  height: 68px;
+  width: 100%;
+  text-align: left;
+  border: solid 1px #908888;
+  background-color: #f7f7f7;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.FAQ_form .custom_dropdown .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0;
+  vertical-align: middle;
+  content: "";
+  border-top: 0.45em solid #999;
+  border-right: 0.6em solid transparent;
+  border-bottom: 0;
+  border-left: 0.6em solid transparent;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+}
+
+.FAQ_form .custom_dropdown.show .dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0;
+  vertical-align: middle;
+  content: "";
+  border-top: 0;
+  border-right: 0.6em solid transparent;
+  border-bottom: 0.45em solid #999;
+  border-left: 0.6em solid transparent;
+  position: absolute;
+  right: 15px;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu {
+  width: 82%;
+  margin-top: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: #eee;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu .dropdown-item {
+  padding: 0;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu .dropdown-item label {
+  width: 100%;
+  text-align: left;
+  font-size: 1.25rem;
+  line-height: 42px;
+  font-weight: normal;
+  display: block;
+  padding-left: 20px;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu .dropdown-item label:hover {
+  background-color: #00a8ff;
+  color: white;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu .dropdown-item input {
+  display: none;
+}
+
+.FAQ_form .custom_dropdown .dropdown-menu .dropdown-item input[type="radio"]:checked + label {
+  background-color: #00a8ff;
+  color: white;
+}
+
+.FAQ_form .FAQ-upload {
+  width: 100%;
+  float: left;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  flex-direction: column;
+  padding-left: 174px;
+}
+
+.FAQ_form .FAQ-upload .upload-head {
+  margin-bottom: 20px;
+}
+
+.FAQ_form .FAQ-upload .upload-head .c-file {
+  display: none;
+}
+
+.FAQ_form .FAQ-upload .upload-body {
+  width: 100%;
+}
+
+.FAQ_form .FAQ-upload .upload-body .up_load_items {
+  margin: 0;
+}
+
+.FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item {
+  position: relative;
+  margin-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 0;
+  max-width: 150px;
+}
+
+.FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item > img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item a {
+  position: absolute;
+  right: 15px;
+  bottom: 5px;
+}
+
+.FAQ_form .FAQ-upload h5 {
+  margin: 0;
+  padding: 7px 16px;
+  color: #333;
+  background-color: #eee;
+  margin-right: 6px;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1;
+}
+
+.FAQ_form .FAQ-upload button,
+.FAQ_form .FAQ-upload .btn_Up {
+  margin: 0;
+  background-color: #00a8ff;
+  padding: 7px 16px;
+  color: white;
+  line-height: 1;
+  border: 0;
+  margin-right: 6px;
+}
+
+.FAQ_form .FAQ-upload p {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: #999;
+}
+
+.FAQ_form .FAQ_subtit {
+  padding: 0 10px;
+}
+
+.FAQ_info {
+  width: 100%;
+}
+
+.FAQ_info label {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+  flex-grow: 1;
+  text-align: right;
+  font-weight: bold;
+}
+
+.FAQ_info .input-group {
+  width: 100%;
+  margin-right: 39.5%;
+}
+
+.FAQ_info .input-group::after {
+  content: "*";
+  display: block;
+  font-size: 1rem;
+  color: red;
+  align-self: center;
+  position: absolute;
+  right: -16px;
+}
+
+.FAQ_info .form-group:last-of-type .input-group::after {
+  content: unset;
+}
+
+.FAQ_submit {
+  margin-top: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.FAQ_submit button {
+  font-size: 1.5rem;
+  background-color: #00a8ff;
+  color: white;
+  border: 0;
+  padding: 12px 66px;
+  width: 360px;
+  height: 68px;
+}
+
+.FAQ_modal .modal-dialog {
+  margin-top: 20%;
+  max-width: 886px;
+}
+
+.FAQ_modal .modal-dialog .modal-content {
+  padding: 90px 145px 50px 145px;
+}
+
+.FAQ_modal .modal-dialog .modal-content h4 {
+  margin: 0;
+  margin-bottom: 63px;
+  line-height: 1.5;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #333;
+}
+
+.FAQ_modal .modal-dialog .modal-content a {
+  width: 360px;
+  margin: auto;
+  background-color: #00a8ff;
+  color: white;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 1279.99px) {
+  .FAQ-container {
+    width: 960px;
+    margin-top: 60px;
+  }
+  .FAQ-innder-container {
+    width: 780px;
+    margin-bottom: 55px;
+  }
+  .FAQ_subtit h2 {
+    font-size: 2rem;
+    margin: 0;
+  }
+  .FAQ_body {
+    margin-top: 30px;
+  }
+  .FAQ_body .FAQ_item {
+    margin-bottom: 1rem;
+    left: 110px;
+  }
+  .FAQ_body .FAQ_item p {
+    font-size: 1.5rem;
+  }
+  .FAQ_body .FAQ_item h3 {
+    font-weight: normal;
+    font-size: 1.5rem;
+  }
+  .FAQ_body .collapse,
+  .FAQ_body .collapsing {
+    padding-left: 160px;
+  }
+  .FAQ_form label {
+    font-size: 1.25rem;
+    font-weight: normal;
+  }
+  .FAQ_form .input-group,
+  .FAQ_form .dropdown {
+    width: 100%;
+    padding-left: 110px;
+  }
+  .FAQ_form .input-group input {
+    height: 72px;
+  }
+  .FAQ_form .dropdown .dropdown-menu {
+    width: 86%;
+  }
+  .FAQ_form .dropdown .dropdown-toggle {
+    height: 72px;
+  }
+  .FAQ_form .FAQ-upload {
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 60px;
+    padding-left: 110px;
+  }
+  .FAQ_form .FAQ-upload h5 {
+    font-size: 1.25rem;
+    padding: 14px 13px;
+    font-weight: 500;
+  }
+  .FAQ_form .FAQ-upload button {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 14px 13px;
+  }
+  .FAQ_form .FAQ-upload p {
+    font-size: 1rem;
+  }
+  .FAQ_info .input-group {
+    width: 100%;
+    margin-right: 10%;
+  }
+  .FAQ_submit button {
+    margin-left: 22%;
+    width: 320px;
+    height: 72px;
+  }
+}
+
+.FAQ_modal .modal-dialog {
+  margin-top: 20%;
+  max-width: 800px;
+}
+
+.FAQ_modal .modal-dialog .modal-content {
+  padding: 84px 120px 55px 120px;
+}
+
+.FAQ_modal .modal-dialog .modal-content h4 {
+  margin: 0;
+  margin-bottom: 70px;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #333;
+}
+
+.FAQ_modal .modal-dialog .modal-content a {
+  width: 320px;
+  margin: auto;
+  background-color: #00a8ff;
+  color: white;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+@media (max-width: 1023.99px) {
+  .FAQ-container {
+    width: 700px;
+    margin-top: 60px;
+  }
+  .FAQ-innder-container {
+    width: 700px;
+    margin-bottom: 55px;
+  }
+  .FAQ_form .FAQ-upload {
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 60px;
+    padding-left: 110px;
+  }
+  .FAQ_form .FAQ-upload h5 {
+    font-size: 1rem;
+    padding: 10px 10px;
+    font-weight: 500;
+  }
+  .FAQ_form .FAQ-upload button {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 10px 10px;
+  }
+  .FAQ_form .FAQ-upload p {
+    font-size: 1rem;
+  }
+  .FAQ_submit button {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 767.99px) {
+  .FAQ-container {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .FAQ_subtit h2 {
+    font-size: 1.375rem;
+  }
+  .FAQ_subtit br {
+    display: block;
+  }
+  .FAQ-innder-container {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .FAQ_body {
+    margin-top: 20px;
+  }
+  .FAQ_body .FAQ_item {
+    padding: 0;
+    left: 0;
+  }
+  .FAQ_body .FAQ_item p {
+    font-size: 0.75rem;
+  }
+  .FAQ_body .FAQ_item h3 {
+    font-size: 0.938rem;
+  }
+  .FAQ_body .FAQ_item h3 span {
+    padding: 0 6px;
+  }
+  .FAQ_body .collapse,
+  .FAQ_body .collapsing {
+    padding-left: 0;
+  }
+  .FAQ_body .collapse .card-body,
+  .FAQ_body .collapsing .card-body {
+    font-size: 0.8rem;
+  }
+  .FAQ_form label {
+    font-size: 0.938rem;
+  }
+  .FAQ_form label span {
+    padding: 0 6px;
+  }
+  .FAQ_form .input-group,
+  .FAQ_form .dropdown {
+    width: 100%;
+    margin-right: 0%;
+    padding: 0px 10px;
+  }
+  .FAQ_form .input-group input,
+  .FAQ_form .dropdown input {
+    height: 40px;
+    font-size: 1rem;
+  }
+  .FAQ_form .dropdown .dropdown-menu {
+    width: 94.5%;
+  }
+  .FAQ_form .dropdown .dropdown-toggle {
+    height: 40px;
+    font-size: 1rem;
+  }
+  .FAQ_form .custom_dropdown .dropdown-menu .dropdown-item label {
+    font-size: 0.938rem;
+    line-height: 28px;
+  }
+  .FAQ_form textarea {
+    height: 150px;
+  }
+  .FAQ_form .FAQ-upload {
+    margin-top: 0;
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+  .FAQ_form .FAQ-upload .upload-head {
+    margin-left: 0;
+    margin-right: 0;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .FAQ_form .FAQ-upload .upload-head h5 {
+    padding: 8px 11px;
+    font-size: 0.7rem;
+    font-weight: normal;
+  }
+  .FAQ_form .FAQ-upload .upload-head button,
+  .FAQ_form .FAQ-upload .upload-head .btn_Up {
+    padding: 8px 12px;
+    font-size: 0.7rem;
+  }
+  .FAQ_form .FAQ-upload .upload-head p {
+    margin-top: 6px;
+    width: 100%;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+  .FAQ_form .FAQ-upload .upload-body {
+    margin: 0 0;
+  }
+  .FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item {
+    width: 100px;
+    padding-right: 0;
+    margin-bottom: 10px;
+  }
+  .FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item a {
+    right: 5px;
+  }
+  .FAQ_form .FAQ-upload .upload-body .up_load_items .up_load_item > img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+  }
+  .FAQ_body.FAQ_info .form-group {
+    justify-content: flex-start !important;
+  }
+  .FAQ_body.FAQ_info .form-group .input-group {
+    width: 90%;
+    padding-left: 0;
+  }
+  .FAQ_submit {
+    margin-top: 58px;
+    padding: 0 10px;
+  }
+  .FAQ_submit button {
+    width: 100%;
+    margin: auto;
+    font-size: 1rem;
+    padding: 9px 30px;
+    height: 40px;
+  }
+  .FAQ_modal .modal-dialog {
+    margin-top: 20%;
+  }
+  .FAQ_modal .modal-dialog .modal-content {
+    padding: 30px 14px 25px 14px;
+  }
+  .FAQ_modal .modal-dialog .modal-content h4 {
+    margin: 0;
+    margin-bottom: 35px;
+    line-height: 1.5;
+    font-size: 1rem;
+    font-weight: normal;
+    color: #333;
+  }
+  .FAQ_modal .modal-dialog .modal-content a {
+    width: 260px;
+    margin: auto;
+    background-color: #00a8ff;
+    color: white;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+}

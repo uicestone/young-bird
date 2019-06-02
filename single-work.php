@@ -25,12 +25,82 @@ if ($event_status === 'second_judging') {
 }
 
 if (isset($_POST['submit'])) {
+
+
+
   $work = get_post();
   $work->post_title = $_POST['work_title'];
+    $campus=get_posts(array(
+        'post_type'=>'campus',
+        'meta_key'=>'event',
+        'meta_value'=>$event_id
+    ));
+    if($campus){
+        $campus=$campus[0];
+
+        $school=get_user_meta(get_current_user_id(),'school',true);
+        echo $school;
+        $school=get_posts(array(
+            'post_type'=>'campus_school',
+            'meta_key'=>'school_name',
+            'meta_value'=>$school
+        ));
+        if($school) {
+            $school = $school[0];
+
+            $school=pll_get_post($school->ID,pll_default_language());
+            $campusimage = get_posts(array(
+                'post_type' => 'campusimage',
+                'meta_query' => array(
+                    array('key' => 'campus_id', 'value' => $campus->ID),
+                    array('key' => 'school_id', 'value' => $school)
+                )
+            ));
+            if($campusimage) {
+                $campusimage=$campusimage[0];
+
+                $hascount = get_post_meta($campusimage->ID, 'campus_work_id');
+
+
+                if (!in_array($work->ID, $hascount)) {
+                    $campus_apply = get_posts(array(
+                        'post_type' => 'campus_apply',
+                        'meta_key' => 'campus_id',
+                        'meta_value' => $campus->ID
+                    ));
+                    $campus_apply = $campus_apply[0];
+
+
+                    $campus_score = get_post_meta($campus_apply->ID, 'score', true);
+
+                    add_post_meta($campusimage->ID, 'campus_work_id',$work->ID);
+                    if ($campus_score) {
+                        $campus_score++;
+                        update_post_meta($campus_apply->ID, 'score', $campus_score);
+                    } else {
+                        // add_post_meta($campus->ID,);
+                        add_post_meta($campus_apply->ID, 'score', 1);
+                    }
+
+
+                    $amontcount = get_post_meta($campusimage->ID, 'campus_work_count', true);
+                    if (!$amontcount) {
+                        $amontcount = 1;
+                        add_post_meta($campusimage->ID, 'campus_work_count', 1);
+                    } else {
+                        $amontcount++;
+                        update_post_meta($campusimage->ID, 'campus_work_count', $amontcount);
+                    }
+                }
+            }
+
+        }
+    }
   wp_update_post($work);
   update_post_meta(get_the_ID(), 'description', $_POST['description']);
 
   $poster = wp_handle_upload($_FILES['poster'], array ('test_form' => false));
+
 
   if($poster['url']) {
 
@@ -223,13 +293,20 @@ if (isset($_GET['download']) && current_user_can('edit_user')) {
 
   $zip->addFromString("summary.txt", $summary);
   $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-  $thumbnail_path = parse_url($thumbnail_url, PHP_URL_PATH);
-  $thumbnail_filename = basename($thumbnail_url);
-  $zip->addFile(get_home_path() . substr($thumbnail_path, 1), '/cover-' . $thumbnail_filename);
+  if($thumbnail_url){
+      $thumbnail_path = parse_url($thumbnail_url, PHP_URL_PATH);
+      $thumbnail_filename = basename($thumbnail_url);
+
+      $zip->addFile(get_home_path() . substr($thumbnail_path, 1), '/cover-' . $thumbnail_filename);
+  }
+
+
   foreach ($images as $image) {
-    $path = parse_url($image, PHP_URL_PATH);
-    $image_filename = basename($image);
-    $zip->addFile(get_home_path() . substr($path, 1), '/' . $image_filename);
+      if($image) {
+          $path = parse_url($image, PHP_URL_PATH);
+          $image_filename = basename($image);
+          $zip->addFile(get_home_path() . substr($path, 1), '/' . $image_filename);
+      }
   }
   $zip->close();
   header('Content-Description: File Transfer');

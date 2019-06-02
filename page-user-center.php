@@ -165,6 +165,11 @@ elseif (isset($_GET['like'])):
 
   include(locate_template('page-user-center-like.php'));
 
+elseif (isset($_GET['campus'])):
+
+    include(locate_template('page-user-center-campus.php'));
+
+
 else: ?>
 
     <!-- Banner -->
@@ -199,6 +204,17 @@ else: ?>
               <?php if ($has_unread_message = get_user_meta(get_current_user_id(), 'has_unread_message', true)): ?><i></i><?php endif; ?>
             </a>
           </li>
+            <?php $user_applyed=get_posts(array(
+    'post_type'=>'campus_apply',
+    'author'=>$user->ID,
+    'meta_key'=>'status',
+    'meta_value'=>'pass',
+));
+
+if($user_applyed):?>
+            <li><a href="<?=pll_home_url()?>user-center/?campus">站长中心 </a></li>
+<?php endif;?>
+
         </ul>
       </div>
     </div>
@@ -223,7 +239,7 @@ else: ?>
               <div class="col-18">
                 <div class="form-group">
                   <div class="input-group input-group-lg">
-                    <input type="text" name="user_name" value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>">
+                    <input type="text" name="user_name" required value="<?=$user->display_name?>" class="form-control" placeholder="<?=__('姓名', 'young-bird')?>" data-toggle="tooltip" data-placement="top" title="<?=__('务必填写真实姓名，用于获奖后的证书发放', 'young-bird')?>">
                   </div>
                 </div>
                 <div class="row">
@@ -256,12 +272,12 @@ else: ?>
           <div class="col-12">
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="tel" name="mobile" required value="<?=$form_values['mobile']?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
+                <input type="tel" name="mobile" value="<?=$form_values['mobile']?>" class="form-control" placeholder="<?=$sign_up_fields_label['mobile']?>">
               </div>
             </div>
             <div class="form-group">
               <div class="input-group input-group-lg">
-                <input type="email" name="email" required value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
+                <input type="email" name="email" value="<?=$user->user_email?>" class="form-control" placeholder="<?=__('邮箱', 'young-bird')?>">
               </div>
             </div>
           </div>
@@ -378,3 +394,4 @@ else: ?>
       </form>
     </div>
 <?php endif; get_footer(); ?>
+

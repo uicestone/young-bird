@@ -1,8 +1,12 @@
 <?php
 header('Total-Pages: ' . $wp_query->max_num_pages);
+
 if (!isset($_GET['partial'])):
 get_header(); ?>
     <!-- Banner -->
+
+
+
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-news.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_新 闻 <br>NEWS</h1>
@@ -14,8 +18,10 @@ get_header(); ?>
       <div class="category-container d-flex flex-wrap mb-4 row">
         <a href="?tag=" class="<?=!$_GET['tag'] ? 'active' : ''?>"><?=__('全部', 'young-bird')?></a>
         <?php foreach (get_tags() as $tag): ?>
+        <?php if($tag->term_id!=29&&$tag->term_id!=362):?>
         <a href="?tag=<?=$tag->slug?>" class="text-truncate <?=$_GET['tag'] === urldecode($tag->slug) ? 'active' : ''?>" title="<?=$tag->name?>"><?=$tag->name?></a>
-        <?php endforeach; ?>
+        <?php endif;?>
+          <?php endforeach; ?>
       </div>
       <div class="row">
         <div class="col-md-18">
@@ -48,7 +54,7 @@ get_header(); ?>
           <?php endif; ?>
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'news-list-ad','posts_per_page' => 100)) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'news-list-ad', 'posts_per_page' => 100)) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <div>
               <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
@@ -83,13 +89,11 @@ get_header(); ?>
     <div class="title text-truncate">
       <?php the_title()?>
     </div>
-    <div class="label text-truncate"># <?=strip_tags(get_the_tag_list('', '、', '', $post->ID))?></div>
+    <div class="label text-truncate">#<?=get_post_meta($post->ID,'front_tag',true)?></div>
     <p class="text-truncate">
       <?php the_excerpt()?>
     </p>
-    <?php foreach (get_the_terms($post->ID, 'news_category') ?: array() as $term): ?>
-    <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>
-    <?php endforeach; ?>
+
   </div>
 </a>
 <?php endwhile; else: ?>

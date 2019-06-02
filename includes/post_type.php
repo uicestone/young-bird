@@ -10,14 +10,17 @@ add_action('init', function () {
   add_image_size('medium-sq', 300, 300, true);
   add_image_size('8-7', 320, 280, true);
   add_image_size('5-4', 500, 400, true);
-  add_image_size('5-3', 1000, 600, true);
+  add_image_size('5-3', 1200, 720, true);
   add_image_size('vga', 640, 480, true);
   add_image_size('3-2', 600, 400, true);
   add_image_size('hd', 1280, 720, true);
   add_image_size('movie', 1920, 800, true);
   add_image_size('5-1', 1920, 384, true);
 
-  register_taxonomy('event_category', 'event', array (
+
+
+
+  register_taxonomy('event_category', array('event','case','brand'), array (
     'label' => __('竞赛分类', 'young-bird'),
     'labels' => array(
       'all_items' => __('所有竞赛分类', 'young-bird'),
@@ -28,6 +31,7 @@ add_action('init', function () {
     'show_admin_column' => true,
     'hierarchical' => true
   ));
+    register_taxonomy_for_object_type('event_category','case');
 
   register_taxonomy('news_category', 'post', array (
     'label' => __('资讯分类', 'young-bird'),
@@ -267,45 +271,52 @@ add_filter('pre_get_posts', function (WP_Query $query) {
 
 function generate_certificate_honor($issue_to, $work_num, $work_title, $rank_length, $event_title, $event_title_en, $template_path) {
   $filename = 'CERTIFICATE-HONOR-' . $work_num . '.jpg';
+  if(file_exists(wp_upload_dir()['path'] . '/' .$filename))
+  {
+      unlink(wp_upload_dir()['path'] . '/' .$filename);
+
+  }
+
   $cert_honor = Image::make($template_path);
+
   $cert_honor->text(mb_strtoupper($issue_to), 160, 1650, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
   })->text(mb_strtoupper($work_title), 1240, 2150, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
-  })->text('TOP ' . $rank_length, 855, 2280, function(Font $font) {
+  })->text('TOP ' . $rank_length, 1020, 2280, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($event_title_en), 1250, 2380, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($event_title), 1230, 2600, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($work_title), 1400, 2730, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text('TOP ' . $rank_length, 470, 2855, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text($work_num, 625, 3270, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->save(wp_upload_dir()['path'] . '/' . $filename);
   return $filename;
@@ -313,45 +324,46 @@ function generate_certificate_honor($issue_to, $work_num, $work_title, $rank_len
 
 function generate_certificate_participate($issue_to, $work_num, $from, $date, $event_title_en, $template_path) {
   $filename = 'CERTIFICATE-PARTICIPATE-' . $work_num . '.jpg';
+
   $cert_participate = Image::make($template_path);
   $cert_participate->text(mb_strtoupper($issue_to), 180, 1550, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
   })->text($from, 1400, 1810, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($event_title_en), 1240, 2030, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($date), 530, 2120, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text($from, 900, 2430, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($date), 2080, 2430, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text(mb_strtoupper($event_title_en), 1400, 2550, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->text($work_num, 625, 3270, function(Font $font) {
     $font->file(FONT_PATH . 'msyh.ttc');
     $font->size(55);
-    $font->color('#8fc5dd');
+    $font->color('#000000');
     $font->align('center');
   })->save(wp_upload_dir()['path'] . '/' . $filename);
   return $filename;

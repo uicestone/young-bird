@@ -1,4 +1,5 @@
     <!-- Banner -->
+
     <div class="container-fluid sub-banner p-0" style="background: url(<?=get_stylesheet_directory_uri()?>/images/banner-history.jpg) center center / cover no-repeat">
       <div class="container">
         <h1>_历 史 <br>HISTORY</h1>
@@ -12,6 +13,13 @@
             <?php while (have_posts()): the_post(); $id_dl = pll_get_post(get_the_ID(), pll_default_language()); ?>
             <div class="col-md-12">
               <div class="card mb-4 item-history">
+                  <?php $cansairenshu=get_users(array(
+                          'role'=>'attendee',
+                          'meta_key'=>'attend_events',
+                          'meta_value'=>$id_dl)
+
+                  );
+                  $cansairenshu=count($cansairenshu);?>
                 <a href="<?php the_permalink(); ?>">
                   <?php the_post_thumbnail('vga', array ('class' => 'card-img-top')); ?>
                   <div class="card-body mt-4">
@@ -28,7 +36,7 @@
                     <p class="color-silver"><?=$post->post_excerpt?></p>
                     <div class="action row align-items-center">
                       <i class="far fa-user mr-2"></i>
-                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></span>
+                      <span class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$cansairenshu?></span>
                       <i class="<?=in_array(get_the_ID(), get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
                     </div>
                   </div>
@@ -40,7 +48,7 @@
           <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4"><?=__('发现更多', 'young-bird')?></button>-->
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'event-history-list-ad','posts_per_page' => 100)) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'event-history-list-ad')) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <div>
               <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">

@@ -1,9 +1,33 @@
+
+<?php $mengbna=get_post_meta(get_the_ID(),'user_mengban',true);
+
+        $xiangqing=get_post_meta(get_the_ID(),'ruse_detail',true);
+  $mengban_start_time=get_post_meta(get_the_ID(),'mengban_start_time',true);
+$mengban_end_time=get_post_meta(get_the_ID(),'mengban_end_time',true);
+if(!$mengban_end_time)
+    $mengban_end_time=1000000000000;
+if(!$mengban_start_time)
+    $mengban_start_time=0;
+
+;?>
+<?php $event_id = get_post_meta(get_the_ID(), 'event', true);
+
+
+
+?>
+
+<style type=text/css >
+    .fancybox-image-wrap:after
+    {
+        content:url(<?php echo wp_get_attachment_image( get_post_meta($event_id,'water',true));?>);
+    }
+</style>
 <?php get_header(); ?>
     <!-- Body -->
     <div class="container mt-4 mt-md-5 pb-4 pb-md-6 toplist-container">
       <h1 class="text-center color-dark-yellow">
         <?php if($is_participate_round = get_post_meta(get_the_ID(), 'is_participate_round', true)): ?>
-        入围
+            <?=__('入围', 'young-bird')?>
         <?php else: ?>
         TOP<?=$rank_length?>
         <?php endif; ?>
@@ -13,12 +37,60 @@
           </small>
         <?php endif; ?>
       </h1>
+        <?php if($mengbna==true):?>
+
+            <?php if(pll_current_language()=='zh'):?>
+                <h6 style="font-size: 13px;font-family: 微软雅黑;padding-top: 16px;color: blue;?> ">
+            <?=__('出于保护参赛选手作品知识产权的目的，避免恶意复制抢注等侵权行为，主办方现阶段只展示入围名单，暂不对外公开作品细节。', 'young-bird')?>
+                </h6>
+            <?php else:?>
+                <h6 style="font-size: 13px;font-family: SFMono-Regular;padding-top: 16px;color: blue;?> ">
+                In protection of copyright and avoid piracy, we here only release shortlist instead of design details.
+        </h6>
+            <?php endif;?>
+
+        <?php endif;?>
       <div class="row mt-4 mt-md-5">
         <?php foreach ($works as $work): ?>
         <div class="col-sm-12 col-md-6 col-lg-2-4 mb-2 mb-md-4">
-          <div class="card mb-4 item-history item-top50 item-work">
+          <div class="card mb-4 item-history item-top50  <?php if(!($xiangqing==1)) echo 'item-work';?> ">
             <div style="height:165px">
-            <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top', 'style' => 'height: 100%; object-fit: cover;'))?>
+
+                <?php if($mengbna!=true):?>
+                <?php    $time=time();
+
+                if(($time>$mengban_start_time&&$time<$mengban_end_time)): ?>
+
+                         <?=get_the_post_thumbnail($work->ID, 'vga', array('class' => 'card-img-top', 'style' => 'height: 100%; object-fit: cover;'))?>
+                <?php else:?>
+                    <div class="card-img-top" style="height: 100%;object-fit: cover;background-image: url(<?=get_the_post_thumbnail_url($work->ID, 'vga', array('width' => '100%'));?>);">
+
+
+
+
+                        <?=wp_get_attachment_image( get_post_meta(get_the_ID(),'mengban_image',true), 'vga', false,array('class' => 'card-img-top img ', 'style' => 'max-width:100%;height: 165px; object-fit: cover;opacity:0.8;'))?>
+
+
+
+                    </div>
+                <?php endif;?>
+            <?php else:?>
+
+
+
+
+              <div class="card-img-top" style="height: 100%;object-fit: cover;background-image: url(<?=get_the_post_thumbnail_url($work->ID, 'vga', array('width' => '100%'));?>);">
+
+
+
+                  <?=wp_get_attachment_image( get_post_meta(get_the_ID(),'mengban_image',true), 'vga', false,array('class' => 'card-img-top img ', 'style' => 'max-width:100%;height: 165px; object-fit: cover;opacity:0.8;'))?>
+
+
+              </div>
+
+
+            <?php endif;?>
+
             </div>
             <div class="card-body mt-4">
               <div class="head justify-content-between align-items-center">
@@ -71,3 +143,15 @@
       <!--<button type="button" class="btn btn-outline-primary mx-auto d-block btn-common mb-4">--><?//=__('发现更多', 'young-bird')?><!--</button>-->
     </div>
 <?php get_footer(); ?>
+
+<script>
+    //方法一
+    function noMenuOne()
+    {
+
+        return false;
+    }
+    document.oncontextmenu = noMenuOne;
+    //方法二
+
+</script>

@@ -62,10 +62,12 @@ function send_message ($to, $template_slug, $params = array()) {
   }));
 
   if (!$templates) {
+
     error_log('Message template not found: ' . $template_slug . ', lang: ' . $lang);
     return;
   }
   $template = $templates[0];
+;
   $template_content = $template->post_content;
 
   $message_title = replace_content_params($template->post_title, $params);
@@ -76,6 +78,7 @@ function send_message ($to, $template_slug, $params = array()) {
     'post_title' => $message_title,
     'post_content' => $message_content
   ));
+
 
   add_post_meta($message_id, 'to', $to);
   $unread_messages = get_user_meta($to, 'unread_messages', true) ?: 0;
@@ -201,7 +204,11 @@ function get_event_work ($event_id, $user_id = null, $group_id = null, $create =
       'post_author' => $user_id
     ));
 
+
+
     add_post_meta($work_id, 'event', $event_id_dl);
+
+
 
     if ($group_id) {
       add_post_meta($work_id, 'group', $group_id);
@@ -271,3 +278,19 @@ function url_path($url) {
     return $matches[1];
   }
 }
+/**
+ * 自定义JPEG图片压缩质量
+ * https://www.wpdaxue.com/wp_image_editor-jpeg_quality.html
+ */
+function wpdx_custom_jpeg_quality() {
+    //根据实际需求，修改下面的数字即可
+    return 100;
+}
+add_filter( 'jpeg_quality', 'wpdx_custom_jpeg_quality');
+add_role('campus_admin', __('站长协管员', 'young-bird'), array());
+add_role('qa_admin', __('答疑员', 'young-bird'), array());
+
+add_role('campus', __('站长', 'young-bird'), array());
+
+
+                                                                                                                            

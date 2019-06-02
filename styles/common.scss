@@ -138,13 +138,6 @@ span.entry-subtitle {
       bottom: -.4rem;
     }
   }
-  .work-desc {
-    div {
-      .poster {
-        height: 200px;
-      }
-    }
-  }
 }
 
 a.link {
@@ -351,7 +344,7 @@ a.link {
     h3 {
       font-weight: bold;
       color: $black;
-      //min-height: 3rem;
+      min-height: 3rem;
       font-size: $font-size-base;
     }
     .organizer {
@@ -419,31 +412,26 @@ a.link {
   @extend .item-history;
   padding-bottom: 0;
   .card-body {
-    border-top: none;
+    border-top: 1px solid $black;
     border-bottom: 1px solid $black;
     position: relative;
     h3 {
       font-size: $font-size-lg;
     }
     .excerpt {
-      max-height: 16.5rem;
+      max-height: 15rem;
       overflow-y: scroll;
     }
     p {
       font-size: $font-size-base;
       color: $silver;
       line-height: 1.8;
-      margin-bottom: 0;
     }
     .head {
-      border-bottom: 1px solid $dark-yellow;
+      border-bottom: 1px solid $grey;
       font-size: $font-size-base;
-      height: 1.75rem;
       .label {
-        font-size: $font-size-lg;
-      }
-      .work-num {
-        font-size: $h3-font-size;
+        font-size: rem(34);
       }
     }
     .action {
@@ -483,9 +471,7 @@ a.link {
     color: $white;
   }
   h4 {
-    margin-bottom: 0.5rem;
-    font-weight: $font-weight-normal;
-    font-size: $font-size-base;
+    margin-bottom: 1rem;
   }
   .card-label {
     transition: $transition-base;
@@ -778,26 +764,23 @@ a.link {
 .work-upload {
   > div {
     padding: 0 10px;
-    //height: 10rem;
+    height: 10rem;
     &.dashed {
       border: 1px dashed $input-border-color;
     }
   }
   .upload-container {
-    height: 19.375rem;
+    height: 10rem;
     position: relative;
     .fa-plus {
       font-size: 1.3rem;
     }
-    .delete-image {
+    .fa-trash-alt {
       position: absolute;
       font-size: 1.3rem;
       right: .8rem;
       bottom: .8rem;
       z-index: 4;
-      background: none;
-      border: none;
-      text-shadow: 0 0 5px $white;
       &:hover {
         cursor: pointer;
       }
@@ -809,28 +792,18 @@ a.link {
   }
 }
 
-.work-detail {
-  h2 {
-    font-size: $font-size-lg;
-  }
-  .input-group-lg > .form-control {
-    font-size: $h3-font-size;
-  }
-  .color-blue {
-    color: #0a24fa;
-  }
-}
-
 .work-desc {
   textarea {
-    height: 23rem;
+    height: 15rem;
   }
   > div {
     position: relative;
     .poster {
-      position: relative;
-      height: 435px;
-      margin-bottom: 3rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
       i {
         font-size: 1.4rem;
       }
@@ -981,7 +954,7 @@ a.link {
         }
       }
       .editor {
-        margin: 0 72px;
+        margin-left: 72px;
         padding-bottom: 20px;
       }
     }
@@ -1092,7 +1065,7 @@ a.link {
           }
         }
         .editor {
-          margin: 0 rem(48);
+          margin-left: rem(48);
         }
       }
     }
@@ -1309,7 +1282,7 @@ a.link {
           }
         }
         .editor {
-          margin: 0 rem(20);
+          margin-left: rem(20);
         }
       }
     }
@@ -1401,45 +1374,6 @@ a.link {
         height: auto;
       }
     }
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .work-desc {
-    div {
-      .poster {
-        height: 389px;
-      }
-    }
-  }
-}
-
-@include media-breakpoint-only(md) {
-  .work-desc {
-    div {
-      .poster {
-        height: 255px;
-      }
-    }
-  }
-  .work-upload .upload-container {
-    height: 478px;
-  }
-}
-
-@include media-breakpoint-only(lg) {
-  .work-desc {
-    textarea {
-      height: 15rem;
-    }
-    div {
-      .poster {
-        height: 345px;
-      }
-    }
-  }
-  .work-upload .upload-container {
-    height: 243px;
   }
 }
 

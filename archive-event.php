@@ -1,7 +1,15 @@
 <?php
 header('Total-Pages: ' . $wp_query->max_num_pages);
+
 if (isset($_GET['partial'])):
   while (have_posts()): the_post(); $id_dl = pll_get_post(get_the_ID(), pll_default_language()); ?>
+  <?php $cansairenshu=get_users(array(
+        'role'=>'attendee',
+        'meta_key'=>'attend_events',
+        'meta_value'=>$id_dl)
+
+);
+$cansairenshu=count($cansairenshu);?>
   <div class="col-md-12">
     <div class="card mb-4 item-history">
       <a href="<?php the_permalink(); ?>">
@@ -22,7 +30,7 @@ if (isset($_GET['partial'])):
             <span class="like-box">
               <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
                 <i class="far fa-user mr-2"></i>
-                <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></b>
+                <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$cansairenshu?></b>
               <?php endif; ?>
               <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
             </span>
@@ -88,6 +96,13 @@ get_header();
         <div class="col-md-18">
           <div class="row pubu-list">
             <?php while (have_posts()): the_post(); $id_dl = pll_get_post(get_the_ID(), pll_default_language()); ?>
+                <?php $cansairenshu=get_users(array(
+                        'role'=>'attendee',
+                        'meta_key'=>'attend_events',
+                        'meta_value'=>$id_dl)
+
+                );
+                $cansairenshu=count($cansairenshu);?>
             <div class="col-md-12">
               <div class="card mb-4 item-history">
                 <a href="<?php the_permalink(); ?>">
@@ -108,7 +123,7 @@ get_header();
                       <span class="like-box">
                         <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
                         <i class="far fa-user mr-2"></i>
-                        <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=get_post_meta($id_dl, 'attendees', true) ?: 0?></b>
+                        <b class="mr-4"><?=__('参赛人数', 'young-bird')?> / <?=$cansairenshu?></b>
                         <?php endif; ?>
                         <i class="<?=in_array($id_dl, get_user_meta(get_current_user_id(), 'like_events') ?: array()) ? 'fas ' : 'far'?> fa-heart like" data-post-link="<?=get_the_permalink(get_the_ID())?>"></i>
                       </span>
@@ -124,13 +139,13 @@ get_header();
           <?php endif; ?>
         </div>
         <div class="col-md-6">
-          <?php foreach (get_posts(array ('category_name' => 'event-list-ad','posts_per_page' => 100)) as $ad): ?>
+          <?php foreach (get_posts(array ('category_name' => 'event-list-ad', 'posts_per_page' => 100)) as $ad): ?>
           <a href="<?=get_the_permalink($ad)?>" class="card mb-3 item-sub-history">
             <div>
               <img src="<?=get_field('ad_thumbnail', $ad->ID)['url']?>" class="card-img-top">
             </div>
             <div class="card-label">
-              <span class="hashtag"># <?=strip_tags(get_the_tag_list('', '、', '', $ad->ID))?></span>
+              <span class="hashtag"></span>
               <div>
                 <?php foreach (get_the_terms($ad->ID, 'news_category') ?: array() as $term): ?>
                 <i class="tag tag-grey" style="background: <?=get_field('color', $term)?>"><?=$term->name?></i>

@@ -1,11 +1,38 @@
 <?php
+
+
+
+
 if (isset($_GET['participate'])) {
   redirect_login();
 }
+$dayi=false;
 
 try {
 
 $id_dl = pll_get_post(get_the_ID(), pll_default_language());
+
+$dayi=get_post_meta($id_dl,'ext_attend_link',true);
+if(!$dayi){
+    $dayi=true;
+}
+
+
+    $cansairenshu=get_users(array(
+            'role'=>'attendee',
+            'meta_key'=>'attend_events',
+            'meta_value'=>$id_dl)
+
+    );
+
+$cansairenshu=count($cansairenshu);
+   /* $crank=get_posts(array(
+        'post_type'=>'rank',
+        'meta_key'=>'event',
+        'meta_value'=>$id_dl
+    ));
+    if(!empty($crank))
+        $dayi=true;*/
 $like_events = get_user_meta(get_current_user_id(), 'like_events') ?: array();
 $views = (get_post_meta($id_dl, 'views', true) ?: 0) + 1;
 update_post_meta($id_dl, 'views', $views);
@@ -94,7 +121,7 @@ if (isset($_POST['generate_certs']) || isset($_GET['test_generate_certs'])) {
       $cert_honor_filename = generate_certificate_honor($issue_to, 'YB' . strtoupper($work->post_name), $work->post_title, $rank_length, $event->post_title, $event_en->post_title, $cert_template_honor_path);
     } else {
       $from = mb_strtoupper(get_user_meta($work->post_author, 'school', true) ?: get_user_meta($work->post_author, 'company', true));
-      $cert_honor_filename = generate_certificate_participate($issue_to, 'YB' . strtoupper($work->post_name), $from, get_the_date('Ymd', $work->ID), $event_en->post_title, $cert_template_participation_path);
+      $cert_honor_filename = generate_certificate_participate($issue_to, 'YB' . strtoupper($work->post_name), $from, get_post_meta($id_dl,'start_date',true), $event_en->post_title, $cert_template_participation_path);
     }
     update_post_meta($work->ID, 'cert_honor', wp_upload_dir()['url'] . '/' . $cert_honor_filename);
 
@@ -124,28 +151,93 @@ foreach ($participate_fields as $field) {
 
 if (isset($_POST['participate'])) {
   redirect_login();
-  foreach ($participate_fields as $field) {
-    if (isset($_POST[$field])) {
-      update_user_meta($user->ID, $field, $_POST[$field]);
+  if($_POST['participate']=='step-3')
+  {
+
+      $event_post=get_post($id_dl);
+
+     // if(isset($_POST['']))
+
+      if(isset($_POST['ybp_collect']))
+      {
+
+          $rpostid=0;
+          $term=$_POST['ybp_collect'];
+          $rargss = array('author'=>get_current_user_id(), 'post_type' => 'user_source_post');
+          $rmypostss = get_posts( $rargss );
+
+          foreach($rmypostss as $vr){
+
+              if(get_post_meta($vr->ID)['event_id'][0]==$id_dl)
+              {
+                  wp_delete_post($vr->ID);
+
+              };
+
+          }
+
+
+
+          $termdata=array();
+          $post_content=$event_post->post_title;
+          foreach($term as $v){
+              $termdata[]=get_term($v,'user_source')->slug;
+              $post_content.='-'.get_term($v,'user_source')->name;
+          }
+
+          if(in_array('0',$_POST['ybp_collect'])){
+              $termdata[]='others';
+          }
+
+              $my_post = array(
+                  'post_title'    =>$post_content,
+                  'post_type'=>'user_source_post',
+                  'post_content'  =>$_POST['ybp_other'],
+                  'post_status'   => 'publish',
+                  'post_author'   => get_current_user_id(),
+                  'meta_input'=>array('event_id'=>$id_dl),
+              );
+              $my_post=wp_insert_post( $my_post, $wp_error );
+
+
+
+          wp_set_object_terms($my_post,$termdata,'user_source');
+         // wp_set_post_terms($id_dl,$termdata,'user_source');
+
+
+      }
+      else {
+
+          header('Location: ' . get_the_permalink() . '?participate=step-25' ); exit;
+      }
+
+
+   //    if($_POST)
+  }
+  else {
+      foreach ($participate_fields as $field) {
+          if (isset($_POST[$field])) {
+              update_user_meta($user->ID, $field, $_POST[$field]);
+          }
+      }
+      if ($_POST['name']) {
+          $user->display_name = $_POST['name'];
+      }
+      if ($_POST['email']) {
+          $user->user_email = $_POST['email'];
+      }
+
+      if ($_POST['name'] || $_POST['email']) {
+          wp_update_user($user);
+      }
+
+
+  }
+    $next_step = $_POST['participate'];
+
+    if ($_POST['identity'] === 'studying') {
+        $next_step = 'step-25';
     }
-  }
-  if ($_POST['name']) {
-    $user->display_name = $_POST['name'];
-  }
-  if ($_POST['email']) {
-    $user->user_email = $_POST['email'];
-  }
-
-  if ($_POST['name'] || $_POST['email']) {
-    wp_update_user($user);
-  }
-
-  $next_step = $_POST['participate'];
-
-  if ($_POST['identity'] === 'studying') {
-    $next_step = 'step-3';
-  }
-
   header('Location: ' . get_the_permalink() . '?participate=' . $next_step); exit;
 }
 
@@ -176,10 +268,13 @@ if (isset($_POST['create_group'])) {
 
 if (isset($_POST['join_group'])) {
   redirect_login();
+   $group_name= htmlspecialchars_decode($_POST['group_name_join']);
+   //$group_name=str_replace('&','&amp;',$group_name);
+
   $groups = get_posts(array (
     'post_type' => 'group',
     'lang' => '',
-    'title' => htmlspecialchars_decode($_POST['group_name_join']),
+    'title' => $group_name,
     'meta_key' => 'event',
     'meta_value' => $id_dl
   ));
@@ -204,6 +299,52 @@ if (isset($_GET['participate']) && $_GET['participate'] === 'step-4') {
     $attendees = get_post_meta($id_dl, 'attendees', true) ?: 0;
     update_post_meta($id_dl, 'attendees', ++$attendees);
     add_post_meta($id_dl, 'attend_users', $user->ID);
+
+      $campus=get_posts(array(
+          'post_type'=>'campus',
+          'meta_key'=>'event',
+          'meta_value'=>$id_dl
+      ));
+      if($campus){
+          $campus=$campus[0];
+          $school=get_user_meta(get_current_user_id(),'school',true);
+
+          $school=get_posts(array(
+              'post_type'=>'campus_school',
+              'meta_key'=>'school_name',
+              'meta_value'=>$school
+          ));
+          if($school) {
+              $school = $school[0];
+
+              $school=pll_get_post($school->ID,pll_default_language());
+
+              $campusimage = get_posts(array(
+                  'post_type' => 'campusimage',
+                  'meta_query' => array(
+                      array('key' => 'campus_id', 'value' => $campus->ID),
+                      array('key' => 'school_id', 'value' => $school)
+                  )
+              ));
+              $campusimage=$campusimage[0];
+              $hascount=get_post_meta($campusimage->ID,'campus_register');
+              if(!in_array($id_dl,$hascount)){
+                  add_post_meta($campusimage->ID,'campus_register',$id_dl);
+                  $amontcount=get_post_meta($campusimage->ID,'campus_register_count',true);
+                  if(!$amontcount)
+                  {
+                      $amontcount=1;
+                      add_post_meta($campusimage->ID,'campus_register_count',1);
+                  }
+                  else{
+                      $amontcount++;
+                      update_post_meta($campusimage->ID,'campus_register_count',$amontcount);
+                  }
+              }
+
+          }
+      }
+
     add_user_meta($user->ID, 'attend_events', $id_dl);
 
     // 以个人名义参赛
@@ -236,6 +377,7 @@ if (isset($_GET['participate'])):
   if (in_array($id_dl, $attend_events) && $step !== 'step-4') {
     header('Location: ' . get_the_permalink() . '?participate=step-4'); exit;
   }
+
   include(locate_template('single-event-participate-' . $step . '.php'));
 else:
 ?>
@@ -250,6 +392,7 @@ else:
           <?php if (in_array(get_post_meta($id_dl, 'status', true), array('started', 'ending'))):
               if (!in_array($id_dl, get_user_meta(get_current_user_id(), 'attend_event_review') ?: array())): ?>
               <li class="d-lg-block">
+
                 <a class="text-truncate" href="<?=pll_home_url()?>user-center/?attend-review=<?=$id_dl?>"><?=__('申请报名', 'young-bird')?></a>
               </li>
               <?php else: ?>
@@ -274,6 +417,11 @@ else:
             <a class="text-truncate" href="#section4">Q&A</a>
           </li>
           <?php endif; ?>
+              <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
+            <li class="d-none d-lg-block">
+                  <a class="text-truncate" href="<?=pll_home_url();?>/qa?event_id=<?=$id_dl?>"><?=__('提问', 'young-bird')?></a>
+            </li>
+            <?php endif;?>
           <?php if ($news_ids = get_post_meta($id_dl, 'news', true)): ?>
           <li class="d-none d-lg-block">
             <a class="text-truncate" href="#section5" title="<?=__('相关新闻', 'young-bird')?>"><?=__('相关新闻', 'young-bird')?></a>
@@ -344,7 +492,7 @@ else:
                 <?php if (!get_post_meta(get_the_ID(), 'ext_attend_link', true)): ?>
                 <?php if ($attendees = get_post_meta($id_dl, 'attendees', true)): ?>
                 <i class="far fa-user mr-1"></i>
-                <span class="mr-3"><?=__('参赛人数', 'young-bird')?> / <?=$attendees?></span>
+                <span class="mr-3"><?=__('参赛人数', 'young-bird')?> / <?=$cansairenshu?></span>
                 <?php endif; ?>
                 <?php endif; ?>
                 <span class="like-box mr-1">

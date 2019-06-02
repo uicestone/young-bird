@@ -1,0 +1,368 @@
+.page-collect h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-left: 1.25rem;
+}
+
+.page-collect .form-group {
+  margin-bottom: 1.25rem;
+}
+
+.page-collect .form-group ul {
+  padding: 0;
+}
+
+.page-collect .form-group ul li {
+  list-style: none;
+  padding: 0;
+  border: 2px solid #eee;
+  border-bottom: 0;
+}
+
+.page-collect .form-group ul li:last-of-type {
+  border: 0;
+}
+
+.page-collect .form-group ul li:nth-last-of-type(2) {
+  border: 2px solid #eee;
+  margin-bottom: 20px;
+}
+
+.page-collect .form-group ul li input {
+  display: none;
+}
+
+.page-collect .form-group ul li input[type="checkbox"]:checked + label {
+  background-color: #4498ff;
+  color: white;
+}
+
+.page-collect .form-group ul li label {
+  margin-bottom: 0;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  color: #666;
+  background-color: #f3f4f4;
+}
+
+.page-collect .form-group ul li label:hover {
+  background-color: #4498ff;
+  color: #f3f4f4;
+}
+
+.page-collect .form-group ul li .btn-secondary {
+  height: 54px;
+  width: 100%;
+  background-color: #f3f4f4;
+  color: #666;
+  text-align: left;
+  display: flex;
+  padding: 0 20px;
+  align-items: center;
+  border: 0;
+  font-size: 1.5rem;
+}
+
+.page-collect .form-group ul li .dropdown.show .dropdown-toggle::after {
+  border-top: 0;
+  border-right: 0.7em solid transparent;
+  border-bottom: 0.6em solid #b1b1b1;
+  border-left: 0.7em solid transparent;
+}
+
+.page-collect .form-group ul li .dropdown-menu.show {
+  width: 100%;
+  padding: 0;
+}
+
+.page-collect .form-group ul li .dropdown-menu.show .dropdown-item {
+  padding: 0;
+  background-color: #eee;
+}
+
+.page-collect .form-group ul li .dropdown-menu.show .dropdown-item:hover {
+  background-color: #4498ff;
+  color: #f3f4f4;
+}
+
+.page-collect .form-group ul li .dropdown-toggle::after {
+  top: 1.5rem;
+  right: 15px;
+  position: absolute;
+  border-top: 0.6em solid #b1b1b1;
+  border-right: 0.7em solid transparent;
+  border-bottom: 0;
+  border-left: 0.7em solid transparent;
+}
+
+.page-collect .form-group .ybp_other {
+  height: 54px;
+  display: none;
+}
+
+.page-collect .form-group .ybp_other input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  border: 2px solid #eee;
+  background-color: #f3f4f4;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.selected_item {
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px;
+  border-top: 2px solid #eee;
+  background-color: #4498ff;
+}
+
+.selected_item + .selected_item {
+  border-top: 0;
+}
+
+.selected_item h5 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: white;
+  margin: 0;
+}
+
+input[name="ybp_other"] {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.has_checked {
+  background-color: #4498ff !important;
+  color: white !important;
+}
+
+.has_other {
+  display: block !important;
+}
+
+@media (max-width: 991.99px) and (min-width: 768px) {
+  .page-collect h3 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem !important;
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+  .page-collect .form-group {
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul {
+    padding: 0;
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul li {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #aea8a8;
+    border-bottom: 0;
+  }
+  .page-collect .form-group ul li:last-of-type {
+    border: 0;
+  }
+  .page-collect .form-group ul li:nth-last-of-type(2) {
+    border: 1px solid #aea8a8;
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul li input {
+    display: none;
+  }
+  .page-collect .form-group ul li input[type="checkbox"]:checked + label {
+    background-color: #4498ff;
+    color: white;
+  }
+  .page-collect .form-group ul li label {
+    background-color: #f3f4f4;
+    padding: 0.61rem 1rem;
+    font-size: 0.875rem;
+    height: auto;
+    width: 100%;
+    color: #686868;
+  }
+  .page-collect .form-group ul li label:hover {
+    background-color: #f3f4f4;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .btn-secondary {
+    background-color: #f3f4f4;
+    padding: 0.61rem 1rem;
+    font-size: 0.875rem;
+    height: auto;
+    width: 100%;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .dropdown.show .dropdown-toggle::after {
+    border-top: 0;
+    border-right: 0.7em solid transparent;
+    border-bottom: 0.6em solid #b1b1b1;
+    border-left: 0.7em solid transparent;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show {
+    width: 100%;
+    padding: 0;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show .dropdown-item {
+    padding: 0;
+    background-color: #f3f4f4;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show .dropdown-item:hover {
+    background-color: transparent;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .dropdown-toggle::after {
+    top: 0.95rem;
+    right: 15px;
+    position: absolute;
+    border-top: 0.6em solid #b1b1b1;
+    border-right: 0.7em solid transparent;
+    border-bottom: 0;
+    border-left: 0.7em solid transparent;
+  }
+  .page-collect .form-group .ybp_other {
+    height: auto;
+    display: none;
+  }
+  .page-collect .form-group .ybp_other input {
+    background-color: #f3f4f4;
+    padding: 0.48rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    height: auto !important;
+  }
+  .selected_item {
+    padding: 0.61rem 1rem;
+    height: auto;
+    width: 100%;
+  }
+  .selected_item + .selected_item {
+    border-top: 0;
+  }
+  .selected_item h5 {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 991.99px) {
+  .page-collect h3 {
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem !important;
+    padding-left: 0 !important;
+    text-align: center !important;
+  }
+  .page-collect .form-group {
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul {
+    padding: 0;
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul li {
+    list-style: none;
+    padding: 0;
+    border: 1px solid #aea8a8;
+    border-bottom: 0;
+  }
+  .page-collect .form-group ul li:last-of-type {
+    border: 0;
+  }
+  .page-collect .form-group ul li:nth-last-of-type(2) {
+    border: 1px solid #aea8a8;
+    margin-bottom: 0.8rem;
+  }
+  .page-collect .form-group ul li input {
+    display: none;
+  }
+  .page-collect .form-group ul li input[type="checkbox"]:checked + label {
+    background-color: #4498ff;
+    color: white;
+  }
+  .page-collect .form-group ul li label {
+    background-color: #f3f4f4;
+    padding: 0.48rem 1rem;
+    font-size: 0.875rem;
+    height: auto;
+    width: 100%;
+    color: #686868;
+  }
+  .page-collect .form-group ul li label:hover {
+    background-color: #f3f4f4;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .btn-secondary {
+    background-color: #f3f4f4;
+    padding: 0.48rem 1rem;
+    font-size: 0.875rem;
+    height: auto;
+    width: 100%;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .dropdown.show .dropdown-toggle::after {
+    border-top: 0;
+    border-right: 0.7em solid transparent;
+    border-bottom: 0.6em solid #b1b1b1;
+    border-left: 0.7em solid transparent;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show {
+    width: 100%;
+    padding: 0;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show .dropdown-item {
+    padding: 0;
+    background-color: #f3f4f4;
+  }
+  .page-collect .form-group ul li .dropdown-menu.show .dropdown-item:hover {
+    background-color: transparent;
+    color: #686868;
+  }
+  .page-collect .form-group ul li .dropdown-toggle::after {
+    top: 0.95rem;
+    right: 15px;
+    position: absolute;
+    border-top: 0.6em solid #b1b1b1;
+    border-right: 0.7em solid transparent;
+    border-bottom: 0;
+    border-left: 0.7em solid transparent;
+  }
+  .page-collect .form-group .ybp_other {
+    height: auto;
+    display: none;
+  }
+  .page-collect .form-group .ybp_other input {
+    background-color: #f3f4f4;
+    padding: 0.48rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1;
+    height: auto !important;
+  }
+  .selected_item {
+    padding: 0.48rem 1rem;
+    height: auto;
+    width: 100%;
+  }
+  .selected_item + .selected_item {
+    border-top: 0;
+  }
+  .selected_item h5 {
+    font-size: 0.875rem;
+  }
+}
+
+.collect_need {
+  border-color: red !important;
+}

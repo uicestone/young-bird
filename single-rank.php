@@ -13,6 +13,7 @@ $public_voting = $stage === 'public_vote' && time() >= strtotime($public_vote_st
 $ranking_judge = get_field('ranking_judge');
 $vote_works = get_user_meta(get_current_user_id(), 'vote_works') ?: array();
 
+
 if (isset($_POST['remind_rank_published'])) {
   $event = get_post($event_id);
   foreach ($works as $work) {
@@ -36,9 +37,20 @@ if (isset($_POST['remind_rank_published'])) {
   }
   exit;
 }
-
 get_header(); ?>
+<?php $mengbna=get_post_meta(get_the_ID(),'user_mengban',true);
 
+      // echo get_the_ID();
+
+$xiangqing=get_post_meta(get_the_ID(),'ruse_detail',true);
+$mengban_start_time=get_post_meta(get_the_ID(),'mengban_start_time',true);
+$mengban_end_time=get_post_meta(get_the_ID(),'mengban_end_time',true);
+
+if(!$mengban_end_time)
+    $mengban_end_time=1000000000000;
+if(!$mengban_start_time)
+    $mengban_start_time=0;
+?>
     <!-- Banner -->
     <!-- for desktop -->
     <div class="container-fluid px-0 d-none d-lg-block">
@@ -70,7 +82,7 @@ get_header(); ?>
       if ($champion_to_top = get_field('champion_to_top')) {
         $champion_work_index = null; $champion_score = 0;
         foreach ($works as $index => $work) {
-          $work->score = get_work_total_score($work->ID, $event_id);
+          $work->score = get_work_total_score(pll_get_post($work->ID.pll_default_language()), $event_id);
           if ($work->score > $champion_score) {
             $champion_score = $work->score;
             $champion_work_index = $index;
@@ -79,11 +91,39 @@ get_header(); ?>
         $champions = array_splice($works, $champion_work_index, 1);
         $works = array_merge($champions, $works);
       }
+
+
       foreach ($works as $index => $work): ?>
+
+
+
       <div class="mt-4 mt-md-5">
-        <div class="row item-work item-top3-container">
+        <div class="row <?php if(($xiangqing!=1)) echo 'item-work';?> item-top3-container">
           <div class="col-sm-12 mb-4 mb-md-0 item-top3-thumb px-4">
-            <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
+
+
+              <div class="attachment-vga size-vga wp-post-image" style="width: 100%;height: auto;background-image: url(<?=get_the_post_thumbnail_url($work->ID, 'vga', array('width' => '100%'));?>);">
+          <?php if($mengbna==1||$mengbna==true):?>
+              <?php $time=time();
+              if(($time>$mengban_start_time&&$time<$mengban_end_time)): ?>
+                  <?=wp_get_attachment_image( get_post_meta(get_the_ID(),'mengban_image',true), 'vga', false,array('width' => '100%', 'style' => 'opacity:0.8;'));?>
+
+
+                  <?php else:?>
+                  <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
+                  <?php endif;?>
+          <?php else:?>
+
+
+
+
+              <?=get_the_post_thumbnail($work->ID, 'vga', array('width' => '100%'))?>
+
+
+          <?php endif;?>
+              </div>
+
+
           </div>
           <div class="col-sm-12 card item-top3 px-4">
             <div class="card-body pb-1 pt-0">
@@ -156,7 +196,9 @@ get_header(); ?>
           </a>
           <?php foreach (get_post_meta($work->ID, 'images') as $image_url): ?>
           <a href="<?=$image_url?>">
+              <img src="/1.jpg" alt="" />
             <img src="" alt="" />
+
           </a>
           <?php endforeach; ?>
         </div>
@@ -165,3 +207,18 @@ get_header(); ?>
     </div>
 <?php endif;
 get_footer();
+?>
+<script>
+    //方法一
+    function noMenuOne()
+    {
+               return false;
+    }
+
+
+    document.oncontextmenu = false;
+    console.log(document.oncontextmenu);
+    document.onmousedown =false;
+    //方法二
+
+</script>
